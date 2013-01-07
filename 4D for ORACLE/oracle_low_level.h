@@ -54,6 +54,7 @@ typedef struct
 	ub4				rowCount;
 	ub4				rowsFetched;
 	bool			isEndOfSelection;
+	bool			isEndOfSelectionInFirstCall;
 	
 	ORACLE_SQL_SUBSTITUTION_LIST			substitutions;
 	ORACLE_SQL_SUBSTITUTION_POINTER_LIST	pointers;

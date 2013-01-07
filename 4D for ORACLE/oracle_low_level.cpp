@@ -36,6 +36,7 @@ ORACLE_SQL_CURSOR *_cursorCreate(unsigned int *index, uint32_t sessionId, OCIStm
 		obj->rowCount = 0;
 		obj->rowsFetched = 0;
 		obj->isEndOfSelection = false;
+		obj->isEndOfSelectionInFirstCall = false;
 
 		_cursors.insert(std::map<uint32_t, ORACLE_SQL_CURSOR*>::value_type(i, obj));	
 		*index = i;
@@ -144,6 +145,7 @@ void _cursorClearBind(sessionInfo *session, ORACLE_SQL_CURSOR *cursor)
 	cursor->rowCount = 0;
 	cursor->rowsFetched = 0;
 	cursor->isEndOfSelection = false;
+	cursor->isEndOfSelectionInFirstCall = false;
 	
 	_cursorResize(session, cursor, 0);		
 }
@@ -409,6 +411,9 @@ void OD_Load_rows_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 					}
 					
 				}
+			
+				if(cursor->isEndOfSelectionInFirstCall)
+					cursor->isEndOfSelection = true;
 				
 			}
 			
@@ -443,7 +448,7 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 		
 		if(session)
 		{
-			sword err = 0;
+			sword status = 0;
 			
 			PA_FieldKind kind;
 			short stringLength;
@@ -692,25 +697,30 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 
 			}
 
-			err = OCIStmtExecute(session->svchp, cursor->stmtp, cursor->errhp, cursor->itemCount, 0, 0, 0, OCI_DEFAULT);
+			status = OCIStmtExecute(session->svchp, cursor->stmtp, cursor->errhp, cursor->itemCount, 0, 0, 0, OCI_DEFAULT);
 			//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci16ms2.htm
 			
-			if(!err)
+			switch (status)
 			{
-				switch (cursor->sql_type)
-				{
+				case OCI_NO_DATA:
+				case OCI_SUCCESS:
+				case OCI_SUCCESS_WITH_INFO:	
+					switch (cursor->sql_type)
+					{
 					case OCI_STMT_SELECT:
 						//we only want to increment the counter after a call to load cursor
 						break;
 					default:
 						OCIAttrGet(cursor->stmtp, OCI_HTYPE_STMT, &cursor->rowCount, 0, OCI_ATTR_ROW_COUNT, cursor->errhp);
 						break;
-				}
-				
-				cursor->isActive = true;
+					}
+					cursor->isActive = true;
+					cursor->isEndOfSelectionInFirstCall = (status == OCI_NO_DATA);
+					break;
 					
-			}else{
-				_errorInfoSet(session->envhp, cursor->errhp, cursor->sessionId, cursorId, false, PA_GetCurrentProcessNumber(), 0);
+				default:
+					_errorInfoSet(session->envhp, cursor->errhp, cursor->sessionId, cursorId, false, PA_GetCurrentProcessNumber(), 0);					
+					break;
 			}
 		
 		}
