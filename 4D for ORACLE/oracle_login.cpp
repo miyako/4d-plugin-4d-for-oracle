@@ -129,7 +129,7 @@ void OD_Login_state(sLONG_PTR *pResult, PackagePtr pParams)
 	C_TEXT Param3;
 	C_LONGINT returnValue;
 
-	returnValue.setIntValue(-1);
+	returnValue.setIntValue(0);
 	
 	Param1.fromParamAtIndex(pParams, 1);
 	
@@ -139,7 +139,7 @@ void OD_Login_state(sLONG_PTR *pResult, PackagePtr pParams)
 	
 	if(session)
 	{
-		Param1.setIntValue(1);
+		returnValue.setIntValue(1);
 		Param2.setUTF16String(&session->user);
 		Param3.setUTF16String(&session->server);
 	}
