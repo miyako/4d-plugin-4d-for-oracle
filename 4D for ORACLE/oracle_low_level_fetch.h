@@ -20,6 +20,7 @@ sword _fetchDataIntoBooleanVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable varia
 sword _fetchDataIntoRealVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _fetchDataIntoDateVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _fetchDataIntoTimeVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
+sword _fetchDataIntoBlobVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session);
 
 sword _fetchDataIntoAlphaField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session);
 sword _fetchDataIntoTextField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session);
@@ -29,5 +30,6 @@ sword _fetchDataIntoBooleanField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 sword _fetchDataIntoRealField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _fetchDataIntoDateField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _fetchDataIntoTimeField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
+sword _fetchDataIntoBlobField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session);
 
 #endif

@@ -110,8 +110,14 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 				
 			}
 			
-		}	
-		
+			if(cursor->isRawObjectValid.at(i))			
+				PA_UnlockHandle(cursor->blobs.at(i));
+
+			if(cursor->isLocatorValid.at(i))			
+				OCIDescriptorFree(cursor->locators.at(i), OCI_DTYPE_LOB);
+			
+		}
+				
 	}
 
 	cursor->substitutions.resize(size);
@@ -126,8 +132,12 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 	cursor->dates.resize(size);	
 	cursor->numbers.resize(size);
 	cursor->texts.resize(size);
+	cursor->blobs.resize(size);	
+	cursor->locators.resize(size);	
 	cursor->isObjectElementValid.resize(size);	
 	cursor->isObjectValid.resize(size);
+	cursor->isRawObjectValid.resize(size);
+	cursor->isLocatorValid.resize(size);
 	cursor->arrayOfDates.resize(size);	
 	cursor->arrayOfNumbers.resize(size);	
 	cursor->arrayOfTexts.resize(size);
@@ -339,7 +349,11 @@ void OD_Load_rows_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 								case eVK_Time:
 									err = _fetchDataIntoTimeVariable(cursor, cursor->substitutions.at(i), i);
 									break;	
-									
+
+								case eVK_Blob:
+									err = _fetchDataIntoBlobVariable(cursor, cursor->substitutions.at(i), i, session);
+									break;										
+
 								case eVK_PointerToField:							
 									PA_GetFieldProperties(cursor->substitutions.at(i).uValue.fTableFieldDefinition.fTableNumber, 
 														  cursor->substitutions.at(i).uValue.fTableFieldDefinition.fFieldNumber, 
@@ -390,6 +404,10 @@ void OD_Load_rows_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 													
 												case eFK_TimeField:
 													err = _fetchDataIntoTimeField(cursor, cursor->substitutions.at(i), i);
+													break;	
+													
+												case eFK_BlobField:
+													err = _fetchDataIntoBlobField(cursor, cursor->substitutions.at(i), i, session);
 													break;	
 													
 												default:
@@ -508,6 +526,10 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 							_bindTimeVariableTowardsSQL(cursor, cursor->substitutions.at(i), i);
 							break;
 							
+						case eVK_Blob:							
+							_bindBlobVariableTowardsSQL(cursor, cursor->substitutions.at(i), i);
+							break;
+							
 						case eVK_PointerToField:							
 							PA_GetFieldProperties(cursor->substitutions.at(i).uValue.fTableFieldDefinition.fTableNumber, 
 												  cursor->substitutions.at(i).uValue.fTableFieldDefinition.fFieldNumber, 
@@ -559,7 +581,11 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 											case eFK_TimeField:
 												_bindTimeFieldTowardsSQL(cursor, cursor->substitutions.at(i), i);
 												break;	
-
+												
+											case eFK_BlobField:
+												_bindBlobFieldTowardsSQL(cursor, cursor->substitutions.at(i), i);
+												break;	
+												
 											default:
 												break;
 										}
@@ -623,6 +649,10 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 					   case eVK_Time:
 						   _bindTimeVariableTowards4D(cursor, i);
 						   break;	
+						   
+					   case eVK_Blob:							
+						   _bindBlobVariableTowards4D(cursor, i, session);
+						   break;
    
 					   case eVK_PointerToField:							
 						   PA_GetFieldProperties(cursor->substitutions.at(i).uValue.fTableFieldDefinition.fTableNumber, 
@@ -1051,10 +1081,12 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 {
 	C_LONGINT Param1;
 	C_TEXT Param2;
+	C_LONGINT Param3;	
 	C_LONGINT returnValue;
 	
 	Param1.fromParamAtIndex(pParams, 1);
 	Param2.fromParamAtIndex(pParams, 2);
+	Param3.fromParamAtIndex(pParams, 3);
 	
 	uint32_t cursorId = Param1.getIntValue();
 	
@@ -1148,11 +1180,25 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 
 			unsigned int sql_type = 0;
 			
+			ub4 language = OCI_NTV_SYNTAX;
+			
+			switch (Param3.getIntValue())
+			{
+				case 2:
+					language = OCI_V7_SYNTAX;
+					break;
+
+				case 3:
+					language = OCI_V8_SYNTAX;
+					break;					
+			}
+			
 			err = OCIStmtPrepare(cursor->stmtp, cursor->errhp, 
 						   (text *)cursor->sql.c_str(), 
-						   (ub4)cursor->sql.length() * sizeof(PA_Unichar), 
-						   OCI_NTV_SYNTAX,
-						   OCI_UTF16);
+						// (ub4)cursor->sql.length() * sizeof(PA_Unichar),
+						   (ub4)cursor->sql.length() * sizeof(PA_Unichar) + sizeof(PA_Unichar),								 
+						   language,
+						   OCI_DEFAULT);
 			
 			//documentation wrong???
 			//in characters or in number of bytes, depending on the encoding

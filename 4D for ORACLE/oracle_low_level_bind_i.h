@@ -30,6 +30,7 @@ sword _bindBooleanFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 sword _bindRealFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindDateFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindTimeFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
+sword _bindBlobFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 
 sword _bindTextVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindLongintVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
@@ -37,5 +38,6 @@ sword _bindBooleanVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable vari
 sword _bindRealVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindDateVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindTimeVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
+sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 
 #endif

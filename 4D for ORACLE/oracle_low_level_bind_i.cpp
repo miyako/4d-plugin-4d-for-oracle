@@ -557,6 +557,38 @@ sword _bindTimeFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm
 }
 
+sword _bindBlobFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
+{
+	cursor->binds.at(pos) = 0;
+	cursor->itemCount = 1;
+	
+	if(isBlobFieldValueNull(variable))
+	{
+		cursor->indicators.at(pos) = -1;
+	}else{
+		cursor->indicators.at(pos) = 1;
+	}
+	
+	cursor->isRawObjectValid.at(pos) = true;
+	cursor->blobs.at(pos) = PA_GetBlobHandleField(variable.uValue.fTableFieldDefinition.fTableNumber, variable.uValue.fTableFieldDefinition.fFieldNumber);
+	
+	return OCIBindByPos(cursor->stmtp, 
+						&cursor->binds.at(pos),
+						cursor->errhp, 
+						pos + 1, 
+						PA_LockHandle(cursor->blobs.at(pos)), 
+						PA_GetHandleSize(cursor->blobs.at(pos)), 
+						SQLT_BIN,
+						&cursor->indicators.at(pos), 
+						0,
+						0, 
+						0, 
+						0,
+						OCI_DEFAULT);
+	
+	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm	
+}
+
 #pragma mark -
 
 sword _bindTextVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
@@ -752,4 +784,31 @@ sword _bindTimeVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 						0, 
 						0,
 						OCI_DEFAULT);	
+}
+
+sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
+{
+	cursor->binds.at(pos) = 0;
+	cursor->itemCount = 1;
+	
+	cursor->indicators.at(pos) = 1;
+	
+	cursor->isRawObjectValid.at(pos) = true;
+	cursor->blobs.at(pos) = PA_GetBlobHandleVariable(variable);
+
+	return OCIBindByPos(cursor->stmtp, 
+						&cursor->binds.at(pos),
+						cursor->errhp, 
+						pos + 1, 
+						PA_LockHandle(cursor->blobs.at(pos)), 
+						PA_GetHandleSize(cursor->blobs.at(pos)), 
+						SQLT_BIN,
+						&cursor->indicators.at(pos), 
+						0,
+						0, 
+						0, 
+						0,
+						OCI_DEFAULT);
+	
+	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm	
 }

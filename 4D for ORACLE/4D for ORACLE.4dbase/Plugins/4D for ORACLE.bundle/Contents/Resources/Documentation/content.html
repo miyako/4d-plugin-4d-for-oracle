@@ -16,24 +16,7 @@
 </ex4D:plugin-description>
 <a name="command:1"></a>
 <h2>OD: Login</h2>
-<a name="command:1,5"></a>
-<h3>OD Clone table</h3>
-<p>
-<code>LONGINT:=OD Clone table (LONGINT; TEXT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Clone table here -->
-</ex4D:command-description>
-<a name="command:1,3"></a>
+<a name="command:1,2"></a>
 <h3>OD LOGOUT</h3>
 <p>
 <code>OD LOGOUT (LONGINT)</code>
@@ -47,7 +30,7 @@
 <a name="command:1,1"></a>
 <h3>OD Login</h3>
 <p>
-<code>LONGINT:=OD Login (TEXT; TEXT; TEXT; LONGINT)</code>
+<code>LONGINT:=OD Login (TEXT; TEXT; TEXT)</code>
 </p>
 <p>
 <code>returnValue</code> (LONGINT)<br>
@@ -61,24 +44,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Login here -->
 </ex4D:command-description>
-<a name="command:1,2"></a>
-<h3>OD Login dialog</h3>
-<p>
-<code>LONGINT:=OD Login dialog (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Login dialog here -->
-</ex4D:command-description>
-<a name="command:1,4"></a>
+<a name="command:1,3"></a>
 <h3>OD Login state</h3>
 <p>
 <code>LONGINT:=OD Login state (LONGINT; TEXT; TEXT)</code>
@@ -96,387 +62,11 @@
 <!-- write documentation for OD Login state here -->
 </ex4D:command-description>
 <a name="command:2"></a>
-<h2>OD: Context Definition</h2>
-<a name="command:2,9"></a>
-<h3>OD ADD TO CONTEXT</h3>
-<p>
-<code>OD ADD TO CONTEXT (LONGINT; TEXT; POINTER; LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD ADD TO CONTEXT here -->
-</ex4D:command-description>
-<a name="command:2,6"></a>
-<h3>OD Create context</h3>
-<p>
-<code>LONGINT:=OD Create context (TEXT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Create context here -->
-</ex4D:command-description>
-<a name="command:2,7"></a>
-<h3>OD Create context dialog</h3>
-<p>
-<code>LONGINT:=OD Create context dialog (LONGINT; TEXT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Create context dialog here -->
-</ex4D:command-description>
-<a name="command:2,8"></a>
-<h3>OD DROP CONTEXT</h3>
-<p>
-<code>OD DROP CONTEXT (LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD DROP CONTEXT here -->
-</ex4D:command-description>
-<a name="command:2,10"></a>
-<h3>OD EDIT CLAUSES IN CONTEXT</h3>
-<p>
-<code>OD EDIT CLAUSES IN CONTEXT (LONGINT; LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD EDIT CLAUSES IN CONTEXT here -->
-</ex4D:command-description>
-<a name="command:2,12"></a>
-<h3>OD Get clause in context</h3>
-<p>
-<code>TEXT:=OD Get clause in context (LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (TEXT)<br>
-<ex4D:return-value label="" type="T" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (TEXT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Get clause in context here -->
-</ex4D:command-description>
-<a name="command:2,16"></a>
-<h3>OD Open context file</h3>
-<p>
-<code>LONGINT:=OD Open context file (TEXT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Open context file here -->
-</ex4D:command-description>
-<a name="command:2,14"></a>
-<h3>OD Open context picture</h3>
-<p>
-<code>LONGINT:=OD Open context picture (PICTURE)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Open context picture here -->
-</ex4D:command-description>
-<a name="command:2,15"></a>
-<h3>OD SAVE CONTEXT FILE</h3>
-<p>
-<code>OD SAVE CONTEXT FILE (LONGINT; TEXT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD SAVE CONTEXT FILE here -->
-</ex4D:command-description>
-<a name="command:2,11"></a>
-<h3>OD SET CLAUSE IN CONTEXT</h3>
-<p>
-<code>OD SET CLAUSE IN CONTEXT (LONGINT; LONGINT; TEXT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD SET CLAUSE IN CONTEXT here -->
-</ex4D:command-description>
-<a name="command:2,13"></a>
-<h3>OD Save context picture</h3>
-<p>
-<code>PICTURE:=OD Save context picture (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (PICTURE)<br>
-<ex4D:return-value label="" type="P" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (PICTURE) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Save context picture here -->
-</ex4D:command-description>
-<a name="command:3"></a>
-<h2>OD: Using Context</h2>
-<a name="command:3,17"></a>
-<h3>OD Activate context</h3>
-<p>
-<code>LONGINT:=OD Activate context (LONGINT; LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Activate context here -->
-</ex4D:command-description>
-<a name="command:3,19"></a>
-<h3>OD Context state</h3>
-<p>
-<code>LONGINT:=OD Context state (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Context state here -->
-</ex4D:command-description>
-<a name="command:3,18"></a>
-<h3>OD DEACTIVATE CONTEXT</h3>
-<p>
-<code>OD DEACTIVATE CONTEXT (LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD DEACTIVATE CONTEXT here -->
-</ex4D:command-description>
-<a name="command:3,27"></a>
-<h3>OD Delete in context</h3>
-<p>
-<code>LONGINT:=OD Delete in context (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Delete in context here -->
-</ex4D:command-description>
-<a name="command:3,23"></a>
-<h3>OD Goto in context</h3>
-<p>
-<code>LONGINT:=OD Goto in context (LONGINT; LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Goto in context here -->
-</ex4D:command-description>
-<a name="command:3,26"></a>
-<h3>OD Insert in context</h3>
-<p>
-<code>LONGINT:=OD Insert in context (LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Insert in context here -->
-</ex4D:command-description>
-<a name="command:3,28"></a>
-<h3>OD Load rows context</h3>
-<p>
-<code>LONGINT:=OD Load rows context (LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Load rows context here -->
-</ex4D:command-description>
-<a name="command:3,20"></a>
-<h3>OD Next in context</h3>
-<p>
-<code>LONGINT:=OD Next in context (LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Next in context here -->
-</ex4D:command-description>
-<a name="command:3,22"></a>
-<h3>OD Number in context</h3>
-<p>
-<code>LONGINT:=OD Number in context (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Number in context here -->
-</ex4D:command-description>
-<a name="command:3,21"></a>
-<h3>OD Previous in context</h3>
-<p>
-<code>LONGINT:=OD Previous in context (LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Previous in context here -->
-</ex4D:command-description>
-<a name="command:3,24"></a>
-<h3>OD Records in context</h3>
-<p>
-<code>LONGINT:=OD Records in context (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Records in context here -->
-</ex4D:command-description>
-<a name="command:3,29"></a>
-<h3>OD Reset context</h3>
-<p>
-<code>LONGINT:=OD Reset context (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Reset context here -->
-</ex4D:command-description>
-<a name="command:3,25"></a>
-<h3>OD Update in context</h3>
-<p>
-<code>LONGINT:=OD Update in context (LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Update in context here -->
-</ex4D:command-description>
-<a name="command:4"></a>
 <h2>OD: Low Level</h2>
-<a name="command:4,35"></a>
+<a name="command:2,9"></a>
 <h3>OD BIND TOWARDS 4D</h3>
 <p>
-<code>OD BIND TOWARDS 4D (LONGINT; LONGINT; POINTER)</code>
+<code>OD BIND TOWARDS 4D (LONGINT; LONGINT; POINTER; LONGINT)</code>
 </p>
 <p>
 <span class="title">Discussion</span>
@@ -484,10 +74,10 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD BIND TOWARDS 4D here -->
 </ex4D:command-description>
-<a name="command:4,34"></a>
+<a name="command:2,8"></a>
 <h3>OD BIND TOWARDS SQL</h3>
 <p>
-<code>OD BIND TOWARDS SQL (LONGINT; LONGINT; POINTER)</code>
+<code>OD BIND TOWARDS SQL (LONGINT; LONGINT; POINTER; LONGINT)</code>
 </p>
 <p>
 <span class="title">Discussion</span>
@@ -495,7 +85,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD BIND TOWARDS SQL here -->
 </ex4D:command-description>
-<a name="command:4,30"></a>
+<a name="command:2,4"></a>
 <h3>OD Create cursor</h3>
 <p>
 <code>LONGINT:=OD Create cursor (LONGINT)</code>
@@ -512,7 +102,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Create cursor here -->
 </ex4D:command-description>
-<a name="command:4,32"></a>
+<a name="command:2,6"></a>
 <h3>OD Cursor state</h3>
 <p>
 <code>LONGINT:=OD Cursor state (LONGINT)</code>
@@ -529,7 +119,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Cursor state here -->
 </ex4D:command-description>
-<a name="command:4,31"></a>
+<a name="command:2,5"></a>
 <h3>OD DROP CURSOR</h3>
 <p>
 <code>OD DROP CURSOR (LONGINT)</code>
@@ -540,7 +130,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD DROP CURSOR here -->
 </ex4D:command-description>
-<a name="command:4,36"></a>
+<a name="command:2,10"></a>
 <h3>OD EXECUTE CURSOR</h3>
 <p>
 <code>OD EXECUTE CURSOR (LONGINT; LONGINT)</code>
@@ -551,7 +141,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD EXECUTE CURSOR here -->
 </ex4D:command-description>
-<a name="command:4,39"></a>
+<a name="command:2,13"></a>
 <h3>OD GET COLUMN ATTRIBUTES</h3>
 <p>
 <code>OD GET COLUMN ATTRIBUTES (LONGINT; LONGINT; LONGINT; LONGINT)</code>
@@ -562,7 +152,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD GET COLUMN ATTRIBUTES here -->
 </ex4D:command-description>
-<a name="command:4,40"></a>
+<a name="command:2,14"></a>
 <h3>OD Get column title</h3>
 <p>
 <code>TEXT:=OD Get column title (LONGINT; LONGINT)</code>
@@ -579,7 +169,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Get column title here -->
 </ex4D:command-description>
-<a name="command:4,37"></a>
+<a name="command:2,11"></a>
 <h3>OD Load rows cursor</h3>
 <p>
 <code>LONGINT:=OD Load rows cursor (LONGINT)</code>
@@ -596,7 +186,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Load rows cursor here -->
 </ex4D:command-description>
-<a name="command:4,41"></a>
+<a name="command:2,15"></a>
 <h3>OD Number of columns</h3>
 <p>
 <code>LONGINT:=OD Number of columns (LONGINT)</code>
@@ -613,7 +203,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Number of columns here -->
 </ex4D:command-description>
-<a name="command:4,38"></a>
+<a name="command:2,12"></a>
 <h3>OD Number rows processed</h3>
 <p>
 <code>LONGINT:=OD Number rows processed (LONGINT)</code>
@@ -630,10 +220,10 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Number rows processed here -->
 </ex4D:command-description>
-<a name="command:4,33"></a>
+<a name="command:2,7"></a>
 <h3>OD Set SQL in cursor</h3>
 <p>
-<code>LONGINT:=OD Set SQL in cursor (LONGINT; TEXT)</code>
+<code>LONGINT:=OD Set SQL in cursor (LONGINT; TEXT; LONGINT)</code>
 </p>
 <p>
 <code>returnValue</code> (LONGINT)<br>
@@ -647,76 +237,9 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Set SQL in cursor here -->
 </ex4D:command-description>
-<a name="command:5"></a>
+<a name="command:3"></a>
 <h2>OD: Preferences</h2>
-<a name="command:5,48"></a>
-<h3>OD Get NB mode</h3>
-<p>
-<code>LONGINT:=OD Get NB mode (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Get NB mode here -->
-</ex4D:command-description>
-<a name="command:5,43"></a>
-<h3>OD Get Options</h3>
-<p>
-<code>LONGINT:=OD Get Options (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Get Options here -->
-</ex4D:command-description>
-<a name="command:5,45"></a>
-<h3>OD LOAD STRUCTURE</h3>
-<p>
-<code>OD LOAD STRUCTURE (LONGINT; LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD LOAD STRUCTURE here -->
-</ex4D:command-description>
-<a name="command:5,46"></a>
-<h3>OD SET CONFIGURATION FILE</h3>
-<p>
-<code>OD SET CONFIGURATION FILE (TEXT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD SET CONFIGURATION FILE here -->
-</ex4D:command-description>
-<a name="command:5,47"></a>
-<h3>OD SET NB MODE</h3>
-<p>
-<code>OD SET NB MODE (LONGINT; LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD SET NB MODE here -->
-</ex4D:command-description>
-<a name="command:5,44"></a>
+<a name="command:3,16"></a>
 <h3>OD SET NULL VALUE</h3>
 <p>
 <code>OD SET NULL VALUE (LONGINT; TEXT; LONGINT)</code>
@@ -727,20 +250,9 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD SET NULL VALUE here -->
 </ex4D:command-description>
-<a name="command:5,42"></a>
-<h3>OD SET OPTIONS</h3>
-<p>
-<code>OD SET OPTIONS (LONGINT; LONGINT; LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD SET OPTIONS here -->
-</ex4D:command-description>
-<a name="command:6"></a>
+<a name="command:4"></a>
 <h2>OD: Control</h2>
-<a name="command:6,49"></a>
+<a name="command:4,17"></a>
 <h3>OD CANCEL LOADING</h3>
 <p>
 <code>OD CANCEL LOADING (LONGINT)</code>
@@ -751,57 +263,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD CANCEL LOADING here -->
 </ex4D:command-description>
-<a name="command:6,53"></a>
-<h3>OD CLOSE DEBUG WINDOW</h3>
-<p>
-<code>OD CLOSE DEBUG WINDOW</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD CLOSE DEBUG WINDOW here -->
-</ex4D:command-description>
-<a name="command:6,56"></a>
-<h3>OD Check configuration</h3>
-<p>
-<code>LONGINT:=OD Check configuration</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Check configuration here -->
-</ex4D:command-description>
-<a name="command:6,57"></a>
-<h3>OD GET SERVER LIST</h3>
-<p>
-<code>OD GET SERVER LIST (TEXT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD GET SERVER LIST here -->
-</ex4D:command-description>
-<a name="command:6,54"></a>
-<h3>OD LOGIN INFORMATIONS</h3>
-<p>
-<code>OD LOGIN INFORMATIONS (LONGINT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD LOGIN INFORMATIONS here -->
-</ex4D:command-description>
-<a name="command:6,50"></a>
+<a name="command:4,18"></a>
 <h3>OD Last error</h3>
 <p>
 <code>LONGINT:=OD Last error (TEXT; LONGINT; LONGINT; TEXT; LONGINT; LONGINT)</code>
@@ -818,42 +280,9 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Last error here -->
 </ex4D:command-description>
-<a name="command:6,55"></a>
-<h3>OD MESSAGE DEBUG</h3>
-<p>
-<code>OD MESSAGE DEBUG (TEXT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD MESSAGE DEBUG here -->
-</ex4D:command-description>
-<a name="command:6,51"></a>
-<h3>OD ON ERROR CALL</h3>
-<p>
-<code>OD ON ERROR CALL (TEXT)</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD ON ERROR CALL here -->
-</ex4D:command-description>
-<a name="command:6,52"></a>
-<h3>OD OPEN DEBUG WINDOW</h3>
-<p>
-<code>OD OPEN DEBUG WINDOW</code>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD OPEN DEBUG WINDOW here -->
-</ex4D:command-description>
-<a name="command:7"></a>
+<a name="command:5"></a>
 <h2>OD: High Level</h2>
-<a name="command:7,60"></a>
+<a name="command:5,19"></a>
 <h3>OD COMMIT</h3>
 <p>
 <code>OD COMMIT (LONGINT)</code>
@@ -864,92 +293,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD COMMIT here -->
 </ex4D:command-description>
-<a name="command:7,59"></a>
-<h3>OD Clone 4D Table</h3>
-<p>
-<code>LONGINT:=OD Clone 4D Table (LONGINT; LONGINT; LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Clone 4D Table here -->
-</ex4D:command-description>
-<a name="command:7,63"></a>
-<h3>OD Describe object</h3>
-<p>
-<code>LONGINT:=OD Describe object (LONGINT; TEXT; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Describe object here -->
-</ex4D:command-description>
-<a name="command:7,58"></a>
-<h3>OD Execute SQL</h3>
-<p>
-<code>LONGINT:=OD Execute SQL (LONGINT; TEXT; LONGINT; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER; POINTER)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Execute SQL here -->
-</ex4D:command-description>
-<a name="command:7,64"></a>
-<h3>OD Execute object</h3>
-<p>
-<code>LONGINT:=OD Execute object (LONGINT; TEXT; POINTER)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Execute object here -->
-</ex4D:command-description>
-<a name="command:7,62"></a>
-<h3>OD Find in context</h3>
-<p>
-<code>LONGINT:=OD Find in context (LONGINT)</code>
-</p>
-<p>
-<code>returnValue</code> (LONGINT)<br>
-<ex4D:return-value label="" type="L" xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for return value (LONGINT) here-->
-</ex4D:return-value>
-</p>
-<p>
-<span class="title">Discussion</span>
-</p>
-<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
-<!-- write documentation for OD Find in context here -->
-</ex4D:command-description>
-<a name="command:7,61"></a>
+<a name="command:5,20"></a>
 <h3>OD ROLLBACK</h3>
 <p>
 <code>OD ROLLBACK (LONGINT)</code>
@@ -960,9 +304,9 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD ROLLBACK here -->
 </ex4D:command-description>
-<a name="command:8"></a>
+<a name="command:6"></a>
 <h2>OD: Environment</h2>
-<a name="command:8,66"></a>
+<a name="command:6,22"></a>
 <h3>OD Get environment variable</h3>
 <p>
 <code>TEXT:=OD Get environment variable (TEXT; LONGINT)</code>
@@ -979,7 +323,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD Get environment variable here -->
 </ex4D:command-description>
-<a name="command:8,65"></a>
+<a name="command:6,21"></a>
 <h3>OD SET ENVIRONMENT VARIABLE</h3>
 <p>
 <code>OD SET ENVIRONMENT VARIABLE (TEXT; TEXT; LONGINT)</code>
@@ -990,9 +334,9 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD SET ENVIRONMENT VARIABLE here -->
 </ex4D:command-description>
-<a name="command:9"></a>
+<a name="command:7"></a>
 <h2>OD: Debug</h2>
-<a name="command:9,67"></a>
+<a name="command:7,23"></a>
 <h3>OD INTROSPECT CURSOR</h3>
 <p>
 <code>OD INTROSPECT CURSOR (LONGINT; TEXT; ARRAY; ARRAY; ARRAY; ARRAY)</code>
@@ -1003,7 +347,7 @@
 <ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD INTROSPECT CURSOR here -->
 </ex4D:command-description>
-<a name="command:9,68"></a>
+<a name="command:7,24"></a>
 <h3>OD INTROSPECT NULL VALUE MAP</h3>
 <p>
 <code>OD INTROSPECT NULL VALUE MAP (ARRAY; ARRAY)</code>
@@ -1095,12 +439,52 @@
 <a name="constant:4"></a>
 <h2>OD: Preferences</h2>
 <p>
+<code><a name="constant:4,2"></a>OD_SET (0)</code>
+</p>
+<ex4D:constant constant-id="2" name="OD_SET" type="L" value="0" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for OD_SET (0) here-->
+</ex4D:constant>
+<p>
 <code><a name="constant:4,1"></a>OD_UNSET (1)</code>
 </p>
 <ex4D:constant constant-id="1" name="OD_UNSET" type="L" value="1" xmlns:ex4D="http://www.4d.com/plugin">
 <!-- write documentation for OD_UNSET (1) here-->
 </ex4D:constant>
+<a name="constant:5"></a>
+<h2>OD: SQL Version</h2>
+<p>
+<code><a name="constant:5,1"></a>OD_NTV_SYNTAX (1)</code>
+</p>
+<ex4D:constant constant-id="1" name="OD_NTV_SYNTAX" type="L" value="1" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for OD_NTV_SYNTAX (1) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:5,2"></a>OD_V7_SYNTAX (2)</code>
+</p>
+<ex4D:constant constant-id="2" name="OD_V7_SYNTAX" type="L" value="2" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for OD_V7_SYNTAX (2) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:5,3"></a>OD_V8_SYNTAX (3)</code>
+</p>
+<ex4D:constant constant-id="3" name="OD_V8_SYNTAX" type="L" value="3" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for OD_V8_SYNTAX (3) here-->
+</ex4D:constant>
+<a name="constant:6"></a>
+<h2>OD: BLOB Format</h2>
+<p>
+<code><a name="constant:6,1"></a>OD_WITHOUT_LENGTH (0)</code>
+</p>
+<ex4D:constant constant-id="1" name="OD_WITHOUT_LENGTH" type="L" value="0" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for OD_WITHOUT_LENGTH (0) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:6,2"></a>OD_WITH_LENGTH (1)</code>
+</p>
+<ex4D:constant constant-id="2" name="OD_WITH_LENGTH" type="L" value="1" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for OD_WITH_LENGTH (1) here-->
+</ex4D:constant>
 <p class="footer">
-<span class="title">Documentation Update: </span>2013-01-06T20:41:4909:00</p>
+<span class="title">Documentation Update: </span>2013-01-14T11:01:3509:00</p>
 </body>
 </html>

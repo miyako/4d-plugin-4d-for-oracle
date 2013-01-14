@@ -223,6 +223,35 @@ sword _bindTimeVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 	return _bindDateVariableTowards4D(cursor, pos);
 }
 
+sword _bindBlobVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session)
+{
+	cursor->defines.at(pos) = 0;
+	cursor->itemCount = 1;//this will over write whatever size given for arrays
+	cursor->locators.at(pos) = 0;
+	
+	sword err = 0;
+	
+	err = OCIDescriptorAlloc(session->envhp, (dvoid **) &cursor->locators.at(pos), OCI_DTYPE_LOB, 0, 0);
+	
+	if(!err)
+	{
+		cursor->isLocatorValid.at(pos) = true;
+	}
+	
+	return OCIDefineByPos(cursor->stmtp, 
+						  &cursor->defines.at(pos),
+						  cursor->errhp, 
+						  pos + 1, 
+						  &cursor->locators.at(pos), 
+						  -1,
+						  SQLT_BLOB,
+						  &cursor->indicators.at(pos),  
+						  0,
+						  0, 
+						  OCI_DEFAULT);	
+	//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci15r34.htm	
+}
+
 #pragma mark -
 
 sword _bindAlphaFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
@@ -263,4 +292,9 @@ sword _bindDateFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 sword _bindTimeFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 {
 	return _bindDateVariableTowards4D(cursor, pos);
+}
+
+sword _bindBlobFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session)
+{
+	return _bindBlobVariableTowards4D(cursor, pos, session);
 }

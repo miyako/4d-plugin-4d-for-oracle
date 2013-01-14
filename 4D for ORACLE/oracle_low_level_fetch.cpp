@@ -1,6 +1,26 @@
 #include "oracle_low_level_fetch.h"
 #include "oracle_preferences.h"
 
+sb4 _read_lob(dvoid *ctxp, CONST dvoid*bufxp, ub4 len, ub1 piece)
+{
+	std::vector<uint8_t> *dataBuf = (std::vector<uint8_t> *)ctxp;
+	size_t pos = dataBuf->size();
+	
+	switch(piece)
+	{
+		case OCI_LAST_PIECE:
+		case OCI_NEXT_PIECE:
+		case OCI_FIRST_PIECE:
+			dataBuf->resize(pos + len);
+			memcpy(&dataBuf->at(pos), bufxp, len);
+			break;
+			
+		default:
+			return OCI_ERROR;
+	}
+	return OCI_CONTINUE;	
+}
+
 sword _checkNumberOfRecordsToFetch(ORACLE_SQL_CURSOR *cursor)
 {
 	sword err = 0;
@@ -237,6 +257,7 @@ sword _fetchDataIntoTextVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 			setTextVariableValueNull(variable);
 		}
 		
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);		
 	}
 	
 	return cursor->rowsFetched;
@@ -256,7 +277,8 @@ sword _fetchDataIntoLongintVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable varia
 		}else{
 			setLongintVariableValueNull(variable);
 		}
-
+		
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);
 	}
 		
 	return cursor->rowsFetched;
@@ -277,6 +299,7 @@ sword _fetchDataIntoBooleanVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable varia
 			setBooleanVariableValueNull(variable);
 		}
 		
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);		
 	}
 		
 	return cursor->rowsFetched;
@@ -297,6 +320,7 @@ sword _fetchDataIntoRealVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 			setRealVariableValueNull(variable);
 		}
 		
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);		
 	}
 	
 	return cursor->rowsFetched;
@@ -319,6 +343,7 @@ sword _fetchDataIntoDateVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 			setDateVariableValueNull(variable);
 		}
 		
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);		
 	}
 		
 	return cursor->rowsFetched;
@@ -340,10 +365,29 @@ sword _fetchDataIntoTimeVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		}else{
 			setTimeVariableValueNull(variable);
 		}
-		
+
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);
 	}
 	
 	return cursor->rowsFetched;
+}
+
+sword _fetchDataIntoBlobVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session)
+{
+	if(cursor->rowsFetched)
+	{
+		std::vector<uint8_t> dataBuf;
+		ub4 offset = 1;
+		ub4 amtp = 0;
+		ub1 buf[BUFFER_SIZE_BLOB_VARIABLE];
+		
+		OCILobRead(session->svchp, cursor->errhp, cursor->locators.at(pos), &amtp, offset, buf, BUFFER_SIZE_BLOB_VARIABLE, &dataBuf, _read_lob, 0, SQLCS_IMPLICIT);
+	
+		PA_SetBlobVariable(&variable, &dataBuf[0], dataBuf.size());
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);
+	}
+	
+	return cursor->rowsFetched;		
 }
 
 #pragma mark -
@@ -360,7 +404,7 @@ sword _fetchDataIntoAlphaField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 		}else{
 			setAlphaFieldValueNull(variable);
 		}
-		
+			
 	}
 	
 	return cursor->rowsFetched;	
@@ -385,7 +429,7 @@ sword _fetchDataIntoLongintField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		}else{
 			setLongintFieldValueNull(variable);
 		}
-		
+	
 	}
 
 	return cursor->rowsFetched;	
@@ -405,7 +449,7 @@ sword _fetchDataIntoIntegerField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		}else{
 			setIntegerFieldValueNull(variable);
 		}
-		
+			
 	}
 		
 	return cursor->rowsFetched;	
@@ -425,7 +469,7 @@ sword _fetchDataIntoBooleanField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		}else{
 			setBooleanFieldValueNull(variable);
 		}
-		
+			
 	}
 		
 	return cursor->rowsFetched;	
@@ -445,7 +489,7 @@ sword _fetchDataIntoRealField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, u
 		}else{
 			setRealFieldValueNull(variable);
 		}
-		
+			
 	}
 	
 	return cursor->rowsFetched;
@@ -467,7 +511,7 @@ sword _fetchDataIntoDateField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, u
 		}else{
 			setDateFieldValueNull(variable);
 		}
-		
+			
 	}
 	
 	return cursor->rowsFetched;
@@ -489,9 +533,32 @@ sword _fetchDataIntoTimeField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, u
 		}else{
 			setTimeFieldValueNull(variable);
 		}
-		
+			
 	}
 	
 	return cursor->rowsFetched;
 }
 
+sword _fetchDataIntoBlobField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session)
+{
+	if(cursor->rowsFetched)
+	{
+		std::vector<uint8_t> dataBuf;
+		ub4 offset = 1;
+		ub4 amtp = 0;
+		ub1 buf[BUFFER_SIZE_BLOB_VARIABLE];
+		
+		OCILobRead(session->svchp, cursor->errhp, cursor->locators.at(pos), &amtp, offset, buf, BUFFER_SIZE_BLOB_VARIABLE, &dataBuf, _read_lob, 0, SQLCS_IMPLICIT);
+		
+		if(cursor->indicators.at(pos) != -1)
+		{		
+			PA_SetBlobField(variable.uValue.fTableFieldDefinition.fTableNumber, variable.uValue.fTableFieldDefinition.fFieldNumber, &dataBuf[0], dataBuf.size());
+			
+		}else{
+			setBlobFieldValueNull(variable);
+		}		
+
+	}
+	
+	return cursor->rowsFetched;		
+}

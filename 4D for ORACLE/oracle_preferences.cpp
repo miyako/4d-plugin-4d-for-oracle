@@ -704,6 +704,11 @@ bool isTimeFieldValueNull(PA_Variable variable)
 	return isNull;
 }
 
+bool isBlobFieldValueNull(PA_Variable variable)
+{		
+	return PA_GetBooleanVariable(PA_ExecuteCommandByID(CMD_Is_field_value_Null, &variable, 1));
+}
+
 #pragma mark -
 
 void setAlphaFieldValueNull(PA_Variable variable)
@@ -790,6 +795,11 @@ void setTimeFieldValueNull(PA_Variable variable)
 	}else{
 		PA_ExecuteCommandByID(CMD_SET_FIELD_VALUE_NULL, &variable, 1);
 	}			
+}
+
+void setBlobFieldValueNull(PA_Variable variable)
+{
+	PA_ExecuteCommandByID(CMD_SET_FIELD_VALUE_NULL, &variable, 1);
 }
 
 #pragma mark -

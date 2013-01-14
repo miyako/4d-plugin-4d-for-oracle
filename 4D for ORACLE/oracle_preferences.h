@@ -50,6 +50,7 @@ bool isBooleanFieldValueNull(PA_Variable variable);
 bool isRealFieldValueNull(PA_Variable variable);
 bool isDateFieldValueNull(PA_Variable variable);
 bool isTimeFieldValueNull(PA_Variable variable);
+bool isBlobFieldValueNull(PA_Variable variable);
 
 void setAlphaFieldValueNull(PA_Variable variable);
 void setTextFieldValueNull(PA_Variable variable);
@@ -59,6 +60,7 @@ void setBooleanFieldValueNull(PA_Variable variable);
 void setRealFieldValueNull(PA_Variable variable);
 void setDateFieldValueNull(PA_Variable variable);
 void setTimeFieldValueNull(PA_Variable variable);
+void setBlobFieldValueNull(PA_Variable variable);
 
 // --- OD: Preferences
 void OD_SET_OPTIONS(sLONG_PTR *pResult, PackagePtr pParams);
