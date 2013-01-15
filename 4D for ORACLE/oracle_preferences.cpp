@@ -396,6 +396,7 @@ void setTextVariableValueNull(PA_Variable variable)
 	}
 	
 	PA_SetUnistring(&u, (PA_Unichar *)temp.getUTF16StringPtr());
+	PA_SetStringVariable(&variable, &u);
 }
 
 void setLongintVariableValueNull(PA_Variable variable)

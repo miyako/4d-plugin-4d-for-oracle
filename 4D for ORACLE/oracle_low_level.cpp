@@ -528,6 +528,7 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 							
 						case eVK_Blob:							
 							_bindBlobVariableTowardsSQL(cursor, cursor->substitutions.at(i), i);
+						//	_bindLongRawBlobVariableTowardsSQL(cursor, cursor->substitutions.at(i), i);
 							break;
 							
 						case eVK_PointerToField:							

@@ -6,12 +6,6 @@
    <command name="OD Set SQL in cursor" str="20000" topic="7">
       <param position="3" k="20004"/>
    </command>
-   <command name="OD BIND TOWARDS SQL" str="20000" topic="8">
-      <param position="4" k="20005"/>
-   </command>
-   <command name="OD BIND TOWARDS 4D" str="20000" topic="9">
-      <param position="4" k="20005"/>
-   </command>
    <command name="OD SET NULL VALUE" str="20000" topic="16">
       <param position="1" k="20002"/>
       <param position="3" k="20003"/>

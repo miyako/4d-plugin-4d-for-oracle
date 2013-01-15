@@ -18,6 +18,9 @@ sb4 _read_lob(dvoid *ctxp, CONST dvoid*bufxp, ub4 len, ub1 piece)
 		default:
 			return OCI_ERROR;
 	}
+	//no possibility of OCI_ONE_PIECE
+	//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci16m40.htm
+	
 	return OCI_CONTINUE;	
 }
 
@@ -220,7 +223,7 @@ sword _fetchDataIntoTextArray(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, u
 			PA_YieldAbsolute();
 			
 			if(cursor->indicatorLists.at(pos).at(i) != -1)
-			{			
+			{	
 				PA_Unistring u = PA_CreateUnistring((PA_Unichar *)OCIStringPtr(session->envhp, cursor->arrayOfTexts.at(pos).at(i)));
 				PA_SetStringInArray(variable, i + 1, &u);
 				
@@ -252,7 +255,8 @@ sword _fetchDataIntoTextVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		{		
 			PA_Unistring u = PA_GetStringVariable(variable);
 			PA_SetUnistring(&u, (PA_Unichar *)&cursor->texts.at(pos).at(0));
-
+			PA_SetStringVariable(&variable, &u);
+			
 		}else{
 			setTextVariableValueNull(variable);
 		}
@@ -382,7 +386,8 @@ sword _fetchDataIntoBlobVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		ub1 buf[BUFFER_SIZE_BLOB_VARIABLE];
 		
 		OCILobRead(session->svchp, cursor->errhp, cursor->locators.at(pos), &amtp, offset, buf, BUFFER_SIZE_BLOB_VARIABLE, &dataBuf, _read_lob, 0, SQLCS_IMPLICIT);
-	
+		//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci16m40.htm
+		
 		PA_SetBlobVariable(&variable, &dataBuf[0], dataBuf.size());
 		PA_SetPointerValue(&cursor->pointers.at(pos), variable);
 	}

@@ -2,6 +2,22 @@
 #include "oracle_control.h"
 #include "oracle_preferences.h"
 
+void _resetCursorItem(ORACLE_SQL_CURSOR *cursor, unsigned int pos, size_t itemCount)
+{
+	cursor->defines.at(pos) = 0;
+	cursor->itemCount = itemCount;
+	
+	if(cursor->isLocatorValid.at(pos))
+	{
+		OCIDescriptorFree(cursor->locators.at(pos), OCI_DTYPE_LOB);
+	}
+	
+	cursor->locators.at(pos) = 0;
+	cursor->isLocatorValid.at(pos) = false;
+}
+
+#pragma mark -
+
 sword _bindTextArrayTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session)
 {	
 	cursor->defines.at(pos) = 0;
@@ -225,9 +241,7 @@ sword _bindTimeVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 
 sword _bindBlobVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session)
 {
-	cursor->defines.at(pos) = 0;
-	cursor->itemCount = 1;//this will over write whatever size given for arrays
-	cursor->locators.at(pos) = 0;
+	_resetCursorItem(cursor, pos, 1);
 	
 	sword err = 0;
 	
@@ -243,7 +257,7 @@ sword _bindBlobVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, se
 						  cursor->errhp, 
 						  pos + 1, 
 						  &cursor->locators.at(pos), 
-						  -1,
+						  MINSB4MAXVAL,
 						  SQLT_BLOB,
 						  &cursor->indicators.at(pos),  
 						  0,

@@ -28,8 +28,9 @@ typedef std::vector<OCIDefine*> ORACLE_DEFINE_LIST;
 typedef std::vector<OCIDate> ORACLE_SQL_BIND_DATE_LIST;
 typedef std::vector<OCINumber> ORACLE_SQL_BIND_NUMBER_LIST;
 typedef std::vector< std::vector<uint8_t> > ORACLE_SQL_BIND_STRING_LIST;
-typedef std::vector<PA_Handle> ORACLE_SQL_BIND_BLOB_LIST;
-typedef std::vector<OCILobLocator*> ORACLE_SQL_BIND_LOCATOR_LIST;
+typedef std::vector<PA_Handle> ORACLE_SQL_BIND_BLOB_LIST;//for blob out
+typedef std::vector<OCILobLocator*> ORACLE_SQL_BIND_LOCATOR_LIST;//for blob in
+
 
 //array containers
 typedef std::vector< std::vector<OCIDate> > ORACLE_SQL_BIND_DATE_LIST_LIST;

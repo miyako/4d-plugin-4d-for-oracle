@@ -39,5 +39,6 @@ sword _bindRealVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 sword _bindDateVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindTimeVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
+sword _bindLongRawBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 
 #endif

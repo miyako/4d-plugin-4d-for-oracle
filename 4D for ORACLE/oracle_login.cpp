@@ -15,13 +15,11 @@ void OD_Login(sLONG_PTR *pResult, PackagePtr pParams)
 	C_TEXT Param1;
 	C_TEXT Param2;
 	C_TEXT Param3;
-	C_LONGINT Param4;
 	C_LONGINT returnValue;
 	
 	Param1.fromParamAtIndex(pParams, 1);
 	Param2.fromParamAtIndex(pParams, 2);
 	Param3.fromParamAtIndex(pParams, 3);
-	Param4.fromParamAtIndex(pParams, 4);
 	
 	sword err = 0;
 	
