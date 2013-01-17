@@ -133,6 +133,7 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 	cursor->numbers.resize(size);
 	cursor->texts.resize(size);
 	cursor->blobs.resize(size);	
+	cursor->blobLengths.resize(size);
 	cursor->locators.resize(size);	
 	cursor->isObjectElementValid.resize(size);	
 	cursor->isObjectValid.resize(size);
@@ -1195,13 +1196,11 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 			}
 			
 			err = OCIStmtPrepare(cursor->stmtp, cursor->errhp, 
-						   (text *)cursor->sql.c_str(), 
-						// (ub4)cursor->sql.length() * sizeof(PA_Unichar),
-						   (ub4)cursor->sql.length() * sizeof(PA_Unichar) + sizeof(PA_Unichar),								 
+						   (CONST text *)cursor->sql.c_str(), 
+						   (ub4)cursor->sql.length() * sizeof(PA_Unichar),								 
 						   language,
 						   OCI_DEFAULT);
 			
-			//documentation wrong???
 			//in characters or in number of bytes, depending on the encoding
 			//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci16ms6.htm
 			

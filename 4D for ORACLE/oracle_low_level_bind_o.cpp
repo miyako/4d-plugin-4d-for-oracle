@@ -2,15 +2,13 @@
 #include "oracle_control.h"
 #include "oracle_preferences.h"
 
-void _resetCursorItem(ORACLE_SQL_CURSOR *cursor, unsigned int pos, size_t itemCount)
+void _cursorClearForVariableDefine(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 {
 	cursor->defines.at(pos) = 0;
-	cursor->itemCount = itemCount;
+	cursor->itemCount = 1;
 	
 	if(cursor->isLocatorValid.at(pos))
-	{
 		OCIDescriptorFree(cursor->locators.at(pos), OCI_DTYPE_LOB);
-	}
 	
 	cursor->locators.at(pos) = 0;
 	cursor->isLocatorValid.at(pos) = false;
@@ -184,6 +182,9 @@ sword _bindTextVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 				   0, 
 				   OCI_DEFAULT);	
 	//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci15r34.htm
+	
+	//Unlike earlier versions of the OCI, you do not pass -1 for the string length parameter of a null-terminated string.
+	//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci02bas.htm#423550
 }
 
 sword _bindLongintVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
@@ -241,7 +242,7 @@ sword _bindTimeVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 
 sword _bindBlobVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session)
 {
-	_resetCursorItem(cursor, pos, 1);
+	_cursorClearForVariableDefine(cursor, pos);
 	
 	sword err = 0;
 	

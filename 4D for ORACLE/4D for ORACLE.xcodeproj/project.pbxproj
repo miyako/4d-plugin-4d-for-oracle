@@ -197,8 +197,6 @@
 				18B684FE06944F8800CC6A1E /* 4DPlugin.cpp */,
 				D120937E13534DCC00A72CAA /* 4DPlugin.h */,
 				D1890DDE1693C44D0094E3A6 /* Done */,
-				D188948316916BF900C84474 /* oracle_high_level.cpp */,
-				D188948416916BF900C84474 /* oracle_high_level.h */,
 				18B684ED06944F2000CC6A1E /* 4D Plugin API */,
 				32BAE0B30371A71500C91783 /* 4D Plugin_Prefix.pch */,
 			);
@@ -227,15 +225,39 @@
 			path = "4D Plugin API";
 			sourceTree = "<group>";
 		};
+		D14BE00516A5541400A7B9A6 /* really done */ = {
+			isa = PBXGroup;
+			children = (
+				D188948916916BF900C84474 /* oracle_preferences.cpp */,
+				D188948A16916BF900C84474 /* oracle_preferences.h */,
+				D188948116916BF900C84474 /* oracle_environment.cpp */,
+				D188948216916BF900C84474 /* oracle_environment.h */,
+				D188948516916BF900C84474 /* oracle_login.cpp */,
+				D188948616916BF900C84474 /* oracle_login.h */,
+			);
+			name = "really done";
+			sourceTree = "<group>";
+		};
+		D14BE02516A5574A00A7B9A6 /* deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				D188948316916BF900C84474 /* oracle_high_level.cpp */,
+				D188948416916BF900C84474 /* oracle_high_level.h */,
+				D188947F16916BF900C84474 /* oracle_control.cpp */,
+				D188948016916BF900C84474 /* oracle_control.h */,
+				D188947D16916BF900C84474 /* oracle_context_definition.cpp */,
+				D188947E16916BF900C84474 /* oracle_context_definition.h */,
+				D188948B16916BF900C84474 /* oracle_using_context.cpp */,
+				D188948C16916BF900C84474 /* oracle_using_context.h */,
+			);
+			name = deprecated;
+			sourceTree = "<group>";
+		};
 		D1890DDE1693C44D0094E3A6 /* Done */ = {
 			isa = PBXGroup;
 			children = (
-				D188948516916BF900C84474 /* oracle_login.cpp */,
-				D188948616916BF900C84474 /* oracle_login.h */,
-				D188948116916BF900C84474 /* oracle_environment.cpp */,
-				D188948216916BF900C84474 /* oracle_environment.h */,
-				D188948916916BF900C84474 /* oracle_preferences.cpp */,
-				D188948A16916BF900C84474 /* oracle_preferences.h */,
+				D14BE02516A5574A00A7B9A6 /* deprecated */,
+				D14BE00516A5541400A7B9A6 /* really done */,
 				D1AAEB0B1698639500F58D2D /* oracle_low_level_fetch.cpp */,
 				D1AAEB0C1698639500F58D2D /* oracle_low_level_fetch.h */,
 				D1E4BCB4169816550012DA99 /* oracle_low_level_bind_i.cpp */,
@@ -246,12 +268,6 @@
 				D1AAE9C91698178D00F58D2D /* oracle_low_level_extra.h */,
 				D188948716916BF900C84474 /* oracle_low_level.cpp */,
 				D188948816916BF900C84474 /* oracle_low_level.h */,
-				D188947F16916BF900C84474 /* oracle_control.cpp */,
-				D188948016916BF900C84474 /* oracle_control.h */,
-				D188947D16916BF900C84474 /* oracle_context_definition.cpp */,
-				D188947E16916BF900C84474 /* oracle_context_definition.h */,
-				D188948B16916BF900C84474 /* oracle_using_context.cpp */,
-				D188948C16916BF900C84474 /* oracle_using_context.h */,
 			);
 			name = Done;
 			sourceTree = "<group>";

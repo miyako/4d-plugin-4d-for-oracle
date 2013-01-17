@@ -51,6 +51,7 @@ void OD_Login(sLONG_PTR *pResult, PackagePtr pParams)
 			err = OCIAttrSet(authp, OCI_HTYPE_SESSION,	(dvoid *)Param2.getUTF16StringPtr(), (Param2.getUTF16Length() * sizeof(PA_Unichar)), OCI_ATTR_PASSWORD,	errhp);
 			//must be passed in set to the length of the string in bytes, regardless of encoding. (dvoid*)
 			//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci15r21.htm#443806
+			//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci02bas.htm#423550
 			
 			err = OCISessionBegin(svchp, errhp, authp, OCI_CRED_RDBMS, OCI_DEFAULT);
 			//http://docs.oracle.com/cd/A97630_01/appdev.920/a96584/oci15r13.htm

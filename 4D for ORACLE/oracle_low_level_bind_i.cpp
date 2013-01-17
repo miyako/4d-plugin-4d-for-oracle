@@ -6,6 +6,22 @@
 #pragma mark bind towards sql
 #pragma mark -
 
+void _cursorClearForVariableBind(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
+{
+	cursor->binds.at(pos) = 0;
+	cursor->itemCount = 1;
+	cursor->indicators.at(pos) = 1;
+	
+	if(cursor->isRawObjectValid.at(pos))
+		PA_UnlockHandle(cursor->blobs.at(pos));
+	
+	cursor->blobs.at(pos) = 0;
+	cursor->blobLengths.at(pos) = 0;
+	cursor->isRawObjectValid.at(pos) = false;
+}
+
+#pragma mark -
+
 sword _bindTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session)
 {	
 	cursor->binds.at(pos) = 0;
@@ -287,8 +303,7 @@ sword _bindDateArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 
 sword _bindAlphaFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	PA_Unistring u = PA_GetStringField(variable.uValue.fTableFieldDefinition.fTableNumber, variable.uValue.fTableFieldDefinition.fFieldNumber);
 	
@@ -318,8 +333,7 @@ sword _bindAlphaFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable,
 
 sword _bindTextFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	PA_Unistring u = PA_GetStringField(variable.uValue.fTableFieldDefinition.fTableNumber, variable.uValue.fTableFieldDefinition.fFieldNumber);
 	
@@ -349,8 +363,7 @@ sword _bindTextFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 
 sword _bindLongintFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isLongintFieldValueNull(variable))
 	{
@@ -383,8 +396,7 @@ sword _bindLongintFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 
 sword _bindIntegerFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isIntegerFieldValueNull(variable))
 	{
@@ -417,8 +429,7 @@ sword _bindIntegerFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 
 sword _bindBooleanFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {		
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isBooleanFieldValueNull(variable))
 	{
@@ -451,8 +462,7 @@ sword _bindBooleanFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 
 sword _bindRealFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {		
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isRealFieldValueNull(variable))
 	{
@@ -485,8 +495,7 @@ sword _bindRealFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 
 sword _bindDateFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isDateFieldValueNull(variable))
 	{
@@ -522,8 +531,7 @@ sword _bindDateFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 
 sword _bindTimeFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isTimeFieldValueNull(variable))
 	{
@@ -559,8 +567,7 @@ sword _bindTimeFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 
 sword _bindBlobFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isBlobFieldValueNull(variable))
 	{
@@ -593,8 +600,7 @@ sword _bindBlobFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 
 sword _bindTextVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	PA_Unistring u = PA_GetStringVariable(variable);
 	
@@ -610,8 +616,6 @@ sword _bindTextVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 						cursor->errhp, 
 						pos + 1, 
 						u.fString, 
-						//must be bytes, documentation wrong... 
-						//u.fLength + 1,
 						u.fLength * sizeof(PA_Unichar) + sizeof(PA_Unichar), 
 						SQLT_STR,
 						&cursor->indicators.at(pos), 
@@ -626,8 +630,7 @@ sword _bindTextVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 
 sword _bindLongintVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isLongintVariableValueNull(variable))
 	{
@@ -658,8 +661,7 @@ sword _bindLongintVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable vari
 
 sword _bindBooleanVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isBooleanVariableValueNull(variable))
 	{
@@ -690,8 +692,7 @@ sword _bindBooleanVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable vari
 
 sword _bindRealVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isRealVariableValueNull(variable))
 	{
@@ -722,8 +723,7 @@ sword _bindRealVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 
 sword _bindDateVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isDateVariableValueNull(variable))
 	{
@@ -751,9 +751,8 @@ sword _bindDateVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 }
 
 sword _bindTimeVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
-{
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
+{	
+	_cursorClearForVariableBind(cursor, pos);
 	
 	if(isTimeVariableValueNull(variable))
 	{
@@ -786,16 +785,26 @@ sword _bindTimeVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 						OCI_DEFAULT);	
 }
 
+sb4 _read_bin(dvoid *ictxp, OCIBind *bindp, ub4 iter, ub4 index, dvoid **bufpp, ub4 *alenp, ub1 *piecep, dvoid **indpp)
+{	
+	PA_Handle h = (PA_Handle)ictxp;
+		
+	*bufpp = PA_LockHandle(h);
+	*alenp = PA_GetHandleSize(h);
+	*indpp = 0;	
+	*piecep = OCI_ONE_PIECE;
+	
+	return OCI_CONTINUE;
+}
+
 sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
-	
-	cursor->indicators.at(pos) = 1;
+	_cursorClearForVariableBind(cursor, pos);
 	
 	cursor->isRawObjectValid.at(pos) = true;
 	cursor->blobs.at(pos) = PA_GetBlobHandleVariable(variable);
 
+	/*
 	return OCIBindByPos(cursor->stmtp, 
 						&cursor->binds.at(pos),
 						cursor->errhp, 
@@ -809,10 +818,41 @@ sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 						0, 
 						0,
 						OCI_DEFAULT);
+	 
+	 */
+	
+	//NG:SQLT_LVB,SQLT_BLOB, 
+	
+	OCIBindByPos(cursor->stmtp, 
+				 &cursor->binds.at(pos),
+				 cursor->errhp, 
+				 pos + 1, 
+				 PA_LockHandle(cursor->blobs.at(pos)), 
+				 MINSB4MAXVAL, 
+				 SQLT_LBI,
+				 &cursor->indicators.at(pos), 
+				 0,
+				 0, 
+				 0, 
+				 0,
+				 OCI_DATA_AT_EXEC);
+	
+	return OCIBindDynamic(cursor->binds.at(pos), 
+				   cursor->errhp, 
+				   cursor->blobs.at(pos), 
+				   _read_bin, 
+				   0, 
+				   0);
 	
 	//apparently ok to bind more than 2000 bytes in one call
+	//If lengths in alenp greater than 64Kbytes are required, use OCIBindDynamic()
 	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm	
 }
+
+#pragma mark -
+#pragma mark experimental
+#pragma mark -
+
 
 sb4 _read_text(dvoid *ictxp, OCIBind *bindp, ub4 iter, ub4 index, dvoid **bufpp, ub4 *alenp, ub1 *piecep, dvoid **indpp)
 {
