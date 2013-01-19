@@ -16,13 +16,25 @@ void _cursorClearForVariableBind(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 		PA_UnlockHandle(cursor->blobs.at(pos));
 	
 	cursor->blobs.at(pos) = 0;
-	cursor->blobLengths.at(pos) = 0;
+//	cursor->blobLengths.at(pos) = 0;
 	cursor->isRawObjectValid.at(pos) = false;
+}
+
+sb4 _read_bin(dvoid *ictxp, OCIBind *bindp, ub4 iter, ub4 index, dvoid **bufpp, ub4 *alenp, ub1 *piecep, dvoid **indpp)
+{	
+	PA_Handle h = (PA_Handle)ictxp;
+	
+	*bufpp = PA_LockHandle(h);
+	*alenp = PA_GetHandleSize(h);
+	*indpp = 0;	
+	*piecep = OCI_ONE_PIECE;
+	
+	return OCI_CONTINUE;
 }
 
 #pragma mark -
 
-sword _bindTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session)
+sword _bindTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {	
 	cursor->binds.at(pos) = 0;
 	cursor->itemCount = PA_GetArrayNbElements(variable);
@@ -33,6 +45,8 @@ sword _bindTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 	cursor->indicatorLists.at(pos).resize(cursor->itemCount);	
 	cursor->lengths.at(pos).resize(cursor->itemCount);
 	cursor->isObjectElementValid.at(pos).resize(cursor->itemCount);
+	
+	sessionInfo *session = _sessionGet(cursor->sessionId);
 	
 	sb4 value_sz = 0;
 	
@@ -579,21 +593,26 @@ sword _bindBlobFieldTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, 
 	cursor->isRawObjectValid.at(pos) = true;
 	cursor->blobs.at(pos) = PA_GetBlobHandleField(variable.uValue.fTableFieldDefinition.fTableNumber, variable.uValue.fTableFieldDefinition.fFieldNumber);
 	
-	return OCIBindByPos(cursor->stmtp, 
-						&cursor->binds.at(pos),
-						cursor->errhp, 
-						pos + 1, 
-						PA_LockHandle(cursor->blobs.at(pos)), 
-						PA_GetHandleSize(cursor->blobs.at(pos)), 
-						SQLT_BIN,
-						&cursor->indicators.at(pos), 
-						0,
-						0, 
-						0, 
-						0,
-						OCI_DEFAULT);
+	OCIBindByPos(cursor->stmtp, 
+				 &cursor->binds.at(pos),
+				 cursor->errhp, 
+				 pos + 1, 
+				 0, 
+				 MINSB4MAXVAL, 
+				 SQLT_LBI,
+				 &cursor->indicators.at(pos), 
+				 0,
+				 0, 
+				 0, 
+				 0,
+				 OCI_DATA_AT_EXEC);
 	
-	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm	
+	return OCIBindDynamic(cursor->binds.at(pos), 
+						  cursor->errhp, 
+						  cursor->blobs.at(pos), 
+						  _read_bin, 
+						  0, 
+						  0);
 }
 
 #pragma mark -
@@ -785,49 +804,20 @@ sword _bindTimeVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 						OCI_DEFAULT);	
 }
 
-sb4 _read_bin(dvoid *ictxp, OCIBind *bindp, ub4 iter, ub4 index, dvoid **bufpp, ub4 *alenp, ub1 *piecep, dvoid **indpp)
-{	
-	PA_Handle h = (PA_Handle)ictxp;
-		
-	*bufpp = PA_LockHandle(h);
-	*alenp = PA_GetHandleSize(h);
-	*indpp = 0;	
-	*piecep = OCI_ONE_PIECE;
-	
-	return OCI_CONTINUE;
-}
-
 sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
 {
 	_cursorClearForVariableBind(cursor, pos);
 	
 	cursor->isRawObjectValid.at(pos) = true;
 	cursor->blobs.at(pos) = PA_GetBlobHandleVariable(variable);
-
-	/*
-	return OCIBindByPos(cursor->stmtp, 
-						&cursor->binds.at(pos),
-						cursor->errhp, 
-						pos + 1, 
-						PA_LockHandle(cursor->blobs.at(pos)), 
-						PA_GetHandleSize(cursor->blobs.at(pos)), 
-						SQLT_BIN,
-						&cursor->indicators.at(pos), 
-						0,
-						0, 
-						0, 
-						0,
-						OCI_DEFAULT);
-	 
-	 */
 	
-	//NG:SQLT_LVB,SQLT_BLOB, 
+	//NG: SQLT_LVB,SQLT_BLOB
 	
 	OCIBindByPos(cursor->stmtp, 
 				 &cursor->binds.at(pos),
 				 cursor->errhp, 
 				 pos + 1, 
-				 PA_LockHandle(cursor->blobs.at(pos)), 
+				 0, 
 				 MINSB4MAXVAL, 
 				 SQLT_LBI,
 				 &cursor->indicators.at(pos), 
@@ -843,72 +833,4 @@ sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 				   _read_bin, 
 				   0, 
 				   0);
-	
-	//apparently ok to bind more than 2000 bytes in one call
-	//If lengths in alenp greater than 64Kbytes are required, use OCIBindDynamic()
-	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm	
-}
-
-#pragma mark -
-#pragma mark experimental
-#pragma mark -
-
-
-sb4 _read_text(dvoid *ictxp, OCIBind *bindp, ub4 iter, ub4 index, dvoid **bufpp, ub4 *alenp, ub1 *piecep, dvoid **indpp)
-{
-	*bufpp = 0;
-	*alenp = 0;
-	*piecep = OCI_ONE_PIECE;
-	*indpp = 0;
-	return OCI_CONTINUE;
-}
-
-sb4 _write_text(dvoid *octxp, OCIBind *bindp, ub4 iter, ub4 index, dvoid **bufpp, ub4 **alenpp, ub1 *piecep, dvoid **indpp, ub2 **rcodepp)
-{
-	PA_Variable* variable = (PA_Variable*)octxp;	
-	
-	if(iter == 0)
-		PA_ResizeArray(variable, 0);//to clear element 0	
-	
-	PA_ResizeArray(variable, iter + 1);
-	CUTF16String str((PA_Unichar *)*bufpp, **alenpp / sizeof(PA_Unichar));
-	PA_Unistring u = PA_CreateUnistring((PA_Unichar *)str.c_str());
-	PA_SetStringInArray(*variable, iter + 1, &u);
-
-	*piecep = OCI_ONE_PIECE;	
-	
-	return OCI_CONTINUE;
-}
-
-sword _bindForReturnTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos)
-{
-	cursor->binds.at(pos) = 0;
-	cursor->itemCount = 1;
-	
-	PA_Unistring u = PA_GetStringVariable(variable);
-	
-	if(isTextVariableValueNull(variable))
-	{
-		cursor->indicators.at(pos) = -1;
-	}else{
-		cursor->indicators.at(pos) = 1;
-	}
-	
-	OCIBindByPos(cursor->stmtp, 
-						&cursor->binds.at(pos),
-						cursor->errhp, 
-						pos + 1, 
-						0, 
-						MINSB4MAXVAL, 
-						SQLT_STR,
-						&cursor->indicators.at(pos), 
-						0,
-						0, 
-						0, 
-						0,
-						OCI_DATA_AT_EXEC);
-	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r30.htm
-	
-	return OCIBindDynamic(cursor->binds.at(pos), cursor->errhp, &variable, _read_text, &variable, _write_text);
-	//http://docs.oracle.com/cd/B10500_01/appdev.920/a96584/oci15r31.htm#444016
 }

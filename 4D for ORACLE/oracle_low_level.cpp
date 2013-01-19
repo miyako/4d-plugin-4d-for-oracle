@@ -113,8 +113,8 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 			if(cursor->isRawObjectValid.at(i))			
 				PA_UnlockHandle(cursor->blobs.at(i));
 
-			if(cursor->isLocatorValid.at(i))			
-				OCIDescriptorFree(cursor->locators.at(i), OCI_DTYPE_LOB);
+//			if(cursor->isLocatorValid.at(i))			
+//				OCIDescriptorFree(cursor->locators.at(i), OCI_DTYPE_LOB);
 			
 		}
 				
@@ -124,7 +124,7 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 	cursor->pointers.resize(size);
 	cursor->pointers.resize(size);
 	cursor->isTowardsSQL.resize(size);	
-	cursor->isByName.resize(size);	
+//	cursor->isByName.resize(size);	
 	cursor->indicators.resize(size);	
 	cursor->names.resize(size);	
 	cursor->binds.resize(size);
@@ -133,12 +133,13 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 	cursor->numbers.resize(size);
 	cursor->texts.resize(size);
 	cursor->blobs.resize(size);	
-	cursor->blobLengths.resize(size);
-	cursor->locators.resize(size);	
+//	cursor->blobLengths.resize(size);
+	cursor->bytes.resize(size);	
+//	cursor->locators.resize(size);	
 	cursor->isObjectElementValid.resize(size);	
 	cursor->isObjectValid.resize(size);
 	cursor->isRawObjectValid.resize(size);
-	cursor->isLocatorValid.resize(size);
+//	cursor->isLocatorValid.resize(size);
 	cursor->arrayOfDates.resize(size);	
 	cursor->arrayOfNumbers.resize(size);	
 	cursor->arrayOfTexts.resize(size);
@@ -477,14 +478,13 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 			cursor->itemCount = itemCount;
 			
 			for(unsigned int i = 0; i < cursor->substitutions.size(); ++i)
-			{
-				
+			{				
 				if(cursor->isTowardsSQL.at(i))
 				{
 					switch (PA_GetVariableKind(cursor->substitutions.at(i)))
 					{
 						case eVK_ArrayUnicode:							
-							_bindTextArrayTowardsSQL(cursor, cursor->substitutions.at(i), i, session);
+							_bindTextArrayTowardsSQL(cursor, cursor->substitutions.at(i), i);
 							break;	
 							
 						case eVK_ArrayLongint:							
@@ -529,7 +529,6 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 							
 						case eVK_Blob:							
 							_bindBlobVariableTowardsSQL(cursor, cursor->substitutions.at(i), i);
-						//	_bindLongRawBlobVariableTowardsSQL(cursor, cursor->substitutions.at(i), i);
 							break;
 							
 						case eVK_PointerToField:							
@@ -609,7 +608,7 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 				   {
 						   
 					   case eVK_ArrayUnicode:
-						   _bindTextArrayTowards4D(cursor, i, session);
+						   _bindTextArrayTowards4D(cursor, i);
 						   break;
 						
 					   case eVK_ArrayLongint:
@@ -653,7 +652,7 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 						   break;	
 						   
 					   case eVK_Blob:							
-						   _bindBlobVariableTowards4D(cursor, i, session);
+						   _bindBlobVariableTowards4D(cursor, i);
 						   break;
    
 					   case eVK_PointerToField:							
@@ -1118,7 +1117,7 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 			CUTF8String parsedSql;
 			
 			ORACLE_SQL_SUBSTITUTION_LIST substitutions;
-			ORACLE_SQL_BIND_TYPE_LIST isByName;
+			//ORACLE_SQL_BIND_TYPE_LIST isByName;
 			ORACLE_SQL_BIND_NAME_LIST names;
 			
 			C_TEXT temp;
@@ -1141,7 +1140,7 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 					if(substr.length()){
 						
 						parsedSql += substr;
-						isByName.push_back(true);
+						//isByName.push_back(true);
 						temp.setUTF8String(&substr);
 						temp.copyUTF16String(&u16);
 						
@@ -1152,7 +1151,7 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 						
 						len = sprintf(buf,"%d", (int)substitutions.size() + 1);
 						parsedSql += CUTF8String((const uint8_t *)buf, len);
-						isByName.push_back(false);
+						//isByName.push_back(false);
 						u16.clear();
 						
 					}
@@ -1173,7 +1172,7 @@ void OD_Set_SQL_in_cursor(sLONG_PTR *pResult, PackagePtr pParams)
 			temp.copyUTF16String(&cursor->sql);
 			
 			cursor->substitutions = substitutions;
-			cursor->isByName = isByName;
+//			cursor->isByName = isByName;
 			cursor->names = names;
 			
 			size_t count = substitutions.size();

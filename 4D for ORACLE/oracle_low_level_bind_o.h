@@ -16,7 +16,7 @@
  
  */
 
-sword _bindTextArrayTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session);
+sword _bindTextArrayTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindLongintArrayTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindBooleanArrayTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindRealArrayTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
@@ -28,7 +28,7 @@ sword _bindBooleanVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 sword _bindRealVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindDateVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindTimeVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
-sword _bindBlobVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session);
+sword _bindBlobVariableTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 
 sword _bindAlphaFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindTextFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
@@ -38,6 +38,6 @@ sword _bindBooleanFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindRealFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindDateFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 sword _bindTimeFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
-sword _bindBlobFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos, sessionInfo *session);
+sword _bindBlobFieldTowards4D(ORACLE_SQL_CURSOR *cursor, unsigned int pos);
 
 #endif

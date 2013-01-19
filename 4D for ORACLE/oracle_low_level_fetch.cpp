@@ -1,6 +1,7 @@
 #include "oracle_low_level_fetch.h"
 #include "oracle_preferences.h"
 
+/*
 sb4 _read_lob(dvoid *ctxp, CONST dvoid*bufxp, ub4 len, ub1 piece)
 {
 	std::vector<uint8_t> *dataBuf = (std::vector<uint8_t> *)ctxp;
@@ -23,6 +24,7 @@ sb4 _read_lob(dvoid *ctxp, CONST dvoid*bufxp, ub4 len, ub1 piece)
 	
 	return OCI_CONTINUE;	
 }
+*/
 
 sword _checkNumberOfRecordsToFetch(ORACLE_SQL_CURSOR *cursor)
 {
@@ -378,6 +380,20 @@ sword _fetchDataIntoTimeVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 
 sword _fetchDataIntoBlobVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session)
 {
+	
+	if(cursor->rowsFetched)
+	{
+		ub4 len = cursor->bytes.at(pos).len;
+		ub4 dif = BUFFER_SIZE_BLOB_VARIABLE - len;
+		ub4 size = cursor->bytes.at(pos).buf.size();
+		
+		cursor->bytes.at(pos).buf.resize(size - dif);
+		
+		PA_SetBlobVariable(&variable, &cursor->bytes.at(pos).buf[0], cursor->bytes.at(pos).buf.size());
+		PA_SetPointerValue(&cursor->pointers.at(pos), variable);		
+	}
+	
+	/*
 	if(cursor->rowsFetched)
 	{
 		std::vector<uint8_t> dataBuf;
@@ -391,6 +407,7 @@ sword _fetchDataIntoBlobVariable(ORACLE_SQL_CURSOR *cursor, PA_Variable variable
 		PA_SetBlobVariable(&variable, &dataBuf[0], dataBuf.size());
 		PA_SetPointerValue(&cursor->pointers.at(pos), variable);
 	}
+	*/
 	
 	return cursor->rowsFetched;		
 }
@@ -544,8 +561,29 @@ sword _fetchDataIntoTimeField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, u
 	return cursor->rowsFetched;
 }
 
+
 sword _fetchDataIntoBlobField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session)
 {
+	
+	if(cursor->rowsFetched)
+	{
+		ub4 len = cursor->bytes.at(pos).len;
+		ub4 dif = BUFFER_SIZE_BLOB_VARIABLE - len;
+		ub4 size = cursor->bytes.at(pos).buf.size();
+		
+		cursor->bytes.at(pos).buf.resize(size - dif);
+		
+		if(cursor->indicators.at(pos) != -1)
+		{		
+			PA_SetBlobField(variable.uValue.fTableFieldDefinition.fTableNumber, variable.uValue.fTableFieldDefinition.fFieldNumber, &cursor->bytes.at(pos).buf[0], cursor->bytes.at(pos).buf.size());
+			
+		}else{
+			setBlobFieldValueNull(variable);
+		}			
+			
+	}
+	
+	/*
 	if(cursor->rowsFetched)
 	{
 		std::vector<uint8_t> dataBuf;
@@ -564,6 +602,7 @@ sword _fetchDataIntoBlobField(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, u
 		}		
 
 	}
+	*/
 	
 	return cursor->rowsFetched;		
 }

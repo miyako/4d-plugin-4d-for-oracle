@@ -16,7 +16,7 @@
  
  */
 
-sword _bindTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos, sessionInfo *session);
+sword _bindTextArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindLongintArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindBooleanArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
 sword _bindRealArrayTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variable, unsigned int pos);
