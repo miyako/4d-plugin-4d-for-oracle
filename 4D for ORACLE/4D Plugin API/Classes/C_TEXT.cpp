@@ -140,8 +140,8 @@ void C_TEXT::convertFromUTF8(const CUTF8String* fromString, CUTF16String* toStri
 #else
 	CFStringRef str = CFStringCreateWithBytes(kCFAllocatorDefault, fromString->c_str(), fromString->length(), kCFStringEncodingUTF8, true);
 	if(str){
-		int len = CFStringGetLength(str)+1;
-		std::vector<uint8_t> buf(len * sizeof(PA_Unichar));
+		int len = CFStringGetLength(str);
+		std::vector<uint8_t> buf((len+1) * sizeof(PA_Unichar));
 		CFStringGetCharacters(str, CFRangeMake(0, len), (UniChar *)&buf[0]);
 		*toString = CUTF16String((const PA_Unichar *)&buf[0]);
 		CFRelease(str);
@@ -208,6 +208,17 @@ void C_TEXT::copyUTF16String(CUTF16String* pString)
 void C_TEXT::copyUTF8String(CUTF8String* pString)
 {
 	convertToUTF8(this->_CUTF16String, pString);	
+}
+
+void C_TEXT::copyPath(CUTF8String* pString)
+{
+#if VERSIONMAC	
+	NSString *path = this->copyPath();
+	*pString = CUTF8String((const uint8_t *)[path UTF8String]);
+	[path release];
+#else
+	this->copyUTF8String(pString);
+#endif
 }
 
 C_TEXT::C_TEXT() : _CUTF16String(new CUTF16String)
