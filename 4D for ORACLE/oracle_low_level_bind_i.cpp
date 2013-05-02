@@ -833,4 +833,5 @@ sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 				   _read_bin, 
 				   0, 
 				   0);
+ 
 }

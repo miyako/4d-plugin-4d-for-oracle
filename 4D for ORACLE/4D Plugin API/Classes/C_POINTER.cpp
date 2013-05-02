@@ -84,6 +84,8 @@ void C_POINTER::getVariable(PA_Variable *variable)
 				   v.uValue.fVariableDefinition.fName,
 				   sizeof(v.uValue.fVariableDefinition.fName));
 			
+			PA_ClearVariable(&v);//added 2013-05-02
+			
 			break;
 			
 		case ePK_PointerToField:

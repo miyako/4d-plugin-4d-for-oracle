@@ -1,8 +1,10 @@
 
-4D for ORACLE/.DS_Store
+*.DS_Store
 
-4D for ORACLE/4D Plugin API/.DS_Store
+*.suo
 
-4D for ORACLE/4D Plugin API/Classes/.DS_Store
+4D for ORACLE/4D for ORACLE.4dbase/Logs/CacheLog_2013-05-02T11-19-43_1.txt
 
-.DS_Store
+4D for ORACLE/4D for ORACLE.4dbase/WebFolder/index.html
+
+4D for ORACLE/4D for ORACLE.4dbase/Resources/BLOB/PDF.pdf
