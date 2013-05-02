@@ -792,7 +792,7 @@ void OD_BIND_TOWARDS_SQL(sLONG_PTR *pResult, PackagePtr pParams)
 				_cursorResize(session, cursor, pos);
 			}
 			
-			Param3.getVariable(&cursor->substitutions.at(i));
+			Param3.getVariable(&cursor->substitutions.at(i), FALSE);//we want release the variable for this bind direction
 			cursor->isTowardsSQL.at(i) = true;
 			
 		}

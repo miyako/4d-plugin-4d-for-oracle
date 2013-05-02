@@ -63,7 +63,7 @@ void C_POINTER::getPointerBlock(PointerBlock *pointerBlock)
 	}
 }
 
-void C_POINTER::getVariable(PA_Variable *variable)
+void C_POINTER::getVariable(PA_Variable *variable, bool retain)
 {
 	
 	PA_Variable v;
@@ -84,7 +84,8 @@ void C_POINTER::getVariable(PA_Variable *variable)
 				   v.uValue.fVariableDefinition.fName,
 				   sizeof(v.uValue.fVariableDefinition.fName));
 			
-			PA_ClearVariable(&v);//added 2013-05-02
+			if(!retain)
+				PA_ClearVariable(&v);//added 2013-05-02
 			
 			break;
 			
