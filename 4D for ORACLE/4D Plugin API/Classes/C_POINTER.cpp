@@ -63,29 +63,38 @@ void C_POINTER::getPointerBlock(PointerBlock *pointerBlock)
 	}
 }
 
-void C_POINTER::getVariable(PA_Variable *variable, bool retain)
-{
+void C_POINTER::releaseVariable(){
 	
-	PA_Variable v;
+	if(this->_isVariable){
+				
+		PA_ClearVariable(&this->_ptrVariable);
+	
+		this->_isVariable = FALSE;
+	}
+
+}
+
+void C_POINTER::getVariable(PA_Variable *variable)
+{
+		
+	this->releaseVariable();
 
 	switch (this->_ptrType)
 	{
 		case ePK_PointerToVariable:	
 			
-			v = PA_GetPointerValue(this->_ptr);
+			this->_ptrVariable = PA_GetPointerValue(this->_ptr);
+			this->_isVariable = TRUE;//means we need to clear this later
 			
-			variable->fType		= v.fType;
+			variable->fType		= this->_ptrVariable.fType;
 			variable->fFiller	= 1;
-			variable->uValue.fVariableDefinition.fTag = v.uValue.fVariableDefinition.fTag;
-			variable->uValue.fVariableDefinition.fIndice = v.uValue.fVariableDefinition.fIndice;
-			variable->uValue.fVariableDefinition.fType = v.uValue.fVariableDefinition.fType;
+			variable->uValue.fVariableDefinition.fTag = this->_ptrVariable.uValue.fVariableDefinition.fTag;
+			variable->uValue.fVariableDefinition.fIndice = this->_ptrVariable.uValue.fVariableDefinition.fIndice;
+			variable->uValue.fVariableDefinition.fType = this->_ptrVariable.uValue.fVariableDefinition.fType;
 			
 			memcpy(variable->uValue.fVariableDefinition.fName,
-				   v.uValue.fVariableDefinition.fName,
-				   sizeof(v.uValue.fVariableDefinition.fName));
-			
-			if(!retain)
-				PA_ClearVariable(&v);//added 2013-05-02
+				   this->_ptrVariable.uValue.fVariableDefinition.fName,
+				   sizeof(this->_ptrVariable.uValue.fVariableDefinition.fName));
 			
 			break;
 			
@@ -114,12 +123,12 @@ PA_PointerKind C_POINTER::getType()
 	return this->_ptrType;
 }
 
-C_POINTER::C_POINTER() : _ptr(0), _ptrType(ePK_InvalidPointer), _ptrValueType(eVK_Undefined)
+C_POINTER::C_POINTER() : _ptr(0), _ptrType(ePK_InvalidPointer), _ptrValueType(eVK_Undefined), _isVariable(FALSE)
 {
 	
 }
 
 C_POINTER::~C_POINTER()
 { 
-	
+	this->releaseVariable();
 }

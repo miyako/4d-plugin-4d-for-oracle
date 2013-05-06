@@ -24,13 +24,18 @@ extern "C" {
 		PA_Pointer _ptr;
 		PA_PointerKind _ptrType;
 		PA_VariableKind _ptrValueType;
+		PA_Variable _ptrVariable;
+		bool _isVariable;
+		
+		void releaseVariable();	
 		
 	public:
 			
 		void fromParamAtIndex(PackagePtr pParams, uint16_t index);
 
 		void getPointerBlock(PointerBlock *pointerBlock);
-		void getVariable(PA_Variable *variable, bool retain = true);
+		
+		void getVariable(PA_Variable *variable);
 		
 		PA_VariableKind getValueType();
 		PA_PointerKind getType();
