@@ -84,7 +84,7 @@ void C_POINTER::getVariable(PA_Variable *variable)
 		case ePK_PointerToVariable:	
 			
 			this->_ptrVariable = PA_GetPointerValue(this->_ptr);
-			this->_isVariable = TRUE;//means we need to clear this later
+			this->_isVariable = TRUE;//means we can clear later
 			
 			variable->fType		= this->_ptrVariable.fType;
 			variable->fFiller	= 1;
@@ -130,5 +130,5 @@ C_POINTER::C_POINTER() : _ptr(0), _ptrType(ePK_InvalidPointer), _ptrValueType(eV
 
 C_POINTER::~C_POINTER()
 { 
-	this->releaseVariable();
+
 }

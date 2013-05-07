@@ -27,8 +27,6 @@ extern "C" {
 		PA_Variable _ptrVariable;
 		bool _isVariable;
 		
-		void releaseVariable();	
-		
 	public:
 			
 		void fromParamAtIndex(PackagePtr pParams, uint16_t index);
@@ -36,6 +34,7 @@ extern "C" {
 		void getPointerBlock(PointerBlock *pointerBlock);
 		
 		void getVariable(PA_Variable *variable);
+		void releaseVariable();	
 		
 		PA_VariableKind getValueType();
 		PA_PointerKind getType();
