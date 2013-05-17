@@ -602,7 +602,7 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 							break;
 					}
 					   
-			   }else{
+				}else{
 				   
 				   switch (PA_GetVariableKind(cursor->substitutions.at(i)))
 				   {
@@ -752,6 +752,15 @@ void OD_EXECUTE_CURSOR(sLONG_PTR *pResult, PackagePtr pParams)
 				default:
 					_errorInfoSet(session->envhp, cursor->errhp, cursor->sessionId, cursorId, false, PA_GetCurrentProcessNumber(), 0);					
 					break;
+			}
+			//clear any pointer blocks created using PA_ClearVariable
+			for(unsigned int i = 0; i < cursor->substitutions.size(); ++i)
+			{				
+				if(cursor->isTowardsSQL.at(i))
+				{
+					if(PA_GetVariableKind(cursor->substitutions.at(i)) != eVK_PointerToField) 
+						PA_ClearVariable(&cursor->substitutions.at(i));
+				}
 			}
 		
 		}
