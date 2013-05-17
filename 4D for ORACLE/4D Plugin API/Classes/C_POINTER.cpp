@@ -63,38 +63,26 @@ void C_POINTER::getPointerBlock(PointerBlock *pointerBlock)
 	}
 }
 
-void C_POINTER::releaseVariable(){
-	
-	if(this->_isVariable){
-				
-		PA_ClearVariable(&this->_ptrVariable);
-	
-		this->_isVariable = FALSE;
-	}
-
-}
-
 void C_POINTER::getVariable(PA_Variable *variable)
 {
-		
-	this->releaseVariable();
+	
+	PA_Variable v;
 
 	switch (this->_ptrType)
 	{
 		case ePK_PointerToVariable:	
 			
-			this->_ptrVariable = PA_GetPointerValue(this->_ptr);
-			this->_isVariable = TRUE;//means we can clear later
+			v = PA_GetPointerValue(this->_ptr);
 			
-			variable->fType		= this->_ptrVariable.fType;
+			variable->fType		= v.fType;
 			variable->fFiller	= 1;
-			variable->uValue.fVariableDefinition.fTag = this->_ptrVariable.uValue.fVariableDefinition.fTag;
-			variable->uValue.fVariableDefinition.fIndice = this->_ptrVariable.uValue.fVariableDefinition.fIndice;
-			variable->uValue.fVariableDefinition.fType = this->_ptrVariable.uValue.fVariableDefinition.fType;
+			variable->uValue.fVariableDefinition.fTag = v.uValue.fVariableDefinition.fTag;
+			variable->uValue.fVariableDefinition.fIndice = v.uValue.fVariableDefinition.fIndice;
+			variable->uValue.fVariableDefinition.fType = v.uValue.fVariableDefinition.fType;
 			
 			memcpy(variable->uValue.fVariableDefinition.fName,
-				   this->_ptrVariable.uValue.fVariableDefinition.fName,
-				   sizeof(this->_ptrVariable.uValue.fVariableDefinition.fName));
+				   v.uValue.fVariableDefinition.fName,
+				   sizeof(v.uValue.fVariableDefinition.fName));
 			
 			break;
 			
@@ -123,12 +111,12 @@ PA_PointerKind C_POINTER::getType()
 	return this->_ptrType;
 }
 
-C_POINTER::C_POINTER() : _ptr(0), _ptrType(ePK_InvalidPointer), _ptrValueType(eVK_Undefined), _isVariable(FALSE)
+C_POINTER::C_POINTER() : _ptr(0), _ptrType(ePK_InvalidPointer), _ptrValueType(eVK_Undefined)
 {
 	
 }
 
 C_POINTER::~C_POINTER()
 { 
-
+	
 }

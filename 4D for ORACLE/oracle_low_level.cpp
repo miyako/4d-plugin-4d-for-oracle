@@ -113,9 +113,6 @@ void _cursorResize(sessionInfo *session, ORACLE_SQL_CURSOR *cursor, size_t size)
 			if(cursor->isRawObjectValid.at(i))			
 				PA_UnlockHandle(cursor->blobs.at(i));
 
-			if(cursor->isTowardsSQL.at(i))
-				PA_ClearVariable(&cursor->substitutions.at(i));
-			
 //			if(cursor->isLocatorValid.at(i))			
 //				OCIDescriptorFree(cursor->locators.at(i), OCI_DTYPE_LOB);
 			

@@ -15,9 +15,6 @@ void _cursorClearForVariableBind(ORACLE_SQL_CURSOR *cursor, unsigned int pos)
 	if(cursor->isRawObjectValid.at(pos))
 		PA_UnlockHandle(cursor->blobs.at(pos));
 	
-	if(cursor->isTowardsSQL.at(pos))
-		PA_ClearVariable(&cursor->substitutions.at(pos));
-	
 	cursor->blobs.at(pos) = 0;
 //	cursor->blobLengths.at(pos) = 0;
 	cursor->isRawObjectValid.at(pos) = false;
@@ -836,5 +833,4 @@ sword _bindBlobVariableTowardsSQL(ORACLE_SQL_CURSOR *cursor, PA_Variable variabl
 				   _read_bin, 
 				   0, 
 				   0);
- 
 }
