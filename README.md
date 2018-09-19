@@ -15,4 +15,4 @@ Replica of the 4D for ORACLE (2003) plugin.
 
 ### Remarks
 
-Instant Client and SDK version: ``10.2.0.4.0`` for all platforms.
+Instant Client and SDK version: ``11.2.0.4.0`` for all platforms.
