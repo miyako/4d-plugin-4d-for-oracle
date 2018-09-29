@@ -1,8 +1,8 @@
 /*
- * $Header: oci8dp.h 27-feb-2004.09:37:38 rphillip Exp $
+ * 
  */
 
-/* Copyright (c) 1998, 2004, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1998, 2005, Oracle. All rights reserved.  */
  
 /* 
    NAME 
@@ -18,6 +18,7 @@
      is included by "oci.h", which the application should include.
 
    MODIFIED   (MM/DD/YY)
+   dmukhin     06/29/05 - ANSI prototypes; miscellaneous cleanup 
    rphillip    02/27/04 - Add OCI_DIRPATH_COL_ERROR 
    srseshad    03/12/03 - convert oci public api to ansi
    msakayed    10/28/02 - Bug #2643907: add OCI_ATTR_DIRPATH_SKIPINDEX_METHOD

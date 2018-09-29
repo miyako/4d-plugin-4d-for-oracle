@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2006, Oracle. All rights reserved.  */
+/* Copyright (c) 2000, 2008, Oracle. All rights reserved.  */
  
 /* 
    NAME 
@@ -8,106 +8,18 @@
      Just declare all the classes
 
    RELATED DOCUMENTS 
-     <note any documents related to this facility>
+     OCCI Programmer's Guide 
  
    EXPORT FUNCTION(S) 
-     <external functions declared for use outside package - one-line 
-      descriptions>
+     none
 
    INTERNAL FUNCTION(S)
-     <other external functions declared - one-line descriptions>
+     none
 
    EXAMPLES
 
    NOTES
-     <other useful comments, qualifications, etc.>
-
-   MODIFIED   (MM/DD/YY)
-   jstewart    01/26/06 - 5001590: define basic_strings for gcc 3.3 
-   cparampa    12/05/04 - Added BatchSQLException and its Impl
-   cparampa    08/12/04 - Add OCCI_MAJOR_VERSION, OCCI_MINOR_VERSION
-   shiyer      05/28/04 - Add LOB array operations 
-   shiyer      04/01/04 - Add char_traits<short> impl for gcc 3.2.3 
-   cparampa    09/03/03 - Added NotifyResult
-   rvallam     02/12/03 - modified BFloat/BDouble interface - BFloat/BDouble
-                          type is now a struct  
-   shiyer      01/02/03 - add setVector(vector<UString>,string schema/type)
-   rvallam     11/19/02 - added objects support for interval classes
-   cparampa    12/11/02 - removed declaration for Payload
-   srseshad    11/14/02 - Add OCCIIBFLOAT/OCCIIBDOUBLE
-   cparampa    10/17/02 - prototypes for getVectorOf BDouble and BFloat taking
-                          anydata.
-   cparampa    10/09/02 - Declarations for AQ classes
-   rvallam     10/12/02 - added new method for array pin - pinVectorOfRefs
-   rvallam     10/10/02 - objects performance enhancement - modified
-                          getObject and getVector<T *> to take the
-                          schName and typeName of the object
-   rvallam     10/11/02 - added native float/double API - get(set)vector
-                          methods, added the enum values for BFLOAT and
-                          BDOUBLE and typecodes for the same
-   shiyer      07/31/02 - 10iR1, OCCI Globalization support
-   cparampa    08/27/02 - Added forward reference for StatelessConnnectionPool
-                          and StatelessConnectionPoolImpl  
-   vvinay      06/25/02 - fix #2415021:const of string changed
-   aahluwal    06/03/02 - bug 2360115
-   gayyappa    12/27/01 - fix bug 2073482 - remove include <map> 
-   gayyappa    10/29/01 - removed CharSet - bug 1853748 
-   gayyappa    09/21/01 - #include <map>
-   rratnam     06/18/01 - fixed bug1777042 -- HP support for "std"
-   rvallam     06/11/01 - fixed NT porting problem with template functions-
-                          added generic method get(set)VectorOfRefs
-   rratnam     04/25/01 - fixed NT porting bug1673780
-   rvallam     04/12/01 - added dummy parameter in getVector of AnyData
-                          for PObject *
-   rratnam     04/10/01 - removed references to wstring
-   rvallam     04/02/01 - fixed linux porting bug 1654670
-   gayyappa    03/29/01 - remove get/set vector methods for int/float/double/
-                          unsigned int for anydata.
-   rvallam     03/20/01 - added dummy parameter for Type in getVector for
-                          void * in statement and ResultSet
-                          added setVector of Ref<T> and Number prototype
-                          for statement
-   gayyappa    03/15/01 - added parameter to getvector on anydata with void*.
-   rratnam     03/13/01 - added virtual destructor to RefCounted
-   rkasamse    03/15/01 - add an arg, Type, to getVector of void*
-   rratnam     03/06/01 - removed references() from RefCounted
-   slari       02/15/01 - suppress lint warnings
-   rratnam     02/12/01 - removed #include <iostream.h>
-   rvallam     02/07/01 - added enum OCCI_MAX_PREFETCH_DEPTH
-   gayyappa    01/15/01 - change ub4 to unsigned int for
-                          get/set vector methods..
-   gayyappa    01/03/01 - put "using namespace std" in a ifndef
-   gayyappa    12/14/00 - add forward declaration for ResultSetImpl 
-                          and StatementImpl.
-                          Remove commented #defines
-   gayyappa    11/17/00 - change Session to Connection
-   gayyappa    09/12/00 - remove OCCI_SQLT_INT, OCCI_SQLT_FLT 
-                          remove OCCIUNSIGNED_CHAR, OCCISHORT, 
-                          OCCIUNSIGNED_SHORT, OCCILONG ,OCCI_LONGDOUBLE,
-                          OCCI_UNSIGNEDLONG  from enum Type.
-   gayyappa    08/25/00 - add const to get/set vector mthds of anydata.
-   rvallam     08/10/00 - updated Type enum
-   slari       08/04/00 - add OCCIROWID and OCCICURSOR
-   rkasamse    08/04/00 - add setVector methods
-   slari       07/24/00 - add BytesImpl
-   rratnam     07/25/00 - Added forward declarations for LobStreamImpl,
-                          ConnectionPool[Impl], removed those for
-                          Connection[Impl]
-   rkasamse    07/28/00 - add getVector(ResultSet*...) methods
-   rratnam     06/14/00 - Added forward declaration for RefImpl,
-                          added DefaultCharSet to the CharSet 
-                          enum
-   rratnam     06/13/00 - Added DefaultCharSet to the CharSet enum
-   kmohan      05/31/00 - RefCounted no more templated
-   rratnam     22/05/00 - Added forward declaration of ConnectionImpl, and the
-                         LobOpenMode enum
-   kmohan      05/05/00 - Added global routine prototypes
-   rkasamse    05/23/00 -
-   slari       04/28/00 - add forward declaration of SQLExceptionImpl
-   kmohan      04/19/00 - Added enums Type,CharSet,CharSetForm
-   gayyappa    04/18/00 - removed checkStatus. added checkOCICall and 
-                          createSQLEXception functions 
-   kmohan      04/11/00 - Creation
+     none
 
 */
 
@@ -147,9 +59,8 @@ namespace oracle {
 namespace occi {
 
 //UString is the class for UTF16 characterset
-
-#if (__GNUC__ == 3 && (__GNUC_MINOR__ == 2 || __GNUC_MINOR__ == 3))
- 
+//check for version = 3.2 or 3.3
+#if (__GNUC__ == 3 && (__GNUC_MINOR__ == 2 || __GNUC_MINOR__ == 3))  
   //char_traits<T> specialization for utext for gcc 3.2.3
   struct utext_char_traits
   {
@@ -198,7 +109,8 @@ namespace occi {
     }
 
   //find a character in the char string
-  static const char_type* find(const char_type* s, size_t n, const char_type& c)
+  static const char_type* find(const char_type* s, 
+                      size_t n, const char_type& c)
     {
        for ( ; n > 0 ; ++s, --n)
          if (eq(*s, c))
@@ -455,6 +367,34 @@ enum CharSetForm
 enum LobOpenMode
 { OCCI_LOB_READONLY = OCI_LOB_READONLY
  ,OCCI_LOB_READWRITE = OCI_LOB_READWRITE
+ ,OCCI_LOB_WRITEONLY = OCI_LOB_WRITEONLY
+ ,OCCI_LOB_APPENDONLY = OCI_LOB_APPENDONLY
+ ,OCCI_LOB_FULLOVERWRITE = OCI_LOB_FULLOVERWRITE
+ ,OCCI_LOB_FULLREAD = OCI_LOB_FULLREAD
+};
+
+enum LobOptionType
+{
+  OCCI_LOB_OPT_NONE        = 0,
+  OCCI_LOB_OPT_COMPRESS    = OCI_LOB_OPT_COMPRESS,
+  OCCI_LOB_OPT_ENCRYPT     = OCI_LOB_OPT_ENCRYPT,
+  OCCI_LOB_OPT_DEDUPLICATE = OCI_LOB_OPT_DEDUPLICATE,
+  OCCI_LOB_OPT_ALLOCSIZE   = OCI_LOB_OPT_ALLOCSIZE,
+  OCCI_LOB_OPT_CONTENTTYPE = OCI_LOB_OPT_CONTENTTYPE,
+  OCCI_LOB_OPT_MODTIME     = OCI_LOB_OPT_MODTIME  
+};
+
+enum LobOptionValue
+{
+  // Compression Options
+  OCCI_LOB_COMPRESS_OFF    = OCI_LOB_COMPRESS_OFF,
+  OCCI_LOB_COMPRESS_ON     = OCI_LOB_COMPRESS_ON,
+  // Encryption Options
+  OCCI_LOB_ENCRYPT_OFF     = OCI_LOB_ENCRYPT_OFF,
+  OCCI_LOB_ENCRYPT_ON      = OCI_LOB_ENCRYPT_ON,
+  // Sharing Options
+  OCCI_LOB_DEDUPLICATE_OFF = OCI_LOB_DEDUPLICATE_OFF,
+  OCCI_LOB_DEDUPLICATE_ON  = OCI_LOB_DEDUPLICATE_ON
 };
 
 class RefCounted {
@@ -548,12 +488,13 @@ const T* rawPtr() const;
   template <class T>
   void getVectorOfRefs( const AnyData &any, 
   OCCI_STD_NAMESPACE::vector< Ref<T> > &vect) ;
-  #ifndef WIN32COMMON
+  
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template <class T>
   void getVector(const AnyData &any,
   OCCI_STD_NAMESPACE::vector< Ref<T> > &vect) ;
   #endif
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void getVector(const AnyData &any,
   OCCI_STD_NAMESPACE::vector<T> &vect,
@@ -594,12 +535,12 @@ const T* rawPtr() const;
   template <class T>
   void setVectorOfRefs( AnyData &any, 
   const OCCI_STD_NAMESPACE::vector< Ref<T> > &vect) ;
-  #ifndef WIN32COMMON
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template <class T>
   void setVector( AnyData &any, 
   const OCCI_STD_NAMESPACE::vector< Ref<T> > &vect) ;
   #endif
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void setVector( AnyData &any,
   const OCCI_STD_NAMESPACE::vector< T > &vect) ;
@@ -646,12 +587,12 @@ const T* rawPtr() const;
   template <class T>
   void getVectorOfRefs(ResultSet  *rs, unsigned int,
   OCCI_STD_NAMESPACE::vector<Ref<T> > &vect) ;
-  #ifndef WIN32COMMON
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template <class T>
   void getVector(ResultSet  *rs, unsigned int,
   OCCI_STD_NAMESPACE::vector<Ref<T> > &vect) ;
   #endif
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void getVector( ResultSet *rs, unsigned int index,
   OCCI_STD_NAMESPACE::vector< T > &vect) ;
@@ -699,12 +640,12 @@ const T* rawPtr() const;
   template <class T>
   void getVectorOfRefs(Statement  *rs, unsigned int,
   OCCI_STD_NAMESPACE::vector<Ref<T> > &vect) ;
-  #ifndef WIN32COMMON
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template <class T>
   void getVector(Statement  *rs, unsigned int,
   OCCI_STD_NAMESPACE::vector<Ref<T> > &vect) ;
   #endif
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void getVector( Statement *rs, unsigned int index,
   OCCI_STD_NAMESPACE::vector< T > &vect) ;
@@ -767,13 +708,13 @@ const T* rawPtr() const;
   void setVectorOfRefs(Statement *stmt, unsigned int paramIndex,
   const OCCI_STD_NAMESPACE::vector<Ref<T> > &vect,
   const OCCI_STD_NAMESPACE::string &sqltype) ;
-  #ifndef WIN32COMMON
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template  <class T>
   void setVector(Statement *stmt, unsigned int paramIndex,
   const OCCI_STD_NAMESPACE::vector<Ref<T> > &vect,
   const OCCI_STD_NAMESPACE::string &sqltype) ;
   #endif
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void setVector( Statement *stmt, unsigned int paramIndex, 
                   const OCCI_STD_NAMESPACE::vector< T > &vect, 
@@ -785,9 +726,10 @@ const T* rawPtr() const;
                   const OCCI_STD_NAMESPACE::string &sqltype) ;
   #endif
 
-/* -----------------------------------------------------------------------------------
-   Statement setVector functions, schema & type separate arguments - multibyte support
-   -----------------------------------------------------------------------------------
+/* ------------------------------------------------------------------------
+   Statement setVector functions, schema & type separate 
+   arguments - multibyte support
+   ------------------------------------------------------------------------
 */
   void setVector(Statement *stmt, unsigned int paramIndex, 
                  const OCCI_STD_NAMESPACE::vector<int> &vect, 
@@ -859,7 +801,7 @@ const T* rawPtr() const;
   const OCCI_STD_NAMESPACE::string &schemaName,
   const OCCI_STD_NAMESPACE::string &typeName) ;
 
-  #ifndef WIN32COMMON
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template  <class T>
   void setVector(Statement *stmt, unsigned int paramIndex,
   const OCCI_STD_NAMESPACE::vector<Ref<T> > &vect,
@@ -867,7 +809,7 @@ const T* rawPtr() const;
   const OCCI_STD_NAMESPACE::string &typeName) ;
   #endif
 
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void setVector( Statement *stmt, unsigned int paramIndex, 
                   const OCCI_STD_NAMESPACE::vector< T > &vect, 
@@ -958,7 +900,7 @@ const T* rawPtr() const;
   const UString &schemaName,
   const UString &typeName) ;
 
-  #ifndef WIN32COMMON
+  #if !defined(WIN32COMMON) && !defined(__MVS__)
   template  <class T>
   void setVector(Statement *stmt, unsigned int paramIndex,
   const OCCI_STD_NAMESPACE::vector<Ref<T> > &vect,
@@ -966,7 +908,7 @@ const T* rawPtr() const;
   const UString &typeName) ;
   #endif
 
-  #ifdef WIN32COMMON
+  #if defined(WIN32COMMON) || defined(__MVS__)
   template <class T>
   void setVector( Statement *stmt, unsigned int paramIndex, 
                   const OCCI_STD_NAMESPACE::vector< T > &vect, 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><xliff version="1.0" xmlns:d4="http://www.4d.com/d4-ns">	<header>		<note>4D for ORACLE plugin</note>	</header>
+
+	<group resname="themes">		<trans-unit id="4E287BEBFC3344B2BDEB97E22F46B910" resname="4E287BEBFC3344B2BDEB97E22F46B910" translate="no">			<source>OD: Path Type</source>		</trans-unit>	</group>
+
+	<group d4:groupName="4E287BEBFC3344B2BDEB97E22F46B910" restype="x-4DK#">
+    <trans-unit d4:value="0" id="4E287BEBFC3344B2BDEB97E22F46B910.101">      <source>OD_PATH_POSIX</source>    </trans-unit>    <trans-unit d4:value="1" id="4E287BEBFC3344B2BDEB97E22F46B910.102">      <source>OD_PATH_SYSTEM</source>    </trans-unit>
+	</group>
+
+	<group resname="themes">		<trans-unit id="8C7A660120784E3EA94BF045C236EDCB" resname="8C7A660120784E3EA94BF045C236EDCB" translate="no">			<source>OD: Environment Variable</source>		</trans-unit>	</group>
+
+	<group d4:groupName="8C7A660120784E3EA94BF045C236EDCB" restype="x-4DK#">
+    <trans-unit d4:value="TNS_ADMIN" id="8C7A660120784E3EA94BF045C236EDCB.201">      <source>OD_TNS_ADMIN</source>    </trans-unit>    <trans-unit d4:value="ORACLE_HOME" id="8C7A660120784E3EA94BF045C236EDCB.202">      <source>OD_ORACLE_HOME</source>    </trans-unit>
+	</group>
+
+	<group resname="themes">		<trans-unit id="92AA94F1E71E40B78966B5F27CEF91E6" resname="92AA94F1E71E40B78966B5F27CEF91E6" translate="no">			<source>OD: Data Type</source>		</trans-unit>	</group>
+	<group d4:groupName="8C7A660120784E3EA94BF045C236EDCB" restype="x-4DK#">
+    <trans-unit d4:value="0" id="8C7A660120784E3EA94BF045C236EDCB.301">      <source>OD_ALPHA</source>    </trans-unit>    <trans-unit d4:value="1" id="8C7A660120784E3EA94BF045C236EDCB.302">      <source>OD_REAL</source>    </trans-unit>    <trans-unit d4:value="2" id="8C7A660120784E3EA94BF045C236EDCB.303">      <source>OD_TEXT</source>    </trans-unit>    <trans-unit d4:value="4" id="8C7A660120784E3EA94BF045C236EDCB.304">      <source>OD_DATE</source>    </trans-unit>    <trans-unit d4:value="6" id="8C7A660120784E3EA94BF045C236EDCB.305">      <source>OD_BOOLEAN</source>    </trans-unit>    <trans-unit d4:value="8" id="8C7A660120784E3EA94BF045C236EDCB.306">      <source>OD_INTEGER</source>    </trans-unit>    <trans-unit d4:value="9" id="8C7A660120784E3EA94BF045C236EDCB.307">      <source>OD_LONGINT</source>    </trans-unit>    <trans-unit d4:value="11" id="8C7A660120784E3EA94BF045C236EDCB.308">      <source>OD_TIME</source>    </trans-unit>
+	</group>
+
+	<group resname="themes">		<trans-unit id="C1789F92711D4D608D99205202C184B4" resname="C1789F92711D4D608D99205202C184B4" translate="no">			<source>OD: Preferences</source>		</trans-unit>	</group>
+	<group d4:groupName="C1789F92711D4D608D99205202C184B4" restype="x-4DK#">
+    <trans-unit d4:value="0" id="C1789F92711D4D608D99205202C184B4.401">      <source>OD_SET</source>    </trans-unit>    <trans-unit d4:value="1" id="C1789F92711D4D608D99205202C184B4.402">      <source>OD_UNSET</source>    </trans-unit>
+	</group>
+	<group resname="themes">		<trans-unit id="77D40494FFB84CB881E8EA3771B2C22B" resname="77D40494FFB84CB881E8EA3771B2C22B" translate="no">			<source>OD: SQL Version</source>		</trans-unit>	</group>
+
+	<group d4:groupName="77D40494FFB84CB881E8EA3771B2C22B" restype="x-4DK#">
+    <trans-unit d4:value="1" id="77D40494FFB84CB881E8EA3771B2C22B.501">      <source>OD_NTV_SYNTAX</source>    </trans-unit>    <trans-unit d4:value="2" id="77D40494FFB84CB881E8EA3771B2C22B.502">      <source>OD_V7_SYNTAX</source>    </trans-unit>    <trans-unit d4:value="3" id="77D40494FFB84CB881E8EA3771B2C22B.503">      <source>OD_V8_SYNTAX</source>    </trans-unit>
+	</group></xliff>

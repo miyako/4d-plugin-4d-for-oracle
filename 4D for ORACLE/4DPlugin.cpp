@@ -22,7 +22,7 @@
 #include "oracle_high_level.h"
 #include "oracle_environment.h"
 
-#define THIS_BUNDLE_ID @"com.4D.4DPlugin.miyako.4DforORACLE"
+#define THIS_BUNDLE_ID @"com.4D.4D-for-ORACLE"
 #define THIS_BUNDLE_NAME L"4D for ORACLE.4DX"
 
 std::map<uint32_t, sessionInfo*> _sessions;
@@ -154,7 +154,7 @@ void OD_SetOracleLibraryDirectory()
 #endif
 }
 
-void PluginMain(int32_t selector, PA_PluginParameters params)
+void PluginMain(PA_long32 selector, PA_PluginParameters params)
 {
 	try
 	{
@@ -172,7 +172,7 @@ void PluginMain(int32_t selector, PA_PluginParameters params)
 
 #pragma mark -
 
-void CommandDispatcher (int32_t pProcNum, sLONG_PTR *pResult, PackagePtr pParams)
+void CommandDispatcher (PA_long32 pProcNum, sLONG_PTR *pResult, PackagePtr pParams)
 {
 	switch(pProcNum)
 	{

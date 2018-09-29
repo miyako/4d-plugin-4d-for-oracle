@@ -1,9 +1,9 @@
 /* DISABLE check_long_lines  */
 
 /*
- * $Header: nzerror.h 30-jan-2005.21:20:26 skalyana Exp $
+ * $Header: security_src/public/nzerror.h /st_ldap_db11.2/3 2011/04/29 12:36:28 rchahal Exp $
  *
- * Copyright (c) 1995, 2005, Oracle. All rights reserved.  
+* Copyright (c) 1995, 2011, Oracle and/or its affiliates. All rights reserved. 
  */
 
 /* ENABLE check_long_lines  */
@@ -20,6 +20,7 @@
      A pragma is used to silence olint about the enum value names not being
      unique within 7 characters. This limit is being changed to 30.
   MODIFIED
+     rchahal    06/12/06 - 
      skalyana   01/30/05 - 
      rchahal    07/16/04 - add cert label 
      rchahal    07/06/04 - 
@@ -631,6 +632,33 @@ typedef enum nzerror
 
   NZERROR_INVALID_HEADER_LENGTH = 43070,       /* bad sso header length */
   NZERROR_WALLET_CONTAINS_USER_CREDENTIALS = 43071, /* wallet not empty */
+  NZERROR_CANNOT_MODIFY_AL = 43072,       /* Cannot modify AL wallet */
+  NZERROR_FILE_LOCK_FAILED = 43073,       /* Cannot lock wallet file */
+
+  /* Certificate selection errors 43080 - 43099 */
+  NZERROR_MULTIPLE_MATCHING_CREDENTIALS = 43080, /* Multiple matching certs */
+
+
+  NZERROR_CSF_ALIAS_INVALID = 43100,      /* alias is invalid */
+  NZERROR_CSF_KEY_INVALID = 43101,        /* key invalid */
+  NZERROR_CSF_CRED_NOT_SUPPORTED = 43102, /* only pwd cred supported */
+  NZERROR_CSF_HOSTNAME = 43103,           /* hostname error */
+  NZERROR_CSF_XML = 43104,                /* XmlCreate error. See trace */
+  NZERROR_CSF_WALLET_NOT_SPECIFIED = 43105,  /* no wallet specified */
+  NZERROR_CSF_MAP_NOT_IN_STORE = 43106,   /* map does not exist in store */
+  NZERROR_CSF_KEY_NOT_IN_STORE = 43107,   /* key does not exist in store */
+  NZERROR_CSF_ENTRY_EXISTS = 43108,       /* entry with map/key exists */
+  NZERROR_CSF_BTSTRP_WLT_PATH_NOT_SET = 43109, /* bootWallet Path not set */
+  NZERROR_CSF_BTSTRP_WLT_MAP_NOT_SET = 43110,  /* bootWallet map (alias) not set */
+  NZERROR_CSF_BTSTRP_WLT_KEY_NOT_SET = 43111,  /* bootWallet key not set */
+  NZERROR_CSF_LDAP_USERNAME_NOT_SET = 43112,   /* ldap username not set */
+  NZERROR_CSF_LDAP_PWD_NOT_SET = 43113,        /* ldap password not set */
+  NZERROR_CSF_LDAP_URL_NOT_SET = 43114,        /* ldap url not set */
+  NZERROR_CSF_LDAP_PORT_NOT_SET = 43115,       /* ldap port not set */
+  NZERROR_CSF_LDAP_FARMNAME_NOT_SET = 43116,   /* ldap farmname not set */
+  NZERROR_CSF_LDAP_ROOTNAME_NOT_SET = 43117,   /* ldap rootname not set */
+
+  NZERROR_LX_ERROR = 43120,     /* lx api returned error */
 
   NZERROR_LAST_ERROR = 43499,                        /* Last available error */
                                             /* MAXIMUM ERROR NUMBER IS 43499 */

@@ -1,4 +1,5 @@
-/* Copyright (c) 2000, 2004, Oracle. All rights reserved.  */
+/* Copyright (c) 2000, 2009, Oracle and/or its affiliates. 
+All rights reserved. */
    
 /* 
    NAME 
@@ -13,7 +14,8 @@
      <note any documents related to this facility>
  
    EXPORT FUNCTION(S) 
-   <external functions declared for use outside package - one-line descriptions>
+   <external functions declared for use outside package - 
+    one-line descriptions>
 
    INTERNAL FUNCTION(S)
      <other external functions declared - one-line descriptions>
@@ -24,6 +26,12 @@
      <other useful comments, qualifications, etc.>
 
    MODIFIED   (MM/DD/YY)
+   kkverma     11/23/09 - Replace OCIEnv* type ocienv member to Environment type
+   slynn       03/18/08 - Add get/setContentType.
+   slynn       09/14/06 - Remove string.clear()
+   slynn       07/28/06 - Migrate to new 11g LOB terminology 
+   slynn       06/21/06 - Add LobRegion 
+   slynn       05/25/06 - New NG Lob Functionality. 
    cparampa    09/06/04 - Date changes
    shiyer      10/31/03 - Timestamp constructors issue 
    rvallam     10/07/03 - bug 3089939 - add private method in Date to compute 
@@ -42,7 +50,8 @@
    shiyer      09/06/02 - OCCI globalization support
    aahluwal    06/04/02 - bug 2360115
    vvinay      02/21/02 - operator= added for Bytes
-   gayyappa    10/23/01 - fix bug 2073327 , use string instead of enum CharSet  
+   gayyappa    10/23/01 - fix bug 2073327 , use string instead of 
+                          enum CharSet 
    vvinay      12/21/01 - signed char constructor and cast operator
                           (bug 2073334)
                           binary operator methods not friends any more
@@ -64,7 +73,7 @@
                           add OCIEnv to constructor of Bytes.,
                           removed getOCIRaw from Bytes.
                           add const to setVector mthds of anydata.
-                          add dvoid* data member to Timestamp/Interval.
+                          add void* data member to Timestamp/Interval.
    rvallam     08/10/00 - modified CORE class headers to add friends , 
                           added private constructor in Bytes
    slari       08/02/00 - comment out Stream
@@ -77,7 +86,7 @@
    gayyappa    07/04/00 - for fixing a problem in occiNumber
    rratnam     06/13/00 - Updated LOB class headers
    kmohan      05/31/00 - Change Environment to Environment * in 
-			  Date constructor
+                          Date constructor
    kmohan      05/29/00 - No string
    rkasamse    04/25/00 - Added string class header
    etucker     04/19/00 - Added CORE class headers
@@ -222,7 +231,8 @@ class Bfile
   OCCI_STD_NAMESPACE::vector<Bfile>&) ;
   friend void setVector(AnyData&, const OCCI_STD_NAMESPACE::vector<Bfile>&) ;
   friend void do_setVectorOfBfile(Statement*, unsigned int, 
-  const OCCI_STD_NAMESPACE::vector<Bfile>&, void *, unsigned int, void *, unsigned int ) ;
+   const OCCI_STD_NAMESPACE::vector<Bfile>&, void *, unsigned int, 
+   void *, unsigned int ) ;
 
 #ifdef ORAXB8_DEFINED
   friend  void readVectorOfBfiles(const Connection *conn,
@@ -231,6 +241,39 @@ class Bfile
           unsigned char *buffers[], oraub8 *buffer_lens);
 #endif
 };
+
+
+#ifdef ORAXB8_DEFINED
+// See the end of this file for implementation of LobRegion
+template < typename lobType > class LobRegion
+{
+  private:
+    lobType     *_primary;
+    oraub8       _primaryOffset;
+    oraub8       _offset;
+    oraub8       _length;
+    OCCI_STD_NAMESPACE::string  _mimeType;
+
+    void         setPrimary(const ConnectionImpl *connp,
+                            OCILobLocator *locator);
+
+  public:
+    LobRegion();
+    ~LobRegion();
+    lobType     *getPrimary();
+    oraub8       getPrimaryOffset();
+    oraub8       getOffset();
+    oraub8       getLength();
+    OCCI_STD_NAMESPACE::string  getMimeType();
+
+  friend class Blob;
+  friend class Clob;
+};
+
+typedef LobRegion<Blob> BlobRegion;
+typedef LobRegion<Clob> ClobRegion;
+#endif
+
 
 class Blob
 {
@@ -268,7 +311,12 @@ class Blob
     Stream* getStream(unsigned int offset = 1,
       unsigned int amount =0)  ;
     void closeStream(Stream *stream);
+    LobOptionValue getOptions(LobOptionType optType);
+    void setOptions(LobOptionType optType, LobOptionValue value);
+    OCCI_STD_NAMESPACE::string getContentType(void);
+    void setContentType(const OCCI_STD_NAMESPACE::string contentType);
 
+    void getDeduplicateRegions(OCCI_STD_NAMESPACE::vector<BlobRegion> &regions);
   private:
 
     //Data Members:
@@ -297,6 +345,11 @@ class Blob
   friend class StatementImpl;
   friend class ResultSetImpl;
 
+#ifdef ORAXB8_DEFINED
+  friend void 
+    LobRegion<Blob>::setPrimary(const ConnectionImpl *connp,
+                         OCILobLocator *locator);
+#endif
   friend void getVector(const AnyData&, OCCI_STD_NAMESPACE::vector<Blob>&) ;
   friend void getVector(Statement*, unsigned int, 
   OCCI_STD_NAMESPACE::vector<Blob>&) ;
@@ -304,7 +357,8 @@ class Blob
   OCCI_STD_NAMESPACE::vector<Blob>&) ;
   friend void setVector(AnyData&, const OCCI_STD_NAMESPACE::vector<Blob>&) ;
   friend void do_setVectorOfBlob(Statement*, unsigned int, 
-  const OCCI_STD_NAMESPACE::vector<Blob>&, void *, unsigned int, void *, unsigned int ) ;
+  const OCCI_STD_NAMESPACE::vector<Blob>&, void *, 
+  unsigned int, void *, unsigned int ) ;
 #ifdef ORAXB8_DEFINED
   friend  void readVectorOfBlobs(const Connection *conn,
           OCCI_STD_NAMESPACE::vector<Blob> &vec,
@@ -363,9 +417,15 @@ class Clob
     Stream* getStream(unsigned int offset = 1,
       unsigned int amount =0 );
     void closeStream(Stream *stream);
+    LobOptionValue getOptions(LobOptionType optType);
+    void setOptions(LobOptionType optType, LobOptionValue value);
+    OCCI_STD_NAMESPACE::string getContentType(void);
+    void setContentType(const OCCI_STD_NAMESPACE::string contentType);
     
     UString getCharSetIdUString() const;
     void setCharSetIdUString( const UString &charset) ;
+
+    void getDeduplicateRegions(OCCI_STD_NAMESPACE::vector<ClobRegion> &regions);
 
   private:
 
@@ -407,6 +467,11 @@ class Clob
   friend class StatementImpl;
   friend class ResultSetImpl;
 
+#ifdef ORAXB8_DEFINED
+  friend void 
+    LobRegion<Clob>::setPrimary(const ConnectionImpl *connp,
+                         OCILobLocator *locator);
+#endif
   friend void getVector(const AnyData&, OCCI_STD_NAMESPACE::vector<Clob>&) ;
   friend void getVector(Statement*, unsigned int, 
   OCCI_STD_NAMESPACE::vector<Clob>&) ;
@@ -414,7 +479,8 @@ class Clob
   OCCI_STD_NAMESPACE::vector<Clob>&) ;
   friend void setVector(AnyData&, const OCCI_STD_NAMESPACE::vector<Clob>&) ;
   friend void do_setVectorOfClob(Statement*, unsigned int, 
-  const OCCI_STD_NAMESPACE::vector<Clob>&, void *, unsigned int, void *, unsigned int ) ;
+  const OCCI_STD_NAMESPACE::vector<Clob>&, void *, 
+  unsigned int, void *, unsigned int ) ;
 #ifdef ORAXB8_DEFINED
   friend  void readVectorOfClobs(const Connection *conn,
           OCCI_STD_NAMESPACE::vector<Clob> &vec,
@@ -500,18 +566,21 @@ class Number
   const Number ceil() const ;
   const Number floor() const ;
   const Number squareroot() const ;
-  const int sign() const ;
+  int sign() const ;
   // conversion routines
   //  Format Number and return as a OCCI_STD_NAMESPACE::string
   OCCI_STD_NAMESPACE::string toText(const Environment *envp,
-                const OCCI_STD_NAMESPACE::string &fmt,const OCCI_STD_NAMESPACE::string &nlsParam="") const
+                const OCCI_STD_NAMESPACE::string &fmt,
+                const OCCI_STD_NAMESPACE::string &nlsParam="") const
                 ;
   UString toText(const Environment *envp,
                 const UString &fmt,const UString &nlsParam) const
                 ;
   // Create an Number from formatted text
-  void fromText(const Environment *envp,const OCCI_STD_NAMESPACE::string &number,
-                const OCCI_STD_NAMESPACE::string &fmt, const OCCI_STD_NAMESPACE::string &nlsParam = "")
+  void fromText(const Environment *envp,
+                const OCCI_STD_NAMESPACE::string &number,
+                const OCCI_STD_NAMESPACE::string &fmt, 
+                const OCCI_STD_NAMESPACE::string &nlsParam = "")
                ;
   void fromText(const Environment *envp,
   const UString &number, 
@@ -580,7 +649,8 @@ class Number
   friend void getVector(Statement  *stmt, unsigned int paramIndex,
   OCCI_STD_NAMESPACE::vector<Number> &vect) ;
   friend void do_setVectorOfNumber(Statement *stmt, unsigned int paramIndex,
-  const OCCI_STD_NAMESPACE::vector<Number> &vect, void *schemaName, unsigned int schemaNameLen,
+  const OCCI_STD_NAMESPACE::vector<Number> &vect, void *schemaName,
+  unsigned int schemaNameLen,
   void *typeName, unsigned int typeNameLen);
   friend void getVector(ResultSet  *rs, unsigned int colIndex,
   OCCI_STD_NAMESPACE::vector<Number> &vect);
@@ -621,7 +691,8 @@ class Date
   void fromText(const UString &datestr,
                 const UString &fmt , const UString &nlsParam ,
                 const Environment *envp = NULL);
-  Date toZone(const OCCI_STD_NAMESPACE::string &zone1, const OCCI_STD_NAMESPACE::string &zone2) const;
+  Date toZone(const OCCI_STD_NAMESPACE::string &zone1, 
+              const OCCI_STD_NAMESPACE::string &zone2) const;
   Date& operator=(const Date &d);
   Date addMonths(int i) const;
   Date addDays(int i) const ;
@@ -660,8 +731,8 @@ class Date
   friend void getVector(Statement  *stmt, unsigned int paramIndex,
    OCCI_STD_NAMESPACE::vector<Date> &vect)  ;
   friend void do_setVectorOfDate(Statement *stmt, unsigned int paramIndex, 
-   const OCCI_STD_NAMESPACE::vector<Date> &vect, void *schemaName, unsigned int schemaNameLen,
-   void *typeName, unsigned int typeNameLen) ;
+   const OCCI_STD_NAMESPACE::vector<Date> &vect, void *schemaName,
+   unsigned int schemaNameLen,void *typeName, unsigned int typeNameLen) ;
   friend void getVector(ResultSet  *rs, unsigned int colIndex, 
   OCCI_STD_NAMESPACE::vector<Date> &vect) ;
 
@@ -730,15 +801,16 @@ class Timestamp
 
   private:
    OCIDateTime *ocidatetime;
-   OCIEnv *ocienv;
+   Environment *env_; 
    void *timestampExt;
 
    OCIDateTime *getOCIDateTime() const;
-   Timestamp( OCIEnv *env, OCIDateTime *dt, bool toCopy = true) ;
-   void allocateDataMembers( OCIEnv *env) ;
+   void getTZString( OraText *TimeZone, int th, int tm );  
+   Timestamp( Environment *env, OCIDateTime *dt, bool toCopy = true) ;
+   void allocateDataMembers( Environment *env) ;
    void do_TimestampConstruct( const Environment *env, int year, 
    unsigned int month, unsigned int day, unsigned int hour, unsigned int min, 
-   unsigned int sec, unsigned int fs, void *tzinter);
+   unsigned int sec, unsigned int fs, void *tz, int tsize);
 
    friend  void getVector(const AnyData &any,
    OCCI_STD_NAMESPACE::vector<Timestamp> &vect);
@@ -750,8 +822,10 @@ class Timestamp
    OCCI_STD_NAMESPACE::vector<Timestamp> &vect) ;
    friend void getVector(Statement  *rs, unsigned int,
    OCCI_STD_NAMESPACE::vector<Timestamp> &vect) ;
-   friend void do_setVectorOfTimestamp(Statement *stmt, unsigned int paramIndex,
-   const OCCI_STD_NAMESPACE::vector<Timestamp> &vect, void *schemaName, unsigned int schemaNameLen,
+   friend void do_setVectorOfTimestamp(Statement *stmt,
+   unsigned int paramIndex,
+   const OCCI_STD_NAMESPACE::vector<Timestamp> &vect, 
+   void *schemaName, unsigned int schemaNameLen,
    void *typeName, unsigned int typeNameLen) ;
 }; // class Timestamp
 
@@ -774,7 +848,8 @@ class IntervalDS
   int getFracSec () const ;
   void set( int day, int hour, int minute, int second, int fracsec) ;
   void setNull() ;
-  void fromText( const OCCI_STD_NAMESPACE::string &inpstr, const OCCI_STD_NAMESPACE::string &nlsParam ="",
+  void fromText( const OCCI_STD_NAMESPACE::string &inpstr,
+  const OCCI_STD_NAMESPACE::string &nlsParam ="",
   const Environment *env=NULL)  ;
   OCCI_STD_NAMESPACE::string toText( unsigned int lfprec, unsigned int fsprec,
   const OCCI_STD_NAMESPACE::string &nlsParam="") const ;
@@ -818,8 +893,10 @@ class IntervalDS
    OCCI_STD_NAMESPACE::vector<IntervalDS> &vect) ;
    friend void getVector(Statement  *rs, unsigned int,
    OCCI_STD_NAMESPACE::vector<IntervalDS> &vect) ;
-   friend void do_setVectorOfIntervalDS(Statement *stmt, unsigned int paramIndex,
-   const OCCI_STD_NAMESPACE::vector<IntervalDS> &vect, void *schemaName, unsigned int schemaNameLen,
+   friend void do_setVectorOfIntervalDS(Statement *stmt, 
+   unsigned int paramIndex,
+   const OCCI_STD_NAMESPACE::vector<IntervalDS> &vect, 
+   void *schemaName, unsigned int schemaNameLen,
    void *typeName, unsigned int typeNameLen) ;
    friend class StatementImpl;
    friend class ResultSetImpl;
@@ -846,9 +923,11 @@ class IntervalYM
 
   void set( int year, int month) ;
   void setNull() ;
-  void fromText( const OCCI_STD_NAMESPACE::string &inpstr, const OCCI_STD_NAMESPACE::string &nlsParam="",
+  void fromText( const OCCI_STD_NAMESPACE::string &inpstr, 
+  const OCCI_STD_NAMESPACE::string &nlsParam="",
   const Environment *env=NULL) ;
-  OCCI_STD_NAMESPACE::string toText( unsigned int lfprec, const OCCI_STD_NAMESPACE::string &nlsParam="") const;
+  OCCI_STD_NAMESPACE::string toText( unsigned int lfprec, 
+  const OCCI_STD_NAMESPACE::string &nlsParam="") const;
   bool isNull() const;
   IntervalYM & operator =( const IntervalYM &src) ;
   IntervalYM& operator +=( const IntervalYM &a);
@@ -884,8 +963,10 @@ class IntervalYM
    OCCI_STD_NAMESPACE::vector<IntervalYM> &vect) ;
    friend void getVector(Statement  *rs, unsigned int,
    OCCI_STD_NAMESPACE::vector<IntervalYM> &vect) ;
-   friend void do_setVectorOfIntervalYM(Statement *stmt, unsigned int paramIndex,
-   const OCCI_STD_NAMESPACE::vector<IntervalYM> &vect, void *schemaName, unsigned int schemaNameLen,
+   friend void do_setVectorOfIntervalYM(Statement *stmt,
+   unsigned int paramIndex,
+   const OCCI_STD_NAMESPACE::vector<IntervalYM> &vect,
+   void *schemaName, unsigned int schemaNameLen,
    void *typeName, unsigned int typeNameLen) ;
 
    friend class StatementImpl;
@@ -955,6 +1036,132 @@ typedef struct BDouble
                           INTERNAL FUNCTIONS
   ---------------------------------------------------------------------------*/
 
+ 
+#ifdef ORAXB8_DEFINED
+/* 
+   NAME 
+     Lob Region class
+
+   DESCRIPTION 
+     Contains the implementation of the Lob Region template Class.
+     This class is the underlying implementation for the BlobRegion and
+     ClobRegion classes.
+ 
+   RELATED DOCUMENTS 
+     Functional/Design Specifications:
+       18209 - Next Generation LOBs: API
+       18206 - Next Generation LOBs: Comb. Storage, Compressio & Encryption
+ 
+   EXPORT FUNCTION(S) 
+     LobRegion()  - constructors
+     ~LobRegion() - destructor
+     getPrimary() - Get the Primary Lob object
+     getPrimaryOffset() - Get the offset of this region in the Primary Lob.
+     getOffset() - Get the offset of this region in this lob.
+     getLength() - Get the length of this region
+     getMimeType() - Get the mime type of this region
+
+   PUBLIC IMPLEMENTATION FUNCTION(S)
+
+   INTERNAL FUNCTION(S)
+     none
+
+   EXAMPLES
+
+   NOTES
+*/
+
+/*------------------------------ LobRegion ------------------*/
+/*
+   NAME
+       LobRegion - constructor for the class
+
+   PARAMETERS
+       none
+
+   DESCRIPTION 
+       default constructor
+
+   RETURNS
+       Nothing
+
+   NOTES
+*/
+template <typename lobType>
+LobRegion<lobType>::LobRegion()
+{
+  _primary = (lobType *)0;
+  _primaryOffset = 0;
+  _offset  = 0;
+  _length  = 0;
+}
+
+/*------------------------------ ~LobRegion ------------------*/
+/*
+   NAME
+       ~LobRegion - destructor for the class
+
+   PARAMETERS
+       none
+
+   DESCRIPTION 
+       default constructor
+
+   RETURNS
+       Nothing
+
+   NOTES
+*/
+template <typename lobType> 
+LobRegion<lobType>::~LobRegion()
+{
+  if (_primary != (lobType *)0)
+  {
+    delete _primary;
+  }
+}
+
+template <typename lobType> 
+lobType *LobRegion<lobType>::getPrimary()
+{
+  return _primary;
+}
+
+template <typename lobType>
+oraub8 LobRegion<lobType>::getPrimaryOffset()
+{
+  return _primaryOffset;
+}
+
+template <typename lobType>
+oraub8 LobRegion<lobType>::getOffset()
+{
+  return _offset;
+}
+
+template <typename lobType>
+oraub8 LobRegion<lobType>::getLength()
+{
+  return _length;
+}
+
+template <typename lobType>
+OCCI_STD_NAMESPACE::string LobRegion<lobType>::getMimeType()
+{
+  return _mimeType;
+}
+
+template <typename lobType> 
+void LobRegion<lobType>::setPrimary(const ConnectionImpl *connp,
+                                    OCILobLocator *locator)
+{
+  if (locator != (OCILobLocator *)0)
+  {
+    _primary = new lobType(connp, locator, true);
+  }
+}
+
+#endif /* ORAXB8_DEFINED */
 
 } /* end of namespace occi */
 } /* end of namespace oracle */

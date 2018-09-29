@@ -1,8 +1,9 @@
 /*
- * $Header: odci.h 21-apr-2003.17:25:55 ayoaz Exp $
+ * 
  */
 
-/* Copyright (c) 1998, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1998, 2010, Oracle and/or its affiliates. 
+All rights reserved. */
  
 /* 
    NAME 
@@ -39,6 +40,19 @@
        these do make the similar change in catodci.sql.
 
    MODIFIED   (MM/DD/YY)
+   yhu         02/03/10 - add a new flag ODCI_INDEX_UGI
+   spsundar    09/13/07 - 
+   yhu         06/02/06 - add callproperty for statistics 
+   yhu         05/22/06 - add ODCI_NODATA to speed rebuild empty index or ind. 
+                          part. 
+   srirkris    05/09/06 - change ODCIOrderByInfo_ind
+   srirkris    02/06/06 - add definitions for CDI query.
+   spsundar    02/17/06 - add fields/types for system managed domain idx
+   yhu         02/08/06 - add RenameCol Na d RenameTopADT 
+   yhu         03/11/05 - add flags for rename column and rename table 
+   spsundar    11/28/05 - add fields/types for composite domain idx
+   yhu         12/06/05 - mapping table for local text indexes 
+   dmukhin     06/29/05 - ANSI prototypes; miscellaneous cleanup 
    ayoaz       04/21/03 - add CursorNum to ODCIEnv
    abrumm      12/30/02 - Bug #2223225: add define for
                           ODCI_ARG_DESC_LIST_MAXSIZE
@@ -144,6 +158,19 @@
 #define ODCIFuncCallInfo            odcifc
 #define ODCIFuncCall_ind            odcifci
 #define ODCIFuncCall_ref            odcifcr
+#define ODCIColValList              odcicvl
+#define ODCIColArrayList            odcical
+#define ODCIFilterInfoList          odciflil
+#define ODCIOrderByInfoList         odciobil
+#define ODCIFilterInfo_ref          odciflir
+#define ODCIOrderByInfo_ref         odciobir
+#define ODCICompQueryInfo_ref       odcicqir
+#define ODCIFilterInfo              odcifli
+#define ODCIOrderByInfo             odciobi
+#define ODCICompQueryInfo           odcicqi
+#define ODCIFilterInfo_ind          odciflii
+#define ODCIOrderByInfo_ind         odciobii
+#define ODCICompQueryInfo_ind       odcicqii
 
 #endif                                                        /* SLSHORTNAME */
 
@@ -167,6 +194,7 @@
 #define ODCI_PRED_OBJECT_PKG     0x0020
 #define ODCI_PRED_OBJECT_TYPE    0x0040
 #define ODCI_PRED_MULTI_TABLE    0x0080
+#define ODCI_PRED_NOT_EQUAL      0x0100
 
 /* Constants for QueryInfo.Flags */
 #define ODCI_QUERY_FIRST_ROWS    0x01
@@ -211,6 +239,9 @@
 #define ODCI_ALTIDX_REBUILD_ONL        3
 #define ODCI_ALTIDX_MODIFY_COL         4
 #define ODCI_ALTIDX_UPDATE_BLOCK_REFS  5
+#define ODCI_ALTIDX_RENAME_COL         6
+#define ODCI_ALTIDX_RENAME_TAB         7
+#define ODCI_ALTIDX_MIGRATE            8
 
 /* Constants for ODCIIndexInfo.IndexInfoFlags */
 #define ODCI_INDEX_LOCAL         0x0001
@@ -222,18 +253,26 @@
 #define ODCI_INDEX_ONIOT         0x0040
 #define ODCI_INDEX_TRANS_TBLSPC  0x0080
 #define ODCI_INDEX_FUNCTION_IDX  0x0100
+#define ODCI_INDEX_LIST_PARTN    0x0200
+#define ODCI_INDEX_UGI           0x0400
 
 /* Constants for ODCIIndexInfo.IndexParaDegree */
 #define ODCI_INDEX_DEFAULT_DEGREE 32767
 
 /* Constants for ODCIEnv.EnvFlags */
 #define ODCI_DEBUGGING_ON        0x01
+#define ODCI_NODATA              0x02
 
 /* Constants for ODCIEnv.CallProperty */
 #define ODCI_CALL_NONE           0
 #define ODCI_CALL_FIRST          1
 #define ODCI_CALL_INTERMEDIATE   2
 #define ODCI_CALL_FINAL          3
+#define ODCI_CALL_REBUILD_INDEX  4
+#define ODCI_CALL_REBUILD_PMO    5
+#define ODCI_CALL_STATSGLOBAL    6
+#define ODCI_CALL_STATSGLOBALANDPARTITION    7
+#define ODCI_CALL_STATSPARTITION             8
 
 /* Constants for ODCIExtTableInfo.OpCode */
 #define ODCI_EXTTABLE_INFO_OPCODE_FETCH           1
@@ -263,6 +302,27 @@
 /* Constants for Flags argument to ODCIAggregateTerminate */
 #define ODCI_AGGREGATE_REUSE_CTX  1
 
+/* Constants for ODCIColInfo.Flags */
+#define ODCI_COMP_FILTERBY_COL     0x0001
+#define ODCI_COMP_ORDERBY_COL      0x0002
+#define ODCI_COMP_ORDERDSC_COL     0x0004
+#define ODCI_COMP_UPDATED_COL      0x0008
+#define ODCI_COMP_RENAMED_COL      0x0010
+#define ODCI_COMP_RENAMED_TOPADT   0x0020
+
+/* Constants for ODCIOrderByInfo.ExprType */
+#define ODCI_COLUMN_EXPR   1
+#define ODCI_ANCOP_EXPR    2
+
+/* Constants for ODCIOrderByInfo.SortOrder */
+#define ODCI_SORT_ASC    1
+#define ODCI_SORT_DESC   2
+#define ODCI_NULLS_FIRST 4
+
+/* Constants for ODCIPartInfo.PartOp */
+#define  ODCI_ADD_PARTITION   1
+#define  ODCI_DROP_PARTITION  2
+
 /*---------------------------------------------------------------------------
                      ODCI TYPES
   ---------------------------------------------------------------------------*/
@@ -285,13 +345,21 @@ typedef OCIRef   ODCICost_ref;
 typedef OCIRef   ODCIArgDesc_ref;
 typedef OCIArray ODCIArgDescList;
 typedef OCIRef   ODCIStatsOptions_ref;
-typedef OCIRef ODCIPartInfo_ref;
+typedef OCIRef   ODCIPartInfo_ref;
 typedef OCIRef   ODCIEnv_ref;
 typedef OCIRef   ODCIExtTableInfo_ref;             /* external table support */
 typedef OCIArray ODCIGranuleList;                  /* external table support */
 typedef OCIRef   ODCIExtTableQCInfo_ref;           /* external table support */
 typedef OCIRef   ODCIFuncCallInfo_ref;
 typedef OCIArray ODCINumberList;
+typedef OCIArray ODCIPartInfoList;
+typedef OCIArray ODCIColValList;
+typedef OCIArray ODCIColArrayList;
+typedef OCIArray ODCIFilterInfoList;
+typedef OCIArray ODCIOrderByInfoList;
+typedef OCIRef   ODCIFilterInfo_ref;
+typedef OCIRef   ODCIOrderByInfo_ref;
+typedef OCIRef   ODCICompQueryInfo_ref;
  
 struct ODCIColInfo
 {
@@ -301,6 +369,10 @@ struct ODCIColInfo
    OCIString* ColTypName;
    OCIString* ColTypSchema;
    OCIString* TablePartition;
+   OCINumber  ColFlags;
+   OCINumber  ColOrderPos;
+   OCINumber  TablePartitionIden;
+   OCINumber  TablePartitionTotal;
 };
 typedef struct ODCIColInfo ODCIColInfo;
  
@@ -313,6 +385,10 @@ struct ODCIColInfo_ind
    OCIInd ColTypName;
    OCIInd ColTypSchema;
    OCIInd TablePartition;
+   OCIInd ColFlags;
+   OCIInd ColOrderPos;
+   OCIInd TablePartitionIden;
+   OCIInd TablePartitionTotal;
 };
 typedef struct ODCIColInfo_ind ODCIColInfo_ind;
 
@@ -334,6 +410,8 @@ struct ODCIIndexInfo
    OCIString*       IndexPartition;
    OCINumber        IndexInfoFlags;
    OCINumber        IndexParaDegree;
+   OCINumber        IndexPartitionIden;
+   OCINumber        IndexPartitionTotal;
 };
 typedef struct ODCIIndexInfo ODCIIndexInfo;
  
@@ -346,6 +424,8 @@ struct ODCIIndexInfo_ind
    OCIInd IndexPartition;
    OCIInd IndexInfoFlags;
    OCIInd IndexParaDegree;
+   OCIInd IndexPartitionIden;
+   OCIInd IndexPartitionTotal;
 };
 typedef struct ODCIIndexInfo_ind ODCIIndexInfo_ind;
  
@@ -367,6 +447,64 @@ struct ODCIPredInfo_ind
    OCIInd Flags;
 };
 typedef struct ODCIPredInfo_ind ODCIPredInfo_ind;
+
+struct ODCIFilterInfo
+{
+  ODCIColInfo ColInfo;
+  OCINumber Flags;
+  OCIAnyData *strt;
+  OCIAnyData *stop;
+};
+typedef struct ODCIFilterInfo ODCIFilterInfo;
+
+struct ODCIFilterInfo_ind
+{
+  OCIInd atomic;
+  ODCIColInfo_ind ColInfo;
+  OCIInd  Flags;
+  OCIInd  strt;
+  OCIInd  stop;
+};
+typedef struct ODCIFilterInfo_ind ODCIFilterInfo_ind;
+
+
+struct ODCIOrderByInfo
+{
+  OCINumber ExprType;
+  OCIString *ObjectSchema;
+  OCIString *TableName;
+  OCIString *ExprName;
+  OCINumber SortOrder;
+};
+typedef struct ODCIOrderByInfo ODCIOrderByInfo;
+
+struct ODCIOrderByInfo_ind
+{
+  OCIInd atomic;
+  OCIInd ExprType;
+  OCIInd ObjectSchema;
+  OCIInd TableName;
+  OCIInd ExprName;
+  OCIInd SortOrder;
+};
+typedef struct ODCIOrderByInfo_ind ODCIOrderByInfo_ind;
+
+
+struct ODCICompQueryInfo
+{
+  ODCIFilterInfoList  *PredInfo;
+  ODCIOrderByInfoList *ObyInfo;
+};
+typedef struct ODCICompQueryInfo ODCICompQueryInfo;
+
+struct ODCICompQueryInfo_ind
+{
+  OCIInd atomic;
+  OCIInd PredInfo;
+  OCIInd ObyInfo;
+};
+typedef struct ODCICompQueryInfo_ind ODCICompQueryInfo_ind;
+
  
 struct ODCIObject
 {
@@ -387,6 +525,7 @@ struct ODCIQueryInfo
 {
    OCINumber       Flags;
    ODCIObjectList* AncOps;
+   ODCICompQueryInfo CompInfo;
 };
 typedef struct ODCIQueryInfo ODCIQueryInfo;
 
@@ -396,6 +535,7 @@ struct ODCIQueryInfo_ind
    OCIInd atomic;
    OCIInd Flags;
    OCIInd AncOps;
+   ODCICompQueryInfo_ind CompInfo;
 };
 typedef struct ODCIQueryInfo_ind ODCIQueryInfo_ind;
  
@@ -519,6 +659,8 @@ struct ODCIPartInfo
 {
    OCIString* TablePartition;
    OCIString* IndexPartition;
+   OCINumber  IndexPartitionIden;
+   OCINumber  PartOp;
 };
 typedef struct ODCIPartInfo ODCIPartInfo;
  
@@ -527,6 +669,8 @@ struct ODCIPartInfo_ind
    OCIInd atomic;
    OCIInd TablePartition;
    OCIInd IndexPartition;
+   OCIInd IndexPartitionIden;
+   OCIInd PartOp;
 };
 typedef struct ODCIPartInfo_ind ODCIPartInfo_ind;
 

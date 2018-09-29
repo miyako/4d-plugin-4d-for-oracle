@@ -1,4 +1,4 @@
-/* Copyright (c) 1994, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1994, 2006, Oracle. All rights reserved.  */
 
 /*
   NAME
@@ -308,7 +308,7 @@
       OCIError  *err;              /o OCI error handle o/
       OCISvcCtx *svc;              /o OCI service handle o/
 
-      dvoid   *stu_tbl;            /o pointer to the student table o/
+      void   *stu_tbl;            /o pointer to the student table o/
       OCIType *stu_tdo;            /o student type tdo o/
 
       OCIRef    *stu2_ref;         /o object reference to student object o/
@@ -336,7 +336,7 @@
 
       /o create a persistent object 'mark' (of type student) o/ 
       if (OCIObjectNew(env, err, svc, OCI_TYPECODE_ADT, stu_tdo, stu_tbl, 
-            OCI_DURATION_TRANS, (ub1)FALSE, (dvoid **)&stu1) != OCI_SUCCESS)
+            OCI_DURATION_TRANS, (ub1)FALSE, (void **)&stu1) != OCI_SUCCESS)
           /o error handling code o/
 
       /o RETRIEVE OBJECTS IN PERSISTENT STORES o/ 
@@ -397,7 +397,7 @@
 
       /o FLUSH MODIFIED OBJECTS BACK TO PERSISTENT STORE o/
 
-      if (OCICacheFlush(env, err, svc, (dvoid *)0, ((OCIRef*)(*)())0, 
+      if (OCICacheFlush(env, err, svc, (void *)0, ((OCIRef*)(*)())0, 
                        (OCIRef *)0) != OCI_SUCCESS)
           /o error handling code o/
 
@@ -410,6 +410,7 @@
     be in the first release.
 
   MODIFIED
+    dmukhin    06/29/05 - ANSI prototypes; miscellaneous cleanup 
     srseshad   03/12/03 - convert oci public api to ansi
     aahluwal   06/03/02 - bug 2360115
     bpalaval   02/09/01 - Change text to oratext.
@@ -576,10 +577,10 @@
 /*---------------------------------------------------------------------------*/
 
 /*--------------------------- OCIObjectNew ----------------------------------*/
-sword OCIObjectNew(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
-                       OCITypeCode typecode, OCIType *tdo, dvoid *table, 
+sword OCIObjectNew(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc,
+                       OCITypeCode typecode, OCIType *tdo, void  *table, 
                        OCIDuration duration, boolean value, 
-                       dvoid **instance    );
+                       void  **instance    );
 /*
    NAME: OCIObjectNew - OCI new (create) a standalone instance
    PARAMETERS:
@@ -667,7 +668,7 @@ sword OCIObjectNew(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
 sword OCIObjectPin(    OCIEnv *env, OCIError *err, OCIRef *object_ref, 
                        OCIComplexObject *corhdl, OCIPinOpt pin_option, 
                        OCIDuration pin_duration, 
-                       OCILockOpt lock_option, dvoid **object    );
+                       OCILockOpt lock_option, void  **object    );
 /*
    NAME: OCIObjectPin - OCI pin a referenceable object
    PARAMETERS:
@@ -757,7 +758,7 @@ sword OCIObjectPin(    OCIEnv *env, OCIError *err, OCIRef *object_ref,
  */
 
 /*------------------------------ OCIObjectUnpin -----------------------------*/
-sword OCIObjectUnpin(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectUnpin(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectUnpin - OCI unpin a referenceable object
    PARAMETERS:
@@ -804,7 +805,7 @@ sword OCIObjectUnpin(    OCIEnv *env, OCIError *err, dvoid *object    );
  */
 
 /*---------------------------- OCIObjectPinCountReset -----------------------*/
-sword OCIObjectPinCountReset(    OCIEnv *env, OCIError *err, dvoid *object   );
+sword OCIObjectPinCountReset(    OCIEnv *env, OCIError *err, void  *object   );
 /*
    NAME: OCIObjectPinCountReset - OCI resets the pin count of a referenceable
                                   object
@@ -844,7 +845,7 @@ sword OCIObjectPinCountReset(    OCIEnv *env, OCIError *err, dvoid *object   );
  */
 
 /*--------------------------- OCIObjectLock ---------------------------------*/
-sword OCIObjectLock(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectLock(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectLock - OCI lock a persistent object
    PARAMETERS:
@@ -875,7 +876,7 @@ sword OCIObjectLock(    OCIEnv *env, OCIError *err, dvoid *object    );
 */
 
 /*------------------------ OCIObjectLockNoWait ------------------------------*/
-sword OCIObjectLockNoWait(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectLockNoWait(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectLockNoWait - OCI lock a persistent object, do not wait for
                                the lock, return error if lock not available
@@ -908,7 +909,7 @@ sword OCIObjectLockNoWait(    OCIEnv *env, OCIError *err, dvoid *object    );
 */
 
 /*--------------------------- OCIObjectMarkUpdate ---------------------------*/
-sword OCIObjectMarkUpdate(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectMarkUpdate(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectMarkUpdate - OCI marks an object as updated
    PARAMETERS:
@@ -948,7 +949,7 @@ sword OCIObjectMarkUpdate(    OCIEnv *env, OCIError *err, dvoid *object    );
  */
 
 /*----------------------------- OCIObjectUnmark -----------------------------*/
-sword OCIObjectUnmark(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectUnmark(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectUnmark - OCI unmarks an object 
    PARAMETERS:
@@ -1010,7 +1011,7 @@ sword OCIObjectUnmarkByRef(    OCIEnv *env, OCIError *err, OCIRef *ref    );
  */
 
 /*--------------------------- OCIObjectFree ---------------------------------*/
-sword OCIObjectFree(    OCIEnv *env, OCIError *err, dvoid *instance, 
+sword OCIObjectFree(    OCIEnv *env, OCIError *err, void  *instance, 
                         ub2 flags   );
 /*
    NAME: OCIObjectFree - OCI free (and unpin) an standalone instance 
@@ -1102,7 +1103,7 @@ sword OCIObjectMarkDeleteByRef(    OCIEnv *env, OCIError *err,
  */
 
 /*--------------------------- OCIObjectMarkDelete ---------------------------*/
-sword OCIObjectMarkDelete(    OCIEnv *env, OCIError *err, dvoid *instance    );
+sword OCIObjectMarkDelete(    OCIEnv *env, OCIError *err, void  *instance    );
 /*
    NAME: OCIObjectMarkDelete - OCI "delete" an instance given a Pointer 
    PARAMETERS:
@@ -1136,7 +1137,7 @@ sword OCIObjectMarkDelete(    OCIEnv *env, OCIError *err, dvoid *instance    );
  */
 
 /*---------------------------- OCIObjectFlush -------------------------------*/
-sword OCIObjectFlush(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectFlush(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectFlush - OCI flush a persistent object
    PARAMETERS:
@@ -1168,7 +1169,7 @@ sword OCIObjectFlush(    OCIEnv *env, OCIError *err, dvoid *object    );
  */
 
 /*------------------------ OCIObjectRefresh ---------------------------------*/
-sword OCIObjectRefresh(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectRefresh(    OCIEnv *env, OCIError *err, void  *object    );
 /*
    NAME: OCIObjectRefresh - OCI refresh a persistent object
    PARAMETERS:
@@ -1219,9 +1220,9 @@ sword OCIObjectRefresh(    OCIEnv *env, OCIError *err, dvoid *object    );
  */
 
 /*---------------------------- OCIObjectCopy --------------------------------*/
-sword OCIObjectCopy(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
-                        dvoid *source, dvoid *null_source,
-                        dvoid *target, dvoid *null_target, OCIType *tdo, 
+sword OCIObjectCopy(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
+                        void  *source, void  *null_source,
+                        void  *target, void  *null_target, OCIType *tdo, 
                         OCIDuration duration, ub1 option    );
 /*
    NAME: OCIObjectCopy - OCI copy one instance to another
@@ -1275,7 +1276,7 @@ sword OCIObjectCopy(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
  */
 
 /*---------------------------- OCIObjectGetTypeRef --------------------------*/
-sword OCIObjectGetTypeRef(    OCIEnv *env, OCIError *err, dvoid *instance, 
+sword OCIObjectGetTypeRef(    OCIEnv *env, OCIError *err, void  *instance, 
                               OCIRef *type_ref    );
 /*
    NAME: OCIObjectGetTypeRef - get the type reference of a standalone object
@@ -1303,7 +1304,7 @@ sword OCIObjectGetTypeRef(    OCIEnv *env, OCIError *err, dvoid *instance,
  */
 
 /*--------------------------- OCIObjectGetObjectRef -------------------------*/
-sword OCIObjectGetObjectRef(    OCIEnv *env, OCIError *err, dvoid *object, 
+sword OCIObjectGetObjectRef(    OCIEnv *env, OCIError *err, void  *object, 
                                 OCIRef *object_ref    );
 /*
    NAME: OCIObjectGetObjectRef - OCI get the object reference of an 
@@ -1333,8 +1334,8 @@ sword OCIObjectGetObjectRef(    OCIEnv *env, OCIError *err, dvoid *object,
 
 /*--------------------------- OCIObjectMakeObjectRef -----------------------*/
 sword OCIObjectMakeObjectRef(    OCIEnv *env, OCIError *err, 
-                                 CONST OCISvcCtx *svc, dvoid * table,
-                                 dvoid **values, ub4 array_len, 
+                                 const OCISvcCtx *svc, void  * table,
+                                 void  **values, ub4 array_len, 
                                  OCIRef *object_ref    );
 /*
    NAME: OCIObjectMakeObjectRef - OCI Create an object reference to a 
@@ -1374,7 +1375,7 @@ sword OCIObjectMakeObjectRef(    OCIEnv *env, OCIError *err,
 
 /*--------------------------- OCIObjectGetPrimaryKeyTypeRef --------------- */ 
 sword OCIObjectGetPrimaryKeyTypeRef( OCIEnv *env, OCIError *err,
-                                     CONST OCISvcCtx *svc, dvoid *table, 
+                                     const OCISvcCtx *svc, void  *table, 
                                      OCIRef *type_ref );
 /*
    NAME: OCIObjectGetPrimaryKeyTypeRef - OCI get the REF to the pk OID type 
@@ -1404,8 +1405,8 @@ sword OCIObjectGetPrimaryKeyTypeRef( OCIEnv *env, OCIError *err,
  */
 
 /*-------------------------- OCIObjectGetInd --------------------------------*/
-sword OCIObjectGetInd(    OCIEnv *env, OCIError *err, dvoid *instance, 
-                          dvoid **null_struct    );
+sword OCIObjectGetInd(    OCIEnv *env, OCIError *err, void  *instance, 
+                          void  **null_struct    );
 /*
    NAME: OCIObjectGetInd - OCI get the null structure of a standalone object  
    PARAMETERS:
@@ -1434,7 +1435,7 @@ sword OCIObjectGetInd(    OCIEnv *env, OCIError *err, dvoid *instance,
  */
 
 /*------------------------- OCIObjectExists --------------------------------*/
-sword OCIObjectExists(OCIEnv *env, OCIError *err, dvoid *ins, boolean *exist); 
+sword OCIObjectExists(OCIEnv *env, OCIError *err, void  *ins, boolean *exist); 
 /*
    NAME: OCIObjectExist - OCI checks if the object exists 
    PARAMETERS:
@@ -1460,9 +1461,9 @@ sword OCIObjectExists(OCIEnv *env, OCIError *err, dvoid *ins, boolean *exist);
  */
 
 /*------------------------- OCIObjectGetProperty ---------------------------*/
-sword OCIObjectGetProperty(OCIEnv *envh, OCIError *errh, CONST dvoid *obj, 
+sword OCIObjectGetProperty(OCIEnv *envh, OCIError *errh, const void  *obj, 
                            OCIObjectPropId propertyId,
-                           dvoid *property, ub4 *size );
+                           void  *property, ub4 *size );
 /*
    NAME: OCIObjectGetProperty - OCIObject Get Property of given object
    PARAMETERS:
@@ -1589,7 +1590,7 @@ sword OCIObjectGetProperty(OCIEnv *envh, OCIError *errh, CONST dvoid *obj,
  */
 
 /*---------------------------- OCIObjectIsLocked --------------------------*/
-sword OCIObjectIsLocked(    OCIEnv *env, OCIError *err, dvoid *ins,
+sword OCIObjectIsLocked(    OCIEnv *env, OCIError *err, void  *ins,
                               boolean *lock);
 /*
    NAME: OCIObjectIsLocked - OCI get the lock status of a standalone object
@@ -1616,7 +1617,7 @@ sword OCIObjectIsLocked(    OCIEnv *env, OCIError *err, dvoid *ins,
  */
 
 /*------------------------- OCIObjectIsDirty ------------------------------*/
-sword OCIObjectIsDirty(    OCIEnv *env, OCIError *err, dvoid *ins,
+sword OCIObjectIsDirty(    OCIEnv *env, OCIError *err, void  *ins,
                            boolean *dirty);
 /*
    NAME: OCIObjectIsDirty - OCI get the dirty status of a standalone object
@@ -1643,11 +1644,11 @@ sword OCIObjectIsDirty(    OCIEnv *env, OCIError *err, dvoid *ins,
  */
 
 /*--------------------------- OCIObjectPinTable -----------------------------*/
-sword OCIObjectPinTable(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
-                  CONST oratext *schema_name, 
-                  ub4 s_n_length, CONST oratext *object_name, ub4 o_n_length, 
-                  CONST OCIRef *scope_obj_ref, OCIDuration pin_duration, 
-                  dvoid** object    );
+sword OCIObjectPinTable(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
+                  const oratext *schema_name, 
+                  ub4 s_n_length, const oratext *object_name, ub4 o_n_length, 
+                  const OCIRef *scope_obj_ref, OCIDuration pin_duration, 
+                  void ** object    );
 /*
    NAME: OCIObjectPinTable - OCI get table object 
    PARAMETERS:
@@ -1683,7 +1684,7 @@ sword OCIObjectArrayPin(OCIEnv *env, OCIError *err, OCIRef **ref_array,
                   ub4 array_size, OCIComplexObject **cor_array,
                   ub4 cor_array_size, OCIPinOpt pin_option, 
                   OCIDuration pin_duration, OCILockOpt lock, 
-                  dvoid **obj_array, ub4 *pos    );
+                  void  **obj_array, ub4 *pos    );
 /*
    NAME: OCIObjectArrayPin - ORIO array pin 
    PARAMETERS:
@@ -1700,7 +1701,7 @@ sword OCIObjectArrayPin(OCIEnv *env, OCIError *err, OCIRef **ref_array,
         obj_array    (OUT) - If this argument is not NULL, the pinned objects 
                              will be returned in the array. The user must 
                              allocate this array with element type being 
-                             'dvoid *'. The size of this array is identical to
+                             'void *'. The size of this array is identical to
                              'array'. 
         pos          (OUT) - If there is an error, this argument will contain
                              the element that is causing the error.  Note that
@@ -1728,8 +1729,8 @@ sword OCIObjectArrayPin(OCIEnv *env, OCIError *err, OCIRef **ref_array,
 /*---------------------------------------------------------------------------*/
 
 /*--------------------------- OCICacheFlush ---------------------------------*/
-sword OCICacheFlush(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
-                  dvoid *context, OCIRef *(*get)(dvoid *context, ub1 *last),
+sword OCICacheFlush(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
+                  void  *context, OCIRef *(*get)(void  *context, ub1 *last),
                   OCIRef **ref  );
 /*
    NAME: OCICacheFlush - OCI flush persistent objects 
@@ -1788,9 +1789,9 @@ sword OCICacheFlush(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
  */
 
 /*--------------------------- OCICacheRefresh -------------------------------*/
-sword OCICacheRefresh(OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
-                  OCIRefreshOpt option, dvoid *context,
-                  OCIRef *(*get)(dvoid *context), OCIRef **ref);
+sword OCICacheRefresh(OCIEnv *env, OCIError *err, const OCISvcCtx *svc,
+                  OCIRefreshOpt option, void  *context,
+                  OCIRef *(*get)(void  *context), OCIRef **ref);
 /*
    NAME: OCICacheRefresh - OCI ReFreSh persistent objects 
    PARAMETERS:
@@ -1844,7 +1845,7 @@ sword OCICacheRefresh(OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
  */
 
 /*---------------------------- OCICacheUnpin --------------------------------*/
-sword OCICacheUnpin(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc    );
+sword OCICacheUnpin(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc    );
 /*
    NAME: OCICacheUnpin - OCI UNPin objects 
    PARAMETERS:
@@ -1872,7 +1873,7 @@ sword OCICacheUnpin(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc    );
  */
 
 /*----------------------------- OCICacheFree --------------------------------*/
-sword OCICacheFree(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc    ); 
+sword OCICacheFree(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc    ); 
 /*
    NAME: OCICacheFree - OCI FREe instances 
    PARAMETERS:
@@ -1900,7 +1901,7 @@ sword OCICacheFree(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc    );
 */
 
 /*---------------------------- OCICacheUnmark -------------------------------*/
-sword OCICacheUnmark(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc    );
+sword OCICacheUnmark(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc    );
 /*
    NAME: OCICacheUnmark - OCI Unmark all dirty objects
    PARAMETERS:
@@ -1927,7 +1928,7 @@ sword OCICacheUnmark(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc    );
  */
 
 
-sword OCIDurationBegin(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
+sword OCIDurationBegin(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
                            OCIDuration parent, OCIDuration *dur    );
 /*
    NAME: OCIDurationBegin - OCI DURATION BEGIN
@@ -1994,7 +1995,7 @@ sword OCIDurationBegin(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
  */
 
 
-sword OCIDurationEnd(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
+sword OCIDurationEnd(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
                          OCIDuration duration    );
 /*
    NAME: OCIDurationEnd - OCI DURATION END
@@ -2050,42 +2051,42 @@ sword OCIDurationEnd(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
 sword OCIDurationGetParent(    OCIEnv *env, OCIError *err, 
                                OCIDuration duration, OCIDuration *parent    );
 
-sword OCIObjectAlwaysLatest(    OCIEnv *env, OCIError *err, dvoid *object    );
+sword OCIObjectAlwaysLatest(    OCIEnv *env, OCIError *err, void  *object    );
 
 sword OCIObjectNotAlwaysLatest(    OCIEnv *env, OCIError *err, 
-                                   dvoid *object    );
+                                   void  *object    );
 
-sword OCIObjectFlushRefresh(    OCIEnv *env, OCIError *err, dvoid *object);
+sword OCIObjectFlushRefresh(    OCIEnv *env, OCIError *err, void  *object);
 
-sword OCIObjectIsLoaded(    OCIEnv *env, OCIError *err, dvoid *ins, 
+sword OCIObjectIsLoaded(    OCIEnv *env, OCIError *err, void  *ins, 
                               boolean *load);
 
-sword OCIObjectIsDirtied(    OCIEnv *env, OCIError *err, dvoid *ins,
+sword OCIObjectIsDirtied(    OCIEnv *env, OCIError *err, void  *ins,
                               boolean *dirty);
 
 sword OCICacheGetObjects(       OCIEnv *env, OCIError *err,
-                                CONST OCISvcCtx *svc,
+                                const OCISvcCtx *svc,
                                 OCIObjectProperty property,
-                                dvoid *client_context,
+                                void  *client_context,
                                 void (*client_callback)(
-                                    dvoid *client_context,
-                                    dvoid *object  ));
+                                    void  *client_context,
+                                    void  *object  ));
 
 sword OCICacheRegister(      OCIEnv *env, OCIError *err,
                              OCIObjectEvent event,
-                             dvoid *client_context,
+                             void  *client_context,
                              void (*client_callback)(
-                                    dvoid *client_context,
+                                    void  *client_context,
                                     OCIObjectEvent event,
-                                    dvoid *object));
+                                    void  *object));
 
 sword OCICacheFlushRefresh(    OCIEnv *env, OCIError *err, 
-                               CONST OCISvcCtx *svc, dvoid *context,
-                               OCIRef *(*get)(dvoid *context, ub1 *last),
+                               const OCISvcCtx *svc, void  *context,
+                               OCIRef *(*get)(void  *context, ub1 *last),
                                OCIRef **ref    );
 
-sword OCIObjectSetData(OCIEnv *env, OCIError *err, dvoid *obj_hdr, 
-        dvoid *data);
+sword OCIObjectSetData(OCIEnv *env, OCIError *err, void  *obj_hdr, 
+        void  *data);
 
 sword OCIObjectGetNewOID(OCIEnv *env, OCIError *err, OCISvcCtx *svc, 
         ub1 *oid);

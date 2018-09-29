@@ -1,12 +1,10 @@
-/*
- * $Header: ociapr.h 26-feb-96.19:18:25 gpongrac Exp $ 
- */
-
-/* Copyright (c) 1991, 1996, 1998, 2000 by Oracle Corporation */
+/* Copyright (c) 1991, 2005, Oracle. All rights reserved.  */
 /*
    NAME
      ociapr.h
    MODIFIED   (MM/DD/YY)
+    mbastawa   09/16/05 -  dbhygiene
+    dmukhin    06/29/05 -  ANSI prototypes; miscellaneous cleanup 
     dsaha      05/19/00 -  Fix lint
     sgollapu   05/19/98 -  Change text to OraText
     dchatter   11/10/95 -  add ognfd() - get native fd
@@ -44,12 +42,12 @@
  * Oci BIND (Piecewise or with Skips) 
  */
 sword  obindps(struct cda_def *cursor, ub1 opcode, OraText *sqlvar, 
-	       sb4 sqlvl, ub1 *pvctx, sb4 progvl, 
-	       sword ftype, sword scale,
-	       sb2 *indp, ub2 *alen, ub2 *arcode, 
-	       sb4 pv_skip, sb4 ind_skip, sb4 alen_skip, sb4 rc_skip,
-	       ub4 maxsiz, ub4 *cursiz,
-	       OraText *fmt, sb4 fmtl, sword fmtt);
+               sb4 sqlvl, ub1 *pvctx, sb4 progvl, 
+               sword ftype, sword scale,
+               sb2 *indp, ub2 *alen, ub2 *arcode, 
+               sb4 pv_skip, sb4 ind_skip, sb4 alen_skip, sb4 rc_skip,
+               ub4 maxsiz, ub4 *cursiz,
+               OraText *fmt, sb4 fmtl, sword fmtt);
 sword  obreak(struct cda_def *lda);
 sword  ocan  (struct cda_def *cursor);
 sword  oclose(struct cda_def *cursor);
@@ -62,10 +60,10 @@ sword  ocon  (struct cda_def *lda);
  * Oci DEFINe (Piecewise or with Skips) 
  */
 sword  odefinps(struct cda_def *cursor, ub1 opcode, sword pos,ub1 *bufctx,
-		sb4 bufl, sword ftype, sword scale, 
-		sb2 *indp, OraText *fmt, sb4 fmtl, sword fmtt, 
-		ub2 *rlen, ub2 *rcode,
-		sb4 pv_skip, sb4 ind_skip, sb4 alen_skip, sb4 rc_skip);
+                sb4 bufl, sword ftype, sword scale, 
+                sb2 *indp, OraText *fmt, sb4 fmtl, sword fmtt, 
+                ub2 *rlen, ub2 *rcode,
+                sb4 pv_skip, sb4 ind_skip, sb4 alen_skip, sb4 rc_skip);
 sword  odessp(struct cda_def *cursor, OraText *objnam, size_t onlen,
               ub1 *rsv1, size_t rsv1ln, ub1 *rsv2, size_t rsv2ln,
               ub2 *ovrld, ub2 *pos, ub2 *level, OraText **argnam,
@@ -86,7 +84,7 @@ sword  ofen     (struct cda_def *cursor, sword nrows);
 sword  ofetch   (struct cda_def *cursor);
 sword  oflng    (struct cda_def *cursor, sword pos, ub1 *buf,
                  sb4 bufl, sword dtype, ub4 *retl, sb4 offset);
-sword  ogetpi   (struct cda_def *cursor, ub1 *piecep, dvoid **ctxpp, 
+sword  ogetpi   (struct cda_def *cursor, ub1 *piecep, void  **ctxpp, 
                  ub4 *iterp, ub4 *indexp);
 sword  oopt     (struct cda_def *cursor, sword rbopt, sword waitopt);
 sword  opinit   (ub4 mode);
@@ -102,7 +100,7 @@ sword  oopen    (struct cda_def *cursor, struct cda_def *lda,
 sword  oparse   (struct cda_def *cursor, OraText *sqlstm, sb4 sqllen,
                  sword defflg, ub4 lngflg);
 sword  orol     (struct cda_def *lda);
-sword  osetpi   (struct cda_def *cursor, ub1 piece, dvoid *bufp, ub4 *lenp);
+sword  osetpi   (struct cda_def *cursor, ub1 piece, void  *bufp, ub4 *lenp);
 
 void sqlld2     (struct cda_def *lda, OraText *cname, sb4 *cnlen);
 void sqllda     (struct cda_def *lda);
@@ -111,7 +109,7 @@ void sqllda     (struct cda_def *lda);
 sword onbset    (struct cda_def *lda ); 
 sword onbtst    (struct cda_def *lda ); 
 sword onbclr    (struct cda_def *lda ); 
-sword ognfd     (struct cda_def *lda, dvoid *fdp);
+sword ognfd     (struct cda_def *lda, void  *fdp);
 
 
 /* 
@@ -136,8 +134,8 @@ sword  obndrv(struct cda_def *cursor, OraText *sqlvar, sword sqlvl,
  * OBSOLETE DEFINE CALLS
  */
 sword  odefin(struct cda_def *cursor, sword pos, ub1 *buf,
-	      sword bufl, sword ftype, sword scale, sb2 *indp,
-	      OraText *fmt, sword fmtl, sword fmtt, ub2 *rlen, ub2 *rcode);
+              sword bufl, sword ftype, sword scale, sb2 *indp,
+              OraText *fmt, sword fmtl, sword fmtt, ub2 *rlen, ub2 *rcode);
 
 /* older calls ; preferred equivalent calls above */
 

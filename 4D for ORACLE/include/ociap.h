@@ -1,19 +1,12 @@
-/*
- * $Header: ociap.h 11-jul-2006.12:24:38 mxu Exp $
- */
-
-/* Copyright (c) 1996, 2006, Oracle. All rights reserved.  */
- 
-/* NOTE:  See 'header_template.doc' in the 'doc' dve under the 'forms' 
-      directory for the header file template that includes instructions. 
-*/
+/* Copyright (c) 1996, 2011, Oracle and/or its affiliates. 
+All rights reserved. */
  
 /* 
    NAME 
-     ociap.h - Oracle Call Interface - Ansi Prototypes
+     ociap.h 
 
    DESCRIPTION 
-     <short description of component this file declares/defines> 
+     Oracle Call Interface - Ansi Prototypes
 
    RELATED DOCUMENTS 
  
@@ -29,25 +22,537 @@
      Reviewers: 
  
    PUBLIC FUNCTION(S) 
-     <list of external functions declared/defined - with one-line descriptions>
+    OCIAttrGet
+    OCIAttrSet
+    OCIBindArrayOfStruct
+    OCIBindByName
+    OCIBindByPos
+    OCIBindDynamic
+    OCIBindObject
+    OCIBreak
+    OCIConnectionPoolCreate
+    OCISessionPoolCreate
+    OCISessionGet
+    OCISessionRelease
+    OCIDateTimeAssign
+    OCIDateTimeCheck
+    OCIDateTimeCompare
+    OCIDateTimeConvert
+    OCIDateTimeFromText
+    OCIDateTimeGetDate
+    OCIDateTimeGetTime
+    OCIDateTimeGetTime
+    OCIDateTimeGetTimeZoneOffset
+    OCIDateTimeSysTimeStamp
+    OCIDateTimeIntervalAdd
+    OCIDateTimeIntervalSub
+    OCIDateTimeConstruct
+    OCIDateTimeSubtract
+    OCIDateTimeToText
+    OCIDateTimeGetTimeZoneName
+    OCIDateTimeToArray
+    OCIDateTimeFromArray
+    OCIRowidToChar
+    OCIDefineArrayOfStruct
+    OCIDefineByPos
+    OCIDefineDynamic
+    OCIDefineObject
+    OCIDescAlloc
+    OCIDescFree
+    OCIDescribeAny
+    OCIEnvCreate
+    OCIEnvNlsCreate
+    OCIEnvInit
+    OCIErrorGet
+    OCIExtractSetKey
+    OCIExtractFromFile
+    OCIIntervalSubtract
+    OCIIntervalMultiply
+    OCIIntervalToNumber
+    OCIIntervalToText
+    OCIIntervalFromTZ
+    OCIKerbAttrSet
+    OCILdaToSvcCtx
+    OCILobAppend
+    OCILobAssign
+    OCILobCharSetForm
+    OCILobCharSetId
+    OCILobCopy
+    OCILobCreateTemporary
+    OCILobDisableBuffering
+    OCILobEnableBuffering
+    OCILobErase
+    OCILobOpen
+    OCILobClose
+    OCILobFileClose
+    OCILobFileCLoseAll
+    OCILobFileExists
+    OCILobFileGetName
+    OCILobFileIsOpen
+    OCILobFileOpen
+    OCILobFileSetName
+    OCILobFlushBuffer
+    OCILobFreeTemporary
+    OCILobGetChunkSize
+    OCILobGetLength
+    OCILobIsEqual
+    OCILobIsTemporary
+    OCILobLoadFromFile
+    OCILobLocatorAssign
+    OCILobLocatorIsInit
+    OCILobRead
+    OCILobTrim
+    OCILobWrite
+    OCILobWriteAppend
+    OCILobGetStorageLimit
+    OCILobGetOptions
+    OCILobSetOptions
+    OCILobGetContentType
+    OCILobSetContentType
+    OCILogoff
+    OCILogon
+    OCILogon2
+    OCIMemoryFree
+    OCIParamGet
+    OCIParamGet
+    OCIPasswordChange
+    OCIReset
+    OCIResultSetToStmt
+    OCIServerAttach
+    OCIServerDetach
+    OCIServerVersion
+    OCISessionBegin
+    OCISessionEnd
+    OCIStmtExecute
+    OCIStmtFetch
+    OCIStmtFetch2
+    OCIStmtGetPieceInfo
+    OCIStmtPrepare
+    OCIStmtPrepare2
+    OCIStmtRelease
+    OCIStmtSetPieceInfo
+    OCIFormatString
+    OCISvcCtxToLda
+    OCITransCommit
+    OCITransDetach
+    OCITransForget
+    OCITransMultiPrepare
+    OCITransPrepare
+    OCITransRollback
+    OCITransStart
+    OCIInitialize
+    OCIEnvCreate
+    OCIEnvNlsCreate
+    OCIFEnvCreate
+    OCIHandleAlloc
+    OCIDescriptorAlloc
+    OCIDescriptorFree
+    OCIArrayDescriptorAlloc
+    OCIArrayDescriptorFree
+    OCIEnvInit
+    OCIServerAttach
+    OCISessionBegin
+    OCISessionEnd
+    OCILogon
+    OCILogon2
+    OCIPasswordChange
+    OCIStmtPrepare
+    OCIStmtPrepare2
+    OCIStmtRelease
+    OCIBindByPos
+    OCIBindByName
+    OCIBindObject
+    OCIBindDynamic
+    OCIBindArrayOfStruct
+    OCIStmtGetPieceInfo
+    OCIStmtSetPieceInfo
+    OCIStmtExecute
+    OCIDefineByPos
+    OCIDefineObject
+    OCIDefineDynamic
+    OCIRowidToChar
+    OCIDefineArrayOfStruct
+    OCIStmtFetch
+    OCIStmtFetch2
+    OCIStmtGetBindInfo
+    OCIDescribeAny
+    OCIParamGet
+    OCIParamSet
+    OCITransStart
+    OCITransMultiPrepare
+    OCIErrorGet
+    OCILobAppend
+    OCILobAssign
+    OCILobCharSetForm
+    OCILobCharSetId
+    OCILobCopy
+    OCILobCreateTemporary
+    OCILobClose
+    OCILobDisableBuffering
+    OCILobEnableBuffering
+    OCILobErase
+    OCILobFileClose
+    OCILobFileExists
+    OCILobFileGetName
+    OCILobFileIsOpen
+    OCILobFileOpen
+    OCILobFileSetName
+    OCILobFlushBuffer
+    OCILobFreeTemporary
+    OCILobGetChunkSize
+    OCILobGetLength
+    OCILobIsEqual
+    OCILobIsOpen
+    OCILobIsTemporary
+    OCILobLoadFromFile
+    OCILobLocatorAssign
+    OCILobLocatorIsInit
+    OCILobOpen
+    OCILobRead
+    OCILobTrim
+    OCILobWrite
+    OCILobWriteAppend
+    OCIServerVersion
+    OCIServerRelease
+    OCIAttrGet
+    OCIAttrSet
+    OCIUserCallbackRegister
+    OCIUserCallbackGet
+    OCISharedLibInit
+    OCIFileExists
+    OCIFileGetLength
+    OCIFileOpen
+    OCIFileRead
+    OCIFileSeek
+    OCIFileWrite
+    OCILobCopy2
+    OCILobErase2
+    OCILobGetLength2
+    OCILobLoadFromFile2
+    OCILobRead2
+    OCILobArrayRead
+    OCILobTrim2
+    OCILobWrite2
+    OCILobArrayWrite
+    OCILobWriteAppend2
+    OCILobGetStorageLimit
+    OCISecurityOpenWallet
+    OCISecurityCloseWallet
+    OCISecurityCreateWallet
+    OCISecurityDestroyWallet
+    OCISecurityStorePersona
+    OCISecurityOpenPersona
+    OCISecurityClosePersona
+    OCISecurityRemovePersona
+    OCISecurityCreatePersona
+    OCISecuritySetProtection
+    OCISecurityGetProtection
+    OCISecurityRemoveIdentity
+    OCISecurityCreateIdentity
+    OCISecurityAbortIdentity
+    OCISecurityFreeIdentity
+    OCISecurityStoreTrustedIdentity
+    OCISecuritySign
+    OCISecuritySignExpansion
+    OCISecurityVerify
+    OCISecurityValidate
+    OCISecuritySignDetached
+    OCISecuritySignDetExpansion
+    OCISecurityVerifyDetached
+    OCISecurity_PKEncrypt
+    OCISecurityPKEncryptExpansion
+    OCISecurityPKDecrypt
+    OCISecurityEncrypt
+    OCISecurityEncryptExpansion
+    OCISecurityDecrypt
+    OCISecurityEnvelope
+    OCISecurityDeEnvelope
+    OCISecurityKeyedHash
+    OCISecurityKeyedHashExpansion
+    OCISecurityHash
+    OCISecurityHashExpansion
+    OCISecuritySeedRandom
+    OCISecurityRandomBytes
+    OCISecurityRandomNumber
+    OCISecurityInitBlock
+    OCISecurityReuseBlock
+    OCISecurityPurgeBlock
+    OCISecuritySetBlock
+    OCISecurityGetIdentity
+    OCIAQEnq
+    OCIAQDeq
+    OCIAQEnqArray
+    OCIAQEnqStreaming
+    OCIAQDeqArray
+    OCIAQListen
+    OCIAQListen2
+    OCIExtractSetKey
+    OCIExtractFromFile
+    OCIExtractToInt
+    OCIExtractToBool
+    OCIExtractToStr
+    OCIExtractToOCINum
+    OCIExtractFromList
+    OCIMemoryAlloc
+    OCIMemoryResize
+    OCIContextSetValue
+    OCIContextGetValue
+    OCIContextClearValue
+    OCIMemorySetCurrentIDs
+    OCIPicklerTdsCtxInit
+    OCIPicklerTdsInit
+    OCIPicklerTdsCreateElementNumber
+    OCIPicklerTdsCreateElementChar
+    OCIPicklerTdsCreateElementVarchar
+    OCIPicklerTdsCreateElementRaw
+    OCIPicklerTdsCreateElement
+    OCIPicklerTdsAddAttr
+    OCIPicklerTdsGenerate
+    OCIPicklerTdsGetAttr
+    OCIPicklerFdoInit
+    OCIPicklerFdoFree
+    OCIPicklerImageInit
+    OCIPicklerImageFree
+    OCIPicklerImageAddScalar
+    OCIPicklerImageAddNullScalar
+    OCIPicklerImageGenerate
+    OCIPicklerImageGetScalarSize
+    OCIPicklerImageGetScalar
+    OCIPicklerImageCollBegin
+    OCIPicklerImageCollAddScalar
+    OCIPicklerImageCollEnd
+    OCIPicklerImageCollBeginScan
+    OCIPicklerImageCollGetScalarSize
+    OCIPicklerImageCollGetScalar
+    OCIAnyDataGetType
+    OCIAnyDataIsNull
+    OCIAnyDataConvert
+    OCIAnyDataBeginCreate
+    OCIAnyDataAttrSet
+    OCIAnyDataCollAddElem
+    OCIAnyDataEndCreate
+    OCIAnyDataAccess
+    OCIAnyDataGetCurrAttrNum
+    OCIAnyDataAttrGet
+    OCIAnyDataCollGetElem
+    OCIPicklerTdsCtxInit
+    OCIPicklerTdsInit
+    OCIPicklerTdsCreateElementNumber
+    OCIPicklerTdsCreateElementChar
+    OCIPicklerTdsCreateElementVarchar
+    OCIPicklerTdsCreateElementRaw
+    OCIPicklerTdsCreateElement
+    OCIPicklerTdsAddAttr
+    OCIPicklerTdsGenerate
+    OCIPicklerTdsGetAttr
+    OCIPicklerFdoInit
+    OCIPicklerFdoFree
+    OCIPicklerImageInit
+    OCIPicklerImageFree
+    OCIPicklerImageAddScalar
+    OCIPicklerImageAddNullScalar
+    OCIPicklerImageGenerate
+    OCIPicklerImageGetScalarSize
+    OCIPicklerImageGetScalar
+    OCIPicklerImageCollBegin
+    OCIPicklerImageCollAddScalar
+    OCIPicklerImageCollEnd
+    OCIPicklerImageCollBeginScan
+    OCIPicklerImageCollGetScalarSize
+    OCIPicklerImageCollGetScalar
+    OCIAnyDataGetType
+    OCIAnyDataIsNull
+    OCIAnyDataConvert
+    OCIAnyDataBeginCreate
+    OCIAnyDataAttrSet
+    OCIAnyDataCollAddElem
+    OCIAnyDataEndCreate
+    OCIAnyDataAccess
+    OCIAnyDataGetCurrAttrNum
+    OCIAnyDataAttrGet
+    OCIAnyDataCollGetElem
+    OCIPicklerTdsCtxInit
+    OCIPicklerTdsInit
+    OCIPicklerTdsCreateElementNumber
+    OCIPicklerTdsCreateElementChar
+    OCIPicklerTdsCreateElementVarchar
+    OCIPicklerTdsCreateElementRaw
+    OCIPicklerTdsCreateElement
+    OCIPicklerTdsAddAttr
+    OCIPicklerTdsGenerate
+    OCIPicklerTdsGetAttr
+    OCIPicklerFdoInit
+    OCIPicklerFdoFree
+    OCIPicklerImageInit
+    OCIPicklerImageFree
+    OCIPicklerImageAddScalar
+    OCIPicklerImageAddNullScalar
+    OCIPicklerImageGenerate
+    OCIPicklerImageGetScalarSize
+    OCIPicklerImageGetScalar
+    OCIPicklerImageCollBegin
+    OCIPicklerImageCollAddScalar
+    OCIPicklerImageCollEnd
+    OCIPicklerImageCollBeginScan
+    OCIPicklerImageCollGetScalarSize
+    OCIPicklerImageCollGetScalar
+    OCIAnyDataGetType
+    OCIAnyDataIsNull
+    OCIAnyDataConvert
+    OCIAnyDataBeginCreate
+    OCIAnyDataAttrSet
+    OCIAnyDataCollAddElem
+    OCIAnyDataEndCreate
+    OCIAnyDataAccess
+    OCIAnyDataGetCurrAttrNum
+    OCIAnyDataAttrGet
+    OCIAnyDataCollGetElem
+    OCIAnyDataSetBeginCreate
+    OCIAnyDataSetDestroy
+    OCIAnyDataSetAddInstance
+    OCIAnyDataSetEndCreate
+    OCIAnyDataSetGetType
+    OCIAnyDataSetGetCount
+    OCIAnyDataSetGetInstance
+    OCIFormatString
+    OCINlsGetInfo
+    OCINlsNameMap
+    OCIMultiByteToWideChar
+    OCIMultiByteInSizeToWideChar
+    OCIWideCharToMultiByte
+    OCIWideCharInSizeToMultiByte
+    OCIWideCharStrcmp
+    OCIWideCharStrncmp
+    OCIWideCharStrcat
+    *OCIWideCharStrchr
+    OCIWideCharStrcpy
+    OCIWideCharStrncat
+    OCIWideCharStrncpy
+    *OCIWideCharStrrchr
+    OCIWideCharStrCaseConversion
+    OCIMultiByteStrcmp
+    OCIMultiByteStrncmp
+    OCIMultiByteStrcat
+    OCIMultiByteStrcpy
+    OCIMultiByteStrncat
+    OCIMultiByteStrncpy
+    OCIMultiByteStrnDisplayLength
+    OCIMultiByteStrCaseConversion
+    OCICharSetToUnicode
+    OCIUnicodeToCharSet
+    OCINlsCharSetConvert
+    OCINlsEnvironmentVariableGet
+    OCIMessageOpen
+    OCIMessageGet
+    OCIThreadMutexInit
+    OCIThreadMutexDestroy
+    OCIThreadMutexAcquire
+    OCIThreadMutexRelease
+    OCIThreadKeyInit
+    OCIThreadKeyDestroy
+    OCIThreadKeyGet
+    OCIThreadKeySet
+    OCIThreadIdSet
+    OCIThreadIdSetNull
+    OCIThreadIdGet
+    OCIThreadIdSame
+    OCIThreadIdNull
+    OCIThreadHndInit
+    OCIThreadHndDestroy
+    OCIThreadCreate
+    OCIThreadHandleGet
+    OCIThreadMutexInit
+    OCIThreadMutexDestroy
+    OCIThreadMutexAcquire
+    OCIThreadMutexRelease
+    OCIThreadKeyInit
+    OCIThreadKeyDestroy
+    OCIThreadKeyGet
+    OCIThreadKeySet
+    OCIThreadIdSet
+    OCIThreadIdSame
+    OCIThreadIdNull
+    OCIThreadCreate
+    OCISubscriptionRegister
+    OCISubscriptionPost
+    OCISubscriptionUnRegister
+    OCISubscriptionDisable
+    OCISubscriptionEnable
+    OCIDateTimeGetTime
+    OCIDateTimeGetDate
+    OCIDateTimeGetTimeZoneOffset
+    OCIDateTimeConstruct
+    OCIDateTimeSysTimeStamp
+    OCIDateTimeAssign
+    OCIDateTimeToText
+    OCIDateTimeFromText
+    OCIDateTimeCompare
+    OCIDateTimeCheck
+    OCIDateTimeConvert
+    OCIDateTimeSubtract
+    OCIDateTimeIntervalAdd
+    OCIDateTimeIntervalSub
+    OCIIntervalSubtract
+    OCIIntervalAdd
+    OCIIntervalMultiply
+    OCIIntervalDivide
+    OCIIntervalCompare
+    OCIIntervalFromNumber
+    OCIIntervalFromText
+    OCIIntervalToText
+    OCIIntervalToNumber
+    OCIIntervalCheck
+    OCIIntervalAssign
+    OCIIntervalSetYearMonth
+    OCIIntervalGetYearMonth
+    OCIIntervalSetDaySecond
+    OCIIntervalGetDaySecond
+    OCIDateTimeToArray
+    OCIDateTimeFromArray
+    OCIDateTimeGetTimeZoneName
+    OCIIntervalFromTZ
+    OCIConnectionPoolCreate
+    OCIConnectionPoolDestroy
+    OCISessionPoolCreate
+    OCISessionPoolDestroy
+    OCISessionGet
+    OCISessionRelease
+    OCIAppCtxSet
+    OCIAppCtxClearAll
+    OCIMemStats
+    OCIKerbAttrSet
+    OCIDBStartup
+    OCIDBShutdown
+    OCIClientVersion
+    OCIInitEventHandle
+    OCIStmtBindByPos
+    OCIStmtBindByName
 
    PRIVATE FUNCTION(S)
-     <list of static functions defined in .c file - with one-line descriptions>
 
    EXAMPLES
 
    NOTES
-     <other useful comments, qualifications, etc.>
 
    MODIFIED   (MM/DD/YY)
-      mxu      07/11/06 - Backport mxu_bug-5037807 from main 
-      chisingh 06/14/06 - Backport srseshad_stmtcache-callback-10202 from 
-                          st_rdbms_10.2 
-
+   slari       03/24/11 - OCIRoundTripCallback
+   slynn       03/18/08 - OCILobSet/SetContenttype->OCILobGet/SetContentType
+   amullick    02/11/08 - add OCILobGet/SetContenttype APIs
+   schoi       02/27/07 - OCILobGet/SetOptions API change
+   slynn       07/28/06 - Migrate to new 11g LOB terminology 
+   hqian       05/22/06 - add OCI_SYSASM 
+   slynn       06/21/06 - Add Lob Get Shared Regions Functionality
+   slynn       05/25/06 - New NG Lob Functionality. 
+   jawilson    05/22/06 - add TDO out parameter for streaming enq callback 
+   aramappa    01/19/06 - Added OCIArrayDescriptorAlloc,
+                          OCIArrayDescriptorFree 
+   jawilson    02/09/06 - add OCIAQEnqStreaming 
    mxu         03/08/06 - Fix bug 5037807 
    srseshad    09/12/05 - stmtcache: callback 
-    nbhatt   06/17/04 - merge conflicts 
-    nbhatt   05/24/04 - merge conflicts 
+   mbastawa    09/16/05 - dbhygiene
+   dmukhin     06/29/05 - ANSI prototypes; miscellaneous cleanup 
+   nbhatt      06/17/04 - merge conflicts 
+   nbhatt      05/24/04 - merge conflicts 
    weiwang     05/06/04 - add OCIAQListen2 
    rvissapr    06/21/04 - add OCIAppCtx API 
    debanerj    05/17/04 - 13064: LOB array Read and Write
@@ -271,9 +776,9 @@ OCI Attribute Get
 Purpose
 This call is used to get a particular attribute of a handle. 
 Syntax
-sword OCIAttrGet ( CONST dvoid    *trgthndlp,
+sword OCIAttrGet ( const void    *trgthndlp,
                  ub4            trghndltyp,
-                 dvoid          *attributep,
+                 void          *attributep,
                  ub4            *sizep,
                  ub4            attrtype,
                  OCIError       *errhp );
@@ -305,9 +810,9 @@ OCI Attribute Set
 Purpose
 This call is used to set a particular attribute of a handle or a descriptor. 
 Syntax
-sword OCIAttrSet ( dvoid       *trgthndlp,
+sword OCIAttrSet ( void       *trgthndlp,
                  ub4         trghndltyp,
-                 dvoid       *attributep,
+                 void       *attributep,
                  ub4         size,
                  ub4         attrtype,
                  OCIError    *errhp );
@@ -380,12 +885,12 @@ sword OCIBindByName (
               OCIStmt       *stmtp, 
               OCIBind       **bindp,
               OCIError      *errhp,
-              CONST OraText    *placeholder,
+              const OraText    *placeholder,
               sb4           placeh_len,
-              dvoid         *valuep,
+              void         *valuep,
               sb4           value_sz,
               ub2           dty,
-              dvoid         *indp,
+              void         *indp,
               ub2           *alenp,
               ub2           *rcodep,
               ub4           maxarr_len,
@@ -512,10 +1017,10 @@ sword OCIBindByPos (
               OCIBind      **bindp,
               OCIError     *errhp,
               ub4          position,
-              dvoid        *valuep,
+              void        *valuep,
               sb4          value_sz,
               ub2          dty,
-              dvoid        *indp,
+              void        *indp,
               ub2          *alenp,
               ub2          *rcodep,
               ub4          maxarr_len,
@@ -637,26 +1142,26 @@ This call is used to register user callbacks for dynamic data allocation.
 Syntax
 sword OCIBindDynamic( OCIBind     *bindp,
                     OCIError    *errhp,
-                    dvoid       *ictxp, 
+                    void       *ictxp, 
                     OCICallbackInBind         (icbfp)(
-                                dvoid            *ictxp,
+                                void            *ictxp,
                                 OCIBind          *bindp,
                                 ub4              iter, 
                                 ub4              index, 
-                                dvoid            **bufpp,
+                                void            **bufpp,
                                 ub4              *alenp,
                                 ub1              *piecep, 
-                                dvoid            **indp ),
-                    dvoid       *octxp,
+                                void            **indp ),
+                    void       *octxp,
                     OCICallbackOutBind         (ocbfp)(
-                                dvoid            *octxp,
+                                void            *octxp,
                                 OCIBind          *bindp,
                                 ub4              iter, 
                                 ub4              index, 
-                                dvoid            **bufp, 
+                                void            **bufp, 
                                 ub4              **alenpp,
                                 ub1              *piecep,
-                                dvoid            **indpp, 
+                                void            **indpp, 
                                 ub2              **rcodepp)   );
 Comments
 This call is used to register user-defined callback functions for providing 
@@ -732,10 +1237,10 @@ data type (object)  bind.
 Syntax
 sword OCIBindObject ( OCIBind          *bindp,
                     OCIError         *errhp, 
-                    CONST OCIType    *type,
-                    dvoid            **pgvpp, 
+                    const OCIType    *type,
+                    void            **pgvpp, 
                     ub4              *pvszsp, 
-                    dvoid            **indpp, 
+                    void            **indpp, 
                     ub4              *indszp, );
 Comments
 This function sets up additional attributes which binding a named data type 
@@ -805,7 +1310,7 @@ Purpose
 This call performs an immediate (asynchronous) abort of any currently 
 executing OCI function that is associated with a server .
 Syntax
-sword OCIBreak ( dvoid      *hndlp,
+sword OCIBreak ( void      *hndlp,
                  OCIError   *errhp);
 Comments
 This call performs an immediate (asynchronous) abort of any currently 
@@ -829,10 +1334,10 @@ Creates the connections in the pool
 Syntax:
 OCIConnectionPoolCreate (OCIEnv *envhp, OCIError *errhp, OCICPool *poolhp,
                          OraText **poolName, sb4 *poolNameLen, 
-                         CONST Oratext *dblink, sb4 dblinkLen,
+                         const Oratext *dblink, sb4 dblinkLen,
                          ub4 connMin, ub4 connMax, ub4 connIncr,
-                         CONST OraText *poolUsername, sb4 poolUserLen,
-                         CONST OraText *poolPassword, sb4 poolPassLen, 
+                         const OraText *poolUsername, sb4 poolUserLen,
+                         const OraText *poolPassword, sb4 poolPassLen, 
                          ub4 mode)
 Comments:
 This call is used to create a connection pool. conn_min connections
@@ -908,7 +1413,7 @@ Creates the sessions in the session pool.
 Syntax:
 sword OCISessionPoolCreate (OCIEnv *envhp, OCIError *errhp, OCISpool *spoolhp, 
                       OraText **poolName, ub4 *poolNameLen, 
-                      CONST OraText *connStr, ub4 connStrLen,
+                      const OraText *connStr, ub4 connStrLen,
                       ub4 sessMin, ub4 sessMax, ub4 sessIncr,
                       OraText *userid,  ub4 useridLen,
                       OraText *password, ub4 passwordLen,
@@ -983,7 +1488,7 @@ Syntax:
 sword OCISessionGet(OCIenv *envhp, OCIError *errhp, OCISvcCtx **svchp,
                     OCIAuthInfo *authhp,
                     OraText *poolName, ub4 poolName_len,
-                    CONST OraText *tagInfo, ub4 tagInfo_len,
+                    const OraText *tagInfo, ub4 tagInfo_len,
                     OraText **retTagInfo, ub4 *retTagInfo_len,
                     boolean *found,
                     ub4 mode)
@@ -1058,7 +1563,7 @@ Related Functions:
 OCISessionGet().
 -----------------------------------------------------------------------------
 ------------------------------OCIDateTimeAssign --------------------------
-sword OCIDateTimeAssign(dvoid *hndl, OCIError *err, CONST OCIDateTime *from, 
+sword OCIDateTimeAssign(void *hndl, OCIError *err, const OCIDateTime *from, 
                         OCIDateTime *to);
 NAME: OCIDateTimeAssign - OCIDateTime Assignment
 PARAMETERS:
@@ -1074,7 +1579,7 @@ DESCRIPTION:
         of input
 
 ------------------------------OCIDateTimeCheck----------------------------
-sword OCIDateTimeCheck(dvoid *hndl, OCIError *err, CONST OCIDateTime *date, 
+sword OCIDateTimeCheck(void *hndl, OCIError *err, const OCIDateTime *date, 
                  ub4 *valid );
 NAME: OCIDateTimeCheck - OCIDateTime CHecK if the given date is valid
 PARAMETERS:
@@ -1120,8 +1625,8 @@ RETURNS:
           'date' and 'valid' pointers are NULL pointers
 
 ------------------------------- OCIDateTimeCompare----------------------------
-sword OCIDateTimeCompare(dvoid *hndl, OCIError *err, CONST OCIDateTime *date1, 
-                     CONST OCIDateTime *date2,  sword *result );
+sword OCIDateTimeCompare(void *hndl, OCIError *err, const OCIDateTime *date1, 
+                     const OCIDateTime *date2,  sword *result );
 NAME: OCIDateTimeCompare - OCIDateTime CoMPare dates
 PARAMETERS:
 hndl (IN) - Session/Env handle. 
@@ -1144,7 +1649,7 @@ RETURNS:
           input dates are not mutually comparable
 
 ------------------------------OCIDateTimeConvert----------------------
-sword OCIDateTimeConvert(dvoid *hndl, OCIError *err, OCIDateTime *indate, 
+sword OCIDateTimeConvert(void *hndl, OCIError *err, OCIDateTime *indate, 
                                 OCIDateTime *outdate);
 NAME: OCIDateTimeConvert - Conversion between different DATETIME types
 PARAMETERS:
@@ -1164,9 +1669,9 @@ RETURNS:
             conversion not possible.
    
 ---------------------------- OCIDateTimeFromText-----------------------
-sword OCIDateTimeFromText(dvoid *hndl, OCIError *err, CONST OraText *date_str, 
-             size_t d_str_length, CONST OraText *fmt, ub1 fmt_length,
-             CONST OraText *lang_name, size_t lang_length, OCIDateTime *date );
+sword OCIDateTimeFromText(void *hndl, OCIError *err, const OraText *date_str, 
+             size_t d_str_length, const OraText *fmt, ub1 fmt_length,
+             const OraText *lang_name, size_t lang_length, OCIDateTime *date );
 NAME: OCIDateTimeFromText - OCIDateTime convert String FROM Date
 PARAMETERS:
 hndl (IN) - Session/Env handle. If Session Handle is passed, the 
@@ -1202,7 +1707,7 @@ RETURNS:
           invalid input string
 
 --------------------------- OCIDateTimeGetDate-------------------------
-sword OCIDateTimeGetDate(dvoid *hndl, OCIError *err,  CONST OCIDateTime *date, 
+sword OCIDateTimeGetDate(void *hndl, OCIError *err,  const OCIDateTime *date, 
                            sb2 *year, ub1 *month, ub1 *day );
 NAME: OCIDateTimeGetDate - OCIDateTime Get Date (year, month, day)  
                                 portion of DATETIME. 
@@ -1218,7 +1723,7 @@ month     (OUT) - month value
 day       (OUT) - day value
 
 --------------------------- OCIDateTimeGetTime ------------------------
-sword OCIDateTimeGetTime(dvoid *hndl, OCIError *err, OCIDateTime *datetime,
+sword OCIDateTimeGetTime(void *hndl, OCIError *err, OCIDateTime *datetime,
                  ub1 *hour, ub1 *minute, ub1 *sec, ub4 *fsec);
 NAME: OCIDateTimeGetTime - OCIDateTime Get Time (hour, min, second, 
                         fractional second)  of DATETIME. 
@@ -1235,7 +1740,7 @@ sec       (OUT) - second value
 fsec      (OUT) - Fractional Second value
 
 --------------------------- OCIDateTimeGetTimeZoneOffset ----------------------
-sword OCIDateTimeGetTimeZoneOffset(dvoid *hndl,OCIError *err,CONST 
+sword OCIDateTimeGetTimeZoneOffset(void *hndl,OCIError *err,const 
               OCIDateTime *datetime,sb1 *hour,sb1  *minute);
 
 NAME: OCIDateTimeGetTimeZoneOffset - OCIDateTime Get TimeZone (hour, minute)  
@@ -1251,7 +1756,7 @@ hour      (OUT) - TimeZone Hour value
 minute     (OUT) - TimeZone Minute value
 
 --------------------------- OCIDateTimeSysTimeStamp---------------------
-sword OCIDateTimeSysTimeStamp(dvoid *hndl, OCIError *err, 
+sword OCIDateTimeSysTimeStamp(void *hndl, OCIError *err, 
               OCIDateTime *sys_date );
  
 NAME: OCIDateTimeSysTimeStamp - Returns system date/time as a TimeStamp with 
@@ -1272,7 +1777,7 @@ RETURNS:
 
 
 ------------------------------OCIDateTimeIntervalAdd----------------------
-sword OCIDateTimeIntervalAdd(dvoid *hndl, OCIError *err, OCIDateTime *datetime,
+sword OCIDateTimeIntervalAdd(void *hndl, OCIError *err, OCIDateTime *datetime,
          OCIInterval *inter, OCIDateTime *outdatetime);
 NAME: OCIDateTimeIntervalAdd - Adds an interval to datetime
 PARAMETERS:
@@ -1295,7 +1800,7 @@ RETURNS:
                 resulting date is after Dec 31, 9999
 
 ------------------------------OCIDateTimeIntervalSub----------------------
-sword OCIDateTimeIntervalSub(dvoid *hndl, OCIError *err, OCIDateTime *datetime,
+sword OCIDateTimeIntervalSub(void *hndl, OCIError *err, OCIDateTime *datetime,
               OCIInterval *inter, OCIDateTime *outdatetime);
 NAME: OCIDateTimeIntervalSub - Subtracts an interval from a datetime
 PARAMETERS:
@@ -1319,7 +1824,7 @@ RETURNS:
                 resulting date is after Dec 31, 9999
 
 --------------------------- OCIDateTimeConstruct-------------------------
-sword OCIDateTimeConstruct(dvoid  *hndl,OCIError *err,OCIDateTime *datetime,
+sword OCIDateTimeConstruct(void  *hndl,OCIError *err,OCIDateTime *datetime,
                sb2 year,ub1 month,ub1 day,ub1 hour,ub1 min,ub1 sec,ub4 fsec,
                OraText  *timezone,size_t timezone_length);
 
@@ -1354,7 +1859,7 @@ RETURNS:
         OCI_ERROR if datetime is not valid.
 
 ------------------------------OCIDateTimeSubtract-----------------------
-sword OCIDateTimeSubtract(dvoid *hndl, OCIError *err, OCIDateTime *indate1, 
+sword OCIDateTimeSubtract(void *hndl, OCIError *err, OCIDateTime *indate1, 
                 OCIDateTime *indate2, OCIInterval *inter);
 NAME: OCIDateTimeSubtract - subtracts two datetimes to return an interval
 PARAMETERS:
@@ -1377,9 +1882,9 @@ RETURNS:
            datetimes are not comparable.
 
 --------------------------- OCIDateTimeToText--------------------------
-sword OCIDateTimeToText(dvoid *hndl, OCIError *err, CONST OCIDateTime *date, 
-                        CONST OraText *fmt, ub1 fmt_length, ub1 fsprec, 
-                        CONST OraText *lang_name, size_t lang_length, 
+sword OCIDateTimeToText(void *hndl, OCIError *err, const OCIDateTime *date, 
+                        const OraText *fmt, ub1 fmt_length, ub1 fsprec, 
+                        const OraText *lang_name, size_t lang_length, 
                         ub4 *buf_size, OraText *buf );
 NAME: OCIDateTimeToText - OCIDateTime convert date TO String 
 PARAMETERS:
@@ -1421,9 +1926,9 @@ RETURNS:
           overflow error
 
 ----------------------------OCIDateTimeGetTimeZoneName------------------------
-sword OCIDateTimeGetTimeZoneName(dvoid *hndl, 
+sword OCIDateTimeGetTimeZoneName(void *hndl, 
                                  OCIError *err,
-                                 CONST OCIDateTime *datetime,
+                                 const OCIDateTime *datetime,
                                  ub1 *buf,
                                  ub4 *buflen);
 NAME OCIDateTimeGetTimeZoneName - OCI DateTime Get the Time Zone Name
@@ -1451,10 +1956,10 @@ RETURNS:
          invalid LdiDateTime type
 
 ---------------------------------OCIDateTimeToArray----------------------------
-sword OCIDateTimeToArray(dvoid *hndl, 
+sword OCIDateTimeToArray(void *hndl, 
                          OCIError *err,
-                         CONST OCIDateTime *datetime,
-                         CONST OCIInterval *reftz,
+                         const OCIDateTime *datetime,
+                         const OCIInterval *reftz,
                          ub1 *outarray,
                          ub4 *len
                          ub1 *fsprec);
@@ -1481,7 +1986,7 @@ RETURNS:
          invalid LdiDateTime type
 
 --------------------------------OCIDateTimeFromArray---------------------------
-sword OCIDateTimeFromArray(dvoid *hndl, 
+sword OCIDateTimeFromArray(void *hndl, 
                          OCIError *err,
                          ub1 *inarray,
                          ub4 len
@@ -1598,10 +2103,10 @@ sb4 OCIDefineByPos (
               OCIDefine   **defnp,
               OCIError    *errhp,
               ub4         position,
-              dvoid       *valuep,
+              void       *valuep,
               sb4         value_sz,
               ub2         dty,
-              dvoid       *indp,
+              void       *indp,
               ub2         *rlenp,
               ub2         *rcodep,
               ub4         mode );
@@ -1706,15 +2211,15 @@ OCI_DYNAMIC_FETCH mode was selected in OCIDefineByPos().
 Syntax
 sword OCIDefineDynamic( OCIDefine   *defnp,
                       OCIError    *errhp,
-                      dvoid       *octxp, 
+                      void       *octxp, 
                       OCICallbackDefine (ocbfp)(
-                                  dvoid             *octxp,
+                                  void             *octxp,
                                   OCIDefine         *defnp,
                                   ub4               iter, 
-                                  dvoid             **bufpp,
+                                  void             **bufpp,
                                   ub4               **alenpp,
                                   ub1               *piecep,
-                                  dvoid             **indpp,
+                                  void             **indpp,
                                   ub2               **rcodep)  );
 Comments
 This call is used to set the additional attributes required if the 
@@ -1774,10 +2279,10 @@ Sets up additional attributes necessary for a Named Data Type define.
 Syntax
 sword OCIDefineObject ( OCIDefine       *defnp,
                       OCIError        *errhp,
-                      CONST OCIType   *type,
-                      dvoid           **pgvpp, 
+                      const OCIType   *type,
+                      void           **pgvpp, 
                       ub4             *pvszsp, 
-                      dvoid           **indpp, 
+                      void           **indpp, 
                       ub4             *indszp );
 Comments
 This call sets up additional attributes necessary for a Named Data Type define.
@@ -1827,11 +2332,11 @@ Purpose
 Allocates storage to hold certain data types. The descriptors can be used as 
 bind or define variables.
 Syntax
-sword OCIDescAlloc ( CONST dvoid   *parenth,
-                   dvoid         **descpp, 
+sword OCIDescAlloc ( const void   *parenth,
+                   void         **descpp, 
                    ub4           type,
                    size_t        xtramem_sz,
-                   dvoid         **usrmempp);
+                   void         **usrmempp);
 Comments
 Returns a pointer to an allocated and initialized structure, corresponding to 
 the type specified in type. A non-NULL descriptor or LOB locator is returned 
@@ -1875,7 +2380,7 @@ OCI Free DESCriptor
 Purpose
 Deallocates a previously allocated descriptor.
 Syntax
-sword OCIDescFree ( dvoid    *descp,
+sword OCIDescFree ( void    *descp,
                   ub4      type);
 Comments
 This call frees up storage associated with the descriptor, corresponding to the
@@ -1905,7 +2410,7 @@ Describes existing schema objects.
 Syntax
 sword OCIDescribeAny ( OCISvcCtx     *svchp,
                      OCIError      *errhp,
-                     dvoid         *objptr,
+                     void         *objptr,
                      ub4           objnm_len,
                      ub1           objptr_typ,
                      ub1           info_level,
@@ -1955,19 +2460,19 @@ the OCIInitialize and OCIEnvInit calls.
 Syntax
 sword OCIEnvCreate  ( OCIEnv        **envhpp, 
                       ub4           mode, 
-                      CONST dvoid   *ctxp, 
-                      CONST dvoid   *(*malocfp) 
-                                    (dvoid *ctxp, 
+                      const void   *ctxp, 
+                      const void   *(*malocfp) 
+                                    (void *ctxp, 
                                         size_t size), 
-                      CONST dvoid   *(*ralocfp) 
-                                    (dvoid *ctxp, 
-                                       dvoid *memptr, 
+                      const void   *(*ralocfp) 
+                                    (void *ctxp, 
+                                       void *memptr, 
                                        size_t newsize), 
-                      CONST void    (*mfreefp) 
-                                    ( dvoid *ctxp, 
-                                       dvoid *memptr))
+                      const void    (*mfreefp) 
+                                    ( void *ctxp, 
+                                       void *memptr))
                       size_t    xtramemsz,
-                      dvoid     **usrmempp );
+                      void     **usrmempp );
  
 Comments
 This call creates an environment for all the OCI calls using the modes
@@ -2025,19 +2530,19 @@ of charset and ncharset programmatically, except OCI_UTF16 mode.
 Syntax
 sword OCIEnvNlsCreate(OCIEnv        **envhpp,
                       ub4           mode,
-                      dvoid         *ctxp,
-                      dvoid         *(*malocfp)
-                                    (dvoid *ctxp,
+                      void         *ctxp,
+                      void         *(*malocfp)
+                                    (void *ctxp,
                                         size_t size),
-                      dvoid         *(*ralocfp)
-                                    (dvoid *ctxp,
-                                       dvoid *memptr,
+                      void         *(*ralocfp)
+                                    (void *ctxp,
+                                       void *memptr,
                                        size_t newsize),
                       void          (*mfreefp)
-                                    (dvoid *ctxp,
-                                       dvoid *memptr),
+                                    (void *ctxp,
+                                       void *memptr),
                       size_t        xtramemsz,
-                      dvoid         **usrmempp,
+                      void         **usrmempp,
                       ub2           charset,
                       ub2           ncharset)
 Comments
@@ -2060,7 +2565,7 @@ Syntax
 sword OCIEnvInit ( OCIEnv    **envp,
                  ub4       mode,
                  size_t    xtramemsz,
-                 dvoid     **usrmempp );
+                 void     **usrmempp );
 Comments
 Initializes the OCI environment handle. No changes are done on an initialized 
 handle. If OCI_ERROR or OCI_SUCCESS_WITH_INFO is returned, the 
@@ -2088,7 +2593,7 @@ OCI Get Diagnostic Record
 Purpose
 Returns an error message in the buffer provided and an ORACLE error.
 Syntax
-sword OCIErrorGet ( dvoid      *hndlp, 
+sword OCIErrorGet ( void      *hndlp, 
                   ub4        recordno,
                   OraText       *sqlstate,
                   ub4        *errcodep, 
@@ -2119,7 +2624,7 @@ OCI Extract Initialize
 Purpose
 This function initializes the parameter manager. 
 Syntax
-sword OCIExtractInit(dvoid *hndl, OCIError *err);
+sword OCIExtractInit(void *hndl, OCIError *err);
 Comments
 It must be called before calling any other parameter manager routine. The NLS 
 information is stored inside the parameter manager context and used in 
@@ -2140,7 +2645,7 @@ Purpose
 This function releases all dynamically allocated storage and may perform 
 other internal bookkeeping functions.
 Syntax
-sword OCIExtractTerm(dvoid *hndl, OCIError *err);
+sword OCIExtractTerm(void *hndl, OCIError *err);
 Comments
 It must be called when the parameter manager is no longer being used.
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
@@ -2159,7 +2664,7 @@ Purpose
 The memory currently used for parameter storage, key definition storage, and 
 parameter value lists is freed and the structure is reinitialized.
 Syntax
-sword OCIExtractReset(dvoid *hndl, OCIError *err);
+sword OCIExtractReset(void *hndl, OCIError *err);
 Comments
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
 Parameters
@@ -2175,7 +2680,7 @@ OCI Extract Set Number of Keys
 Purpose
 Informs the parameter manager of the number of keys that will be registered.
 Syntax
-sword OCIExtractSetNumKeys(dvoid *hndl, OCIError *err, uword numkeys);
+sword OCIExtractSetNumKeys(void *hndl, OCIError *err, uword numkeys);
 Comments
 This routine must be called prior to the first call of OCIExtractSetKey().  
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
@@ -2195,9 +2700,9 @@ OCI Extract Set Key definition
 Purpose
 Registers information about a key with the parameter manager.
 Syntax
-sword OCIExtractSetKey(dvoid *hndl, OCIError *err, CONST OraText *name, 
-                       ub1 type, ub4 flag, CONST dvoid *defval,
-                       CONST sb4 *intrange, CONST OraText *CONST *strlist);
+sword OCIExtractSetKey(void *hndl, OCIError *err, const OraText *name, 
+                       ub1 type, ub4 flag, const void *defval,
+                       const sb4 *intrange, const OraText *const *strlist);
 Comments
 This routine must be called after calling OCIExtractSetKey() and before 
 calling OCIExtractFromFile() or OCIExtractFromStr().  
@@ -2232,7 +2737,7 @@ OCI Extract parameters From File
 Purpose
 The keys and their values in the given file are processed. 
 Syntax
-sword OCIExtractFromFile(dvoid *hndl, OCIError *err, ub4 flag, 
+sword OCIExtractFromFile(void *hndl, OCIError *err, ub4 flag, 
                          OraText *filename);
 Comments
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
@@ -2253,7 +2758,7 @@ OCI Extract parameters From String
 Purpose
 The keys and their values in the given string are processed. 
 Syntax
-sword OCIExtractFromStr(dvoid *hndl, OCIError *err, ub4 flag, OraText *input);
+sword OCIExtractFromStr(void *hndl, OCIError *err, ub4 flag, OraText *input);
 Comments
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
 Parameters
@@ -2273,7 +2778,7 @@ OCI Extract To Integer
 Purpose
 Gets the integer value for the specified key.
 Syntax
-sword OCIExtractToInt(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToInt(void *hndl, OCIError *err, OraText *keyname, 
                       uword valno, sb4 *retval);
 Comments
 The valno'th value (starting with 0) is returned.
@@ -2295,7 +2800,7 @@ OCI Extract To Boolean
 Purpose
 Gets the boolean value for the specified key. 
 Syntax
-sword OCIExtractToBool(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToBool(void *hndl, OCIError *err, OraText *keyname, 
                        uword valno, ub1 *retval);
 Comments
 The valno'th value (starting with 0) is returned.
@@ -2317,7 +2822,7 @@ OCI Extract To String
 Purpose
 Gets the string value for the specified key.
 Syntax
-sword OCIExtractToStr(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToStr(void *hndl, OCIError *err, OraText *keyname, 
                       uword valno, OraText *retval, uword buflen);
 Comments
 The valno'th value (starting with 0) is returned.
@@ -2342,7 +2847,7 @@ OCI Extract To OCI Number
 Purpose
 Gets the OCINumber value for the specified key.
 Syntax
-sword OCIExtractToOCINum(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToOCINum(void *hndl, OCIError *err, OraText *keyname, 
                          uword valno, OCINumber *retval);
 Comments
 The valno'th value (starting with 0) is returned.
@@ -2365,7 +2870,7 @@ Purpose
 Generates a list of parameters from the parameter structures that are stored 
 in memory. 
 Syntax
-sword OCIExtractToList(dvoid *hndl, OCIError *err, uword *numkeys);
+sword OCIExtractToList(void *hndl, OCIError *err, uword *numkeys);
 Comments
 Must be called before OCIExtractValues() is called.
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
@@ -2384,9 +2889,9 @@ OCI Extract From parameter List
 Purpose
 Generates a list of values for the a parameter in the parameter list.
 Syntax
-sword OCIExtractFromList(dvoid *hndl, OCIError *err, uword index, 
+sword OCIExtractFromList(void *hndl, OCIError *err, uword index, 
                          OraText *name, ub1 *type, uword *numvals, 
-                         dvoid ***values);
+                         void ***values);
 Comments
 Parameters are specified by an index. OCIExtractToList() must be called prior 
 to calling this routine to generate the parameter list from the parameter 
@@ -2416,7 +2921,7 @@ Purpose
  Close a previously opened file.
 
 Syntax
- sword OCIFileClose ( dvoid             *hndl, 
+ sword OCIFileClose ( void             *hndl, 
                       OCIError          *err,
                       OCIFileObject     *filep )
 
@@ -2443,7 +2948,7 @@ Purpose
  Check to see if the file exists.
 
 Syntax
- sword OCIFileExists ( dvoid           *hndl, 
+ sword OCIFileExists ( void           *hndl, 
                       OCIError         *err, 
                       OraText          *filename,
                       OraText          *path,
@@ -2476,7 +2981,7 @@ Purpose
  Flush the buffers associated with the file to the disk.
 
 Syntax
- sword OCIFileFlush ( dvoid             *hndl, 
+ sword OCIFileFlush ( void             *hndl, 
                       OCIError          *err,
                       OCIFileObject     *filep )
 
@@ -2503,7 +3008,7 @@ Purpose
  Get the length of a file.
 
 Syntax
- OCIFileGetLength(dvoid           *hndl, 
+ OCIFileGetLength(void           *hndl, 
                   OCIError        *err,
                   OraText         *filename,
                   OraText         *path,
@@ -2538,7 +3043,7 @@ Purpose
  Initialize the OCI File I/O package and create the OCIFile context.
 
 Syntax
- sword OCIFileInit ( dvoid *hndl, 
+ sword OCIFileInit ( void *hndl, 
                      OCIError *err)
 
 Comments
@@ -2565,7 +3070,7 @@ Purpose
      Open a file.
 
 Syntax
- sword OCIFileOpen ( dvoid               *hndl, 
+ sword OCIFileOpen ( void               *hndl, 
                      OCIError            *err,
                      OCIFileObject      **filep,
                      OraText             *filename,
@@ -2623,10 +3128,10 @@ Purpose
  Read from a file into a buffer.
 
 Syntax
- sword OCIFileRead ( dvoid            *hndl, 
+ sword OCIFileRead ( void            *hndl, 
                      OCIError         *err,
                      OCIFileObject    *filep,
-                     dvoid            *bufp,
+                     void            *bufp,
                      ub4               bufl,
                      ub4              *bytesread )
 
@@ -2662,7 +3167,7 @@ Purpose
  Perfom a seek to a byte position.
 
 Syntax
- sword OCIFileSeek ( dvoid           *hndl, 
+ sword OCIFileSeek ( void           *hndl, 
                      OCIError        *err,  
                      OCIFileObject   *filep,
                      uword            origin,
@@ -2700,7 +3205,7 @@ Purpose
  Terminate the OCI File I/O package and destroy the OCI File context.
 
 Syntax
- sword OCIFileTerm ( dvoid *hndl, 
+ sword OCIFileTerm ( void *hndl, 
                      OCIError *err )
 
 Comments
@@ -2725,10 +3230,10 @@ Purpose
   Write data from buffer into a file.
 
 Syntax
- sword OCIFileWrite ( dvoid            *hndl, 
+ sword OCIFileWrite ( void            *hndl, 
                       OCIError         *err,  
                       OCIFileObject    *filep,
-                      dvoid            *bufp, 
+                      void            *bufp, 
                       ub4               buflen
                       ub4              *byteswritten )
 
@@ -2762,11 +3267,11 @@ OCI Get HaNDLe
 Purpose
 This call returns a pointer to an allocated and initialized handle.
 Syntax
-sword OCIHandleAlloc ( CONST dvoid   *parenth,
-                     dvoid         **hndlpp, 
+sword OCIHandleAlloc ( const void   *parenth,
+                     void         **hndlpp, 
                      ub4           type, 
                      size_t        xtramem_sz,
-                     dvoid         **usrmempp);
+                     void         **usrmempp);
 Comments
 Returns a pointer to an allocated and initialized structure, corresponding to 
 the type specified in type. A non-NULL handle is returned on success. Bind 
@@ -2818,7 +3323,7 @@ OCI Free HaNDLe
 Purpose
 This call explicitly deallocates a handle.
 Syntax
-sword OCIHandleFree ( dvoid     *hndlp,
+sword OCIHandleFree ( void     *hndlp,
                     ub4       type);
 Comments
 This call frees up storage associated with a handle, corresponding to the type 
@@ -2855,17 +3360,17 @@ Purpose
 Initializes the OCI process environment.
 Syntax
 sword OCIInitialize ( ub4           mode,
-                    CONST dvoid   *ctxp, 
-                    CONST dvoid   *(*malocfp) 
-                                  ( dvoid *ctxp,
+                    const void   *ctxp, 
+                    const void   *(*malocfp) 
+                                  ( void *ctxp,
                                     size_t size ),
-                    CONST dvoid   *(*ralocfp)
-                                  ( dvoid *ctxp,
-                                    dvoid *memp,
+                    const void   *(*ralocfp)
+                                  ( void *ctxp,
+                                    void *memp,
                                     size_t newsize ),
-                    CONST void    (*mfreefp)
-                                  ( dvoid *ctxp,
-                                    dvoid *memptr ));
+                    const void    (*mfreefp)
+                                  ( void *ctxp,
+                                    void *memptr ));
 Comments
 This call initializes the OCI process environment.
 OCIInitialize() must be invoked before any other OCI call. 
@@ -2930,12 +3435,13 @@ Purpose
 Set an attribute and its value for a particular application context 
      namespace
 Syntax
- (sword) OCIAppCtxSet((void *) sesshndl, (dvoid *)nsptr,(ub4) nsptrlen,
-                     (dvoid *)attrptr, (ub4) attrptrlen, (dvoid *)valueptr,
+ (sword) OCIAppCtxSet((void *) sesshndl, (void *)nsptr,(ub4) nsptrlen,
+                     (void *)attrptr, (ub4) attrptrlen, (void *)valueptr,
                      (ub4) valueptrlen,  errhp, (ub4)mode);
 
 Comments
-Please note that the information set on the session handle is sent to the server during the next OCIStatementExecute or OCISessionBegin.
+Please note that the information set on the session handle is sent to the
+server during the next OCIStatementExecute or OCISessionBegin.
 
 This information is cleared from the session handle, once the information 
  has been sent over to the server,and should be setup again if needed.
@@ -2965,11 +3471,12 @@ Name
 Purpose
  To clear the  values all attributes in a namespace
 Syntax
- (sword) OCIAppCtxClearAll((void *) sesshndl, (dvoid *)nsptr, (ub4) nsptrlen,
+ (sword) OCIAppCtxClearAll((void *) sesshndl, (void *)nsptr, (ub4) nsptrlen,
               (OCIError *)errhp, (ub4)mode);
 
 Comments
-This will clean up the context information on the server side during the next piggy-back to the server.
+This will clean up the context information on the server side during the
+next piggy-back to the server.
 
 Parameters
  sesshndl (IN/OUT) - Pointer to a session handle
@@ -2986,8 +3493,8 @@ Returns
 Related Functions
  OCIAppCtxSet
 ---------------------- OCIIntervalAssign --------------------------------- 
-sword OCIIntervalAssign(dvoid *hndl, OCIError *err, 
-                    CONST OCIInterval *inpinter, OCIInterval *outinter );
+sword OCIIntervalAssign(void *hndl, OCIError *err, 
+                    const OCIInterval *inpinter, OCIInterval *outinter );
 
   DESCRIPTION
     Copies one interval to another to create a replica
@@ -3004,7 +3511,7 @@ sword OCIIntervalAssign(dvoid *hndl, OCIError *err,
      OCI_SUCCESS otherwise
 
  ---------------------- OCIIntervalCheck ------------------------------------ 
-sword OCIIntervalCheck(dvoid *hndl, OCIError *err, CONST OCIInterval *interval,
+sword OCIIntervalCheck(void *hndl, OCIError *err, const OCIInterval *interval,
                          ub4 *valid );
 
   DESCRIPTION
@@ -3042,7 +3549,7 @@ sword OCIIntervalCheck(dvoid *hndl, OCIError *err, CONST OCIInterval *interval,
     OCI_INVALID_HANDLE if 'err' is NULL.
 
  ---------------------- OCIIntervalCompare ----------------------------------- 
-sword OCIIntervalCompare(dvoid *hndl, OCIError *err, OCIInterval *inter1, 
+sword OCIIntervalCompare(void *hndl, OCIError *err, OCIInterval *inter1, 
                         OCIInterval *inter2, sword *result );
 
   DESCRIPTION
@@ -3066,7 +3573,7 @@ sword OCIIntervalCompare(dvoid *hndl, OCIError *err, OCIInterval *inter1,
         the two input datetimes are not mutually comparable.
 
 ---------------------- OCIIntervalDivide ------------------------------------ 
-sword OCIIntervalDivide(dvoid *hndl, OCIError *err, OCIInterval *dividend, 
+sword OCIIntervalDivide(void *hndl, OCIError *err, OCIInterval *dividend, 
                 OCINumber *divisor, OCIInterval *result );
  
   DESCRIPTION
@@ -3085,7 +3592,7 @@ sword OCIIntervalDivide(dvoid *hndl, OCIError *err, OCIInterval *dividend,
      OCI_INVALID_HANDLE if 'err' is NULL.
 
  ---------------------- OCIIntervalFromNumber -------------------- 
-sword OCIIntervalFromNumber(dvoid *hndl, OCIError *err, 
+sword OCIIntervalFromNumber(void *hndl, OCIError *err, 
                OCIInterval *inter, OCINumber *number);
   DESCRIPTION
     Converts an interval to an Oracle Number
@@ -3108,7 +3615,7 @@ sword OCIIntervalFromNumber(dvoid *hndl, OCIError *err,
     Excess precision will be truncated.
  
  ---------------------- OCIIntervalFromText --------------------------------- 
-sword OCIIntervalFromText( dvoid *hndl, OCIError *err, CONST OraText *inpstr, 
+sword OCIIntervalFromText( void *hndl, OCIError *err, const OraText *inpstr, 
                 size_t str_len, OCIInterval *result );
 
   DESCRIPTION
@@ -3181,7 +3688,7 @@ sword OCIIntervalFromText( dvoid *hndl, OCIError *err, CONST OraText *inpstr,
 
 
 -------------------------- OCIIntervalAdd ------------------------------
-sword OCIIntervalAdd(dvoid *hndl, OCIError *err, OCIInterval *addend1, 
+sword OCIIntervalAdd(void *hndl, OCIError *err, OCIInterval *addend1, 
                         OCIInterval *addend2, OCIInterval *result );
 NAME OCIIntervalAdd - Adds two intervals 
 PARAMETERS
@@ -3206,7 +3713,7 @@ NOTES
      The two input intervals must be mutually comparable
 
  ---------------------- OCIIntervalSubtract ------------------------------- 
-sword OCIIntervalSubtract(dvoid *hndl, OCIError *err, OCIInterval *minuend, 
+sword OCIIntervalSubtract(void *hndl, OCIError *err, OCIInterval *minuend, 
                             OCIInterval *subtrahend, OCIInterval *result );
 NAME - OCIIntervalSubtract - subtracts two intervals
 PARAMETERS
@@ -3229,7 +3736,7 @@ RETURNS
            the resulting leading field would go above SB4MAXVAL
 
 ---------------------- OCIIntervalMultiply --------------------------------- 
-sword OCIIntervalMultiply(dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
+sword OCIIntervalMultiply(void *hndl, OCIError *err, const OCIInterval *inter,
                         OCINumber *nfactor, OCIInterval *result );
 
   DESCRIPTION
@@ -3291,7 +3798,7 @@ sword OCIIntervalMultiply(dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
 
 
 ----------------------- OCIIntervalToNumber ---------------------------------
-sword OCIIntervalToNumber(dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
+sword OCIIntervalToNumber(void *hndl, OCIError *err, const OCIInterval *inter,
                           OCINumber *number);
 
   DESCRIPTION
@@ -3314,7 +3821,7 @@ sword OCIIntervalToNumber(dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
     Excess precision will be truncated.
  
 ------------------------------- OCIIntervalToText -------------------------
-sword OCIIntervalToText( dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
+sword OCIIntervalToText( void *hndl, OCIError *err, const OCIInterval *inter,
                         ub1 lfprec, ub1 fsprec, OraText *buffer, 
                         size_t buflen, size_t *resultlen );
 
@@ -3347,7 +3854,7 @@ sword OCIIntervalToText( dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
     DAY-TIME intervals (where optional fields are surrounded by brackets).
 
  ---------------------- OCIIntervalFromTZ -------------------- 
-sword OCIIntervalFromTZ(dvoid *hndl, OCIError *err, CONST oratext *inpstring,
+sword OCIIntervalFromTZ(void *hndl, OCIError *err, const oratext *inpstring,
                         size_t str_len, OCIInterval *result);
 
   DESCRIPTION
@@ -3393,8 +3900,8 @@ sword OCIKerbAttrSet(OCISession *trgthndlp, ub4 auth_mode,
                     be set. Options are:
 
                     OCI_KERBCRED_PROXY 
-                                         - Set Kerberos credentials for use with
-                                           proxy authentication.
+                                       - Set Kerberos credentials for use with
+                                          proxy authentication.
                     OCI_KERBCRED_CLIENT_IDENTIFIER 
                                          - Set Kerberos credentials for use
                                            with secure client identifier.
@@ -3495,7 +4002,7 @@ Assigns one LOB/FILE locator to another.
 Syntax
 sword OCILobAssign ( OCIEnv                *envhp, 
                      OCIError              *errhp, 
-                     CONST OCILobLocator   *src_locp, 
+                     const OCILobLocator   *src_locp, 
                      OCILobLocator         **dst_locpp );
 
 Comments
@@ -3537,7 +4044,7 @@ Gets the LOB locator's character set fpr,, if any.
 Syntax
 sword OCILobCharSetForm ( OCIEnv                    *envhp, 
                           OCIError                  *errhp, 
-                          CONST OCILobLocator       *locp, 
+                          const OCILobLocator       *locp, 
                           ub1                       *csfrm );
 
 Comments
@@ -3570,7 +4077,7 @@ Gets the LOB locator's character set ID, if any.
 Syntax
 sword OCILobCharSetId ( OCIEnv                    *envhp, 
                         OCIError                  *errhp, 
-                        CONST OCILobLocator       *locp, 
+                        const OCILobLocator       *locp, 
                         ub2                       *csid );
 
 Comments
@@ -3945,7 +4452,7 @@ Gets the FILE locator's directory alias and file name.
 Syntax
 sword OCILobFileGetName ( OCIEnv                   *envhp,
                           OCIError                 *errhp, 
-                          CONST OCILobLocator      *filep, 
+                          const OCILobLocator      *filep, 
                           OraText                     *dir_alias,
                           ub2                      *d_length, 
                           OraText                     *filename, 
@@ -4242,8 +4749,8 @@ Compares two LOB locators for equality.
 
 Syntax
 sword OCILobIsEqual ( OCIEnv                  *envhp,
-                      CONST OCILobLocator     *x,
-                      CONST OCILobLocator     *y,
+                      const OCILobLocator     *x,
+                      const OCILobLocator     *y,
                       boolean                 *is_equal );
 
 Comments
@@ -4377,7 +4884,7 @@ Assigns one LOB/FILE locator to another.
 Syntax
 sword OCILobLocatorAssign ( OCISvcCtx             *svchp, 
                             OCIError              *errhp, 
-                            CONST OCILobLocator   *src_locp, 
+                            const OCILobLocator   *src_locp, 
                             OCILobLocator         **dst_locpp );
 
 Comments
@@ -4420,7 +4927,7 @@ Tests to see if a given LOB locator is initialized.
 Syntax
 sword OCILobLocatorIsInit ( OCIEnv   *envhp,
                             OCIError *errhp,
-                            CONST OCILobLocator *locp,
+                            const OCILobLocator *locp,
                             boolean *is_initialized );
 
 Comments
@@ -4455,9 +4962,9 @@ sword OCILobRead ( OCISvcCtx       *svchp,
                    OCILobLocator   *locp,
                    ub4             offset,
                    ub4             *amtp,
-                   dvoid           *bufp,
+                   void           *bufp,
                    ub4             bufl,
-                   dvoid           *ctxp,  
+                   void           *ctxp,  
                    OCICallbackLobRead cbfp,
                    ub2             csid,
                    ub1             csfrm );
@@ -4561,14 +5068,14 @@ sword OCILobWrite ( OCISvcCtx       *svchp,
                     OCILobLocator   *locp,
                     ub4             offset,
                     ub4             *amtp,
-                    dvoid           *bufp, 
+                    void           *bufp, 
                     ub4             buflen,
                     ub1             piece,
-                    dvoid           *ctxp,  
+                    void           *ctxp,  
                     OCICallbackLobWrite   (cbfp)
                                     (
-                                    dvoid    *ctxp,
-                                    dvoid    *bufp,
+                                    void    *ctxp,
+                                    void    *bufp,
                                     ub4      *lenp,
                                     ub1      *piecep ) 
                     ub2             csid
@@ -4648,14 +5155,14 @@ sword OCILobWriteAppend ( OCISvcCtx       *svchp,
                     OCIError        *errhp,
                     OCILobLocator   *locp,
                     ub4             *amtp,
-                    dvoid           *bufp, 
+                    void           *bufp, 
                     ub4             buflen,
                     ub1             piece,
-                    dvoid           *ctxp,  
+                    void           *ctxp,  
                     OCICallbackLobWrite   (cbfp)
                                     (
-                                    dvoid    *ctxp,
-                                    dvoid    *bufp,
+                                    void    *ctxp,
+                                    void    *bufp,
                                     ub4      *lenp,
                                     ub1      *piecep ) 
                     ub2             csid
@@ -4736,10 +5243,12 @@ sword OCILobGetStorageLimit ( OCISvcCtx       *svchp,
 
 
 Comments
-With unlimited size LOB support the limit for a LOB is no longer restricted to 4GB.
-This interface should be used to get the actual limit for storing data for a specific
-LOB locator. Note that if the compatibality is set to 9.2 or older the limit would still 
-be 4GB.
+With unlimited size LOB support the limit for a LOB is no longer restricted
+to 4GB.
+This interface should be used to get the actual limit for storing data for
+a specific
+LOB locator. Note that if the compatibality is set to 9.2 or older the limit
+would still be 4GB.
 
 Parameters
 svchp (IN/OUT) - the service context handle. 
@@ -4750,6 +5259,148 @@ limitp (OUT)  - The storage limit for a LOB in bytes.
 Related Functions
 
 
+
+
+OCILobGetOptions()
+
+Name
+OCI Lob Get Options
+
+Purpose
+To get the current options set for the given SecureFile.
+
+Syntax
+sword OCILobGetOptions ( OCISvcCtx       *svchp,
+                         OCIError        *errhp,
+                         OCILobLocator   *locp,
+                         ub4              optypes,
+                         void            *optionsp,
+                         ub4             *optionslenp,
+                         ub4              mode);
+
+
+Comments
+This function only works on SecureFiles.  All others will get an error.
+
+Parameters
+svchp   (IN/OUT) - the service context handle. 
+errhp   (IN/OUT) - an error handle which can be passed to OCIErrorGet() for 
+diagnostic information in the event of an error. 
+locp    (IN/OUT) - a LOB locator that uniquely references a LOB. 
+optypes (IN)     - the types of options flags to be retrieved.
+optionsp (OUT)   - the options flags or value for the given types.
+optionslenp (IN/OUT) - the length of option_value buffer
+mode    (IN)     - for future use (pass 0 for now).
+Related Functions
+OCISetOptions()
+
+OCILobSetOptions()
+
+Name
+OCI Lob Set Options
+
+Purpose
+To set the options for the given SecureFile Lob.
+
+Syntax
+sword OCILobSetOptions ( OCISvcCtx       *svchp,
+                         OCIError        *errhp,
+                         OCILobLocator   *locp,
+                         ub4              optypes,
+                         void            *optionsp,
+                         ub4              optionslen,
+                         ub4              mode);
+
+
+Comments
+This function only works on SecureFile Lobs.  All others will get an error.
+
+Parameters
+svchp     (IN/OUT) - the service context handle. 
+errhp     (IN/OUT) - an error handle which can be passed to OCIErrorGet() for 
+diagnostic information in the event of an error. 
+locp      (IN/OUT) - a LOB locator that uniquely references a LOB. 
+optypes   (IN)     - the types of options flags to be set.
+optionsp  (IN)     - the options flags or value to be set for the given types.
+optionslen (IN)    - then length of option_value buffer
+mode      (IN)     - for future use (pass 0 for now).
+Related Functions
+OCILobGetOptions()
+
+OCILobGetContentType()
+
+Name
+OCI Lob Get Content Type
+
+Purpose
+To get the current contenttype set for the given SecureFile.
+
+Syntax
+sword OCILobGetContentType (OCISvcCtx       *svchp,
+                            OCIError        *errhp,
+                            OCILobLocator   *locp,
+                            oratext         *contenttypep,
+                            ub4             *contenttypelenp,
+                            ub4              mode);
+
+
+Comments
+This function only works on SecureFiles.  All others will get an error.
+If the securefile does not have a contenttype associated with it,
+the contenttype length (= *contenttypelenp) is returned as 0 without
+modifying the buffer contenttypep. 
+Parameters
+svchp      (IN/OUT) - the service context handle. 
+errhp      (IN/OUT) - an error handle which can be passed to OCIErrorGet() for
+                      diagnostic information in the event of an error. 
+locp       (IN/OUT) - a LOB locator that uniquely references a LOB.
+contenttypep(IN/OUT)- pointer to the buffer where the contenttype is stored
+                      after successful execution.
+                      The caller needs to allocate the buffer before calling
+                      this function. The size of the allocated buffer should
+                      be >= OCI_LOB_CONTENTTYPE_MAXSIZE bytes
+contenttypelenp(IN/OUT)- The caller should set this field to the size
+                         of contenttypep buffer.
+                         After the call successfully executes, it will hold the
+                         size of the contenttype returned.
+mode           (IN) - for future use (pass 0 for now).
+Related Functions
+OCISetContentType()
+
+OCILobSetContentType()
+
+Name
+OCI Lob Set Content Type
+
+Purpose
+To set the contenttype for the given SecureFile Lob.
+
+Syntax
+sword OCILobSetContentType (OCISvcCtx       *svchp,
+                            OCIError        *errhp,
+                            OCILobLocator   *locp,
+                            const oratext   *contenttypep,
+                            ub4              contenttypelen,
+                            ub4              mode);
+
+
+Comments
+This function only works on SecureFiles.  All others will get an error.
+To clear an existing contenttype set on a securefile, the user will
+invoke OCILobSetContentType API with contenttypep  set to (oratext *)0,
+and contenttypelen set to 0.
+Parameters
+svchp     (IN/OUT) - the service context handle. 
+errhp     (IN/OUT) - an error handle which can be passed to OCIErrorGet() for 
+diagnostic information in the event of an error. 
+locp      (IN/OUT) - a LOB locator that uniquely references a LOB.
+contenttypep  (IN) - the contenttype to be set for the given LOB.
+contenttypelen(IN) - the size of contenttype in bytes. The size of the
+                     contenttype should be <= OCI_LOB_CONTENTTYPE_MAXSIZE
+                     bytes.
+mode      (IN)     - for future use (pass 0 for now).
+Related Functions
+OCILobGetContentType()
 
 
 OCILogoff()
@@ -4791,11 +5442,11 @@ Syntax
 sword OCILogon ( OCIEnv          *envhp,
                        OCIError        *errhp,
                        OCISvcCtx       *svchp,
-                       CONST OraText      *username,
+                       const OraText      *username,
                        ub4             uname_len,
-                       CONST OraText      *password,
+                       const OraText      *password,
                        ub4             passwd_len,
-                       CONST OraText      *dbname,
+                       const OraText      *dbname,
                        ub4             dbname_len );
 Comments
 This function is used to create a simple logon session for an application. 
@@ -4833,11 +5484,11 @@ Syntax
 sword OCILogon2 ( OCIEnv          *envhp,
                        OCIError        *errhp,
                        OCISvcCtx       **svchp,
-                       CONST OraText      *username,
+                       const OraText      *username,
                        ub4             uname_len,
-                       CONST OraText      *password,
+                       const OraText      *password,
                        ub4             passwd_len,
-                       CONST OraText      *dbname,
+                       const OraText      *dbname,
                        ub4             dbname_len,
                        ub4             mode);
 Comments
@@ -4880,8 +5531,8 @@ OCI FREE Memory
 Purpose
 Frees up storage associated with the pointer.
 Syntax
-void OCIMemoryFree ( CONST OCIStmt   *stmhp,
-                     dvoid           *memptr);
+void OCIMemoryFree ( const OCIStmt   *stmhp,
+                     void           *memptr);
 Comments
 Frees up dynamically allocated data pointers associated with the pointer using 
 either the default memory free function or the registered memory free 
@@ -4906,10 +5557,10 @@ Purpose
 Returns a descriptor of a parameter specified by position in the describe 
 handle or statement handle.
 Syntax
-sword OCIParamGet ( CONST dvoid       *hndlp,
+sword OCIParamGet ( const void       *hndlp,
                   ub4         htype,
                   OCIError    *errhp,
-                  dvoid    **parmdpp,
+                  void    **parmdpp,
                   ub4         pos );
 Comments
 This call returns a descriptor of a parameter specified by position in the 
@@ -4947,10 +5598,10 @@ Purpose
 Used to set a complex object retrieval descriptor into a complex object 
 retrieval handle.
 Syntax
-sword   OCIParamGet ( dvoid *hndlp,
+sword   OCIParamGet ( void *hndlp,
                        ub4 htyp,
                       OCIError *errhp,
-                      CONST dvoid *dscp,
+                      const void *dscp,
                       ub4 dtyp,
                       ub4 pos );
 Comments
@@ -4980,11 +5631,11 @@ This call allows the password of an account to be changed.
 Syntax
 sword OCIPasswordChange ( OCISvcCtx     *svchp,
                         OCIError      *errhp,
-                        CONST OraText    *user_name,
+                        const OraText    *user_name,
                         ub4           usernm_len,
-                        CONST OraText    *opasswd,
+                        const OraText    *opasswd,
                         ub4           opasswd_len,
-                        CONST OraText    *npasswd,
+                        const OraText    *npasswd,
                         sb4           npasswd_len,
                         ub4           mode);
 Comments
@@ -5037,7 +5688,7 @@ Resets the interrupted asynchronous operation and protocol. Must be called
 if a OCIBreak call had been issued while a non-blocking operation was in
 progress.
 Syntax
-sword OCIReset ( dvoid      *hndlp,
+sword OCIReset ( void      *hndlp,
                  OCIError   *errhp);
 Comments
 This call is called in non-blocking mode ONLY. Resets the interrupted
@@ -5079,7 +5730,7 @@ Creates an access path to a data source for OCI operations.
 Syntax
 sword OCIServerAttach ( OCIServer    *srvhp,
                       OCIError     *errhp,
-                      CONST OraText   *dblink,
+                      const OraText   *dblink,
                       sb4          dblink_len,
                       ub4          mode);
 Comments
@@ -5147,7 +5798,7 @@ OCI VERSion
 Purpose
 Returns the version string of the Oracle server.
 Syntax
-sword OCIServerVersion ( dvoid        *hndlp, 
+sword OCIServerVersion ( void        *hndlp, 
                        OCIError     *errhp, 
                        OraText         *bufp,
                        ub4          bufsz
@@ -5218,7 +5869,7 @@ restricted to use with only server handles which resolve to the same database
 instance and that have equivalent primary authentication contexts. Equivalent 
 authentication contexts are those which were authenticated as the same 
 database user.
-OCI_SYSDBA, OCI_SYSOPER, and OCI_PRELIM_AUTH may only be used 
+OCI_SYSDBA, OCI_SYSOPER, OCI_SYSASM, and OCI_PRELIM_AUTH may only be used 
 with a primary authentication context.
 To provide credentials for a call to OCISessionBegin(), one of two methods are 
 supported. The first is to provide a valid username and password pair for 
@@ -5263,7 +5914,9 @@ OCI_SYSDBA - in this mode, the user is authenticated for SYSDBA
 access.
 OCI_SYSOPER - in this mode, the user is authenticated for SYSOPER 
 access.
-OCI_PRELIM_AUTH - this mode may only be used with OCI_SYSDBA 
+OCI_SYSASM - in this mode, the user is authenticated for SYSASM
+access.  Note that only an ASM instance can grant SYSASM access.
+OCI_PRELIM_AUTH - this mode may only be used with OCI_SYSDBA, OCI_SYSASM, 
 or OCI_SYSOPER to authenticate for certain administration tasks.
 Related Functions
 OCISessionEnd()
@@ -5318,7 +5971,7 @@ sword OCIStmtExecute ( OCISvcCtx           *svchp,
                      OCIError            *errhp,
                      ub4                 iters,
                      ub4                 rowoff,
-                     CONST OCISnapshot   *snap_in,
+                     const OCISnapshot   *snap_in,
                      OCISnapshot         *snap_out,
                      ub4                 mode );
 Comments
@@ -5515,9 +6168,9 @@ OCI Get Piece Information
 Purpose
 Returns piece information for a piecewise operation.
 Syntax
-sword OCIStmtGetPieceInfo( CONST OCIStmt  *stmtp,
+sword OCIStmtGetPieceInfo( const OCIStmt  *stmtp,
                          OCIError       *errhp,
-                         dvoid          **hndlpp,
+                         void          **hndlpp,
                          ub4            *typep,
                          ub1            *in_outp,
                          ub4            *iterp, 
@@ -5562,7 +6215,7 @@ This call defines the SQL/PLSQL statement to be executed.
 Syntax
 sword OCIStmtPrepare ( OCIStmt      *stmtp,
                      OCIError     *errhp,
-                     CONST OraText   *stmt, 
+                     const OraText   *stmt, 
                      ub4          stmt_len,
                      ub4          language,
                      ub4          mode);
@@ -5605,9 +6258,9 @@ Syntax
 sword OCIStmtPrepare2 ( OCISvcCtx *svchp,
                      OCIStmt      **stmtp,
                      OCIError     *errhp,
-                     CONST OraText   *stmt,
+                     const OraText   *stmt,
                      ub4          stmt_len,
-                     CONST OraText *key,
+                     const OraText *key,
                      ub4          key_len,
                      ub4          language,
                      ub4          mode);
@@ -5683,13 +6336,13 @@ OCI Set Piece Information
 Purpose
 Sets piece information for a piecewise operation.
 Syntax
-sword OCIStmtSetPieceInfo ( dvoid             *hndlp,
+sword OCIStmtSetPieceInfo ( void             *hndlp,
                           ub4               type,
                           OCIError          *errhp,
-                          CONST dvoid       *bufp,
+                          const void       *bufp,
                           ub4               *alenp, 
                           ub1               piece,
-                          CONST dvoid       *indp, 
+                          const void       *indp, 
                           ub2               *rcodep ); 
 Comments
 When an execute call returns OCI_NEED_DATA to get a dynamic IN/OUT 
@@ -5714,7 +6367,7 @@ The default value is OCI_ONE_PIECE. This parameter is used for IN bind
 variables only.
 indp (IN/OUT) - indicator. A pointer to a sb2 value or pointer to an indicator 
 structure for named data types (SQLT_NTY) and REFs (SQLT_REF), i.e., *indp 
-is either an sb2 or a dvoid * depending upon the data type.
+is either an sb2 or a void * depending upon the data type.
 rcodep (IN/OUT) - return code. 
 Related Functions
 OCIAttrGet(), OCIAttrGet(), OCIStmtExecute(), OCIStmtFetch(), 
@@ -5727,7 +6380,7 @@ OCIFormat Package Initialize
 Purpose
 Initializes the OCIFormat package.
 Syntax
-sword OCIFormatInit(dvoid *hndl, OCIError *err);
+sword OCIFormatInit(void *hndl, OCIError *err);
 Comments
 This routine must be called before calling any other OCIFormat routine.
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
@@ -5745,9 +6398,9 @@ Purpose
 Writes a text string into the supplied text buffer using the argument
 list submitted to it and in accordance with the format string given.
 Syntax
-sword OCIFormatString(dvoid *hndl, OCIError *err, OraText *buffer,
+sword OCIFormatString(void *hndl, OCIError *err, OraText *buffer,
                       sbig_ora bufferLength, sbig_ora *returnLength,
-                      CONST OraText *formatString, ...);
+                      const OraText *formatString, ...);
 Comments
 The first call to this routine must be preceded by a call to the
 OCIFormatInit routine that initializes the OCIFormat package
@@ -5771,7 +6424,7 @@ OCIFormat Package Terminate
 Purpose
 Terminates the OCIFormat package.
 Syntax
-sword OCIFormatTerm(dvoid *hndl, OCIError *err);
+sword OCIFormatTerm(void *hndl, OCIError *err);
 Comments
 It must be called after the OCIFormat package is no longer being used.
 Returns OCI_SUCCESS, OCI_INVALID_HANDLE, or OCI_ERROR
@@ -6039,9 +6692,9 @@ None
 
 OCIFormatDvoid
 Name
-OCIFormat Package dvoid Type
+OCIFormat Package void Type
 Purpose
-Return the type value for the dvoid type.
+Return the type value for the void type.
 Syntax
 sword OCIFormatTDvoid(void);
 Comments
@@ -6262,7 +6915,7 @@ OCI TX (transaction) RoLlback
 Purpose
 Rolls back the current transaction.
 Syntax
-sword OCITransRollback ( dvoid        *svchp, 
+sword OCITransRollback ( void        *svchp, 
                        OCIError     *errhp,
                        ub4          flags );
 Comments
@@ -6335,70 +6988,80 @@ OCITransDetach()
 /*-----------------------Dynamic Callback Function Pointers------------------*/
  
  
-typedef sb4 (*OCICallbackInBind)(dvoid *ictxp, OCIBind *bindp, ub4 iter,
-                                  ub4 index, dvoid **bufpp, ub4 *alenp,
-                                  ub1 *piecep, dvoid **indp);
+typedef sb4 (*OCICallbackInBind)(void  *ictxp, OCIBind *bindp, ub4 iter,
+                                  ub4 index, void  **bufpp, ub4 *alenp,
+                                  ub1 *piecep, void  **indp);
  
-typedef sb4 (*OCICallbackOutBind)(dvoid *octxp, OCIBind *bindp, ub4 iter,
-                                 ub4 index, dvoid **bufpp, ub4 **alenp,
-                                 ub1 *piecep, dvoid **indp,
+typedef sb4 (*OCICallbackOutBind)(void  *octxp, OCIBind *bindp, ub4 iter,
+                                 ub4 index, void  **bufpp, ub4 **alenp,
+                                 ub1 *piecep, void  **indp,
                                  ub2 **rcodep);
  
-typedef sb4 (*OCICallbackDefine)(dvoid *octxp, OCIDefine *defnp, ub4 iter,
-                                 dvoid **bufpp, ub4 **alenp, ub1 *piecep,
-                                 dvoid **indp, ub2 **rcodep);
+typedef sb4 (*OCICallbackDefine)(void  *octxp, OCIDefine *defnp, ub4 iter,
+                                 void  **bufpp, ub4 **alenp, ub1 *piecep,
+                                 void  **indp, ub2 **rcodep);
 
-typedef sword (*OCIUserCallback)(dvoid *ctxp, dvoid *hndlp, ub4 type,
+typedef sword (*OCIUserCallback)(void  *ctxp, void  *hndlp, ub4 type,
                                  ub4 fcode, ub4 when, sword returnCode,
                                  sb4 *errnop, va_list arglist);
 
 typedef sword (*OCIEnvCallbackType)(OCIEnv *env, ub4 mode,
-                                   size_t xtramem_sz, dvoid *usrmemp,
+                                   size_t xtramem_sz, void  *usrmemp,
                                    OCIUcb *ucbDesc); 
 
-typedef sb4 (*OCICallbackLobRead)(dvoid *ctxp, CONST dvoid *bufp,
+typedef sb4 (*OCICallbackLobRead)(void  *ctxp, const void  *bufp,
                                              ub4 len, ub1 piece);
 
-typedef sb4 (*OCICallbackLobWrite)(dvoid *ctxp, dvoid *bufp, 
+typedef sb4 (*OCICallbackLobWrite)(void  *ctxp, void  *bufp, 
                                           ub4 *lenp, ub1 *piece);
 
 #ifdef ORAXB8_DEFINED
 
-typedef sb4 (*OCICallbackLobRead2)(dvoid *ctxp, CONST dvoid *bufp, oraub8 len,
-                                   ub1 piece, dvoid **changed_bufpp,
+typedef sb4 (*OCICallbackLobRead2)(void  *ctxp, const void  *bufp, oraub8 len,
+                                   ub1 piece, void  **changed_bufpp,
                                    oraub8 *changed_lenp);
 
-typedef sb4 (*OCICallbackLobWrite2)(dvoid *ctxp, dvoid *bufp, oraub8 *lenp,
-                                    ub1 *piece, dvoid **changed_bufpp,
+typedef sb4 (*OCICallbackLobWrite2)(void  *ctxp, void  *bufp, oraub8 *lenp,
+                                    ub1 *piece, void  **changed_bufpp,
                                     oraub8 *changed_lenp);
 
-typedef sb4 (*OCICallbackLobArrayRead)(dvoid *ctxp, ub4 array_iter,
-                                       CONST dvoid *bufp, oraub8 len,
-                                       ub1 piece, dvoid **changed_bufpp,
+typedef sb4 (*OCICallbackLobArrayRead)(void  *ctxp, ub4 array_iter,
+                                       const void  *bufp, oraub8 len,
+                                       ub1 piece, void  **changed_bufpp,
                                        oraub8 *changed_lenp);
 
-typedef sb4 (*OCICallbackLobArrayWrite)(dvoid *ctxp, ub4 array_iter,
-                                        dvoid *bufp, oraub8 *lenp,
-                                        ub1 *piece, dvoid **changed_bufpp,
+typedef sb4 (*OCICallbackLobArrayWrite)(void  *ctxp, ub4 array_iter,
+                                        void  *bufp, oraub8 *lenp,
+                                        ub1 *piece, void  **changed_bufpp,
                                         oraub8 *changed_lenp);
-
 #endif
 
-typedef sb4 (*OCICallbackAQEnq)(dvoid *ctxp, dvoid **payload, 
-                                dvoid **payload_ind);
+typedef sb4 (*OCICallbackLobGetDeduplicateRegions)(void *ctxp,
+                                              OCILobRegion *regions,
+                                              ub4 count, ub1 piece,
+                                              OCILobRegion **changed_reg,
+                                              ub4 *changed_count);
 
-typedef sb4 (*OCICallbackAQDeq)(dvoid *ctxp, dvoid **payload, 
-                                dvoid **payload_ind);
+typedef sb4 (*OCICallbackAQEnq)(void  *ctxp, void  **payload, 
+                                void  **payload_ind);
+
+typedef sb4 (*OCICallbackAQEnqStreaming)(void  *ctxp, void  **payload, 
+                                         void  **payload_ind,
+                                         OCIAQMsgProperties  **msgprop,
+                                         OCIType **tdo);
+
+typedef sb4 (*OCICallbackAQDeq)(void  *ctxp, void  **payload, 
+                                void  **payload_ind);
 
 /*--------------------------Failover Callback Structure ---------------------*/
-typedef sb4 (*OCICallbackFailover)(dvoid *svcctx, dvoid *envctx,
-                                   dvoid *fo_ctx, ub4 fo_type,
+typedef sb4 (*OCICallbackFailover)(void  *svcctx, void  *envctx,
+                                   void  *fo_ctx, ub4 fo_type,
                                    ub4 fo_event);
 
 typedef struct
 {
   OCICallbackFailover callback_function;
-  dvoid *fo_ctx;
+  void  *fo_ctx;
 } 
 OCIFocbkStruct;
 
@@ -6407,56 +7070,67 @@ OCIFocbkStruct;
 typedef sword (*OCICallbackStmtCache)(void *ctx, OCIStmt *stmt, ub4 mode);
 
 /*--------------------------HA Callback Structure ---------------------*/
-typedef void (*OCIEventCallback)(dvoid *evtctx, OCIEvent *eventhp);
+typedef void (*OCIEventCallback)(void  *evtctx, OCIEvent *eventhp);
+
+
+/*------------------------- Round Trip Callback Structure --------------------*/
+typedef sword (*OCIRoundTripCallback)(void  *rtctx, OCISvcCtx *svch,
+                                      OCISession *userh);
 
 
 /*****************************************************************************
                          ACTUAL PROTOTYPE DECLARATIONS
 ******************************************************************************/
 
-sword   OCIInitialize   (ub4 mode, dvoid *ctxp, 
-                 dvoid *(*malocfp)(dvoid *ctxp, size_t size),
-                 dvoid *(*ralocfp)(dvoid *ctxp, dvoid *memptr, size_t newsize),
-                 void   (*mfreefp)(dvoid *ctxp, dvoid *memptr) );
+sword   OCIInitialize   (ub4 mode, void  *ctxp, 
+                 void  *(*malocfp)(void  *ctxp, size_t size),
+                 void  *(*ralocfp)(void  *ctxp, void  *memptr, size_t newsize),
+                 void   (*mfreefp)(void  *ctxp, void  *memptr) );
 
 sword   OCITerminate( ub4 mode);
 
-sword   OCIEnvCreate (OCIEnv **envp, ub4 mode, dvoid *ctxp,
-                 dvoid *(*malocfp)(dvoid *ctxp, size_t size),
-                 dvoid *(*ralocfp)(dvoid *ctxp, dvoid *memptr, size_t newsize),
-                 void   (*mfreefp)(dvoid *ctxp, dvoid *memptr),
-                 size_t xtramem_sz, dvoid **usrmempp);
+sword   OCIEnvCreate (OCIEnv **envp, ub4 mode, void  *ctxp,
+                 void  *(*malocfp)(void  *ctxp, size_t size),
+                 void  *(*ralocfp)(void  *ctxp, void  *memptr, size_t newsize),
+                 void   (*mfreefp)(void  *ctxp, void  *memptr),
+                 size_t xtramem_sz, void  **usrmempp);
 
-sword   OCIEnvNlsCreate (OCIEnv **envp, ub4 mode, dvoid *ctxp,
-                 dvoid *(*malocfp)(dvoid *ctxp, size_t size),
-                 dvoid *(*ralocfp)(dvoid *ctxp, dvoid *memptr, size_t newsize),
-                 void   (*mfreefp)(dvoid *ctxp, dvoid *memptr),
-                 size_t xtramem_sz, dvoid **usrmempp,
+sword   OCIEnvNlsCreate (OCIEnv **envp, ub4 mode, void  *ctxp,
+                 void  *(*malocfp)(void  *ctxp, size_t size),
+                 void  *(*ralocfp)(void  *ctxp, void  *memptr, size_t newsize),
+                 void   (*mfreefp)(void  *ctxp, void  *memptr),
+                 size_t xtramem_sz, void  **usrmempp,
                  ub2 charset, ub2 ncharset);
 
-sword   OCIFEnvCreate (OCIEnv **envp, ub4 mode, dvoid *ctxp,
-                 dvoid *(*malocfp)(dvoid *ctxp, size_t size),
-                 dvoid *(*ralocfp)(dvoid *ctxp, dvoid *memptr, size_t newsize),
-                 void   (*mfreefp)(dvoid *ctxp, dvoid *memptr),
-                 size_t xtramem_sz, dvoid **usrmempp, dvoid *fupg);
+sword   OCIFEnvCreate (OCIEnv **envp, ub4 mode, void  *ctxp,
+                 void  *(*malocfp)(void  *ctxp, size_t size),
+                 void  *(*ralocfp)(void  *ctxp, void  *memptr, size_t newsize),
+                 void   (*mfreefp)(void  *ctxp, void  *memptr),
+                 size_t xtramem_sz, void  **usrmempp, void  *fupg);
 
-sword   OCIHandleAlloc(CONST dvoid *parenth, dvoid **hndlpp, CONST ub4 type, 
-                       CONST size_t xtramem_sz, dvoid **usrmempp);
+sword   OCIHandleAlloc(const void  *parenth, void  **hndlpp, const ub4 type, 
+                       const size_t xtramem_sz, void  **usrmempp);
 
-sword   OCIHandleFree(dvoid *hndlp, CONST ub4 type);
+sword   OCIHandleFree(void  *hndlp, const ub4 type);
 
 
-sword   OCIDescriptorAlloc(CONST dvoid *parenth, dvoid **descpp, 
-                           CONST ub4 type, CONST size_t xtramem_sz, 
-                           dvoid **usrmempp);
+sword   OCIDescriptorAlloc(const void  *parenth, void  **descpp, 
+                           const ub4 type, const size_t xtramem_sz, 
+                           void  **usrmempp);
 
-sword   OCIDescriptorFree(dvoid *descp, CONST ub4 type);
+sword   OCIArrayDescriptorAlloc(const void  *parenth, void  **descpp, 
+                           const ub4 type, ub4 array_size, 
+                           const size_t xtramem_sz, void  **usrmempp);
+
+sword   OCIDescriptorFree(void  *descp, const ub4 type);
+
+sword   OCIArrayDescriptorFree(void  **descp, const ub4 type);
 
 sword   OCIEnvInit (OCIEnv **envp, ub4 mode, 
-                    size_t xtramem_sz, dvoid **usrmempp);
+                    size_t xtramem_sz, void  **usrmempp);
 
 sword   OCIServerAttach  (OCIServer *srvhp, OCIError *errhp,
-                          CONST OraText *dblink, sb4 dblink_len, ub4 mode);
+                          const OraText *dblink, sb4 dblink_len, ub4 mode);
 
 sword   OCIServerDetach  (OCIServer *srvhp, OCIError *errhp, ub4 mode);
 
@@ -6467,52 +7141,52 @@ sword   OCISessionEnd   (OCISvcCtx *svchp, OCIError *errhp, OCISession *usrhp,
                          ub4 mode);
 
 sword   OCILogon (OCIEnv *envhp, OCIError *errhp, OCISvcCtx **svchp, 
-                  CONST OraText *username, ub4 uname_len, 
-                  CONST OraText *password, ub4 passwd_len, 
-                  CONST OraText *dbname, ub4 dbname_len);
+                  const OraText *username, ub4 uname_len, 
+                  const OraText *password, ub4 passwd_len, 
+                  const OraText *dbname, ub4 dbname_len);
 
 sword   OCILogon2 (OCIEnv *envhp, OCIError *errhp, OCISvcCtx **svchp,
-                  CONST OraText *username, ub4 uname_len,
-                  CONST OraText *password, ub4 passwd_len,
-                  CONST OraText *dbname, ub4 dbname_len,
+                  const OraText *username, ub4 uname_len,
+                  const OraText *password, ub4 passwd_len,
+                  const OraText *dbname, ub4 dbname_len,
                   ub4 mode);
 
 sword   OCILogoff (OCISvcCtx *svchp, OCIError *errhp);
 
 
 sword   OCIPasswordChange   (OCISvcCtx *svchp, OCIError *errhp, 
-                             CONST OraText *user_name, ub4 usernm_len, 
-                             CONST OraText *opasswd, ub4 opasswd_len, 
-                             CONST OraText *npasswd, ub4 npasswd_len, 
+                             const OraText *user_name, ub4 usernm_len, 
+                             const OraText *opasswd, ub4 opasswd_len, 
+                             const OraText *npasswd, ub4 npasswd_len, 
                              ub4 mode);
 
-sword   OCIStmtPrepare   (OCIStmt *stmtp, OCIError *errhp, CONST OraText *stmt,
+sword   OCIStmtPrepare   (OCIStmt *stmtp, OCIError *errhp, const OraText *stmt,
                           ub4 stmt_len, ub4 language, ub4 mode);
 
 sword OCIStmtPrepare2 ( OCISvcCtx *svchp, OCIStmt **stmtp, OCIError *errhp,
-                     CONST OraText *stmt, ub4 stmt_len, CONST OraText *key,
+                     const OraText *stmt, ub4 stmt_len, const OraText *key,
                      ub4 key_len, ub4 language, ub4 mode);
 
-sword OCIStmtRelease ( OCIStmt *stmtp, OCIError *errhp, CONST OraText *key,
+sword OCIStmtRelease ( OCIStmt *stmtp, OCIError *errhp, const OraText *key,
                        ub4 key_len, ub4 mode);
 
 sword   OCIBindByPos  (OCIStmt *stmtp, OCIBind **bindp, OCIError *errhp,
-                       ub4 position, dvoid *valuep, sb4 value_sz,
-                       ub2 dty, dvoid *indp, ub2 *alenp, ub2 *rcodep,
+                       ub4 position, void  *valuep, sb4 value_sz,
+                       ub2 dty, void  *indp, ub2 *alenp, ub2 *rcodep,
                        ub4 maxarr_len, ub4 *curelep, ub4 mode);
 
 sword   OCIBindByName   (OCIStmt *stmtp, OCIBind **bindp, OCIError *errhp,
-                         CONST OraText *placeholder, sb4 placeh_len, 
-                         dvoid *valuep, sb4 value_sz, ub2 dty, 
-                         dvoid *indp, ub2 *alenp, ub2 *rcodep, 
+                         const OraText *placeholder, sb4 placeh_len, 
+                         void  *valuep, sb4 value_sz, ub2 dty, 
+                         void  *indp, ub2 *alenp, ub2 *rcodep, 
                          ub4 maxarr_len, ub4 *curelep, ub4 mode);
 
-sword   OCIBindObject  (OCIBind *bindp, OCIError *errhp, CONST OCIType *type, 
-                        dvoid **pgvpp, ub4 *pvszsp, dvoid **indpp, 
+sword   OCIBindObject  (OCIBind *bindp, OCIError *errhp, const OCIType *type, 
+                        void  **pgvpp, ub4 *pvszsp, void  **indpp, 
                         ub4 *indszp);
 
-sword   OCIBindDynamic   (OCIBind *bindp, OCIError *errhp, dvoid *ictxp,
-                          OCICallbackInBind icbfp, dvoid *octxp,
+sword   OCIBindDynamic   (OCIBind *bindp, OCIError *errhp, void  *ictxp,
+                          OCICallbackInBind icbfp, void  *octxp,
                           OCICallbackOutBind ocbfp);
 
 sword   OCIBindArrayOfStruct   (OCIBind *bindp, OCIError *errhp, 
@@ -6520,27 +7194,27 @@ sword   OCIBindArrayOfStruct   (OCIBind *bindp, OCIError *errhp,
                                 ub4 alskip, ub4 rcskip);
 
 sword   OCIStmtGetPieceInfo   (OCIStmt *stmtp, OCIError *errhp, 
-                               dvoid **hndlpp, ub4 *typep,
+                               void  **hndlpp, ub4 *typep,
                                ub1 *in_outp, ub4 *iterp, ub4 *idxp, 
                                ub1 *piecep);
 
-sword   OCIStmtSetPieceInfo   (dvoid *hndlp, ub4 type, OCIError *errhp, 
-                               CONST dvoid *bufp, ub4 *alenp, ub1 piece, 
-                               CONST dvoid *indp, ub2 *rcodep);
+sword   OCIStmtSetPieceInfo   (void  *hndlp, ub4 type, OCIError *errhp, 
+                               const void  *bufp, ub4 *alenp, ub1 piece, 
+                               const void  *indp, ub2 *rcodep);
 
 sword   OCIStmtExecute  (OCISvcCtx *svchp, OCIStmt *stmtp, OCIError *errhp, 
-                         ub4 iters, ub4 rowoff, CONST OCISnapshot *snap_in, 
+                         ub4 iters, ub4 rowoff, const OCISnapshot *snap_in, 
                          OCISnapshot *snap_out, ub4 mode);
 
 sword   OCIDefineByPos  (OCIStmt *stmtp, OCIDefine **defnp, OCIError *errhp,
-                         ub4 position, dvoid *valuep, sb4 value_sz, ub2 dty,
-                         dvoid *indp, ub2 *rlenp, ub2 *rcodep, ub4 mode);
+                         ub4 position, void  *valuep, sb4 value_sz, ub2 dty,
+                         void  *indp, ub2 *rlenp, ub2 *rcodep, ub4 mode);
 
 sword   OCIDefineObject  (OCIDefine *defnp, OCIError *errhp, 
-                          CONST OCIType *type, dvoid **pgvpp, 
-                          ub4 *pvszsp, dvoid **indpp, ub4 *indszp);
+                          const OCIType *type, void  **pgvpp, 
+                          ub4 *pvszsp, void  **indpp, ub4 *indszp);
 
-sword   OCIDefineDynamic   (OCIDefine *defnp, OCIError *errhp, dvoid *octxp,
+sword   OCIDefineDynamic   (OCIDefine *defnp, OCIError *errhp, void  *octxp,
                             OCICallbackDefine ocbfp);
 
 sword   OCIRowidToChar  (OCIRowid *rowidDesc, OraText *outbfp, ub2 *outbflp,
@@ -6562,14 +7236,14 @@ sword   OCIStmtGetBindInfo   (OCIStmt *stmtp, OCIError *errhp, ub4 size,
                               OCIBind **hndl);
 
 sword   OCIDescribeAny  (OCISvcCtx *svchp, OCIError *errhp, 
-                         dvoid *objptr, 
+                         void  *objptr, 
                          ub4 objnm_len, ub1 objptr_typ, ub1 info_level,
                          ub1 objtyp, OCIDescribe *dschp);
 
-sword   OCIParamGet (CONST dvoid *hndlp, ub4 htype, OCIError *errhp, 
-                     dvoid **parmdpp, ub4 pos);
+sword   OCIParamGet (const void  *hndlp, ub4 htype, OCIError *errhp, 
+                     void  **parmdpp, ub4 pos);
 
-sword   OCIParamSet(dvoid *hdlp, ub4 htyp, OCIError *errhp, CONST dvoid *dscp,
+sword   OCIParamSet(void  *hdlp, ub4 htyp, OCIError *errhp, const void  *dscp,
                     ub4 dtyp, ub4 pos);
 
 sword   OCITransStart  (OCISvcCtx *svchp, OCIError *errhp, 
@@ -6588,7 +7262,7 @@ sword   OCITransMultiPrepare (OCISvcCtx *svchp, ub4 numBranches,
 
 sword   OCITransForget (OCISvcCtx *svchp, OCIError *errhp, ub4 flags);
 
-sword   OCIErrorGet   (dvoid *hndlp, ub4 recordno, OraText *sqlstate,
+sword   OCIErrorGet   (void  *hndlp, ub4 recordno, OraText *sqlstate,
                        sb4 *errcodep, OraText *bufp, ub4 bufsiz, ub4 type);
 
 sword   OCILobAppend  (OCISvcCtx *svchp, OCIError *errhp, 
@@ -6596,14 +7270,14 @@ sword   OCILobAppend  (OCISvcCtx *svchp, OCIError *errhp,
                        OCILobLocator *src_locp);
 
 sword   OCILobAssign (OCIEnv *envhp, OCIError *errhp, 
-                      CONST OCILobLocator *src_locp, 
+                      const OCILobLocator *src_locp, 
                       OCILobLocator **dst_locpp);
 
 sword   OCILobCharSetForm (OCIEnv *envhp, OCIError *errhp, 
-                           CONST OCILobLocator *locp, ub1 *csfrm);
+                           const OCILobLocator *locp, ub1 *csfrm);
 
 sword   OCILobCharSetId (OCIEnv *envhp, OCIError *errhp, 
-                         CONST OCILobLocator *locp, ub2 *csid);
+                         const OCILobLocator *locp, ub2 *csid);
 
 sword   OCILobCopy (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *dst_locp,
                     OCILobLocator *src_locp, ub4 amount, ub4 dst_offset, 
@@ -6645,7 +7319,7 @@ sword   OCILobFileExists (OCISvcCtx *svchp, OCIError *errhp,
                           boolean *flag);
 
 sword   OCILobFileGetName (OCIEnv *envhp, OCIError *errhp, 
-                           CONST OCILobLocator *filep, 
+                           const OCILobLocator *filep, 
                            OraText *dir_alias, ub2 *d_length, 
                            OraText *filename, ub2 *f_length);
 
@@ -6659,8 +7333,8 @@ sword   OCILobFileOpen (OCISvcCtx *svchp, OCIError *errhp,
 
 sword   OCILobFileSetName (OCIEnv *envhp, OCIError *errhp, 
                            OCILobLocator **filepp, 
-                           CONST OraText *dir_alias, ub2 d_length, 
-                           CONST OraText *filename, ub2 f_length);
+                           const OraText *dir_alias, ub2 d_length, 
+                           const OraText *filename, ub2 f_length);
 
 sword   OCILobFlushBuffer (OCISvcCtx       *svchp,
                            OCIError        *errhp,
@@ -6680,8 +7354,8 @@ sword   OCILobGetLength  (OCISvcCtx *svchp, OCIError *errhp,
                           OCILobLocator *locp,
                           ub4 *lenp);
 
-sword   OCILobIsEqual  (OCIEnv *envhp, CONST OCILobLocator *x, 
-                        CONST OCILobLocator *y, 
+sword   OCILobIsEqual  (OCIEnv *envhp, const OCILobLocator *x, 
+                        const OCILobLocator *y, 
                         boolean *is_equal);
 
 sword OCILobIsOpen( OCISvcCtx     *svchp,
@@ -6701,12 +7375,12 @@ sword   OCILobLoadFromFile (OCISvcCtx *svchp, OCIError *errhp,
                             ub4 src_offset);
 
 sword   OCILobLocatorAssign  (OCISvcCtx *svchp, OCIError *errhp, 
-                            CONST OCILobLocator *src_locp, 
+                            const OCILobLocator *src_locp, 
                             OCILobLocator **dst_locpp);
 
 
 sword   OCILobLocatorIsInit (OCIEnv *envhp, OCIError *errhp, 
-                             CONST OCILobLocator *locp, 
+                             const OCILobLocator *locp, 
                              boolean *is_initialized);
 
 sword   OCILobOpen( OCISvcCtx        *svchp,
@@ -6715,38 +7389,45 @@ sword   OCILobOpen( OCISvcCtx        *svchp,
                    ub1               mode );
  
 sword   OCILobRead  (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
-                     ub4 *amtp, ub4 offset, dvoid *bufp, ub4 bufl, dvoid *ctxp,
+                     ub4 *amtp, ub4 offset, void  *bufp, ub4 bufl, void  *ctxp,
                      OCICallbackLobRead cbfp, ub2 csid, ub1 csfrm);
 
 sword   OCILobTrim  (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
                      ub4 newlen);
 
 sword   OCILobWrite  (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
-                      ub4 *amtp, ub4 offset, dvoid *bufp, ub4 buflen, ub1 piece,
-                      dvoid *ctxp, OCICallbackLobWrite cbfp, ub2 csid,
-                      ub1 csfrm);
+                      ub4 *amtp, ub4 offset, void  *bufp, ub4 buflen,
+                      ub1 piece,  void  *ctxp, OCICallbackLobWrite cbfp,
+                      ub2 csid, ub1 csfrm);
+
+sword OCILobGetDeduplicateRegions(OCISvcCtx *svchp, OCIError *errhp, 
+                                  OCILobLocator *locp, 
+                                  OCILobRegion *regp, ub4 *count, ub1 piece,
+                                  void *ctxp,
+                                  OCICallbackLobGetDeduplicateRegions cbfp);
 
 sword OCILobWriteAppend(OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *lobp,
-                        ub4 *amtp, dvoid *bufp, ub4 bufl, ub1 piece, dvoid *ctxp,
-                        OCICallbackLobWrite cbfp, ub2 csid, ub1 csfrm);
+                        ub4 *amtp, void  *bufp, ub4 bufl, ub1 piece,
+                        void *ctxp, OCICallbackLobWrite cbfp, ub2 csid,
+                        ub1 csfrm);
 
-sword   OCIBreak (dvoid *hndlp, OCIError *errhp);
+sword   OCIBreak (void  *hndlp, OCIError *errhp);
 
-sword   OCIReset (dvoid *hndlp, OCIError *errhp);
+sword   OCIReset (void  *hndlp, OCIError *errhp);
 
-sword   OCIServerVersion  (dvoid *hndlp, OCIError *errhp, OraText *bufp, 
+sword   OCIServerVersion  (void  *hndlp, OCIError *errhp, OraText *bufp, 
                            ub4 bufsz,
                            ub1 hndltype);
 
-sword   OCIServerRelease  (dvoid *hndlp, OCIError *errhp, OraText *bufp,
+sword   OCIServerRelease  (void  *hndlp, OCIError *errhp, OraText *bufp,
                            ub4 bufsz,
                            ub1 hndltype, ub4 *version);
 
-sword   OCIAttrGet (CONST dvoid *trgthndlp, ub4 trghndltyp, 
-                    dvoid *attributep, ub4 *sizep, ub4 attrtype, 
+sword   OCIAttrGet (const void  *trgthndlp, ub4 trghndltyp, 
+                    void  *attributep, ub4 *sizep, ub4 attrtype, 
                     OCIError *errhp);
 
-sword   OCIAttrSet (dvoid *trgthndlp, ub4 trghndltyp, dvoid *attributep,
+sword   OCIAttrSet (void  *trgthndlp, ub4 trghndltyp, void  *attributep,
                     ub4 size, ub4 attrtype, OCIError *errhp);
 
 sword   OCISvcCtxToLda (OCISvcCtx *svchp, OCIError *errhp, Lda_Def *ldap);
@@ -6755,51 +7436,53 @@ sword   OCILdaToSvcCtx (OCISvcCtx **svchpp, OCIError *errhp, Lda_Def *ldap);
 
 sword   OCIResultSetToStmt (OCIResult *rsetdp, OCIError *errhp);
 
-sword OCIFileClose ( dvoid  *hndl, OCIError *err, OCIFileObject *filep );
+sword OCIFileClose ( void   *hndl, OCIError *err, OCIFileObject *filep );
 
-sword   OCIUserCallbackRegister(dvoid *hndlp, ub4 type, dvoid *ehndlp,
-                                    OCIUserCallback callback, dvoid *ctxp,
+sword   OCIUserCallbackRegister(void  *hndlp, ub4 type, void  *ehndlp,
+                                    OCIUserCallback callback, void  *ctxp,
                                     ub4 fcode, ub4 when, OCIUcb *ucbDesc);
 
-sword   OCIUserCallbackGet(dvoid *hndlp, ub4 type, dvoid *ehndlp,
+sword   OCIUserCallbackGet(void  *hndlp, ub4 type, void  *ehndlp,
                                ub4 fcode, ub4 when, OCIUserCallback *callbackp,
-                               dvoid **ctxpp, OCIUcb *ucbDesc);
+                               void  **ctxpp, OCIUcb *ucbDesc);
 
-sword   OCISharedLibInit(dvoid *metaCtx, dvoid *libCtx, ub4 argfmt, sword argc,
-                         dvoid **argv, OCIEnvCallbackType envCallback);
+sword   OCISharedLibInit(void  *metaCtx, void  *libCtx, ub4 argfmt, sword argc,
+                         void  **argv, OCIEnvCallbackType envCallback);
 
-sword OCIFileExists ( dvoid  *hndl, OCIError *err, OraText *filename,
+sword OCIFileExists ( void   *hndl, OCIError *err, OraText *filename,
                      OraText *path, ub1 *flag  );
 
-sword OCIFileFlush( dvoid *hndl, OCIError *err, OCIFileObject *filep  );
+sword OCIFileFlush( void  *hndl, OCIError *err, OCIFileObject *filep  );
 
 
-sword OCIFileGetLength( dvoid *hndl, OCIError *err, OraText *filename,
+sword OCIFileGetLength( void  *hndl, OCIError *err, OraText *filename,
                         OraText *path, ubig_ora *lenp  );
 
-sword OCIFileInit ( dvoid *hndl, OCIError *err );
+sword OCIFileInit ( void  *hndl, OCIError *err );
 
-sword OCIFileOpen ( dvoid *hndl, OCIError *err, OCIFileObject **filep,
+sword OCIFileOpen ( void  *hndl, OCIError *err, OCIFileObject **filep,
                     OraText *filename, OraText *path, ub4 mode, ub4 create, 
                     ub4 type );
 
-sword OCIFileRead ( dvoid *hndl, OCIError *err, OCIFileObject *filep,
-                    dvoid *bufp, ub4 bufl, ub4 *bytesread );
+sword OCIFileRead ( void  *hndl, OCIError *err, OCIFileObject *filep,
+                    void  *bufp, ub4 bufl, ub4 *bytesread );
 
-sword OCIFileSeek ( dvoid *hndl, OCIError *err, OCIFileObject *filep,
+sword OCIFileSeek ( void  *hndl, OCIError *err, OCIFileObject *filep,
                      uword origin, ubig_ora offset, sb1 dir );
 
-sword OCIFileTerm ( dvoid *hndl, OCIError *err );
+sword OCIFileTerm ( void  *hndl, OCIError *err );
 
 
-sword OCIFileWrite ( dvoid *hndl, OCIError *err, OCIFileObject   *filep,
-                     dvoid *bufp, ub4 buflen, ub4 *byteswritten );
+sword OCIFileWrite ( void  *hndl, OCIError *err, OCIFileObject   *filep,
+                     void  *bufp, ub4 buflen, ub4 *byteswritten );
 
 
 #ifdef ORAXB8_DEFINED
 
-sword   OCILobCopy2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *dst_locp,
-                     OCILobLocator *src_locp, oraub8 amount, oraub8 dst_offset, 
+sword   OCILobCopy2 (OCISvcCtx *svchp, OCIError *errhp,
+                     OCILobLocator *dst_locp,
+                     OCILobLocator *src_locp, oraub8 amount,
+                     oraub8 dst_offset, 
                      oraub8 src_offset);
 
 sword   OCILobErase2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
@@ -6816,14 +7499,14 @@ sword   OCILobLoadFromFile2 (OCISvcCtx *svchp, OCIError *errhp,
 
 sword   OCILobRead2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
                      oraub8 *byte_amtp, oraub8 *char_amtp, oraub8 offset,
-                     dvoid *bufp, oraub8 bufl, ub1 piece, dvoid *ctxp,
+                     void  *bufp, oraub8 bufl, ub1 piece, void  *ctxp,
                      OCICallbackLobRead2 cbfp, ub2 csid, ub1 csfrm);
 
 sword   OCILobArrayRead (OCISvcCtx *svchp, OCIError *errhp, ub4 *array_iter,
                          OCILobLocator **lobp_arr, oraub8 *byte_amt_arr,
                          oraub8 *char_amt_arr, oraub8 *offset_arr,
-                         dvoid **bufp_arr, oraub8 *bufl_arr, ub1 piece,
-                         dvoid *ctxp, OCICallbackLobArrayRead cbfp, ub2 csid,
+                         void  **bufp_arr, oraub8 *bufl_arr, ub1 piece,
+                         void  *ctxp, OCICallbackLobArrayRead cbfp, ub2 csid,
                          ub1 csfrm);
 
 sword   OCILobTrim2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
@@ -6831,23 +7514,44 @@ sword   OCILobTrim2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
 
 sword   OCILobWrite2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *locp,
                       oraub8 *byte_amtp, oraub8 *char_amtp, oraub8 offset,
-                      dvoid *bufp, oraub8 buflen, ub1 piece, dvoid *ctxp, 
+                      void  *bufp, oraub8 buflen, ub1 piece, void  *ctxp, 
                       OCICallbackLobWrite2 cbfp, ub2 csid, ub1 csfrm);
 
 sword   OCILobArrayWrite (OCISvcCtx *svchp, OCIError *errhp, ub4 *array_iter,
                           OCILobLocator **lobp_arr, oraub8 *byte_amt_arr,
                           oraub8 *char_amt_arr, oraub8 *offset_arr,
-                          dvoid **bufp_arr, oraub8 *bufl_arr, ub1 piece,
-                          dvoid *ctxp, OCICallbackLobArrayWrite cbfp, ub2 csid,
+                          void  **bufp_arr, oraub8 *bufl_arr, ub1 piece,
+                          void  *ctxp, OCICallbackLobArrayWrite cbfp, ub2 csid,
                           ub1 csfrm);
 
-sword OCILobWriteAppend2 (OCISvcCtx *svchp, OCIError *errhp, OCILobLocator *lobp,
-                          oraub8 *byte_amtp, oraub8 *char_amtp, dvoid *bufp,
-                          oraub8 bufl, ub1 piece, dvoid *ctxp,
+sword OCILobWriteAppend2 (OCISvcCtx *svchp, OCIError *errhp,
+                          OCILobLocator *lobp,
+                          oraub8 *byte_amtp, oraub8 *char_amtp, void  *bufp,
+                          oraub8 bufl, ub1 piece, void  *ctxp,
                           OCICallbackLobWrite2 cbfp, ub2 csid, ub1 csfrm);
 
 sword OCILobGetStorageLimit (OCISvcCtx *svchp, OCIError *errhp,
                              OCILobLocator *lobp, oraub8 *limitp);
+
+sword OCILobGetOptions (OCISvcCtx *svchp, OCIError *errhp,
+                        OCILobLocator *lobp,
+                        ub4 optypes, void *optionsp, ub4 *optionslenp,
+                        ub4 mode);
+
+sword OCILobSetOptions (OCISvcCtx *svchp, OCIError *errhp,
+                        OCILobLocator *lobp,
+                        ub4 optypes, void *optionsp, ub4 optionslen,
+                        ub4 mode);
+
+sword OCILobGetContentType (OCISvcCtx *svchp, 
+                            OCIError *errhp, OCILobLocator *lobp,
+                            oratext *contenttypep, ub4 *contenttypelenp,
+                            ub4 mode);
+
+sword OCILobSetContentType (OCISvcCtx *svchp,
+                            OCIError *errhp, OCILobLocator *lobp,
+                            const oratext *contenttypep, ub4 contenttypelen,
+                            ub4 mode);
 
 #endif
 
@@ -7145,25 +7849,30 @@ sword OCISecurityGetIdentity(OCISecurity   *osshandle,
 
 sword OCIAQEnq(OCISvcCtx *svchp, OCIError *errhp, OraText *queue_name,
                  OCIAQEnqOptions *enqopt, OCIAQMsgProperties *msgprop,
-                 OCIType *payload_tdo, dvoid **payload, dvoid **payload_ind, 
+                 OCIType *payload_tdo, void  **payload, void  **payload_ind, 
                  OCIRaw **msgid, ub4 flags); 
 
 sword OCIAQDeq(OCISvcCtx *svchp, OCIError *errhp, OraText *queue_name,
                  OCIAQDeqOptions *deqopt, OCIAQMsgProperties *msgprop,
-                 OCIType *payload_tdo, dvoid **payload, dvoid **payload_ind, 
+                 OCIType *payload_tdo, void  **payload, void  **payload_ind, 
                  OCIRaw **msgid, ub4 flags); 
 
 sword OCIAQEnqArray(OCISvcCtx *svchp, OCIError *errhp, OraText *queue_name,
                     OCIAQEnqOptions *enqopt, ub4 *iters,
                     OCIAQMsgProperties **msgprop, OCIType *payload_tdo,
-                    dvoid **payload, dvoid **payload_ind, OCIRaw **msgid,
-                    dvoid *ctxp, OCICallbackAQEnq enqcbfp, ub4 flags);
+                    void  **payload, void  **payload_ind, OCIRaw **msgid,
+                    void  *ctxp, OCICallbackAQEnq enqcbfp, ub4 flags);
+
+sword OCIAQEnqStreaming(OCISvcCtx *svchp, OCIError *errhp, OraText *queue_name,
+                        OCIAQEnqOptions *enqopt, OCIType *payload_tdo,
+                        void  *ctxp, OCICallbackAQEnqStreaming enqcbfp,
+                        ub4 flags);
 
 sword OCIAQDeqArray(OCISvcCtx *svchp, OCIError *errhp, OraText *queue_name,
                     OCIAQDeqOptions *deqopt, ub4 *iters,
                     OCIAQMsgProperties **msgprop, OCIType *payload_tdo,
-                    dvoid **payload, dvoid **payload_ind, OCIRaw **msgid,
-                    dvoid *ctxp, OCICallbackAQDeq deqcbfp, ub4 flags);
+                    void  **payload, void  **payload_ind, OCIRaw **msgid,
+                    void  *ctxp, OCICallbackAQDeq deqcbfp, ub4 flags);
 
 sword OCIAQListen(OCISvcCtx *svchp, OCIError *errhp, 
                       OCIAQAgent **agent_list, ub4 num_agents,
@@ -7175,63 +7884,72 @@ sword OCIAQListen2(OCISvcCtx *svchp, OCIError *errhp,
                    OCIAQListenOpts  *lopts, OCIAQAgent **agent, 
                    OCIAQLisMsgProps *lmops, ub4 flags);
 
-sword OCIExtractInit(dvoid *hndl, OCIError *err);
+sword OCIAQGetReplayInfo(OCISvcCtx *svchp, OCIError *errhp,
+                         OraText *queue_name, OCIAQAgent *sender,
+                         ub4 replay_attribute, OraText *correlation,
+                         ub2 *corr_len);
 
-sword OCIExtractTerm(dvoid *hndl, OCIError *err);
+sword OCIAQResetReplayInfo(OCISvcCtx *svchp, OCIError *errhp,
+                           OraText *queue_name, OCIAQAgent *sender,
+                           ub4 replay_attribute); 
 
-sword OCIExtractReset(dvoid *hndl, OCIError *err);
+sword OCIExtractInit(void  *hndl, OCIError *err);
 
-sword OCIExtractSetNumKeys(dvoid *hndl, OCIError *err, uword numkeys);
+sword OCIExtractTerm(void  *hndl, OCIError *err);
 
-sword OCIExtractSetKey(dvoid *hndl, OCIError *err, CONST OraText *name, 
-                       ub1 type, ub4 flag, CONST dvoid *defval, 
-                       CONST sb4 *intrange, CONST OraText *CONST *strlist);
+sword OCIExtractReset(void  *hndl, OCIError *err);
 
-sword OCIExtractFromFile(dvoid *hndl, OCIError *err, ub4 flag, 
+sword OCIExtractSetNumKeys(void  *hndl, OCIError *err, uword numkeys);
+
+sword OCIExtractSetKey(void  *hndl, OCIError *err, const OraText *name, 
+                       ub1 type, ub4 flag, const void  *defval, 
+                       const sb4 *intrange, const OraText *const *strlist);
+
+sword OCIExtractFromFile(void  *hndl, OCIError *err, ub4 flag, 
                          OraText *filename);
 
-sword OCIExtractFromStr(dvoid *hndl, OCIError *err, ub4 flag, OraText *input);
+sword OCIExtractFromStr(void  *hndl, OCIError *err, ub4 flag, OraText *input);
 
-sword OCIExtractToInt(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToInt(void  *hndl, OCIError *err, OraText *keyname, 
                       uword valno, sb4 *retval);
 
-sword OCIExtractToBool(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToBool(void  *hndl, OCIError *err, OraText *keyname, 
                        uword valno, ub1 *retval);
 
-sword OCIExtractToStr(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToStr(void  *hndl, OCIError *err, OraText *keyname, 
                       uword valno, OraText *retval, uword buflen);
 
-sword OCIExtractToOCINum(dvoid *hndl, OCIError *err, OraText *keyname, 
+sword OCIExtractToOCINum(void  *hndl, OCIError *err, OraText *keyname, 
                          uword valno, OCINumber *retval);
 
-sword OCIExtractToList(dvoid *hndl, OCIError *err, uword *numkeys);
+sword OCIExtractToList(void  *hndl, OCIError *err, uword *numkeys);
 
-sword OCIExtractFromList(dvoid *hndl, OCIError *err, uword index, 
+sword OCIExtractFromList(void  *hndl, OCIError *err, uword index, 
                          OraText **name, 
-                         ub1 *type, uword *numvals, dvoid ***values);
+                         ub1 *type, uword *numvals, void  ***values);
 
 /* Memory Related Service Interfaces */
 
-sword OCIMemoryAlloc(dvoid *hdl, OCIError *err, dvoid **mem,
+sword OCIMemoryAlloc(void  *hdl, OCIError *err, void  **mem,
         OCIDuration dur, ub4 size, ub4 flags);
 
-sword OCIMemoryResize(dvoid *hdl, OCIError *err, dvoid **mem,
+sword OCIMemoryResize(void  *hdl, OCIError *err, void  **mem,
                         ub4 newsize, ub4 flags);
                         
-sword OCIMemoryFree(dvoid *hdl, OCIError *err, dvoid *mem);
+sword OCIMemoryFree(void  *hdl, OCIError *err, void  *mem);
 
-sword OCIContextSetValue(dvoid *hdl, OCIError *err, OCIDuration duration,
-                        ub1 *key, ub1 keylen, dvoid *ctx_value);
+sword OCIContextSetValue(void  *hdl, OCIError *err, OCIDuration duration,
+                        ub1 *key, ub1 keylen, void  *ctx_value);
 
-sword OCIContextGetValue(dvoid *hdl, OCIError *err, ub1 *key,
-                        ub1 keylen, dvoid **ctx_value);
+sword OCIContextGetValue(void  *hdl, OCIError *err, ub1 *key,
+                        ub1 keylen, void  **ctx_value);
 
-sword OCIContextClearValue(dvoid *hdl, OCIError *err, ub1 *key, 
+sword OCIContextClearValue(void  *hdl, OCIError *err, ub1 *key, 
                         ub1 keylen);
 
-sword OCIContextGenerateKey(dvoid *hdl, OCIError *err, ub4 *key);
+sword OCIContextGenerateKey(void  *hdl, OCIError *err, ub4 *key);
 
-sword OCIMemorySetCurrentIDs(dvoid *hdl, OCIError *err, 
+sword OCIMemorySetCurrentIDs(void  *hdl, OCIError *err, 
                              ub4 curr_session_id, ub4 curr_trans_id, 
                              ub4 curr_stmt_id);
 
@@ -7272,7 +7990,7 @@ sword OCIPicklerTdsGenerate(OCIEnv *env, OCIError *err,
                                 OCIPicklerTds *tdsh);
 
 sword OCIPicklerTdsGetAttr(OCIEnv *env, OCIError *err, 
-                                CONST OCIPicklerTds *tdsh, ub1  attrno,
+                                const OCIPicklerTds *tdsh, ub1  attrno,
                                 OCITypeCode *typ, ub2  *len);
 
 sword OCIPicklerFdoInit(OCIEnv *env, OCIError *err, 
@@ -7291,7 +8009,7 @@ sword OCIPicklerImageFree(OCIEnv *env, OCIError *err,
  
 sword OCIPicklerImageAddScalar(OCIEnv *env, OCIError *err,  
                                OCIPicklerImage *imgh, 
-                               dvoid *scalar, ub4  len);
+                               void  *scalar, ub4  len);
  
 sword OCIPicklerImageAddNullScalar(OCIEnv *env, OCIError *err, 
                                 OCIPicklerImage *imgh);
@@ -7305,13 +8023,13 @@ sword OCIPicklerImageGetScalarSize(OCIEnv *env, OCIError *err,
  
 sword OCIPicklerImageGetScalar(OCIEnv *env, OCIError *err, 
                                 OCIPicklerImage *imgh, ub4  attrno, 
-                                dvoid *buf, ub4  *len, OCIInd *ind);
+                                void  *buf, ub4  *len, OCIInd *ind);
 
 sword OCIPicklerImageCollBegin(OCIEnv *env, OCIError *err,
-                OCIPicklerImage *imgh, CONST OCIPicklerTds *colltdsh);
+                OCIPicklerImage *imgh, const OCIPicklerTds *colltdsh);
  
 sword OCIPicklerImageCollAddScalar( OCIEnv *env, OCIError *err,
-                OCIPicklerImage *imgh, dvoid *scalar,
+                OCIPicklerImage *imgh, void  *scalar,
                 ub4 buflen, OCIInd ind);
  
 sword OCIPicklerImageCollEnd(OCIEnv *env, OCIError *err,
@@ -7319,14 +8037,14 @@ sword OCIPicklerImageCollEnd(OCIEnv *env, OCIError *err,
  
 /* should take svcctx for locator stuff */
 sword OCIPicklerImageCollBeginScan(OCIEnv *env, OCIError *err,
-                OCIPicklerImage *imgh, CONST OCIPicklerTds *coll_tdsh,
+                OCIPicklerImage *imgh, const OCIPicklerTds *coll_tdsh,
                 ub4 attrnum, ub4 startidx, OCIInd *ind);
  
 sword OCIPicklerImageCollGetScalarSize(OCIEnv *env, OCIError *err,
-                CONST OCIPicklerTds *coll_tdsh, ub4 *size);
+                const OCIPicklerTds *coll_tdsh, ub4 *size);
  
 sword OCIPicklerImageCollGetScalar(OCIEnv *env, OCIError *err,
-                                   OCIPicklerImage *imgh, dvoid *buf,
+                                   OCIPicklerImage *imgh, void  *buf,
                                    ub4 *buflen, OCIInd *ind);
 
 sword OCIAnyDataGetType(OCISvcCtx *svchp, OCIError *errhp, OCIAnyData *sdata,
@@ -7336,7 +8054,7 @@ sword OCIAnyDataIsNull(OCISvcCtx *svchp, OCIError *errhp, OCIAnyData *sdata,
         boolean *isnull);
 
 sword OCIAnyDataConvert(OCISvcCtx *svchp, OCIError *errhp, OCITypeCode tc,
-        OCIType *type, OCIDuration dur, dvoid *ind, dvoid *data_val,
+        OCIType *type, OCIDuration dur, void  *ind, void  *data_val,
         ub4 len, OCIAnyData **sdata);
 
 sword OCIAnyDataBeginCreate(OCISvcCtx *svchp, OCIError *errhp, OCITypeCode tc,
@@ -7345,30 +8063,30 @@ sword OCIAnyDataBeginCreate(OCISvcCtx *svchp, OCIError *errhp, OCITypeCode tc,
 sword OCIAnyDataDestroy(OCISvcCtx *svchp, OCIError *errhp, OCIAnyData *sdata);
 
 sword OCIAnyDataAttrSet(OCISvcCtx *svchp, OCIError *errhp, OCIAnyData *sdata,
-        OCITypeCode tc, OCIType *type, dvoid *ind, dvoid *attr_val,
+        OCITypeCode tc, OCIType *type, void  *ind, void  *attr_val,
         ub4 length, boolean is_any);
 
 sword OCIAnyDataCollAddElem(OCISvcCtx *svchp, OCIError *errhp,
-        OCIAnyData *sdata, OCITypeCode tc, OCIType *type, dvoid *ind,
-        dvoid *attr_val, ub4 length, boolean is_any, boolean last_elem);
+        OCIAnyData *sdata, OCITypeCode tc, OCIType *type, void  *ind,
+        void  *attr_val, ub4 length, boolean is_any, boolean last_elem);
 
 sword OCIAnyDataEndCreate(OCISvcCtx *svchp, OCIError *errhp,
                           OCIAnyData *sdata);
 
 sword OCIAnyDataAccess(OCISvcCtx *svchp, OCIError *errhp, OCIAnyData *sdata,
-        OCITypeCode tc, OCIType *type, dvoid *ind, dvoid *attr_val,
+        OCITypeCode tc, OCIType *type, void  *ind, void  *attr_val,
         ub4 *length);
 
 sword OCIAnyDataGetCurrAttrNum(OCISvcCtx *svchp, OCIError *errhp, 
                                OCIAnyData *sdata, ub4 *attrnum);
 
 sword OCIAnyDataAttrGet(OCISvcCtx *svchp, OCIError *errhp, OCIAnyData *sdata,
-  OCITypeCode tc, OCIType *type, dvoid *ind, dvoid *attr_val,
+  OCITypeCode tc, OCIType *type, void  *ind, void  *attr_val,
         ub4 *length, boolean is_any);
 
 sword OCIAnyDataCollGetElem(OCISvcCtx *svchp, OCIError *errhp,
   OCIAnyData *sdata,
-  OCITypeCode tc, OCIType *type, dvoid *ind, dvoid *celem_val,
+  OCITypeCode tc, OCIType *type, void  *ind, void  *celem_val,
   ub4 *length, boolean is_any);
 
 
@@ -7404,7 +8122,7 @@ sword OCIAnyDataCollGetElem(OCISvcCtx *svchp, OCIError *errhp,
 
 */
 sword OCIAnyDataSetBeginCreate(OCISvcCtx *svchp, OCIError *errhp,
-     OCITypeCode typecode, CONST OCIType *type, OCIDuration dur,
+     OCITypeCode typecode, const OCIType *type, OCIDuration dur,
      OCIAnyDataSet ** data_set);
 
 /*
@@ -7554,13 +8272,13 @@ sword OCIAnyDataSetGetInstance(OCISvcCtx *svchp, OCIError *errhp,
 
 /*--------------------- End of OCIAnyDataSet interfaces ---------------------*/
 
-sword OCIFormatInit(dvoid *hndl, OCIError *err);
+sword OCIFormatInit(void  *hndl, OCIError *err);
 
-sword OCIFormatString(dvoid *hndl, OCIError *err, OraText *buffer,
+sword OCIFormatString(void  *hndl, OCIError *err, OraText *buffer,
                       sbig_ora bufferLength, sbig_ora *returnLength,
-                      CONST OraText *formatString, ...);
+                      const OraText *formatString, ...);
 
-sword OCIFormatTerm(dvoid *hndl, OCIError *err);
+sword OCIFormatTerm(void  *hndl, OCIError *err);
 
 sword OCIFormatTUb1(void);
 sword OCIFormatTUb2(void);
@@ -7718,7 +8436,7 @@ int xaosterr(OCISvcCtx *svch, sb4 error);
        OCI_NLS_CALENDAR : Calendar name.
        OCI_NLS_DUAL_CURRENCY : Dual currency symbol.
 */
-sword OCINlsGetInfo(dvoid *envhp, OCIError *errhp, OraText *buf,
+sword OCINlsGetInfo(void  *envhp, OCIError *errhp, OraText *buf,
                     size_t buflen, ub2 item);
 
 /* ----------------------- OCINlsNumericInfoGet -----------------------------*/
@@ -7747,7 +8465,7 @@ sword OCINlsGetInfo(dvoid *envhp, OCIError *errhp, OraText *buf,
        OCI_NLS_CHARSET_FIXEDWIDTH: Character byte size for fixed-width charset;
                                    0 for variable-width charset 
 */
-sword OCINlsNumericInfoGet(dvoid *envhp, OCIError *errhp, sb4 *val, ub2 item);
+sword OCINlsNumericInfoGet(void  *envhp, OCIError *errhp, sb4 *val, ub2 item);
 
 /* ----------------------- OCINlsCharSetNameToId ----------------------------*/
 /*
@@ -7765,7 +8483,7 @@ sword OCINlsNumericInfoGet(dvoid *envhp, OCIError *errhp, sb4 *val, ub2 item);
      Pointer to a null-terminated Oracle character set name whose id 
      will be returned.
 */
-ub2 OCINlsCharSetNameToId(dvoid *envhp, const oratext *name);
+ub2 OCINlsCharSetNameToId(void  *envhp, const oratext *name);
 
 /* ----------------------- OCINlsCharSetIdToName ----------------------------*/
 /*
@@ -7788,7 +8506,7 @@ ub2 OCINlsCharSetNameToId(dvoid *envhp, const oratext *name);
    id(IN)
      Oracle character set id.
 */
-sword OCINlsCharSetIdToName(dvoid *envhp, oratext *buf, size_t buflen, ub2 id);
+sword OCINlsCharSetIdToName(void  *envhp, oratext *buf, size_t buflen, ub2 id);
 
 /* ----------------------- OCINlsNameMap ------------------------------------*/
 /*
@@ -7825,7 +8543,7 @@ sword OCINlsCharSetIdToName(dvoid *envhp, oratext *buf, size_t buflen, ub2 id);
        OCI_NLS_TERR_ORA_TO_ISO3 : Map territory name from Oracle to 3-letter
                                   ISO abbreviation
 */
-sword OCINlsNameMap(dvoid *envhp, oratext *buf, size_t buflen,
+sword OCINlsNameMap(void  *envhp, oratext *buf, size_t buflen,
                     const oratext *srcbuf, ub4 flag);
 
 /* -------------------- OCIMultiByteToWideChar ------------------------------*/
@@ -7848,7 +8566,7 @@ sword OCINlsNameMap(dvoid *envhp, oratext *buf, size_t buflen,
      Number of characters converted including null-terminator.
      If it is a NULL pointer, no number return
 */
-sword OCIMultiByteToWideChar(dvoid *envhp, OCIWchar *dst, CONST OraText *src,
+sword OCIMultiByteToWideChar(void  *envhp, OCIWchar *dst, const OraText *src,
                              size_t *rsize);
 
 
@@ -7883,8 +8601,8 @@ sword OCIMultiByteToWideChar(dvoid *envhp, OCIWchar *dst, CONST OraText *src,
      characters for converted string is dstsz is zero.
      If it is NULL pointer, nothing to return.
 */
-sword OCIMultiByteInSizeToWideChar(dvoid *envhp, OCIWchar *dst,
-                                  size_t dstsz, CONST OraText *src, 
+sword OCIMultiByteInSizeToWideChar(void  *envhp, OCIWchar *dst,
+                                  size_t dstsz, const OraText *src, 
                                   size_t srcsz, size_t *rsize);
 
 
@@ -7908,7 +8626,7 @@ sword OCIMultiByteInSizeToWideChar(dvoid *envhp, OCIWchar *dst,
      Number of bytes written into the destination buffer.
      If it is NULL pointer, nothing to return.
 */
-sword OCIWideCharToMultiByte(dvoid *envhp, OraText *dst, CONST OCIWchar *src,
+sword OCIWideCharToMultiByte(void  *envhp, OraText *dst, const OCIWchar *src,
                              size_t *rsize);
 
 
@@ -7943,8 +8661,8 @@ sword OCIWideCharToMultiByte(dvoid *envhp, OraText *dst, CONST OCIWchar *src,
      to store the converted string if dstsz is zero.
      If it is NULL pointer, nothing to return.
 */
-sword OCIWideCharInSizeToMultiByte(dvoid *envhp, OraText *dst,
-                                    size_t dstsz, CONST OCIWchar *src,
+sword OCIWideCharInSizeToMultiByte(void  *envhp, OraText *dst,
+                                    size_t dstsz, const OCIWchar *src,
                                     size_t srcsz, size_t *rsize);
 
 
@@ -7962,7 +8680,7 @@ sword OCIWideCharInSizeToMultiByte(dvoid *envhp, OraText *dst,
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsAlnum(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsAlnum(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsAlpha -------------------------------*/
@@ -7978,7 +8696,7 @@ boolean OCIWideCharIsAlnum(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsAlpha(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsAlpha(void  *envhp, OCIWchar wc);
 
 
 /* --------------------- OCIWideCharIsCntrl ---------------------------------*/
@@ -7994,7 +8712,7 @@ boolean OCIWideCharIsAlpha(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsCntrl(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsCntrl(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsDigit -------------------------------*/
@@ -8010,7 +8728,7 @@ boolean OCIWideCharIsCntrl(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsDigit(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsDigit(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsGraph -------------------------------*/
@@ -8028,7 +8746,7 @@ boolean OCIWideCharIsDigit(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsGraph(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsGraph(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsLower -------------------------------*/
@@ -8044,7 +8762,7 @@ boolean OCIWideCharIsGraph(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsLower(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsLower(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsPrint -------------------------------*/
@@ -8060,7 +8778,7 @@ boolean OCIWideCharIsLower(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsPrint(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsPrint(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsPunct -------------------------------*/
@@ -8076,7 +8794,7 @@ boolean OCIWideCharIsPrint(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsPunct(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsPunct(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsSpace -------------------------------*/
@@ -8094,7 +8812,7 @@ boolean OCIWideCharIsPunct(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsSpace(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsSpace(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharIsUpper -------------------------------*/
@@ -8110,7 +8828,7 @@ boolean OCIWideCharIsSpace(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsUpper(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsUpper(void  *envhp, OCIWchar wc);
 
 
 /*----------------------- OCIWideCharIsXdigit -------------------------------*/
@@ -8126,7 +8844,7 @@ boolean OCIWideCharIsUpper(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsXdigit(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsXdigit(void  *envhp, OCIWchar wc);
 
 
 /* --------------------- OCIWideCharIsSingleByte ----------------------------*/
@@ -8143,7 +8861,7 @@ boolean OCIWideCharIsXdigit(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for testing.
 */
-boolean OCIWideCharIsSingleByte(dvoid *envhp, OCIWchar wc);
+boolean OCIWideCharIsSingleByte(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharToLower -------------------------------*/
@@ -8160,7 +8878,7 @@ boolean OCIWideCharIsSingleByte(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for lowercase mapping.
 */
-OCIWchar OCIWideCharToLower(dvoid *envhp, OCIWchar wc);
+OCIWchar OCIWideCharToLower(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharToUpper -------------------------------*/
@@ -8177,7 +8895,7 @@ OCIWchar OCIWideCharToLower(dvoid *envhp, OCIWchar wc);
    wc(IN)
      Wchar for uppercase mapping.
 */
-OCIWchar OCIWideCharToUpper(dvoid *envhp, OCIWchar wc);
+OCIWchar OCIWideCharToUpper(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIWideCharStrcmp --------------------------------*/
@@ -8205,8 +8923,8 @@ OCIWchar OCIWideCharToUpper(dvoid *envhp, OCIWchar wc);
      This flag can be ORed with OCI_NLS_CASE_INSENSITIVE for case-insensitive
      comparison.
 */
-int OCIWideCharStrcmp(dvoid *envhp, CONST OCIWchar *wstr1, 
-                CONST OCIWchar *wstr2, int flag);
+int OCIWideCharStrcmp(void  *envhp, const OCIWchar *wstr1, 
+                const OCIWchar *wstr2, int flag);
 
 
 /* ----------------------- OCIWideCharStrncmp -------------------------------*/
@@ -8239,8 +8957,8 @@ int OCIWideCharStrcmp(dvoid *envhp, CONST OCIWchar *wstr1,
      This flag can be ORed with OCI_NLS_CASE_INSENSITIVE for case-insensitive 
      comparison.
 */
-int OCIWideCharStrncmp(dvoid *envhp, CONST OCIWchar *wstr1, size_t len1,
-                 CONST OCIWchar *wstr2, size_t len2, int flag);
+int OCIWideCharStrncmp(void  *envhp, const OCIWchar *wstr1, size_t len1,
+                 const OCIWchar *wstr2, size_t len2, int flag);
 
 
 /* ----------------------- OCIWideCharStrcat --------------------------------*/
@@ -8262,8 +8980,8 @@ int OCIWideCharStrncmp(dvoid *envhp, CONST OCIWchar *wstr1, size_t len1,
    wsrcstr(IN)
      Pointer to the source wchar string to append.
 */
-size_t OCIWideCharStrcat(dvoid *envhp, OCIWchar *wdststr,
-                         CONST OCIWchar *wsrcstr);
+size_t OCIWideCharStrcat(void  *envhp, OCIWchar *wdststr,
+                         const OCIWchar *wsrcstr);
 
 
 /* ----------------------- OCIWideCharStrchr --------------------------------*/
@@ -8283,7 +9001,7 @@ size_t OCIWideCharStrcat(dvoid *envhp, OCIWchar *wdststr,
    wc(IN)
      Wchar to search for.
 */
-OCIWchar *OCIWideCharStrchr(dvoid *envhp, CONST OCIWchar *wstr,
+OCIWchar *OCIWideCharStrchr(void  *envhp, const OCIWchar *wstr,
                             OCIWchar wc);
 
 
@@ -8304,8 +9022,8 @@ OCIWchar *OCIWideCharStrchr(dvoid *envhp, CONST OCIWchar *wstr,
    wsrcstr(IN)
      Pointer to the source wchar string.
 */
-size_t OCIWideCharStrcpy(dvoid *envhp, OCIWchar *wdststr,
-                         CONST OCIWchar *wsrcstr);
+size_t OCIWideCharStrcpy(void  *envhp, OCIWchar *wdststr,
+                         const OCIWchar *wsrcstr);
 
 
 /* ----------------------- OCIWideCharStrlen --------------------------------*/
@@ -8323,7 +9041,7 @@ size_t OCIWideCharStrcpy(dvoid *envhp, OCIWchar *wdststr,
    wstr(IN)
      Pointer to the source wchar string.
 */
-size_t OCIWideCharStrlen(dvoid *envhp, CONST OCIWchar *wstr);
+size_t OCIWideCharStrlen(void  *envhp, const OCIWchar *wstr);
 
 
 /* ----------------------- OCIWideCharStrncat -------------------------------*/
@@ -8347,8 +9065,8 @@ size_t OCIWideCharStrlen(dvoid *envhp, CONST OCIWchar *wstr);
    n(IN)
      Number of characters from wsrcstr to append.
 */
-size_t OCIWideCharStrncat(dvoid *envhp, OCIWchar *wdststr,
-                          CONST OCIWchar *wsrcstr, size_t n);
+size_t OCIWideCharStrncat(void  *envhp, OCIWchar *wdststr,
+                          const OCIWchar *wsrcstr, size_t n);
 
 
 /* ----------------------- OCIWideCharStrncpy -------------------------------*/
@@ -8371,8 +9089,8 @@ size_t OCIWideCharStrncat(dvoid *envhp, OCIWchar *wdststr,
    n(IN)
      Number of characters from wsrcstr to copy.
 */
-size_t OCIWideCharStrncpy(dvoid *envhp, OCIWchar *wdststr,
-                          CONST OCIWchar *wsrcstr, size_t n);
+size_t OCIWideCharStrncpy(void  *envhp, OCIWchar *wdststr,
+                          const OCIWchar *wsrcstr, size_t n);
 
 
 /* ----------------------- OCIWideCharStrrchr -------------------------------*/
@@ -8392,7 +9110,7 @@ size_t OCIWideCharStrncpy(dvoid *envhp, OCIWchar *wdststr,
    wc(IN)
      Wchar to search for.
 */
-OCIWchar *OCIWideCharStrrchr(dvoid *envhp, CONST OCIWchar *wstr,
+OCIWchar *OCIWideCharStrrchr(void  *envhp, const OCIWchar *wstr,
                              OCIWchar wc);
 
 
@@ -8420,8 +9138,8 @@ OCIWchar *OCIWideCharStrrchr(dvoid *envhp, CONST OCIWchar *wstr,
      This flag can be ORed with OCI_NLS_LINGUISTIC to specify that the
      linguistic setting in the locale will be used for case conversion.
 */
-size_t OCIWideCharStrCaseConversion(dvoid *envhp, OCIWchar *wdststr,
-                                    CONST OCIWchar *wsrcstr, ub4 flag);
+size_t OCIWideCharStrCaseConversion(void  *envhp, OCIWchar *wdststr,
+                                    const OCIWchar *wsrcstr, ub4 flag);
 
 
 /*---------------------- OCIWideCharDisplayLength ---------------------------*/
@@ -8439,7 +9157,7 @@ size_t OCIWideCharStrCaseConversion(dvoid *envhp, OCIWchar *wdststr,
    wc(IN)
      Wchar character.
 */
-size_t OCIWideCharDisplayLength(dvoid *envhp, OCIWchar wc );
+size_t OCIWideCharDisplayLength(void  *envhp, OCIWchar wc );
 
 
 /*---------------------- OCIWideCharMultiByteLength -------------------------*/
@@ -8456,7 +9174,7 @@ size_t OCIWideCharDisplayLength(dvoid *envhp, OCIWchar wc );
    wc(IN)
      Wchar character.
 */
-size_t OCIWideCharMultiByteLength(dvoid *envhp, OCIWchar wc);
+size_t OCIWideCharMultiByteLength(void  *envhp, OCIWchar wc);
 
 
 /* ----------------------- OCIMultiByteStrcmp -------------------------------*/
@@ -8484,8 +9202,8 @@ size_t OCIWideCharMultiByteLength(dvoid *envhp, OCIWchar wc);
      This flag can be ORed with OCI_NLS_CASE_INSENSITIVE for case-insensitive 
      comparison.
 */
-int OCIMultiByteStrcmp(dvoid *envhp, CONST OraText *str1,
-                       CONST OraText *str2, int flag);
+int OCIMultiByteStrcmp(void  *envhp, const OraText *str1,
+                       const OraText *str2, int flag);
 
 
 /*----------------------- OCIMultiByteStrncmp -------------------------------*/
@@ -8518,7 +9236,7 @@ int OCIMultiByteStrcmp(dvoid *envhp, CONST OraText *str1,
      This flag can be ORed with OCI_NLS_CASE_INSENSITIVE for case-insensitive 
      comparison.
 */
-int OCIMultiByteStrncmp(dvoid *envhp, CONST OraText *str1, size_t len1,
+int OCIMultiByteStrncmp(void  *envhp, const OraText *str1, size_t len1,
                         OraText *str2, size_t len2, int flag);
 
 
@@ -8541,8 +9259,8 @@ int OCIMultiByteStrncmp(dvoid *envhp, CONST OraText *str1, size_t len1,
    srcstr(IN)
      Pointer to the source string to append.
 */
-size_t OCIMultiByteStrcat(dvoid *envhp, OraText *dststr,
-                          CONST OraText *srcstr);
+size_t OCIMultiByteStrcat(void  *envhp, OraText *dststr,
+                          const OraText *srcstr);
 
 
 /*------------------------- OCIMultiByteStrcpy ------------------------------*/
@@ -8563,8 +9281,8 @@ size_t OCIMultiByteStrcat(dvoid *envhp, OraText *dststr,
    dststr(IN)
      Pointer to the source multi-byte string.
 */
-size_t OCIMultiByteStrcpy(dvoid *envhp, OraText *dststr,
-                          CONST OraText *srcstr);
+size_t OCIMultiByteStrcpy(void  *envhp, OraText *dststr,
+                          const OraText *srcstr);
 
 
 /*----------------------- OCIMultiByteStrlen --------------------------------*/
@@ -8580,7 +9298,7 @@ size_t OCIMultiByteStrcpy(dvoid *envhp, OraText *dststr,
    str(IN)
      Pointer to the source multi-byte string.
 */
-size_t OCIMultiByteStrlen(dvoid *envhp, CONST OraText *str);
+size_t OCIMultiByteStrlen(void  *envhp, const OraText *str);
 
 
 /*----------------------- OCIMultiByteStrncat -------------------------------*/
@@ -8604,8 +9322,8 @@ size_t OCIMultiByteStrlen(dvoid *envhp, CONST OraText *str);
    n(IN)
      Number of bytes from srcstr to append.
 */
-size_t OCIMultiByteStrncat(dvoid *envhp, OraText *dststr,
-                           CONST OraText *srcstr, size_t n);
+size_t OCIMultiByteStrncat(void  *envhp, OraText *dststr,
+                           const OraText *srcstr, size_t n);
 
 
 /*----------------------- OCIMultiByteStrncpy -------------------------------*/
@@ -8629,8 +9347,8 @@ size_t OCIMultiByteStrncat(dvoid *envhp, OraText *dststr,
    n(IN)
      Number of bytes from srcstr to copy.
 */
-size_t OCIMultiByteStrncpy(dvoid *envhp, OraText *dststr,
-                           CONST OraText *srcstr, size_t n);
+size_t OCIMultiByteStrncpy(void  *envhp, OraText *dststr,
+                           const OraText *srcstr, size_t n);
 
 
 /*----------------------- OCIMultiByteStrnDisplayLength ---------------------*/
@@ -8650,7 +9368,7 @@ size_t OCIMultiByteStrncpy(dvoid *envhp, OraText *dststr,
    n(IN)
      Number of bytes to examine.
 */
-size_t OCIMultiByteStrnDisplayLength(dvoid *envhp, CONST OraText *str1,
+size_t OCIMultiByteStrnDisplayLength(void  *envhp, const OraText *str1,
                                      size_t n);
 
 
@@ -8677,8 +9395,8 @@ size_t OCIMultiByteStrnDisplayLength(dvoid *envhp, CONST OraText *str1,
      This flag can be ORed with OCI_NLS_LINGUISTIC to specify that the 
      linguistic setting in the locale will be used for case conversion.
 */
-size_t OCIMultiByteStrCaseConversion(dvoid *envhp, OraText *dststr,
-                                     CONST OraText *srcstr, ub4 flag);
+size_t OCIMultiByteStrCaseConversion(void  *envhp, OraText *dststr,
+                                     const OraText *srcstr, ub4 flag);
 
 
 /*------------------------- OCICharSetToUnicode -----------------------------*/
@@ -8708,8 +9426,8 @@ size_t OCIMultiByteStrCaseConversion(dvoid *envhp, OraText *dststr,
      Number of characters converted.
      If it is a NULL pointer, nothing to return.
 */
-sword OCICharSetToUnicode(dvoid *envhp, ub2 *dst, size_t dstlen,
-                          CONST OraText *src, size_t  srclen, size_t *rsize);
+sword OCICharSetToUnicode(void  *envhp, ub2 *dst, size_t dstlen,
+                          const OraText *src, size_t  srclen, size_t *rsize);
 
 
 /*------------------------- OCIUnicodeToCharSet -----------------------------*/
@@ -8742,8 +9460,8 @@ sword OCICharSetToUnicode(dvoid *envhp, ub2 *dst, size_t dstlen,
      Number of bytes converted.
      If it is a NULL pointer, nothing to return.
 */
-sword OCIUnicodeToCharSet(dvoid *envhp, OraText *dst, size_t dstlen, 
-                           CONST ub2 *src, size_t srclen, size_t *rsize);
+sword OCIUnicodeToCharSet(void  *envhp, OraText *dst, size_t dstlen, 
+                           const ub2 *src, size_t srclen, size_t *rsize);
 
 /*----------------------- OCINlsCharSetConvert ------------------------------*/
 /*
@@ -8788,9 +9506,9 @@ sword OCIUnicodeToCharSet(dvoid *envhp, OraText *dst, size_t dstlen,
      The number of characters converted. If it is a NULL pointer, nothing to
      return.
 */
-sword OCINlsCharSetConvert(dvoid *envhp, OCIError *errhp, 
-                        ub2 dstid, dvoid *dstp, size_t dstlen,
-                        ub2 srcid, CONST dvoid *srcp, size_t srclen,
+sword OCINlsCharSetConvert(void  *envhp, OCIError *errhp, 
+                        ub2 dstid, void  *dstp, size_t dstlen,
+                        ub2 srcid, const void  *srcp, size_t srclen,
                         size_t *rsize);
 
 
@@ -8810,7 +9528,7 @@ sword OCINlsCharSetConvert(dvoid *envhp, OCIError *errhp,
      OCI environment handle. This should be the first handle passed to 
      OCICharsetUcs2ToMb().
 */
-boolean OCICharSetConversionIsReplacementUsed(dvoid *envhp);
+boolean OCICharSetConversionIsReplacementUsed(void  *envhp);
 
 /*------------------- OCINlsEnvironmentVariableGet -----------------*/
 /*
@@ -8848,7 +9566,7 @@ boolean OCICharSetConversionIsReplacementUsed(dvoid *envhp);
      the default character set id is returned.
      For future extension, the buffer is capable for storing other data types.
 */
-sword OCINlsEnvironmentVariableGet(dvoid  *valp, size_t size, ub2 item,
+sword OCINlsEnvironmentVariableGet(void   *valp, size_t size, ub2 item,
                                    ub2 charset, size_t *rsize);
 
 
@@ -8895,8 +9613,8 @@ sword OCINlsEnvironmentVariableGet(dvoid  *valp, size_t size, ub2 item,
      For the detail description, please refer to Memory Related Service
      Interfaces section.
 */
-sword OCIMessageOpen(dvoid *envhp, OCIError *errhp, OCIMsg **msghp,
-                      CONST OraText *product, CONST OraText *facility, 
+sword OCIMessageOpen(void  *envhp, OCIError *errhp, OCIMsg **msghp,
+                      const OraText *product, const OraText *facility, 
                       OCIDuration dur);
  
 
@@ -8947,7 +9665,7 @@ OraText *OCIMessageGet(OCIMsg *msgh, ub4 msgno, OraText *msgbuf,
      A pointer to a message handle which was previously opened by
      OCIMessageOpen().
 */
-sword OCIMessageClose(dvoid *envhp, OCIError *errhp, OCIMsg *msghp);
+sword OCIMessageClose(void  *envhp, OCIError *errhp, OCIMsg *msghp);
 
 /*--------------- End of Extensions to NLS cartridge service ----------------*/
 
@@ -9086,7 +9804,7 @@ and operating system specific (OSD) code.
 
     Prototype
 
-      sword OCIThreadInit(dvoid *hndl, OCIError *err);
+      sword OCIThreadInit(void *hndl, OCIError *err);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9125,7 +9843,7 @@ and operating system specific (OSD) code.
 
     Prototype
 
-      sword OCIThreadTerm(dvoid *hndl, OCIError *err);
+      sword OCIThreadTerm(void *hndl, OCIError *err);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9207,7 +9925,7 @@ used both on multithreaded and single-threaded platforms.
   set for the key.  It will not see any values set for the key by the other
   threads.
 
-  The type of the value held by a key is a 'dvoid *' generic pointer.
+  The type of the value held by a key is a 'void *' generic pointer.
 
   Keys can be created using 'OCIThreadKeyInit()'.  When a key is created, its
   value is initialized to 'NULL' for all threads.
@@ -9288,7 +10006,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadMutexInit(dvoid *hndl, OCIError *err, 
+      sword OCIThreadMutexInit(void *hndl, OCIError *err, 
                                OCIThreadMutex **mutex);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9319,7 +10037,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadMutexDestroy(dvoid *hndl, OCIError *err,
+      sword OCIThreadMutexDestroy(void *hndl, OCIError *err,
                                   OCIThreadMutex **mutex);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9353,7 +10071,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-     sword OCIThreadMutexAcquire(dvoid *hndl, OCIError *err,
+     sword OCIThreadMutexAcquire(void *hndl, OCIError *err,
                                  OCIThreadMutex *mutex);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9388,7 +10106,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadMutexRelease(dvoid *hndl, OCIError *err,
+      sword OCIThreadMutexRelease(void *hndl, OCIError *err,
                                   OCIThreadMutex *mutex);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9419,7 +10137,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadKeyInit(dvoid *hndl, OCIError *err, OCIThreadKey **key,
+      sword OCIThreadKeyInit(void *hndl, OCIError *err, OCIThreadKey **key,
                              OCIThreadKeyDestFunc destFn);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9464,7 +10182,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadKeyDestroy(dvoid *hndl, OCIError *err, 
+      sword OCIThreadKeyDestroy(void *hndl, OCIError *err, 
                                 OCIThreadKey **key);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9505,8 +10223,8 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadKeyGet(dvoid *hndl, OCIError *err, OCIThreadKey *key,
-                            dvoid **pValue);
+      sword OCIThreadKeyGet(void *hndl, OCIError *err, OCIThreadKey *key,
+                            void **pValue);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9541,8 +10259,8 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadKeySet(dvoid *hndl, OCIError *err, OCIThreadKey *key,
-                            dvoid *value);
+      sword OCIThreadKeySet(void *hndl, OCIError *err, OCIThreadKey *key,
+                            void *value);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9575,7 +10293,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdInit(dvoid *hndl, OCIError *err, OCIThreadId **tid);
+      sword OCIThreadIdInit(void *hndl, OCIError *err, OCIThreadId **tid);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9599,7 +10317,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdDestroy(dvoid *hndl, OCIError *err, OCIThreadId **tid);
+      sword OCIThreadIdDestroy(void *hndl, OCIError *err, OCIThreadId **tid);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9627,7 +10345,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdSet(dvoid *hndl, OCIError *err, 
+      sword OCIThreadIdSet(void *hndl, OCIError *err, 
                            OCIThreadId *tidDest,
                            OCIThreadId *tidSrc);
 
@@ -9660,7 +10378,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdSetNull(dvoid *hndl, OCIError *err,
+      sword OCIThreadIdSetNull(void *hndl, OCIError *err,
                                OCIThreadId *tid);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9691,7 +10409,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdGet(dvoid *hndl, OCIError *err,
+      sword OCIThreadIdGet(void *hndl, OCIError *err,
                            OCIThreadId *tid);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9728,7 +10446,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdSame(dvoid *hndl, OCIError *err,
+      sword OCIThreadIdSame(void *hndl, OCIError *err,
                             OCIThreadId *tid1, OCIThreadId *tid2,
                             boolean *result);
 
@@ -9768,7 +10486,7 @@ used both on multithreaded and single-threaded platforms.
 
     Prototype
 
-      sword OCIThreadIdNull(dvoid *hndl, OCIError *err,
+      sword OCIThreadIdNull(void *hndl, OCIError *err,
                             OCIThreadId *tid,
                             boolean *result);
 
@@ -9838,7 +10556,7 @@ environment is multi-threaded or single-threaded.
 
     Prototype
 
-      sword OCIThreadHndInit(dvoid *hndl, OCIError *err, 
+      sword OCIThreadHndInit(void *hndl, OCIError *err, 
                              OCIThreadHandle **thnd);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9863,7 +10581,7 @@ environment is multi-threaded or single-threaded.
 
     Prototype
 
-      sword OCIThreadHndDestroy(dvoid *hndl, OCIError *err, 
+      sword OCIThreadHndDestroy(void *hndl, OCIError *err, 
                                 OCIThreadHandle **thnd);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9892,8 +10610,8 @@ environment is multi-threaded or single-threaded.
 
     Prototype
 
-      sword OCIThreadCreate(dvoid *hndl, OCIError *err,
-                            void (*start)(dvoid *), dvoid *arg,
+      sword OCIThreadCreate(void *hndl, OCIError *err,
+                            void (*start)(void *), void *arg,
                             OCIThreadId *tid, OCIThreadHandle *tHnd);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -9920,7 +10638,7 @@ environment is multi-threaded or single-threaded.
       The new thread will start by executing a call to the function pointed
       to by 'start' with the argument given by 'arg'.  When that function
       returns, the new thread will terminate.  The function should not
-      return a value and should accept one parameter, a 'dvoid *'.
+      return a value and should accept one parameter, a 'void *'.
 
       The call to OCIThreadCreate() must be matched by a call to
       OCIThreadClose() if and only if tHnd is non-NULL.
@@ -9945,7 +10663,7 @@ environment is multi-threaded or single-threaded.
 
     Prototype
 
-      sword OCIThreadJoin(dvoid *hndl, OCIError *err, OCIThreadHandle *tHnd);
+      sword OCIThreadJoin(void *hndl, OCIError *err, OCIThreadHandle *tHnd);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -9976,7 +10694,7 @@ environment is multi-threaded or single-threaded.
 
    Prototype
 
-     sword OCIThreadClose(dvoid *hndl, OCIError *err, OCIThreadHandle *tHnd);
+     sword OCIThreadClose(void *hndl, OCIError *err, OCIThreadHandle *tHnd);
 
         hndl(IN/OUT): The OCI environment or session handle.
 
@@ -10008,7 +10726,7 @@ environment is multi-threaded or single-threaded.
 
     Prototype
 
-      sword OCIThreadHandleGet(dvoid *hndl, OCIError *err,
+      sword OCIThreadHandleGet(void *hndl, OCIError *err,
                                OCIThreadHandle *tHnd);
 
         hndl(IN/OUT): The OCI environment or session handle.
@@ -10076,81 +10794,81 @@ of OCIThread.
 
 void OCIThreadProcessInit();
 
-sword OCIThreadInit(dvoid *hndl, OCIError *err);
+sword OCIThreadInit(void  *hndl, OCIError *err);
 
-sword OCIThreadTerm(dvoid *hndl, OCIError *err);
+sword OCIThreadTerm(void  *hndl, OCIError *err);
 
 boolean OCIThreadIsMulti();
 
-sword OCIThreadMutexInit(dvoid *hndl, OCIError *err,  
+sword OCIThreadMutexInit(void  *hndl, OCIError *err,  
                          OCIThreadMutex **mutex); 
 
-sword OCIThreadMutexDestroy(dvoid *hndl, OCIError *err, 
+sword OCIThreadMutexDestroy(void  *hndl, OCIError *err, 
                             OCIThreadMutex **mutex);
 
-sword OCIThreadMutexAcquire(dvoid *hndl, OCIError *err,
+sword OCIThreadMutexAcquire(void  *hndl, OCIError *err,
                             OCIThreadMutex *mutex);
 
-sword OCIThreadMutexRelease(dvoid *hndl, OCIError *err,
+sword OCIThreadMutexRelease(void  *hndl, OCIError *err,
                             OCIThreadMutex *mutex);
 
-sword OCIThreadKeyInit(dvoid *hndl, OCIError *err, OCIThreadKey **key,
+sword OCIThreadKeyInit(void  *hndl, OCIError *err, OCIThreadKey **key,
                        OCIThreadKeyDestFunc destFn);
 
-sword OCIThreadKeyDestroy(dvoid *hndl, OCIError *err, 
+sword OCIThreadKeyDestroy(void  *hndl, OCIError *err, 
                           OCIThreadKey **key);
 
-sword OCIThreadKeyGet(dvoid *hndl, OCIError *err, OCIThreadKey *key,
-                      dvoid **pValue);
+sword OCIThreadKeyGet(void  *hndl, OCIError *err, OCIThreadKey *key,
+                      void  **pValue);
 
-sword OCIThreadKeySet(dvoid *hndl, OCIError *err, OCIThreadKey *key,
-                      dvoid *value);
+sword OCIThreadKeySet(void  *hndl, OCIError *err, OCIThreadKey *key,
+                      void  *value);
 
-sword OCIThreadIdInit(dvoid *hndl, OCIError *err, OCIThreadId **tid);
+sword OCIThreadIdInit(void  *hndl, OCIError *err, OCIThreadId **tid);
 
-sword OCIThreadIdDestroy(dvoid *hndl, OCIError *err, OCIThreadId **tid);
+sword OCIThreadIdDestroy(void  *hndl, OCIError *err, OCIThreadId **tid);
 
-sword OCIThreadIdSet(dvoid *hndl, OCIError *err, 
+sword OCIThreadIdSet(void  *hndl, OCIError *err, 
                      OCIThreadId *tidDest, OCIThreadId *tidSrc);
 
-sword OCIThreadIdSetNull(dvoid *hndl, OCIError *err, OCIThreadId *tid);
+sword OCIThreadIdSetNull(void  *hndl, OCIError *err, OCIThreadId *tid);
 
-sword OCIThreadIdGet(dvoid *hndl, OCIError *err, OCIThreadId *tid);
+sword OCIThreadIdGet(void  *hndl, OCIError *err, OCIThreadId *tid);
 
-sword OCIThreadIdSame(dvoid *hndl, OCIError *err,
+sword OCIThreadIdSame(void  *hndl, OCIError *err,
                       OCIThreadId *tid1, OCIThreadId *tid2,
                       boolean *result);
 
-sword OCIThreadIdNull(dvoid *hndl, OCIError *err,
+sword OCIThreadIdNull(void  *hndl, OCIError *err,
                       OCIThreadId *tid, boolean *result);
 
-sword OCIThreadHndInit(dvoid *hndl, OCIError *err, OCIThreadHandle **thnd);
+sword OCIThreadHndInit(void  *hndl, OCIError *err, OCIThreadHandle **thnd);
 
-sword OCIThreadHndDestroy(dvoid *hndl, OCIError *err, OCIThreadHandle **thnd);
+sword OCIThreadHndDestroy(void  *hndl, OCIError *err, OCIThreadHandle **thnd);
 
-sword OCIThreadCreate(dvoid *hndl, OCIError *err,
-                      void (*start)(dvoid *), dvoid *arg,
+sword OCIThreadCreate(void  *hndl, OCIError *err,
+                      void (*start)(void  *), void  *arg,
                       OCIThreadId *tid, OCIThreadHandle *tHnd);
 
-sword OCIThreadJoin(dvoid *hndl, OCIError *err, OCIThreadHandle *tHnd);
+sword OCIThreadJoin(void  *hndl, OCIError *err, OCIThreadHandle *tHnd);
 
-sword OCIThreadClose(dvoid *hndl, OCIError *err, OCIThreadHandle *tHnd);
+sword OCIThreadClose(void  *hndl, OCIError *err, OCIThreadHandle *tHnd);
 
-sword OCIThreadHandleGet(dvoid *hndl, OCIError *err, OCIThreadHandle *tHnd);
+sword OCIThreadHandleGet(void  *hndl, OCIError *err, OCIThreadHandle *tHnd);
 /*----------------- End OCI Thread interface Extensions ---------------------*/
 
 /*------------------ Begin OCI Row Callback Interfaces ----------------------*/
 
-typedef sword (*OCIBindRowCallback)(dvoid *ctx);
-typedef sword (*OCIFetchRowCallback)(dvoid *ctx);
+typedef sword (*OCIBindRowCallback)(void  *ctx);
+typedef sword (*OCIFetchRowCallback)(void  *ctx);
 
 /*------------------ Begin OCI Row Callback Interfaces ----------------------*/
 
 /*--------------- Begin OCI Client Notification Interfaces ------------------*/
 
-typedef ub4 (*OCISubscriptionNotify)(dvoid *ctx, OCISubscription *subscrhp, 
-                                     dvoid *pay, ub4 payl, 
-                                     dvoid *desc, ub4 mode);
+typedef ub4 (*OCISubscriptionNotify)(void  *ctx, OCISubscription *subscrhp, 
+                                     void  *pay, ub4 payl, 
+                                     void  *desc, ub4 mode);
 
 sword OCISubscriptionRegister(OCISvcCtx *svchp, OCISubscription **subscrhpp, 
                               ub2 count, OCIError *errhp, ub4 mode);
@@ -10172,112 +10890,112 @@ sword OCISubscriptionEnable(OCISubscription *subscrhp,
 
 /*----------------- Extensions to Datetime interfaces -----------------------*/
 /*--------------------- Actual Prototypes -----------------------------------*/
-sword OCIDateTimeGetTime(dvoid *hndl, OCIError *err, OCIDateTime *datetime, 
+sword OCIDateTimeGetTime(void  *hndl, OCIError *err, OCIDateTime *datetime, 
                          ub1 *hr, ub1 *mm, ub1 *ss, ub4 *fsec);
 
-sword OCIDateTimeGetDate(dvoid *hndl, OCIError *err,  CONST OCIDateTime *date, 
+sword OCIDateTimeGetDate(void  *hndl, OCIError *err,  const OCIDateTime *date, 
                  sb2 *yr, ub1 *mnth, ub1 *dy );
 
-sword OCIDateTimeGetTimeZoneOffset(dvoid *hndl,OCIError *err,
-                                   CONST OCIDateTime *datetime,
+sword OCIDateTimeGetTimeZoneOffset(void  *hndl,OCIError *err,
+                                   const OCIDateTime *datetime,
                                    sb1 *hr,sb1 *mm);
 
-sword OCIDateTimeConstruct(dvoid  *hndl,OCIError *err,OCIDateTime *datetime,
+sword OCIDateTimeConstruct(void   *hndl,OCIError *err,OCIDateTime *datetime,
                sb2 yr,ub1 mnth,ub1 dy,ub1 hr,ub1 mm,ub1 ss,ub4 fsec,
                OraText  *timezone,size_t timezone_length);
 
-sword OCIDateTimeSysTimeStamp(dvoid *hndl, OCIError *err, 
+sword OCIDateTimeSysTimeStamp(void  *hndl, OCIError *err, 
                               OCIDateTime *sys_date );
 
-sword OCIDateTimeAssign(dvoid *hndl, OCIError *err, CONST OCIDateTime *from, 
+sword OCIDateTimeAssign(void  *hndl, OCIError *err, const OCIDateTime *from, 
                        OCIDateTime *to);
 
-sword OCIDateTimeToText(dvoid *hndl, OCIError *err, CONST OCIDateTime *date, 
-                        CONST OraText *fmt, ub1 fmt_length, ub1 fsprec, 
-                        CONST OraText *lang_name, size_t lang_length, 
+sword OCIDateTimeToText(void  *hndl, OCIError *err, const OCIDateTime *date, 
+                        const OraText *fmt, ub1 fmt_length, ub1 fsprec, 
+                        const OraText *lang_name, size_t lang_length, 
                         ub4 *buf_size, OraText *buf );
 
-sword OCIDateTimeFromText(dvoid *hndl, OCIError *err, CONST OraText *date_str, 
-             size_t dstr_length, CONST OraText *fmt, ub1 fmt_length,
-             CONST OraText *lang_name, size_t lang_length, OCIDateTime *date );
+sword OCIDateTimeFromText(void  *hndl, OCIError *err, const OraText *date_str, 
+             size_t dstr_length, const OraText *fmt, ub1 fmt_length,
+             const OraText *lang_name, size_t lang_length, OCIDateTime *date );
 
-sword OCIDateTimeCompare(dvoid *hndl, OCIError *err, CONST OCIDateTime *date1, 
-                     CONST OCIDateTime *date2,  sword *result );
+sword OCIDateTimeCompare(void  *hndl, OCIError *err, const OCIDateTime *date1, 
+                     const OCIDateTime *date2,  sword *result );
 
-sword OCIDateTimeCheck(dvoid *hndl, OCIError *err, CONST OCIDateTime *date, 
+sword OCIDateTimeCheck(void  *hndl, OCIError *err, const OCIDateTime *date, 
                  ub4 *valid );
 
-sword OCIDateTimeConvert(dvoid *hndl, OCIError *err, OCIDateTime *indate,
+sword OCIDateTimeConvert(void  *hndl, OCIError *err, OCIDateTime *indate,
                                 OCIDateTime *outdate);
 
-sword OCIDateTimeSubtract(dvoid *hndl, OCIError *err, OCIDateTime *indate1, 
+sword OCIDateTimeSubtract(void  *hndl, OCIError *err, OCIDateTime *indate1, 
                 OCIDateTime *indate2,    OCIInterval *inter);
 
-sword OCIDateTimeIntervalAdd(dvoid *hndl, OCIError *err, OCIDateTime *datetime,
+sword OCIDateTimeIntervalAdd(void  *hndl, OCIError *err, OCIDateTime *datetime,
          OCIInterval *inter, OCIDateTime *outdatetime);
 
-sword OCIDateTimeIntervalSub(dvoid *hndl, OCIError *err, OCIDateTime *datetime,
+sword OCIDateTimeIntervalSub(void  *hndl, OCIError *err, OCIDateTime *datetime,
          OCIInterval *inter, OCIDateTime *outdatetime);
 
-sword OCIIntervalSubtract(dvoid *hndl, OCIError *err, OCIInterval *minuend, 
+sword OCIIntervalSubtract(void  *hndl, OCIError *err, OCIInterval *minuend, 
                             OCIInterval *subtrahend, OCIInterval *result );
 
-sword OCIIntervalAdd(dvoid *hndl, OCIError *err, OCIInterval *addend1, 
+sword OCIIntervalAdd(void  *hndl, OCIError *err, OCIInterval *addend1, 
                         OCIInterval *addend2, OCIInterval *result );
 
-sword OCIIntervalMultiply(dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
+sword OCIIntervalMultiply(void  *hndl, OCIError *err, const OCIInterval *inter,
                         OCINumber *nfactor, OCIInterval *result );
 
-sword OCIIntervalDivide(dvoid *hndl, OCIError *err, OCIInterval *dividend, 
+sword OCIIntervalDivide(void  *hndl, OCIError *err, OCIInterval *dividend, 
                 OCINumber *divisor, OCIInterval *result );
 
-sword OCIIntervalCompare(dvoid *hndl, OCIError *err, OCIInterval *inter1, 
+sword OCIIntervalCompare(void  *hndl, OCIError *err, OCIInterval *inter1, 
                         OCIInterval *inter2, sword *result );
 
-sword OCIIntervalFromNumber(dvoid *hndl, OCIError *err, OCIInterval *inter, 
+sword OCIIntervalFromNumber(void  *hndl, OCIError *err, OCIInterval *inter, 
                         OCINumber *number);
 
-sword OCIIntervalFromText( dvoid *hndl, OCIError *err, CONST OraText *inpstr, 
+sword OCIIntervalFromText( void  *hndl, OCIError *err, const OraText *inpstr, 
                 size_t str_len, OCIInterval *result );
 
-sword OCIIntervalToText( dvoid *hndl, OCIError *err, CONST OCIInterval *inter,
+sword OCIIntervalToText( void  *hndl, OCIError *err, const OCIInterval *inter,
                          ub1 lfprec, ub1 fsprec, 
                         OraText *buffer, size_t buflen, size_t *resultlen );
 
-sword OCIIntervalToNumber(dvoid *hndl, OCIError *err,CONST OCIInterval *inter, 
+sword OCIIntervalToNumber(void  *hndl, OCIError *err,const OCIInterval *inter, 
                         OCINumber *number);
 
-sword OCIIntervalCheck(dvoid *hndl, OCIError *err, CONST OCIInterval *interval,
+sword OCIIntervalCheck(void  *hndl, OCIError *err, const OCIInterval *interval,
                          ub4 *valid );
 
-sword OCIIntervalAssign(dvoid *hndl, OCIError *err, CONST OCIInterval *ininter,
+sword OCIIntervalAssign(void  *hndl, OCIError *err, const OCIInterval *ininter,
                         OCIInterval *outinter );
 
-sword OCIIntervalSetYearMonth(dvoid *hndl, OCIError *err, sb4 yr, sb4 mnth,
+sword OCIIntervalSetYearMonth(void  *hndl, OCIError *err, sb4 yr, sb4 mnth,
                         OCIInterval *result );
 
-sword OCIIntervalGetYearMonth(dvoid *hndl, OCIError *err, sb4 *yr, sb4 *mnth,
-                        CONST OCIInterval *result );
+sword OCIIntervalGetYearMonth(void  *hndl, OCIError *err, sb4 *yr, sb4 *mnth,
+                        const OCIInterval *result );
 
-sword OCIIntervalSetDaySecond(dvoid *hndl, OCIError *err, sb4 dy, sb4 hr,
+sword OCIIntervalSetDaySecond(void  *hndl, OCIError *err, sb4 dy, sb4 hr,
                         sb4 mm, sb4 ss, sb4 fsec, OCIInterval *result );
 
-sword OCIIntervalGetDaySecond(dvoid *hndl, OCIError *err, sb4 *dy, sb4 *hr,
-                     sb4 *mm, sb4 *ss, sb4 *fsec, CONST OCIInterval *result );
+sword OCIIntervalGetDaySecond(void  *hndl, OCIError *err, sb4 *dy, sb4 *hr,
+                     sb4 *mm, sb4 *ss, sb4 *fsec, const OCIInterval *result );
 
-sword OCIDateTimeToArray(dvoid *hndl, OCIError *err,
-                         CONST OCIDateTime *datetime, CONST OCIInterval *reftz,
+sword OCIDateTimeToArray(void  *hndl, OCIError *err,
+                         const OCIDateTime *datetime, const OCIInterval *reftz,
                          ub1 *outarray, ub4 *len, ub1 fsprec);
 
-sword OCIDateTimeFromArray(dvoid *hndl, OCIError *err, ub1 *inarray, ub4 len,
+sword OCIDateTimeFromArray(void  *hndl, OCIError *err, ub1 *inarray, ub4 len,
                            ub1 type, OCIDateTime *datetime,
-                           CONST OCIInterval *reftz, ub1 fsprec);
+                           const OCIInterval *reftz, ub1 fsprec);
 
-sword OCIDateTimeGetTimeZoneName(dvoid *hndl, OCIError *err,
-                                 CONST OCIDateTime *datetime, 
+sword OCIDateTimeGetTimeZoneName(void  *hndl, OCIError *err,
+                                 const OCIDateTime *datetime, 
                                  ub1 *buf, ub4 *buflen);
 
-sword OCIIntervalFromTZ(dvoid *hndl, OCIError *err, CONST oratext *inpstring,
+sword OCIIntervalFromTZ(void  *hndl, OCIError *err, const oratext *inpstring,
                         size_t str_len, OCIInterval *result);
 
 /*----------------- End Datetime interface Extensions -----------------------*/
@@ -10285,10 +11003,10 @@ sword OCIIntervalFromTZ(dvoid *hndl, OCIError *err, CONST oratext *inpstring,
 /*----------------- Connection Pooling prototypes ---------------------------*/
 sword OCIConnectionPoolCreate(OCIEnv *envhp, OCIError *errhp, OCICPool *poolhp,
                               OraText **poolName, sb4 *poolNameLen,  
-                              CONST OraText *dblink, sb4 dblinkLen,
+                              const OraText *dblink, sb4 dblinkLen,
                               ub4 connMin, ub4 connMax, ub4 connIncr,
-                              CONST OraText *poolUserName, sb4 poolUserLen,
-                              CONST OraText *poolPassword, sb4 poolPassLen,
+                              const OraText *poolUserName, sb4 poolUserLen,
+                              const OraText *poolPassword, sb4 poolPassLen,
                               ub4 mode);
 
 sword OCIConnectionPoolDestroy(OCICPool *poolhp,
@@ -10300,7 +11018,7 @@ sword OCIConnectionPoolDestroy(OCICPool *poolhp,
 
 sword OCISessionPoolCreate (OCIEnv *envhp, OCIError *errhp, OCISPool *spoolhp, 
                             OraText **poolName, ub4 *poolNameLen, 
-                            CONST OraText *connStr, ub4 connStrLen,
+                            const OraText *connStr, ub4 connStrLen,
                             ub4 sessMin, ub4 sessMax, ub4 sessIncr,
                             OraText *userid, ub4 useridLen,
                             OraText *password, ub4 passwordLen,
@@ -10313,7 +11031,7 @@ sword OCISessionPoolDestroy (OCISPool *spoolhp,
 sword OCISessionGet (OCIEnv *envhp, OCIError *errhp, OCISvcCtx **svchp,
                      OCIAuthInfo *authhp,
                      OraText *poolName, ub4 poolName_len, 
-                     CONST OraText *tagInfo, ub4 tagInfo_len,
+                     const OraText *tagInfo, ub4 tagInfo_len,
                      OraText **retTagInfo, ub4 *retTagInfo_len,
                      boolean *found, ub4 mode);
 
@@ -10326,13 +11044,17 @@ sword OCISessionRelease (OCISvcCtx *svchp, OCIError *errhp,
 /* --------------------- OCI Application Context --------------------------*/
 
 
-sword OCIAppCtxSet(void * sesshndl, dvoid *nsptr, ub4 nsptrlen,
-                   dvoid *attrptr,  ub4 attrptrlen,
-                   dvoid *valueptr, ub4 valueptrlen,
+sword OCIAppCtxSet(void * sesshndl, void  *nsptr, ub4 nsptrlen,
+                   void  *attrptr,  ub4 attrptrlen,
+                   void  *valueptr, ub4 valueptrlen,
                    OCIError *errhp, ub4 mode);
 
-sword OCIAppCtxClearAll(void *sesshndl, dvoid *nsptr, ub4 nsptrlen,
+sword OCIAppCtxClearAll(void *sesshndl, void  *nsptr, ub4 nsptrlen,
                         OCIError *errhp, ub4 mode);
+
+/*-------------------------------- OCIMemStats ------------------------------*/
+sword  OCIMemStats(void     *hndlp, OCIError *errhp, OCIEnv   **envhp,
+                   ub4      mode, ub4      mode1, oratext     *tabname);
 
 /*-------------------------------- OCIPing ----------------------------------*/
 sword OCIPing (OCISvcCtx *svchp, OCIError *errhp, ub4 mode);
@@ -10389,19 +11111,19 @@ sword OCIInitEventHandle(OCIError *errhp,
             /* the following functions are depracated and should not be used */
 #ifdef NEVER
 sword   OCIStmtBindByPos  (OCIStmt *stmtp, OCIBind *bindp, OCIError *errhp,
-                  ub4 position, dvoid *valuep, sb4 value_sz,
-                  ub2 dty, dvoid *indp, ub2 *alenp, ub2 *rcodep,
+                  ub4 position, void  *valuep, sb4 value_sz,
+                  ub2 dty, void  *indp, ub2 *alenp, ub2 *rcodep,
                   ub4 maxarr_len, ub4 *curelep, ub4 mode);
 
 
 sword   OCIStmtBindByName  (OCIStmt *stmtp, OCIBind *bindp, OCIError *errhp,
-                  CONST OraText *placeholder, sb4 placeh_len, dvoid *valuep, 
-                  sb4 value_sz, ub2 dty, dvoid *indp, ub2 *alenp, 
+                  const OraText *placeholder, sb4 placeh_len, void  *valuep, 
+                  sb4 value_sz, ub2 dty, void  *indp, ub2 *alenp, 
                   ub2 *rcodep, ub4 maxarr_len, ub4 *curelep, ub4 mode);
 
 sword   ocidefn  (OCIStmt *stmtp, OCIDefine *defnp, OCIError *errhp,
-                  ub4 position, dvoid *valuep, sb4 value_sz, ub2 dty,
-                  dvoid *indp, ub2 *rlenp, ub2 *rcodep, ub4 mode);
+                  ub4 position, void  *valuep, sb4 value_sz, ub2 dty,
+                  void  *indp, ub2 *rlenp, ub2 *rcodep, ub4 mode);
 #endif /* NEVER */
 
 #endif                                                       /* OCIAP_ORACLE */

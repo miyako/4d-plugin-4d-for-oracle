@@ -1,6 +1,6 @@
 /* @(#)ort.h    1.44 95/07/07 */
 
-/* Copyright (c) 1994, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1994, 2005, Oracle. All rights reserved.  */
 
 /* 
   NAME
@@ -478,6 +478,7 @@
   NOTES
 
   MODIFIED
+    dmukhin    06/29/05  - ANSI prototypes; miscellaneous cleanup 
     srseshad   03/12/03  - convert oci public api to ansi
     aahluwal   06/03/02  - bug 2360115
     skabraha   04/16/02  - fix compiler warnings
@@ -840,10 +841,10 @@ sword OCITypeIterFree(    OCIEnv *env, OCIError *err, OCITypeIter
 /*--------------------------------------------------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeByName(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
-                        CONST oratext *schema_name, ub4 s_length,
-                        CONST oratext *type_name, ub4 t_length,
-                        CONST oratext *version_name, ub4 v_length,
+sword OCITypeByName(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
+                        const oratext *schema_name, ub4 s_length,
+                        const oratext *type_name, ub4 t_length,
+                        const oratext *version_name, ub4 v_length,
                         OCIDuration pin_duration, OCITypeGetOpt get_option,
                         OCIType **tdo    );
 /*
@@ -888,11 +889,11 @@ sword OCITypeByName(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
        via SQL, you need to use uppercase names.
 */
 
-sword OCITypeArrayByName(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
+sword OCITypeArrayByName(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc,
                              ub4 array_len,
-                             CONST oratext *schema_name[], ub4 s_length[],
-                             CONST oratext *type_name[], ub4 t_length[],
-                             CONST oratext *version_name[], ub4 v_length[],
+                             const oratext *schema_name[], ub4 s_length[],
+                             const oratext *type_name[], ub4 t_length[],
+                             const oratext *version_name[], ub4 v_length[],
                              OCIDuration pin_duration,
                              OCITypeGetOpt get_option, OCIType **tdo    );
 
@@ -959,7 +960,7 @@ sword OCITypeArrayByName(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
 */
 
 sword   OCITypeByRef(    OCIEnv *env, OCIError *err,
-                         CONST OCIRef *type_ref, OCIDuration pin_duration,
+                         const OCIRef *type_ref, OCIDuration pin_duration,
                          OCITypeGetOpt get_option, OCIType **tdo    );
 
 /*
@@ -996,7 +997,7 @@ sword   OCITypeByRef(    OCIEnv *env, OCIError *err,
 */
 
 sword   OCITypeArrayByRef(    OCIEnv *env, OCIError *err,
-                              ub4 array_len, CONST OCIRef **type_ref,
+                              ub4 array_len, const OCIRef **type_ref,
                               OCIDuration pin_duration,
                               OCITypeGetOpt get_option, OCIType **tdo    );
 
@@ -1046,7 +1047,7 @@ sword   OCITypeArrayByRef(    OCIEnv *env, OCIError *err,
 /*---------------------------- OCITypeName ---------------------------------*/
 
 /* ** OBSOLETE ** */
-oratext* OCITypeName(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
+oratext* OCITypeName(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
                       ub4 *n_length    );
 /*
    NAME: OCITypeName -  ORT Get a Type's naME.
@@ -1077,7 +1078,7 @@ oratext* OCITypeName(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 /*------------------------ OCITypeSchema ---------------------------------*/
 
 /* ** OBSOLETE ** */
-oratext* OCITypeSchema(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
+oratext* OCITypeSchema(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
                    ub4 *n_length    );
 /*
    NAME: OCITypeSchema -  ORT Get a Type's SCHema name.
@@ -1109,7 +1110,7 @@ oratext* OCITypeSchema(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 
 /* ** OBSOLETE ** */
 OCITypeCode OCITypeTypeCode(    OCIEnv *env, OCIError *err,
-                                CONST OCIType *tdo    );
+                                const OCIType *tdo    );
 /*
    NAME: OCITypeTypeCode - OCI Get a Type's Type Code.
    PARAMETERS: 
@@ -1136,7 +1137,7 @@ OCITypeCode OCITypeTypeCode(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 OCITypeCode OCITypeCollTypeCode(    OCIEnv *env, OCIError *err,
-                                    CONST OCIType *tdo    );
+                                    const OCIType *tdo    );
 /*
    NAME: OCITypeCollTypeCode - OCI Get a Domain Type's Type Code.
    PARAMETERS: 
@@ -1165,7 +1166,7 @@ OCITypeCode OCITypeCollTypeCode(    OCIEnv *env, OCIError *err,
 /*------------------------- OCITypeVersion ---------------------------------*/
 
 /* ** OBSOLETE ** */
-oratext* OCITypeVersion(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
+oratext* OCITypeVersion(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
                          ub4 *v_length    );
 /*
    NAME: OCITypeVersion - OCI Get a Type's user-readable VersioN. 
@@ -1196,7 +1197,7 @@ oratext* OCITypeVersion(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 /*--------------------------- OCITypeAttrs ---------------------------------*/
 
 /* ** OBSOLETE ** */
-ub4 OCITypeAttrs(    OCIEnv *env, OCIError *err, CONST OCIType *tdo    );
+ub4 OCITypeAttrs(    OCIEnv *env, OCIError *err, const OCIType *tdo    );
 /*
    NAME: OCITypeAttrs - OCI Get a Type's Number of Attributes. 
    PARAMETERS: 
@@ -1222,7 +1223,7 @@ ub4 OCITypeAttrs(    OCIEnv *env, OCIError *err, CONST OCIType *tdo    );
 /*------------------------- OCITypeMethods ---------------------------------*/
 
 /* ** OBSOLETE ** */
-ub4 OCITypeMethods(    OCIEnv *env, OCIError *err, CONST OCIType *tdo    );
+ub4 OCITypeMethods(    OCIEnv *env, OCIError *err, const OCIType *tdo    );
 /*
    NAME: OCITypeMethods - OCI Get a Type's Number of Methods. 
    PARAMETERS: 
@@ -1254,7 +1255,7 @@ ub4 OCITypeMethods(    OCIEnv *env, OCIError *err, CONST OCIType *tdo    );
 
 /* ** OBSOLETE ** */
 oratext* OCITypeElemName(    OCIEnv *env, OCIError *err, 
-                           CONST OCITypeElem *elem, ub4 *n_length    );
+                           const OCITypeElem *elem, ub4 *n_length    );
 /*
    NAME: OCITypeElemName - OCI Get an Attribute's NaMe. 
    PARAMETERS: 
@@ -1285,7 +1286,7 @@ oratext* OCITypeElemName(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 OCITypeCode OCITypeElemTypeCode(    OCIEnv *env, OCIError *err,
-                                    CONST OCITypeElem *elem    );
+                                    const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemTypeCode - OCI Get an Attribute's TypeCode. 
    PARAMETERS: 
@@ -1319,7 +1320,7 @@ OCITypeCode OCITypeElemTypeCode(    OCIEnv *env, OCIError *err,
 /*------------------------ OCITypeElemType ---------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeElemType(    OCIEnv *env, OCIError *err, CONST OCITypeElem *elem, 
+sword OCITypeElemType(    OCIEnv *env, OCIError *err, const OCITypeElem *elem, 
                           OCIType **elem_tdo    );
 /*
   PARAMETERS
@@ -1356,7 +1357,7 @@ sword OCITypeElemType(    OCIEnv *env, OCIError *err, CONST OCITypeElem *elem,
 
 /* ** OBSOLETE ** */
 ub4 OCITypeElemFlags(    OCIEnv *env, OCIError *err,
-                         CONST OCITypeElem *elem    );
+                         const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemFlags - OCI Get a Elem's FLags
                               (inline, constant, virtual, constructor,
@@ -1387,7 +1388,7 @@ ub4 OCITypeElemFlags(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 ub1 OCITypeElemNumPrec(    OCIEnv *env, OCIError *err,
-                           CONST OCITypeElem *elem    );
+                           const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemNumPrec - Get a Number's Precision.  This includes float,
                               decimal, real, double, and oracle number.
@@ -1412,7 +1413,7 @@ ub1 OCITypeElemNumPrec(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 sb1 OCITypeElemNumScale(    OCIEnv *env, OCIError *err,
-                            CONST OCITypeElem *elem    );
+                            const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemNumScale - Get a decimal or oracle Number's Scale 
    PARAMETERS: 
@@ -1434,7 +1435,7 @@ sb1 OCITypeElemNumScale(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 ub4 OCITypeElemLength(    OCIEnv *env, OCIError *err,
-                          CONST OCITypeElem *elem    );
+                          const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemLength - Get a raw, fixed or variable length String's
                              length in bytes.
@@ -1457,7 +1458,7 @@ ub4 OCITypeElemLength(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 ub2 OCITypeElemCharSetID(    OCIEnv *env, OCIError *err,
-                             CONST OCITypeElem *elem    );
+                             const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemCharSetID - Get a fixed or variable length String's
                                 character set ID
@@ -1480,7 +1481,7 @@ ub2 OCITypeElemCharSetID(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 ub2 OCITypeElemCharSetForm(    OCIEnv *env, OCIError *err,
-                               CONST OCITypeElem *elem    );
+                               const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemCharSetForm - Get a fixed or variable length String's
                                   character set specification form.
@@ -1509,7 +1510,7 @@ ub2 OCITypeElemCharSetForm(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 sword OCITypeElemParameterizedType(    OCIEnv *env, OCIError *err,
-                                       CONST OCITypeElem *elem, 
+                                       const OCITypeElem *elem, 
                                        OCIType **type_stored    );
 /*
    NAME: OCITypeElemParameterizedType 
@@ -1554,7 +1555,7 @@ sword OCITypeElemParameterizedType(    OCIEnv *env, OCIError *err,
  
 /* ** OBSOLETE ** */
 OCITypeCode OCITypeElemExtTypeCode(    OCIEnv *env, OCIError *err,
-                                       CONST OCITypeElem *elem    );
+                                       const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemExtTypeCode - OCI Get an element's SQLT constant.
    PARAMETERS:
@@ -1586,8 +1587,8 @@ OCITypeCode OCITypeElemExtTypeCode(    OCIEnv *env, OCIError *err,
 /*------------------------ OCITypeAttrByName -------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeAttrByName(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
-                            CONST oratext *name, ub4 n_length,
+sword OCITypeAttrByName(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
+                            const oratext *name, ub4 n_length,
                             OCITypeElem **elem    );
 /*
    NAME: OCITypeAttrByName - OCI Get an Attribute By Name. 
@@ -1669,7 +1670,7 @@ sword OCITypeAttrNext(    OCIEnv *env, OCIError *err,
 /*------------------------ OCITypeCollElem ---------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeCollElem(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
+sword OCITypeCollElem(    OCIEnv *env, OCIError *err, const OCIType *tdo,
                           OCITypeElem **element    );
 /*
    NAME: OCITypeCollElem
@@ -1714,7 +1715,7 @@ sword OCITypeCollElem(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 /*------------------------ OCITypeCollSize ---------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeCollSize(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
+sword OCITypeCollSize(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
                           ub4 *num_elems    );
 /*
    NAME: OCITypeCollSize - OCI Get a Collection's Number of Elements.
@@ -1750,7 +1751,7 @@ sword OCITypeCollSize(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
  
 /* ** OBSOLETE ** */
 sword OCITypeCollExtTypeCode(    OCIEnv *env, OCIError *err,
-                               CONST OCIType *tdo, OCITypeCode *sqt_code    );
+                               const OCIType *tdo, OCITypeCode *sqt_code    );
 /*
    NAME: ortcsqt - OCI Get a Collection element's DTY constant.
    PARAMETERS:
@@ -1788,8 +1789,8 @@ sword OCITypeCollExtTypeCode(    OCIEnv *env, OCIError *err,
 /*------------------------- OCITypeMethodOverload --------------------------*/
 
 /* ** OBSOLETE ** */
-ub4 OCITypeMethodOverload(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
-                              CONST oratext *method_name, ub4 m_length    );
+ub4 OCITypeMethodOverload(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
+                              const oratext *method_name, ub4 m_length    );
 /*
    NAME: OCITypeMethodOverload - OCI Get type's Number of Overloaded names
                                  for the given method name.
@@ -1821,8 +1822,8 @@ ub4 OCITypeMethodOverload(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 /*------------------------ OCITypeMethodByName ------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeMethodByName(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
-                              CONST oratext *method_name, ub4 m_length,
+sword OCITypeMethodByName(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
+                              const oratext *method_name, ub4 m_length,
                               OCITypeMethod **mdos    );
 /*
    NAME: OCITypeMethodByName - OCI Get one or more Methods with Name. 
@@ -1908,7 +1909,7 @@ sword OCITypeMethodNext(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 oratext *OCITypeMethodName(    OCIEnv *env, OCIError *err,
-                            CONST OCITypeMethod *mdo, ub4 *n_length    );
+                            const OCITypeMethod *mdo, ub4 *n_length    );
 /*
    NAME: OCITypeMethodName - OCI Get a Method's NaMe. 
    PARAMETERS: 
@@ -1937,7 +1938,7 @@ oratext *OCITypeMethodName(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 OCITypeEncap OCITypeMethodEncap(    OCIEnv *env, OCIError *err,
-                                    CONST OCITypeMethod *mdo    );
+                                    const OCITypeMethod *mdo    );
 /*
    NAME: OCITypeMethodEncap - Get a Method's ENcapsulation (private/public). 
    PARAMETERS: 
@@ -1964,7 +1965,7 @@ OCITypeEncap OCITypeMethodEncap(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 OCITypeMethodFlag OCITypeMethodFlags(    OCIEnv *env, OCIError *err,
-                                         CONST OCITypeMethod *mdo    );
+                                         const OCITypeMethod *mdo    );
 /*
    NAME: OCITypeMethodFlags - OCI Get a Method's FLags
                               (inline, constant, virtual, constructor,
@@ -1994,7 +1995,7 @@ OCITypeMethodFlag OCITypeMethodFlags(    OCIEnv *env, OCIError *err,
 /*------------------------ OCITypeMethodMap ---------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeMethodMap(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
+sword OCITypeMethodMap(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
                            OCITypeMethod **mdo    );
 /*
    NAME: OCITypeMethodMap - OCI Get the Method's MAP function.
@@ -2031,7 +2032,7 @@ sword OCITypeMethodMap(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 /*------------------------ OCITypeMethodOrder -------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeMethodOrder(    OCIEnv *env, OCIError *err, CONST OCIType *tdo, 
+sword OCITypeMethodOrder(    OCIEnv *env, OCIError *err, const OCIType *tdo, 
                              OCITypeMethod **mdo    );
 /*
    NAME: OCITypeMethodOrder - OCI Get the Method's ORder function.
@@ -2069,7 +2070,7 @@ sword OCITypeMethodOrder(    OCIEnv *env, OCIError *err, CONST OCIType *tdo,
 
 /* ** OBSOLETE ** */
 ub4 OCITypeMethodParams(    OCIEnv *env, OCIError *err,
-                            CONST OCITypeMethod *mdo    );
+                            const OCITypeMethod *mdo    );
 /*
    NAME: OCITypeMethodParams - OCI Get a Method's Number of Parameters. 
    PARAMETERS: 
@@ -2100,7 +2101,7 @@ ub4 OCITypeMethodParams(    OCIEnv *env, OCIError *err,
 /*-------------------------- OCITypeResult ---------------------------------*/
 
 /* ** OBSOLETE ** */
-sword OCITypeResult(    OCIEnv *env, OCIError *err, CONST OCITypeMethod *mdo,
+sword OCITypeResult(    OCIEnv *env, OCIError *err, const OCITypeMethod *mdo,
                         OCITypeElem **elem    );
 /*
    NAME: OCITypeResult - OCI Get a method's result type descriptor.
@@ -2139,7 +2140,7 @@ sword OCITypeResult(    OCIEnv *env, OCIError *err, CONST OCITypeMethod *mdo,
 
 /* ** OBSOLETE ** */
 sword OCITypeParamByPos(    OCIEnv *env, OCIError *err,
-                            CONST OCITypeMethod *mdo, ub4 position, 
+                            const OCITypeMethod *mdo, ub4 position, 
                             OCITypeElem **elem    );
 /*
    NAME: OCITypeParamByPos - OCI Get a Parameter in a method By Position. 
@@ -2175,8 +2176,8 @@ sword OCITypeParamByPos(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 sword OCITypeParamByName(    OCIEnv *env, OCIError *err,
-                             CONST OCITypeMethod *mdo, 
-                             CONST oratext *name, ub4 n_length,
+                             const OCITypeMethod *mdo, 
+                             const oratext *name, ub4 n_length,
                              OCITypeElem **elem    );
 /*
    NAME: OCITypeParamByName - OCI Get a Parameter in a method By Name. 
@@ -2213,8 +2214,8 @@ sword OCITypeParamByName(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 sword OCITypeParamPos(    OCIEnv *env, OCIError *err,
-                          CONST OCITypeMethod *mdo, 
-                          CONST oratext *name, ub4 n_length, ub4 *position, 
+                          const OCITypeMethod *mdo, 
+                          const oratext *name, ub4 n_length, ub4 *position, 
                           OCITypeElem **elem    );
 /*
    NAME: OCITypeParamPos - OCI Get a parameter's position in a method
@@ -2255,7 +2256,7 @@ sword OCITypeParamPos(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 OCITypeParamMode OCITypeElemParamMode(    OCIEnv *env, OCIError *err,
-                                          CONST OCITypeElem *elem    );
+                                          const OCITypeElem *elem    );
 /*
    NAME: OCITypeElemParamMode - OCI Get a parameter's mode
    PARAMETERS: 
@@ -2283,7 +2284,7 @@ OCITypeParamMode OCITypeElemParamMode(    OCIEnv *env, OCIError *err,
 
 /* ** OBSOLETE ** */
 oratext* OCITypeElemDefaultValue(    OCIEnv *env, OCIError *err,
-                                  CONST OCITypeElem *elem,
+                                  const OCITypeElem *elem,
                                   ub4 *d_v_length    );
 /*
    NAME: OCITypeElemDefaultValue - OCI Get the element's Default Value. 
@@ -2349,9 +2350,9 @@ sword OCITypeVTInit(    OCIEnv *env, OCIError *err    );
  
 /* ** OBSOLETE ** */
 sword OCITypeVTInsert(    OCIEnv *env, OCIError *err, 
-                          CONST oratext *schema_name, ub4 s_n_length, 
-                          CONST oratext *type_name, ub4 t_n_length, 
-                          CONST oratext *user_version, ub4 u_v_length    );
+                          const oratext *schema_name, ub4 s_n_length, 
+                          const oratext *type_name, ub4 t_n_length, 
+                          const oratext *user_version, ub4 u_v_length    );
 /*
    NAME: OCITypeVTInsert - OCI type Version table INSert entry.
    PARAMETERS:
@@ -2388,8 +2389,8 @@ sword OCITypeVTInsert(    OCIEnv *env, OCIError *err,
 /* OCITypeVTSelect - OCI type VERSion table SELECT entry */
 /* ** OBSOLETE ** */
 sword OCITypeVTSelect(    OCIEnv *env, OCIError *err, 
-                          CONST oratext *schema_name, ub4 s_n_length, 
-                          CONST oratext *type_name, ub4 t_n_length, 
+                          const oratext *schema_name, ub4 s_n_length, 
+                          const oratext *type_name, ub4 t_n_length, 
                           oratext **user_version, ub4 *u_v_length,
                         ub2 *version );
 /*
@@ -2528,7 +2529,7 @@ sword OCITypeSetBuiltin(OCISvcCtx *svchp, OCIError *errhp, OCIType *type,
 */
 
 sword OCITypeAddAttr(OCISvcCtx *svchp, OCIError *errhp, OCIType *type,
-                     CONST oratext *a_name, ub4 a_length, 
+                     const oratext *a_name, ub4 a_length, 
                      OCIParam *attr_info);
 /*
    NAME: OCITypeAddAttr - OCI Type Add Attribute to an Object Type.

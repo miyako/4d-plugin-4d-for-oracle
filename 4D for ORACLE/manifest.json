@@ -1,0 +1,126 @@
+{
+	"name": "4D for ORACLE",
+	"id": 20000,
+	"commands": [
+		{
+			"theme": "OD: Login",
+			"syntax": "OD Login(&T;&T;&T):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Login",
+			"syntax": "OD LOGOUT(&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Login",
+			"syntax": "OD Login state(&L;&T;&T):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Create cursor(&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD DROP CURSOR(&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Cursor state(&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Set SQL in cursor(&L;&T;&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD BIND TOWARDS SQL(&L;&L;&Z)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD BIND TOWARDS 4D(&L;&L;&Z)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD EXECUTE CURSOR(&L;&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Load rows cursor(&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Number rows processed(&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD GET COLUMN ATTRIBUTES(&L;&L;&L;&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Get column title(&L;&L):T",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Low Level",
+			"syntax": "OD Number of columns(&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Preferences",
+			"syntax": "OD SET NULL VALUE(&L;&T;&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Control",
+			"syntax": "OD CANCEL LOADING(&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Control",
+			"syntax": "OD Last error(&T;&L;&L;&T;&L;&L):L",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: High Level",
+			"syntax": "OD COMMIT(&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: High Level",
+			"syntax": "OD ROLLBACK(&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Environment",
+			"syntax": "OD SET ENVIRONMENT VARIABLE(&T;&T;&L)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Environment",
+			"syntax": "OD Get environment variable(&T;&L):T",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Debug",
+			"syntax": "OD INTROSPECT CURSOR(&L;&T;&Y;&Y;&Y;&Y)",
+			"threadSafe": false
+		},
+		{
+			"theme": "OD: Debug",
+			"syntax": "OD INTROSPECT NULL VALUE MAP(&Y;&Y)",
+			"threadSafe": false
+		}
+	]
+}

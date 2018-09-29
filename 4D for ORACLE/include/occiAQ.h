@@ -1,4 +1,4 @@
-/* Copyright (c) 2002, 2004, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 2002, 2005, Oracle. All rights reserved.  */
  
 /* 
    NAME 
@@ -341,7 +341,7 @@ class NotifyResult
      const EnvironmentImpl *env;
      void *payload;
      unsigned int payloadLen;
-     dvoid *desc;
+     void *desc;
      ub4 mode;
      void *notifyResultExt;
 

@@ -1,4 +1,5 @@
-/* Copyright (c) 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 2003, 2011, Oracle and/or its affiliates. 
+All rights reserved. */
  
 /* 
    NAME 
@@ -23,6 +24,17 @@
    NOTES
 
    MODIFIED   (MM/DD/YY)
+   srirkris    06/15/11 - Add OCIXmlDr_DEF 
+   srirkris    06/07/11 - Backport srirkris_bug-12613945 from main
+   srirkris    04/26/11 - Backport srirkris_xmlop_bnd from main
+   srirkris    04/14/11 - Backport srirkris_xqupd_repl from main
+   yifeng      02/15/11 - Backport yifeng_bug-10236275 from main
+   srirkris    03/01/11 - OCIXmlDbRewriteXMLDiff definition change
+   vmedi       01/14/11 - OCIXmlDbGetFullyQualifiedSchemaUrl
+   sipatel     03/08/10 - add lob arg to OCIXmlDbRewriteXMLDiff
+   samane      01/20/10 - Bug 9302227
+   yifeng      11/05/09 - add OCIXmlDbRewriteXMLDiff
+   samane      08/05/09 - Bug 8661204
    ataracha    12/11/03 - remove redundant definitions
    ataracha    05/28/03 - change names
    ataracha    02/18/03 - add oratypes, remove XMLERR_*
@@ -45,7 +57,6 @@
 #ifndef OCIXMLDB_ORACLE
 # define OCIXMLDB_ORACLE
 
-
 /*---------------------------------------------------------------------------
                      PUBLIC TYPES AND CONSTANTS
   ---------------------------------------------------------------------------*/
@@ -56,6 +67,19 @@
 */
 struct xmlctx; typedef struct xmlctx xmlctx;
 #endif
+
+
+typedef struct OCIXmlDiffBnd {
+ oratext *bndnmp;
+ ub1    bndnml;
+ ub2 bndpos; 
+ ub2 bndnum;
+ ub2 bnddty;
+ void *bndvalp;
+ ub4 bndvallen;
+} OCIXmlDiffBnd;
+
+struct xmldrctx; typedef struct xmldrctx xmldrctx;
 
 typedef enum 
 {
@@ -70,6 +94,14 @@ typedef struct ocixmldbparam
 } ocixmldbparam;
 
 #define NUM_OCIXMLDBPARAMS 2
+
+#define OCIXMLDB_BINDBYNAME 1
+#define OCIXMLDB_BINDBYNUM 2
+
+#define OCIMAXXQUBNDLMT 1000
+
+#define OCIXmlDr_DEF 1
+
 
 /*---------------------------------------------------------------------------
                      PRIVATE TYPES AND CONSTANTS
@@ -121,15 +153,59 @@ Parameters
 xctx (IN) - The xmlctx to terminate
 Returns
 -
+------------------------OCIXmlDbOrastreamFromLob---------------------------
+Name
+OCIXmlDbOrastreamFromLob
+Pupose
+To create an orastream from a lob. This orastream can be used by functions like XMLLoadDom().
+Syntax
+sword OCIXmlDbOrastreamFromLob(OCIError *errhp, xmlctx *xctx,
+                               void **stream, OCILobLocator *lobloc)
+Parameters
+envhp  (IN)     - The OCI environment handle
+xctx   (IN)     - XML context
+stream (IN/OUT) - A pointer to orastream
+lobloc (IN)     - The OCI lob locator
+Returns
+The orastream created on top of the lob is returned in the parameter 'stream'.
 ******************************************************************************/
 
 struct xmlctx *OCIXmlDbInitXmlCtx(OCIEnv *, OCISvcCtx *, OCIError *, 
                             ocixmldbparam *, int);
 
 void    OCIXmlDbFreeXmlCtx(struct xmlctx *xctx);
+sword OCIXmlDbStreamFromXMLType(OCIError   *errhp, void  **stream, 
+                                OCIXMLType *doc, ub4 mode);
+sword OCIXmlDbOrastreamFromLob(OCIError *errhp, xmlctx *xctx, 
+                               void **stream, OCILobLocator *lobloc);
+sword OCIXmlDbStreamRead(OCIError   *errhp, void  *stream, 
+                         void *bufp, sb8 *len, ub4 mode);
+sword OCIXmlDbStreamClose(OCIError *errhp, void *stream);
+
 /*---------------------------------------------------------------------------
                           INTERNAL FUNCTIONS
   ---------------------------------------------------------------------------*/
+/* This function is for internal usage only */
+sword OCIXmlDbRewriteXMLDiff(OCIEnv *envhp, OCIError *errhp, OCISvcCtx *svchp, 
+                             xmldrctx *xctx , oratext* colname, ub4 colnamelen,  
+                             const void* xmldiff, ub4 xmldifflen, 
+                             OCILobLocator *xdiff_locator, oratext** updstmt, 
+                             ub2 binditerator, ub2 *colvalbndcount,  
+                             OCIXmlDiffBnd **bindlist);
 
+struct xmldrctx *OCIXmlInitDRCtx(OCIEnv *env, OCISvcCtx *svc, OCIError *err, 
+                                 ub1 bindtyp);
+
+void OCIXmlFreeDRCtx(xmldrctx *xctx);
+
+sword OCIXmlDbGetFullyQualifiedSchemaUrl(OCIError *errhp,
+                                         oratext  *schema_url,
+                                         ub2       schema_url_len,
+                                         oratext  *schema_owner,
+                                         ub2       schema_owner_len,
+                                         oratext **fq_schema_url,
+                                         ub4      *fs_schema_url_len);
+
+void *OCIXmlDbMemCallback(void *ctx, size_t size);
 
 #endif                                              /* OCIXMLDB_ORACLE */

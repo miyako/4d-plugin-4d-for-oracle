@@ -1,10 +1,10 @@
 /* DISABLE check_long_lines */
 
-/* Copyright (c) 1996, 2004, Oracle. All rights reserved.  */
-/* Copyright (c) 1996, 2004, Oracle. All rights reserved.  */
+/* Copyright (c) 1996, 2007, Oracle. All rights reserved.  */
+/* Copyright (c) 1996, 2007, Oracle. All rights reserved.  */
 
 /*
- * $Header: nzt.h 10-aug-2004.11:55:06 rchahal Exp $ 
+ * 
  */
 
 /* 
@@ -82,6 +82,10 @@
  * NOTES
  *    
  * MODIFIED
+ *    shiahuan   11/28/07 - 
+ *    skalyana   08/15/07 - 
+ *    pkale      09/28/06 - Bug 5565668: Removed __STDC__
+ *    tnallath   09/22/05 - 
  *    rchahal    07/27/04 - add keyusage 
  *    srtata     11/10/03 - fix nztSetAppDefaultLocation header 
  *    rchahal    10/15/03 - bug 2513821 
@@ -634,13 +638,8 @@ typedef struct nzttIdentityDesc nzttIdentityDesc;
  *    NZERROR_TK_WRLTYPE   WRL type is not known.
  *    NZERROR_TK_WRLPARM   WRL parm does not match type.
  */
-#ifdef __STDC__
-nzerror nztwOpenWallet(nzctx *, ub4, text *, ub4, text *, 
-                           nzttWallet *);
-#else
-nzerror nztwOpenWallet(/*_ nzctx *, ub4, text *, ub4, text *, 
-                           nzttWallet * _*/);
-#endif /* __STDC __*/
+nzerror nztwOpenWallet( nzctx *, ub4, text *, ub4, text *, 
+                           nzttWallet * );
 
 
 /*---------------------- nztwCloseWallet ----------------------*/
@@ -664,19 +663,15 @@ nzerror nztwOpenWallet(/*_ nzctx *, ub4, text *, ub4, text *,
  *    NZERROR_OK           Success.
  *    NZERROR_RIO_CLOSE    RIO could not close wallet (see network trace file).
  */
-#ifdef __STDC__
-nzerror nztwCloseWallet(nzctx *, nzttWallet *);
-#else
-nzerror nztwCloseWallet(/*_ nzctx *, nzttWallet * _*/);
-#endif /* __STDC__ */
+nzerror nztwCloseWallet( nzctx *, nzttWallet * );
 
 /*--------------------nztwGetCertInfo----------------------------*/
 /****NOTE: This function is a temporary hack.****/
 /****DO NOT CALL.  It will soon disappear.****/
-nzerror nztwGetCertInfo(/*_ nzctx *nz_context,
+nzerror nztwGetCertInfo( nzctx *nz_context,
                             nzosContext *nzosCtx,
                             nzttWallet *walletRef,
-                            void *peerCert _*/);
+                            void *peerCert );
 
 
 /*------------------------ nztwConstructWallet -----------------------*/
@@ -715,12 +710,8 @@ nzerror nztwGetCertInfo(/*_ nzctx *nz_context,
  * RETURNS
  *    NZERROR_OK           Success.
  */
-#ifdef __STDC__
-nzerror nztwRetrievePersonaCopy(nzctx *, nzttWallet *, ub4, nzttPersona **);
-#else
-nzerror nztwRetrievePersonaCopy(/*_ nzctx *, nzttWallet *, ub4, 
-                           nzttPersona ** _*/);
-#endif /* __STDC __*/
+nzerror nztwRetrievePersonaCopy( nzctx *, nzttWallet *, ub4, 
+                           nzttPersona ** );
 
 
 /*---------------------- nztwRetrievePersonaCopyByName ----------------------*/
@@ -746,13 +737,8 @@ nzerror nztwRetrievePersonaCopy(/*_ nzctx *, nzttWallet *, ub4,
  * RETURNS
  *    NZERROR_OK           Success.
  */
-#ifdef __STDC__
-nzerror nztwRetrievePersonaCopyByName(nzctx *, nzttWallet *, 
-                                      char *, nzttPersona **);
-#else
-nzerror nztwRetrievePersonaCopyByName(/*_ nzctx *, nzttWallet *, char *,
-                           nzttPersona ** _*/);
-#endif /* __STDC __*/
+nzerror nztwRetrievePersonaCopyByName( nzctx *, nzttWallet *, char *,
+                           nzttPersona ** );
 
 /*---------------------- nzteOpenPersona ----------------------*/
 
@@ -772,11 +758,7 @@ nzerror nztwRetrievePersonaCopyByName(/*_ nzctx *, nzttWallet *, char *,
  *    NZERROR_TK_BADPRL    Persona resource locator did not work.
  *    NZERROR_RIO_OPEN     Could not open persona (see network trace file).
  */
-#ifdef __STDC__
-nzerror nzteOpenPersona(nzctx *, nzttPersona *);
-#else
-nzerror nzteOpenPersona(/*_ nzctx *, nzttPersona * _*/);
-#endif /* __STDC __*/
+nzerror nzteOpenPersona( nzctx *, nzttPersona * );
 
 /*--------------------- nzteClosePersona ---------------------*/
 
@@ -795,11 +777,7 @@ nzerror nzteOpenPersona(/*_ nzctx *, nzttPersona * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nzteClosePersona(nzctx *, nzttPersona *);
-#else
-nzerror nzteClosePersona(/*_ nzctx *, nzttPersona * _*/);
-#endif /* __STDC __*/
+nzerror nzteClosePersona( nzctx *, nzttPersona * );
 
 /*--------------------- nzteDestroyPersona ---------------------*/
 
@@ -824,11 +802,7 @@ nzerror nzteClosePersona(/*_ nzctx *, nzttPersona * _*/);
  *    NZERROR_TK_TYPE   Unsupported itype/ctype combination.
  *    NZERROR_TK_PARMS  Error in persona description.
  */
-#ifdef __STDC__
-nzerror nzteDestroyPersona(nzctx *,  nzttPersona **);
-#else
-nzerror nzteDestroyPersona(/*_ nzctx *, nzttPersona ** _*/);
-#endif /* __STDC __*/
+nzerror nzteDestroyPersona( nzctx *, nzttPersona ** );
 
 /*---------------------- nzteRetrieveTrustedIdentCopy ----------------------*/
 
@@ -854,13 +828,8 @@ nzerror nzteDestroyPersona(/*_ nzctx *, nzttPersona ** _*/);
  * RETURNS
  *    NZERROR_OK           Success.
  */
-#ifdef __STDC__
-nzerror nzteRetrieveTrustedIdentCopy(nzctx *, nzttPersona *, ub4, 
-                 nzttIdentity **);
-#else
-nzerror nzteRetrieveTrustedIdentCopy(/*_ nzctx *, nzttPersona *, ub4, 
-                           nzttIdentity ** _*/);
-#endif /* __STDC __*/
+nzerror nzteRetrieveTrustedIdentCopy( nzctx *, nzttPersona *, ub4, 
+                           nzttIdentity ** );
 
 /*--------------------- nztePriKey ---------------------*/
 
@@ -887,11 +856,7 @@ nzerror nzteRetrieveTrustedIdentCopy(/*_ nzctx *, nzttPersona *, ub4,
  *    NZERROR_NO_MEMORY    ossctx is null.
  *    NZERROR_TK_BADPRL    Persona resource locator did not work.
  */
-#ifdef __STDC__
-nzerror nztePriKey(nzctx *, nzttPersona *, ub1 **, ub4 *);
-#else
-nzerror nztePriKey(/*_ nzctx *, nzttPersona *, ub1 **, ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztePriKey( nzctx *, nzttPersona *, ub1 **, ub4 * );
 
 /*--------------------- nzteMyCert ---------------------*/
 
@@ -917,11 +882,7 @@ nzerror nztePriKey(/*_ nzctx *, nzttPersona *, ub1 **, ub4 * _*/);
  *    NZERROR_OK           Success.
  *    NZERROR_NO_MEMORY    ossctx is null.
  */
-#ifdef __STDC__
-nzerror nzteMyCert(nzctx *, nzttPersona *, ub1 **, ub4 *);
-#else
-nzerror nzteMyCert(/*_ nzctx *, nzttPersona *, ub1 **, ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nzteMyCert( nzctx *, nzttPersona *, ub1 **, ub4 * );
 
 /*--------------------- nzteX509CreatePersona ---------------------*/
 
@@ -943,11 +904,7 @@ nzerror nzteMyCert(/*_ nzctx *, nzttPersona *, ub1 **, ub4 * _*/);
  *    NZERROR_OK           Success.
  *    NZERROR_NO_MEMORY    ossctx is null.
  */
-#ifdef __STDC__
-nzerror nzteX509CreatePersona(nzctx *, ub1 *, ub4, nzttPersona **);
-#else
-nzerror nzteX509CreatePersona(/*_ nzctx *, ub1 *, ub4, nzttPersona ** _*/);
-#endif /* __STDC __*/
+nzerror nzteX509CreatePersona( nzctx *, ub1 *, ub4, nzttPersona ** );
 
 /*-------------------- nztiCreateIdentity --------------------*/
 
@@ -972,13 +929,8 @@ nzerror nzteX509CreatePersona(/*_ nzctx *, ub1 *, ub4, nzttPersona ** _*/);
  *    NZERROR_OK        Success.
  *    NZERROR_PARMS     Error in description.
  */
-#ifdef __STDC__
-nzerror nztiCreateIdentity(nzctx *, nzttVersion, nzttIdentityDesc *,
-                               nzttIdentity **);
-#else
-nzerror nztiCreateIdentity(/*_ nzctx *, nzttVersion, nzttIdentityDesc *,
-                               nzttIdentity ** _*/);
-#endif /* __STDC __*/
+nzerror nztiCreateIdentity( nzctx *, nzttVersion, nzttIdentityDesc *,
+                               nzttIdentity ** );
 
 #ifdef NZ_OLD_TOOLS
 /*-------------------- nztiDuplicateIdentity --------------------*/
@@ -1001,13 +953,8 @@ nzerror nztiCreateIdentity(/*_ nzctx *, nzttVersion, nzttIdentityDesc *,
  *    NZERROR_TK_NOTFOUND  Identity not found.
  *    NZERROR_PARMS     Error in description.
  */
-#ifdef __STDC__
-nzerror nztiDuplicateIdentity(nzctx *, nzttIdentity *, 
-                              nzttIdentity **);
-#else
-nzerror nztiDuplicateIdentity(/*_ nzctx *, nzttIdentity *, 
-                              nzttIdentity ** _*/);
-#endif /* __STDC __*/
+nzerror nztiDuplicateIdentity( nzctx *, nzttIdentity *, 
+                              nzttIdentity ** );
 #endif /* NZ_OLD_TOOLS */
 
 /*--------------------- nztiAbortIdentity ---------------------*/
@@ -1030,11 +977,7 @@ nzerror nztiDuplicateIdentity(/*_ nzctx *, nzttIdentity *,
  *    NZERROR_OK           Success.
  *    NZERROR_CANTABORT    Identity is associated with persona.
  */
-#ifdef __STDC__
-nzerror nztiAbortIdentity(nzctx *, nzttIdentity **);
-#else
-nzerror nztiAbortIdentity(/*_ nzctx *, nzttIdentity ** _*/);
-#endif /* __STDC __*/
+nzerror nztiAbortIdentity( nzctx *, nzttIdentity ** );
 
 #ifdef NZ_OLD_TOOLS
 /*----------------- nztidGetIdentityDesc -----------------*/
@@ -1056,13 +999,8 @@ nzerror nztiAbortIdentity(/*_ nzctx *, nzttIdentity ** _*/);
  * RETURNS
  *    NZERROR_OK     Success.
  */
-#ifdef __STDC__
-nzerror nztidGetIdentityDesc(nzctx *, nzttIdentity *, 
-                             nzttIdentityDesc **);
-#else
-nzerror nztidGetIdentityDesc(/*_ nzctx *, nzttIdentity *,
-                                     nzttIdentityDesc ** _*/);
-#endif /* __STDC __*/
+nzerror nztidGetIdentityDesc( nzctx *, nzttIdentity *,
+                                     nzttIdentityDesc ** );
 
 /*----------------- nztidFreeIdentityDesc -----------------*/
 
@@ -1081,11 +1019,7 @@ nzerror nztidGetIdentityDesc(/*_ nzctx *, nzttIdentity *,
  * RETURNS
  *    NZERROR_OK     Success.
  */
-#ifdef __STDC__
-nzerror nztidFreeIdentityDesc(nzctx *, nzttIdentityDesc **);
-#else
-nzerror nztidFreeIdentityDesc(/*_ nzctx *, nzttIdentityDesc ** _*/);
-#endif /* __STDC __*/
+nzerror nztidFreeIdentityDesc( nzctx *, nzttIdentityDesc ** );
 #endif /* NZ_OLD_TOOLS */
 
 /*---------------- nztific_FreeIdentityContent ----------------*/
@@ -1107,13 +1041,8 @@ nzerror nztidFreeIdentityDesc(/*_ nzctx *, nzttIdentityDesc ** _*/);
 /*
  * Free the identity content.
  */
-#ifdef __STDC__
-nzerror nztific_FreeIdentityContent(nzctx *ossctx,
-                                        nzttIdentity *identity);
-#else
-nzerror nztific_FreeIdentityContent(/*_ nzctx *ossctx,
-                                        nzttIdentity *identity _*/);
-#endif /* __STDC __*/
+nzerror nztific_FreeIdentityContent( nzctx *ossctx,
+                                        nzttIdentity *identity );
 
 
 /*-------------------------- nztSign --------------------------*/
@@ -1138,13 +1067,8 @@ nzerror nztific_FreeIdentityContent(/*_ nzctx *ossctx,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztSign(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                    nzttBufferBlock *);
-#else
-nzerror nztSign(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                    nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztSign( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+                    nzttBufferBlock * );
 
 /*------------------------- nztVerify -------------------------*/
 
@@ -1171,15 +1095,9 @@ nzerror nztSign(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztVerify(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+nzerror nztVerify( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
                       nzttBufferBlock *, boolean *, boolean *,
-                      nzttIdentity **);
-#else
-nzerror nztVerify(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                      nzttBufferBlock *, boolean *, boolean *,
-                      nzttIdentity ** _*/);
-#endif /* __STDC __*/
+                      nzttIdentity ** );
 
 /*------------------------ nztValidate ------------------------*/
 
@@ -1200,11 +1118,7 @@ nzerror nztVerify(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztValidate(nzctx *, nzttPersona *, nzttIdentity *, boolean *);
-#else
-nzerror nztValidate(/*_ nzctx *, nzttPersona *, nzttIdentity *, boolean * _*/);
-#endif /* __STDC __*/
+nzerror nztValidate( nzctx *, nzttPersona *, nzttIdentity *, boolean * );
 
 /*-------------------- nztsd_SignDetached --------------------*/
 
@@ -1228,13 +1142,8 @@ nzerror nztValidate(/*_ nzctx *, nzttPersona *, nzttIdentity *, boolean * _*/);
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztsd_SignDetached(nzctx *, nzttPersona *, nzttces, ub4, ub1 *, 
-                               nzttBufferBlock *);
-#else
-nzerror nztsd_SignDetached(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *, 
-                               nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztsd_SignDetached( nzctx *, nzttPersona *, nzttces, ub4, ub1 *, 
+                               nzttBufferBlock * );
 
 /*------------------- nztved_VerifyDetached -------------------*/
 
@@ -1261,15 +1170,9 @@ nzerror nztsd_SignDetached(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztved_VerifyDetached(nzctx *, nzttPersona *, nzttces, ub4, 
+nzerror nztved_VerifyDetached( nzctx *, nzttPersona *, nzttces, ub4, 
                                   ub1 *, ub4, ub1 *, boolean *, boolean *, 
-                                  nzttIdentity **);
-#else
-nzerror nztved_VerifyDetached(/*_ nzctx *, nzttPersona *, nzttces, ub4, 
-                                  ub1 *, ub4, ub1 *, boolean *, boolean *, 
-                                  nzttIdentity ** _*/);
-#endif /* __STDC __*/
+                                  nzttIdentity ** );
 
 /*--------------------- nztkec_PKEncrypt ---------------------*/
 
@@ -1297,13 +1200,8 @@ nzerror nztved_VerifyDetached(/*_ nzctx *, nzttPersona *, nzttces, ub4,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztkec_PKEncrypt(nzctx *, nzttPersona *, ub4, nzttIdentity *, 
-                             nzttces, ub4, ub1 *, nzttBufferBlock *);
-#else
-nzerror nztkec_PKEncrypt(/*_ nzctx *, nzttPersona *, ub4, nzttIdentity *, 
-                             nzttces, ub4, ub1 *, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztkec_PKEncrypt( nzctx *, nzttPersona *, ub4, nzttIdentity *, 
+                             nzttces, ub4, ub1 *, nzttBufferBlock * );
 
 /*---------------- nztxkec_PKEncryptExpansion ----------------*/
 
@@ -1325,13 +1223,8 @@ nzerror nztkec_PKEncrypt(/*_ nzctx *, nzttPersona *, ub4, nzttIdentity *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztxkec_PKEncryptExpansion(nzctx *, nzttPersona *, ub4, ub4,
-                                       ub4 *);
-#else
-nzerror nztxkec_PKEncryptExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4,
-                                       ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztxkec_PKEncryptExpansion( nzctx *, nzttPersona *, ub4, ub4,
+                                       ub4 * );
 
 /*--------------------- nztkdc_PKDecrypt ---------------------*/
 
@@ -1355,13 +1248,8 @@ nzerror nztxkec_PKEncryptExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztkdc_PKDecrypt(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                             nzttBufferBlock *);
-#else
-nzerror nztkdc_PKDecrypt(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                             nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztkdc_PKDecrypt( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+                             nzttBufferBlock * );
 
 /*-------------------------- nztHash --------------------------*/
 
@@ -1385,13 +1273,8 @@ nzerror nztkdc_PKDecrypt(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztHash(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                    nzttBufferBlock *);
-#else
-nzerror nztHash(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                    nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztHash( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+                    nzttBufferBlock * );
 
 /*----------------------- nztSeedRandom -----------------------*/
 
@@ -1412,11 +1295,7 @@ nzerror nztHash(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztSeedRandom(nzctx *, nzttPersona *, ub4, ub1 *);
-#else
-nzerror nztSeedRandom(/*_ nzctx *, nzttPersona *, ub4, ub1 * _*/);
-#endif /* __STDC __*/
+nzerror nztSeedRandom( nzctx *, nzttPersona *, ub4, ub1 * );
 
 /*--------------------- nztrb_RandomBytes ---------------------*/
 
@@ -1438,13 +1317,8 @@ nzerror nztSeedRandom(/*_ nzctx *, nzttPersona *, ub4, ub1 * _*/);
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztrb_RandomBytes(nzctx *, nzttPersona *, ub4, 
-                              nzttBufferBlock *);
-#else
-nzerror nztrb_RandomBytes(/*_ nzctx *, nzttPersona *, ub4, 
-                              nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztrb_RandomBytes( nzctx *, nzttPersona *, ub4, 
+                              nzttBufferBlock * );
 
 /*-------------------- nztrn_RandomNumber --------------------*/
 
@@ -1464,11 +1338,7 @@ nzerror nztrb_RandomBytes(/*_ nzctx *, nzttPersona *, ub4,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztrn_RandomNumber(nzctx *, nzttPersona *, uword *);
-#else
-nzerror nztrn_RandomNumber(/*_ nzctx *, nzttPersona *, uword * _*/);
-#endif /* __STDC __*/
+nzerror nztrn_RandomNumber( nzctx *, nzttPersona *, uword * );
 
 /*---------------------- nztbbInitBlock ----------------------*/
 
@@ -1487,11 +1357,7 @@ nzerror nztrn_RandomNumber(/*_ nzctx *, nzttPersona *, uword * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nztbbInitBlock(nzctx *, nzttBufferBlock *);
-#else
-nzerror nztbbInitBlock(/*_ nzctx *, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztbbInitBlock( nzctx *, nzttBufferBlock * );
 
 /*---------------------- nztbbReuseBlock ----------------------*/
 
@@ -1511,11 +1377,7 @@ nzerror nztbbInitBlock(/*_ nzctx *, nzttBufferBlock * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nztbbReuseBlock(nzctx *, nzttBufferBlock *);
-#else
-nzerror nztbbReuseBlock(/*_ nzctx *, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztbbReuseBlock( nzctx *, nzttBufferBlock * );
 
 /*---------------------- nztbbSizeBlock ----------------------*/
 
@@ -1533,11 +1395,7 @@ nzerror nztbbReuseBlock(/*_ nzctx *, nzttBufferBlock * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nztbbSizeBlock(nzctx *, ub4, nzttBufferBlock *);
-#else
-nzerror nztbbSizeBlock(/*_ nzctx *, ub4, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztbbSizeBlock( nzctx *, ub4, nzttBufferBlock * );
 
 /*----------------------- nztbbGrowBlock -----------------------*/
 
@@ -1555,11 +1413,7 @@ nzerror nztbbSizeBlock(/*_ nzctx *, ub4, nzttBufferBlock * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nztbbGrowBlock(nzctx *, ub4, nzttBufferBlock *);
-#else
-nzerror nztbbGrowBlock(/*_ nzctx *, ub4, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztbbGrowBlock( nzctx *, ub4, nzttBufferBlock * );
 
 /*---------------------- nztbbPurgeBlock ----------------------*/
 
@@ -1578,11 +1432,7 @@ nzerror nztbbGrowBlock(/*_ nzctx *, ub4, nzttBufferBlock * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nztbbPurgeBlock(nzctx *, nzttBufferBlock *);
-#else
-nzerror nztbbPurgeBlock(/*_ nzctx *, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztbbPurgeBlock( nzctx *, nzttBufferBlock * );
 
 /*----------------------- nztbbSetBlock -----------------------*/
 
@@ -1608,13 +1458,8 @@ nzerror nztbbPurgeBlock(/*_ nzctx *, nzttBufferBlock * _*/);
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nztbbSetBlock(nzctx *,  uword, ub4, ub4, ub1 *, 
-                          nzttBufferBlock *);
-#else
-nzerror nztbbSetBlock(/*_ nzctx *,  uword, ub4, ub4, ub1 *, 
-                          nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztbbSetBlock( nzctx *,  uword, ub4, ub4, ub1 *, 
+                          nzttBufferBlock * );
 
 
 /*--------------------- nztiGetSecInfo ---------------------*/
@@ -1638,13 +1483,8 @@ nzerror nztbbSetBlock(/*_ nzctx *,  uword, ub4, ub4, ub1 *,
  * RETURNS
  *    
  */
-#ifdef __STDC__
-nzerror nztiGetSecInfo(nzctx *, nzttPersona *, text **, ub4 *,
-          text **, ub4 *, ub1 **, ub4 *);
-#else
-nzerror nztiGetSecInfo(/*_ nzctx *, nzttPersona *, text **, ub4 *,
-            text **, ub4 *, ub1 **, ub4 * _*/);
-#endif   /* __STDC__ */
+nzerror nztiGetSecInfo( nzctx *, nzttPersona *, text **, ub4 *,
+            text **, ub4 *, ub1 **, ub4 * );
 
 
 /*---------------------- nztiGetDName ----------------------*/
@@ -1666,13 +1506,8 @@ nzerror nztiGetSecInfo(/*_ nzctx *, nzttPersona *, text **, ub4 *,
  *    
  */
 
-#ifdef __STDC__
-nzerror nztiGetDName(nzctx *, nzttIdentity *,
-           text **, ub4 *);
-#else
-nzerror nztiGetDName(/*_ nzctx *, nzttIdentity *,
-              text **, ub4 * _*/);
-#endif /* __STDC__ */
+nzerror nztiGetDName( nzctx *, nzttIdentity *,
+              text **, ub4 * );
 
 /*------------------- nztiGetIssuerName -------------------*/
 
@@ -1692,13 +1527,8 @@ nzerror nztiGetDName(/*_ nzctx *, nzttIdentity *,
  * RETURNS
  *    
  */
-#ifdef __STDC__
-nzerror nztiGetIssuerName(nzctx *, nzttIdentity *,
-              text **, ub4 *);
-#else
-nzerror nztiGetIssuerName(/*_ nzctx *, nzttIdentity *,
-               text **, ub4 * _*/);
-#endif /* __STDC__ */
+nzerror nztiGetIssuerName( nzctx *, nzttIdentity *,
+               text **, ub4 * );
 
 
 /*-------------------- nztgch_GetCertHash --------------------*/
@@ -1719,13 +1549,8 @@ nzerror nztiGetIssuerName(/*_ nzctx *, nzttIdentity *,
  * RETURNS
  *    
  */
-#ifdef __STDC__
-nzerror nztgch_GetCertHash(nzctx *, nzttIdentity *,
-              ub1 **, ub4 *);
-#else
-nzerror nztgch_GetCertHash(/*_ nzctx *, nzttIdentity *,
-              ub1 **, ub4 * _*/);
-#endif /* __STDC__ */
+nzerror nztgch_GetCertHash( nzctx *, nzttIdentity *,
+              ub1 **, ub4 * );
 
 /*-------------------- nztdbuf_DestroyBuf --------------------*/
 
@@ -1743,11 +1568,7 @@ nzerror nztgch_GetCertHash(/*_ nzctx *, nzttIdentity *,
  * RETURNS
  *    
  */
-#ifdef __STDC__
-nzerror nztdbuf_DestroyBuf( nzctx *, dvoid **);
-#else
-nzerror nztdbuf_DestroyBuf(/*_ nzctx *, dvoid ** _*/);
-#endif /* __STDC__ */
+nzerror nztdbuf_DestroyBuf( nzctx *, void  ** );
 
 
 /*----------------------- nztGetCertChain -----------------------*/
@@ -1765,11 +1586,7 @@ nzerror nztdbuf_DestroyBuf(/*_ nzctx *, dvoid ** _*/);
  * RETURNS
  *    
  */
-#ifdef __STDC__
-nzerror nztGetCertChain(nzctx *, nzttWallet * );
-#else
-nzerror nztGetCertChain(/*_ nzctx *, nzttWallet _*/);
-#endif /* __STDC__ */
+nzerror nztGetCertChain( nzctx *, nzttWallet * );
 
 /*----------------------- nztCompareDN -----------------------*/
 
@@ -1790,11 +1607,7 @@ nzerror nztGetCertChain(/*_ nzctx *, nzttWallet _*/);
  *   others         failed
  *    
  */
-#ifdef __STDC__
-nzerror nztCompareDN(nzctx *, ub1 *, ub4,  ub1 *, ub4, boolean * );
-#else
-nzerror nztCompareDN(/*_ nzctx *, ub1 *,ub4 ,  ub1 *, ub4, boolean * _*/);
-#endif/* __STDC__ */
+nzerror nztCompareDN( nzctx *, ub1 *,ub4 ,  ub1 *, ub4, boolean * );
 
 
 #ifdef NZ_OLD_TOOLS
@@ -1816,11 +1629,7 @@ nzerror nztCompareDN(/*_ nzctx *, ub1 *,ub4 ,  ub1 *, ub4, boolean * _*/);
  *   others         failed
  *    
  */
-#ifdef __STDC__
-nzerror nztIdentityAlloc(nzctx *, nzttIdentity **);
-#else
-nzerror nztIdentityAlloc(/*_ nzctx *, nzttIdentity ** _*/);
-#endif/* __STDC__ */
+nzerror nztIdentityAlloc( nzctx *, nzttIdentity ** );
 
 /*--------------------- nztIPrivateAlloc ---------------------*/
 
@@ -1841,11 +1650,7 @@ nzerror nztIdentityAlloc(/*_ nzctx *, nzttIdentity ** _*/);
  *    
  */
 
-#ifdef __STDC__
 nzerror nztIPrivateAlloc( nzctx *, nzttIdentityPrivate **);
-#else
-nzerror nztIPrivateAlloc( nzctx *, nzttIdentityPrivate **);
-#endif /* __STDC__ */
 
 
 /*---------------------- nztIDupContent ----------------------*/
@@ -1867,11 +1672,7 @@ nzerror nztIPrivateAlloc( nzctx *, nzttIdentityPrivate **);
  *    
  */
 
-#ifdef __STDC__
-nzerror nztIDupContent( nzctx *, nzttIdentity *, nzttIdentity *);
-#else
-nzerror nztIDupContent(/*_ nzctx *, nzttIdentity *, nzttIdentity * _*/);
-#endif
+nzerror nztIDupContent( nzctx *, nzttIdentity *, nzttIdentity * );
 /*---------------------- nztIPDuplicate ----------------------*/
 
 /*
@@ -1891,13 +1692,8 @@ nzerror nztIDupContent(/*_ nzctx *, nzttIdentity *, nzttIdentity * _*/);
  *   others         failed
  *    
  */
-#ifdef __STDC__
 nzerror nztIPDuplicate( nzctx *, nzttIdentityPrivate **,
-         nzttIdentityPrivate *);
-#else
-nzerror nztIPDuplicate(/*_ nzctx *, nzttIdentityPrivate **,
-          nzttIdentityPrivate * _*/);
-#endif /* __STDC__ */
+          nzttIdentityPrivate * );
 
 /*--------------------- nztiDupIdentList ---------------------*/
 
@@ -1919,14 +1715,8 @@ nzerror nztIPDuplicate(/*_ nzctx *, nzttIdentityPrivate **,
  *   others         failed
  *    
  */
-#ifdef __STDC__
 nzerror nztiDupIdentList( nzctx *, nzttIdentity  *, ub4 *, 
-                          nzttIdentity **);
-#else
-
-nzerror nztiDupIdentList(/*_ nzctx *, nzttIdentity  *, ub4 *, 
-                             nzttIdentity ** _*/);
-#endif
+                             nzttIdentity ** );
 
 /*--------------------- nztFreeIdentList ---------------------*/
 
@@ -1946,11 +1736,7 @@ nzerror nztiDupIdentList(/*_ nzctx *, nzttIdentity  *, ub4 *,
  *   others         failed
  *    
  */
-#ifdef __STDC__
-nzerror nztFreeIdentList( nzctx *, nzttIdentity **);
-#else
-nzerror nztFreeIdentList(/*_ nzctx *, nzttIdentity ** _*/);
-#endif
+nzerror nztFreeIdentList( nzctx *, nzttIdentity ** );
 #endif /* NZ_OLD_TOOLS */
 
 /*--------------------- nztCheckVaLidity ---------------------*/
@@ -1972,11 +1758,7 @@ nzerror nztFreeIdentList(/*_ nzctx *, nzttIdentity ** _*/);
  *   others         failed
  *    
  */
-#ifdef __STDC__
 nzerror nztCheckValidity( nzctx *, ub4 , ub4 );
-#else
-nzerror nztCheckValidity(/*_ nzctx *, ub4 , ub4 _*/);
-#endif
 
 /*--------------------- nztwCreateWallet ---------------------*/
 
@@ -2008,13 +1790,8 @@ nzerror nztCheckValidity(/*_ nzctx *, ub4 , ub4 _*/);
  *    NZERROR_TK_WALLET_EXISTS   Wallet already exists.
  *    NZERROR_RIO_OPEN           RIO could not create wallet (see trace file).
  */
-#ifdef __STDC__
-nzerror nztwCreateWallet(nzctx *, ub4, text *, ub4, text *, 
-                             nzttWallet *);
-#else
-nzerror nztwCreateWallet(/*_ nzctx *, ub4, text *, ub4, text *, 
-                             nzttWallet * _*/);
-#endif /* __STDC__ */
+nzerror nztwCreateWallet( nzctx *, ub4, text *, ub4, text *, 
+                             nzttWallet * );
 
 
 /*--------------------- nztwDestroyWallet ---------------------*/
@@ -2037,11 +1814,7 @@ nzerror nztwCreateWallet(/*_ nzctx *, ub4, text *, ub4, text *,
  *    NZERROR_RIO_OPEN     RIO could not open wallet (see trace file).
  *    NZERROR_RIO_DELETE   Delete failed (see trace file).
  */
-#ifdef __STDC__
-nzerror nztwDestroyWallet(nzctx *, ub4, text *, ub4, text *);
-#else
-nzerror nztwDestroyWallet(/*_ nzctx *, ub4, text *, ub4, text * _*/);
-#endif /* __STDC __*/
+nzerror nztwDestroyWallet( nzctx *, ub4, text *, ub4, text * );
 
 /*--------------------- nzteStorePersona ---------------------*/
 
@@ -2084,11 +1857,7 @@ nzerror nztwDestroyWallet(/*_ nzctx *, ub4, text *, ub4, text * _*/);
  *    NZERROR_TK_PASSWORD  Password verification failed.
  *    NZERROR_RIO_STORE    Store failed (see network trace file).
  */
-#ifdef __STDC__
-nzerror nzteStorePersona(nzctx *, nzttPersona **, nzttWallet *);
-#else
-nzerror nzteStorePersona(/*_ nzctx *, nzttPersona **, nzttWallet * _*/);
-#endif /* __STDC __*/
+nzerror nzteStorePersona( nzctx *, nzttPersona **, nzttWallet * );
 
 /*--------------------- nzteRemovePersona ---------------------*/
 
@@ -2114,11 +1883,7 @@ nzerror nzteStorePersona(/*_ nzctx *, nzttPersona **, nzttWallet * _*/);
  *    NZERROR_TK_PASSWORD  Password verification failed.
  *    NZERROR_RIO_DELETE   Delete failed.
  */
-#ifdef __STDC__
-nzerror nzteRemovePersona(nzctx *, nzttPersona **);
-#else
-nzerror nzteRemovePersona(/*_ nzctx *, nzttPersona ** _*/);
-#endif /* __STDC __*/
+nzerror nzteRemovePersona( nzctx *, nzttPersona ** );
 
 /*--------------------- nzteCreatePersona ---------------------*/
 
@@ -2144,13 +1909,8 @@ nzerror nzteRemovePersona(/*_ nzctx *, nzttPersona ** _*/);
  *    NZERROR_TK_TYPE   Unsupported itype/ctype combination.
  *    NZERROR_TK_PARMS  Error in persona description.
  */
-#ifdef __STDC__
-nzerror nzteCreatePersona(nzctx *, nzttVersion, nzttCipherType, 
-           nzttPersonaDesc *, nzttPersona **);
-#else
-nzerror nzteCreatePersona(/*_ nzctx *, nzttVersion, nzttCipherType, 
-                              nzttPersonaDesc *, nzttPersona ** _*/);
-#endif /* __STDC __*/
+nzerror nzteCreatePersona( nzctx *, nzttVersion, nzttCipherType, 
+                              nzttPersonaDesc *, nzttPersona ** );
 
 
 /*----------------- nztiStoreTrustedIdentity -----------------*/
@@ -2174,13 +1934,8 @@ nzerror nzteCreatePersona(/*_ nzctx *, nzttVersion, nzttCipherType,
  * RETURNS
  *    NZERROR_OK     Success.
  */
-#ifdef __STDC__
-nzerror nztiStoreTrustedIdentity(nzctx *, nzttIdentity **,
-                                     nzttPersona *);
-#else
-nzerror nztiStoreTrustedIdentity(/*_ nzctx *, nzttIdentity **,
-                                     nzttPersona * _*/);
-#endif /* __STDC __*/
+nzerror nztiStoreTrustedIdentity( nzctx *, nzttIdentity **,
+                                     nzttPersona * );
 
 /*--------------------- nzteSetProtection ---------------------*/
 
@@ -2202,13 +1957,8 @@ nzerror nztiStoreTrustedIdentity(/*_ nzctx *, nzttIdentity **,
  *    NZERROR_TK_PROTECTION   Unsupported protection.
  *    NZERROR_TK_PARMS        Error in protection info.
  */
-#ifdef __STDC__
-nzerror nzteSetProtection(nzctx *, nzttPersona *, nzttcef, nztttdufmt,
-                              nzttProtInfo *);
-#else
-nzerror nzteSetProtection(/*_ nzctx *, nzttPersona *, nzttcef, nztttdufmt,
-                              nzttProtInfo * _*/);
-#endif /* __STDC __*/
+nzerror nzteSetProtection( nzctx *, nzttPersona *, nzttcef, nztttdufmt,
+                              nzttProtInfo * );
 
 /*--------------------- nzteGetProtection ---------------------*/
 
@@ -2228,13 +1978,8 @@ nzerror nzteSetProtection(/*_ nzctx *, nzttPersona *, nzttcef, nztttdufmt,
  * RETURNS
  *    NZERROR_OK        Success.
  */
-#ifdef __STDC__
-nzerror nzteGetProtection(nzctx *, nzttPersona *, nzttcef, nztttdufmt *,
-                              nzttProtInfo *);
-#else
-nzerror nzteGetProtection(/*_ nzctx *, nzttPersona *, nzttcef, nztttdufmt *,
-                              nzttProtInfo * _*/);
-#endif /* __STDC __*/
+nzerror nzteGetProtection( nzctx *, nzttPersona *, nzttcef, nztttdufmt *,
+                              nzttProtInfo * );
 
 /*-------------------- nztiRemoveIdentity --------------------*/
 
@@ -2258,11 +2003,7 @@ nzerror nzteGetProtection(/*_ nzctx *, nzttPersona *, nzttcef, nztttdufmt *,
  *    NZERROR_TK_NOTFOUND  Identity not found.
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  */
-#ifdef __STDC__
-nzerror nztiRemoveIdentity(nzctx *, nzttIdentity **);
-#else
-nzerror nztiRemoveIdentity(/*_ nzctx *, nzttIdentity ** _*/);
-#endif /* __STDC __*/
+nzerror nztiRemoveIdentity( nzctx *, nzttIdentity ** );
 
 /*----------------- nztifdn -----------------*/
 
@@ -2282,17 +2023,10 @@ nzerror nztiRemoveIdentity(/*_ nzctx *, nzttIdentity ** _*/);
  * RETURNS
  *    NZERROR_OK     Success.
  */
-#ifdef __STDC__
-nzerror nztifdn(nzctx         *ossctx,
+nzerror nztifdn( nzctx         *ossctx,
                     ub4         length,
                     text          *distinguished_name,
-                    nzttIdentity **ppidentity);
-#else
-nzerror nztifdn(/*_ nzctx         *ossctx,
-                    ub4         length,
-                    text          *distinguished_name,
-                    nzttIdentity **ppidentity _*/);
-#endif /* __STDC __*/
+                    nzttIdentity **ppidentity );
 
 /*--------------------- nztxSignExpansion ---------------------*/
 
@@ -2313,11 +2047,7 @@ nzerror nztifdn(/*_ nzctx         *ossctx,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztxSignExpansion(nzctx *, nzttPersona *, ub4, ub4 *);
-#else
-nzerror nztxSignExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztxSignExpansion( nzctx *, nzttPersona *, ub4, ub4 * );
 
 /*--------------- nztxsd_SignDetachedExpansion ---------------*/
 
@@ -2338,13 +2068,8 @@ nzerror nztxSignExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4 * _*/);
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztxsd_SignDetachedExpansion(nzctx *, nzttPersona *, ub4,
-                                         ub4 *);
-#else
-nzerror nztxsd_SignDetachedExpansion(/*_ nzctx *, nzttPersona *, ub4,
-                                         ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztxsd_SignDetachedExpansion( nzctx *, nzttPersona *, ub4,
+                                         ub4 * );
 
 /*------------------------ nztEncrypt ------------------------*/
 
@@ -2367,13 +2092,8 @@ nzerror nztxsd_SignDetachedExpansion(/*_ nzctx *, nzttPersona *, ub4,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztEncrypt(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                       nzttBufferBlock *);
-#else
-nzerror nztEncrypt(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                       nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztEncrypt( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+                       nzttBufferBlock * );
 
 /*------------------- nztxEncryptExpansion -------------------*/
 
@@ -2394,11 +2114,7 @@ nzerror nztEncrypt(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztxEncryptExpansion(nzctx *, nzttPersona *, ub4, ub4 *);
-#else
-nzerror nztxEncryptExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztxEncryptExpansion( nzctx *, nzttPersona *, ub4, ub4 * );
 
 /*------------------------ nztDecrypt ------------------------*/
 
@@ -2422,13 +2138,8 @@ nzerror nztxEncryptExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4 * _*/);
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztDecrypt(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                       nzttBufferBlock *);
-#else
-nzerror nztDecrypt(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                       nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztDecrypt( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+                       nzttBufferBlock * );
 
 /*------------------------ nztEnvelope ------------------------*/
 
@@ -2454,13 +2165,8 @@ nzerror nztDecrypt(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztEnvelope(nzctx *, nzttPersona *, ub4, nzttIdentity *,
-                        nzttces, ub4, ub1 *, nzttBufferBlock *);
-#else
-nzerror nztEnvelope(/*_ nzctx *, nzttPersona *, ub4, nzttIdentity *,
-                        nzttces, ub4, ub1 *, nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztEnvelope( nzctx *, nzttPersona *, ub4, nzttIdentity *,
+                        nzttces, ub4, ub1 *, nzttBufferBlock * );
 
 /*----------------------- nztDeEnvelope -----------------------*/
 
@@ -2487,15 +2193,9 @@ nzerror nztEnvelope(/*_ nzctx *, nzttPersona *, ub4, nzttIdentity *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztDeEnvelope(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+nzerror nztDeEnvelope( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
                           nzttBufferBlock *, boolean *, boolean *,
-                          nzttIdentity **);
-#else
-nzerror nztDeEnvelope(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                          nzttBufferBlock *, boolean *, boolean *,
-                          nzttIdentity ** _*/);
-#endif /* __STDC __*/
+                          nzttIdentity ** );
 
 /*----------------------- nztKeyedHash -----------------------*/
 
@@ -2519,13 +2219,8 @@ nzerror nztDeEnvelope(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztKeyedHash(nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                         nzttBufferBlock *);
-#else
-nzerror nztKeyedHash(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
-                         nzttBufferBlock * _*/);
-#endif /* __STDC __*/
+nzerror nztKeyedHash( nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
+                         nzttBufferBlock * );
 
 /*------------------ nztxKeyedHashExpansion ------------------*/
 
@@ -2546,13 +2241,8 @@ nzerror nztKeyedHash(/*_ nzctx *, nzttPersona *, nzttces, ub4, ub1 *,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztxKeyedHashExpansion(nzctx *, nzttPersona *, ub4, 
-                                   ub4 *);
-#else
-nzerror nztxKeyedHashExpansion(/*_ nzctx *, nzttPersona *, ub4, 
-                                   ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztxKeyedHashExpansion( nzctx *, nzttPersona *, ub4, 
+                                   ub4 * );
 
 /*--------------------- nztxHashExpansion ---------------------*/
 
@@ -2573,11 +2263,7 @@ nzerror nztxKeyedHashExpansion(/*_ nzctx *, nzttPersona *, ub4,
  *    NZERROR_TK_NOTOPEN   Persona is not open.
  *    NZERROR_TK_NOTSUPP   Function not supported with persona.
  */
-#ifdef __STDC__
-nzerror nztxHashExpansion(nzctx *, nzttPersona *, ub4, ub4 *);
-#else
-nzerror nztxHashExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4 * _*/);
-#endif /* __STDC __*/
+nzerror nztxHashExpansion( nzctx *, nzttPersona *, ub4, ub4 * );
 
 /*---------------- nztiae_IsAuthEnabled ----------------*/
 
@@ -2598,13 +2284,9 @@ nzerror nztxHashExpansion(/*_ nzctx *, nzttPersona *, ub4, ub4 * _*/);
  *      NZERROR_TK_INV_CIPHR_TYPE if Cipher Spec is not Recognized.
  */
 
-#ifdef __STDC__
-nzerror nztiae_IsAuthEnabled( nzctx *, ub2, boolean *);
-#else
-nzerror nztiae_IsAuthEnabled(/*_ nzctx *ctx, 
+nzerror nztiae_IsAuthEnabled( nzctx *ctx, 
                                   ub2 ncipher, 
-                                  boolean *authEnabled _*/);
-#endif
+                                  boolean *authEnabled );
 
 /*---------------- nztiee_IsEncrEnabled ----------------*/
 /*
@@ -2624,13 +2306,10 @@ nzerror nztiae_IsAuthEnabled(/*_ nzctx *ctx,
  *      NZERROR_TK_INV_CIPHR_TYPE if Cipher Spec is not Recognized.
  */
 
-#ifdef __STDC__
-nzerror nztiee_IsEncrEnabled( nzctx *, ub2, boolean *);
-#else
-nzerror nztiee_IsEncrEnabled(/*_ nzctx *ctx, 
+nzerror nztiee_IsEncrEnabled( nzctx *ctx, 
                                   ub2 ncipher, 
-                                  boolean *EncrEnabled _*/);
-#endif
+                                  boolean *EncrEnabled );
+
 /*---------------- nztihe_IsHashEnabled ----------------*/
 /*
  * NAME
@@ -2649,104 +2328,60 @@ nzerror nztiee_IsEncrEnabled(/*_ nzctx *ctx,
  *      NZERROR_TK_INV_CIPHR_TYPE if Cipher Spec is not Recognized.
  */
 
-#ifdef __STDC__
-nzerror nztihe_IsHashEnabled( nzctx *, ub2, boolean *);
-#else
-nzerror nztihe_IsHashEnabled(/*_ nzctx *ctx, 
+nzerror nztihe_IsHashEnabled( nzctx *ctx, 
                                   ub2 ncipher, 
-                                  boolean *hashEnabled _*/);
-#endif
+                                  boolean *hashEnabled );
 
 /*
  *
  */
 
-#ifdef _STDC_
-nzerror nztGetIssuerName(nzctx *, nzttIdentity *, ub1 **, ub4 *);
-#else
-nzerror nztGetIssuerName(/*_ nzctx *ctx,
+nzerror nztGetIssuerName( nzctx *ctx,
                              nzttIdentity *identity,
                              ub1  **issuername,
-                             ub4   *issuernamelen _*/);
-#endif
+                             ub4   *issuernamelen );
 
-#ifdef _STDC_
-nzerror nztGetSubjectName(nzctx *, nzttIdentity *, ub1 **, ub4 *);
-#else
-nzerror nztGetSubjectName(/*_ nzctx *ctx,
+nzerror nztGetSubjectName( nzctx *ctx,
                               nzttIdentity *identity,
                               ub1  **subjectname,
-                              ub4   *subjectnamelen _*/);
-#endif
+                              ub4   *subjectnamelen );
 
-
-#ifdef _STDC_
-nzerror nztGetBase64Cert(nzctx *, nzttIdentity *, ub1 **, ub4 *);
-#else
-nzerror nztGetBase64Cert(/*_ nzctx *ctx,
+nzerror nztGetBase64Cert( nzctx *ctx,
                               nzttIdentity *identity,
                               ub1  **b64cert,
-                              ub4   *b64certlen _*/);
-#endif
+                              ub4   *b64certlen );
 
-#ifdef _STDC_
-nzerror nztGetSerialNumber(nzctx *, nzttIdentity *, ub1 **, ub4 *);
-#else
-nzerror nztGetSerialNumber(/*_ nzctx *ctx,
+nzerror nztGetSerialNumber( nzctx *ctx,
                               nzttIdentity *identity,
                               ub1   **serialnum,
-                              ub4    *serialnumlen _*/);
-#endif
+                              ub4    *serialnumlen );
 
-#ifdef _STDC_
-nzerror nztGetValidDate(nzctx *, nzttIdentity *, ub4 *, ub4 *);
-#else
-nzerror nztGetValidDate(/*_ nzctx *ctx,
+nzerror nztGetValidDate( nzctx *ctx,
                             nzttIdentity *identity,
                             ub4  *startdate, 
-                            ub4  *enddate  _*/);
-#endif
+                            ub4  *enddate  );
 
-#ifdef _STDC_
-nzerror nztGetVersion(nzctx *, nzttIdentity *, nzstrc *); 
-#else
-nzerror nztGetVersion(/*_ nzctx *ctx,
+nzerror nztGetVersion( nzctx *ctx,
                           nzttIdentity *identity,
-                          nzstrc *pVerStr  _*/);
-#endif
+                          nzstrc *pVerStr  );
 
-#ifdef _STDC_
-nzerror nztGetPublicKey(nzctx *, nzttIdentity *, ub1 **, ub4 *);
-#else
-nzerror nztGetPublicKey(/*_ nzctx *ctx,
+nzerror nztGetPublicKey( nzctx *ctx,
                             nzttIdentity *identity,
                             ub1  **pubKey,
-                            ub4   *pubKeylen _*/);
-#endif
+                            ub4   *pubKeylen );
 
+nzerror nztGenericDestroy( nzctx *ctx,
+                              ub1  **var );
 
-#ifdef _STDC_
-nzerror nztGenericDestroy(nzctx *, ub1 **);
-#else
-nzerror nztGenericDestroy(/*_ nzctx *ctx,
-                              ub1  **var _*/);
-#endif
-
-#ifdef _STDC_
-nzerror nztSetAppDefaultLocation(nzctx *, text *, size_t);
-#else
-nzerror nztSetAppDefaultLocation(/*_ nzctx *ctx,
+nzerror nztSetAppDefaultLocation( nzctx *ctx,
                                      text *,
-                                     size_t _*/);
-#endif
+                                     size_t );
 
-#ifdef _STDC_
-nzerror nztSearchNZDefault(nzctx *, boolean *);
-#else
-nzerror nztSearchNZDefault(/*_ nzctx *ctx,
-                               boolean *search _*/);
-#endif
+nzerror nztSearchNZDefault( nzctx *ctx,
+                            boolean *search );
 
+nzerror nztSetLightWeight(nzctx *ctx,
+                          boolean flag);
 
 #endif /* NZT_ORACLE */
 

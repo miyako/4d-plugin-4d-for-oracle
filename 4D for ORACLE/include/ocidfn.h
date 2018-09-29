@@ -1,15 +1,13 @@
-/*
- * $Header: ocidfn.h 25-nov-2002.11:03:03 srseshad Exp $ 
- */
-
-/* Copyright (c) 1991, 2002, Oracle Corporation.  All rights reserved.  */
-/* Copyright (c) 1991, 2002, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1991, 2005, Oracle. All rights reserved.  */
+/* Copyright (c) 1991, 2005, Oracle. All rights reserved.  */
 /*
    NAME
      ocidfn.h - OCI Definations
    NOTES
      Shipped to users.
    MODIFIED   (MM/DD/YY)
+    mbastawa   09/16/05 - dbhygiene
+    dmukhin    06/29/05 - ANSI prototypes; miscellaneous cleanup 
     srseshad   11/25/02 - change binary float/double codes
     srseshad   11/14/02 - Add SQLT_IBFLOAT, SQLT_IBDOUBLE
     mxyang     09/17/02 - grabtrans 'mmorsi_obj_float'
@@ -101,7 +99,7 @@ struct cda_head {
     } rid;
     sword        ose;
     ub1           chk;
-    dvoid        *rcsp;
+    void         *rcsp;
 };
 
 /*
@@ -145,7 +143,7 @@ struct cda_def {
     } rid;
     sword        ose;                                 /* OSD dependent error */
     ub1           chk;
-    dvoid        *rcsp;                          /* pointer to reserved area */
+    void         *rcsp;                          /* pointer to reserved area */
     ub1          rcs9[CDA_SIZE - sizeof (struct cda_head)];        /* filler */
 };
 
@@ -204,8 +202,8 @@ typedef struct cda_def Lda_Def;
 #define SQLT_LVB  95                                   /* Longer long binary */
 #define SQLT_AFC  96                                      /* Ansi fixed char */
 #define SQLT_AVC  97                                        /* Ansi Var char */
-#define SQLT_IBFLOAT  100                           /* binary float canonical */
-#define SQLT_IBDOUBLE 101                          /* binary double canonical */
+#define SQLT_IBFLOAT  100                          /* binary float canonical */
+#define SQLT_IBDOUBLE 101                         /* binary double canonical */
 #define SQLT_CUR  102                                        /* cursor  type */
 #define SQLT_RDD  104                                    /* rowid descriptor */
 #define SQLT_LAB  105                                          /* label type */

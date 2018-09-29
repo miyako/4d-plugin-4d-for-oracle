@@ -1,4 +1,4 @@
-/* Copyright (c) 1994, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1994, 2006, Oracle. All rights reserved.  */
 
 /*
   Author:             Tin Nguyen
@@ -215,7 +215,7 @@
                 (text **)attr_names, (ub4 *)attr_name_lengths, 
                 attr_names_count, (ub4 *)attr_array_indexes, 
                 attr_array_indexes_count, 
-                (dvoid *)0, FALSE, (dvoid *)value) != OROSTASUC)
+                (void *)0, FALSE, (void *)value) != OROSTASUC)
        /o error handling code o/ 
 
     END OF EXAMPLE 1
@@ -226,6 +226,7 @@
     be in the first release.
 
   MODIFIED
+    dmukhin    06/29/05  - ANSI prototypes; miscellaneous cleanup 
     srseshad   03/12/03  - convert oci public api to ansi
     aahluwal   06/03/02  - bug 2360115
     bpalaval   02/09/01  - Change text to oratext.
@@ -280,12 +281,12 @@
 /*---------------------------------------------------------------------------*/
 
 /*-------------------------- OCIObjectSetAttr ----------------------------*/
-sword OCIObjectSetAttr(    OCIEnv *env, OCIError *err, dvoid *instance, 
-                  dvoid *null_struct, struct OCIType *tdo, 
-                  CONST oratext **names, CONST ub4 *lengths, 
-                  CONST ub4 name_count, CONST ub4 *indexes, 
-                  CONST ub4 index_count, CONST OCIInd null_status, 
-                  CONST dvoid *attr_null_struct, CONST dvoid *attr_value    );
+sword OCIObjectSetAttr(    OCIEnv *env, OCIError *err, void  *instance, 
+                  void  *null_struct, struct OCIType *tdo, 
+                  const oratext **names, const ub4 *lengths, 
+                  const ub4 name_count, const ub4 *indexes, 
+                  const ub4 index_count, const OCIInd null_status, 
+                  const void  *attr_null_struct, const void  *attr_value    );
 /*
    NAME: OCIObjectSetAttr - ORID SET value
    PARAMETERS:
@@ -325,12 +326,12 @@ sword OCIObjectSetAttr(    OCIEnv *env, OCIError *err, dvoid *instance,
  */
 
 /*-------------------------- OCIObjectGetAttr ----------------------------*/
-sword OCIObjectGetAttr(    OCIEnv *env, OCIError *err, dvoid *instance, 
-                  dvoid *null_struct, struct OCIType *tdo, 
-                  CONST oratext **names, CONST ub4 *lengths, 
-                  CONST ub4 name_count, CONST ub4 *indexes, 
-                  CONST ub4 index_count, OCIInd *attr_null_status, 
-                  dvoid **attr_null_struct, dvoid **attr_value, 
+sword OCIObjectGetAttr(    OCIEnv *env, OCIError *err, void  *instance, 
+                  void  *null_struct, struct OCIType *tdo, 
+                  const oratext **names, const ub4 *lengths, 
+                  const ub4 name_count, const ub4 *indexes, 
+                  const ub4 index_count, OCIInd *attr_null_status, 
+                  void  **attr_null_struct, void  **attr_value, 
                   struct OCIType **attr_tdo    );
 /*
    NAME: OCIObjectGetAttr - ORID GET value

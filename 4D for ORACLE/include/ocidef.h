@@ -1,9 +1,5 @@
-/*
- * $Header: ocidef.h 25-mar-2003.00:07:44 srseshad Exp $ ocidef.h 
- */
-
-/* Copyright (c) 1981, 2003, Oracle Corporation.  All rights reserved.  */
-/* Copyright (c) 1984, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1981, 2005, Oracle. All rights reserved.  */
+/* Copyright (c) 1984, 2005, Oracle. All rights reserved.  */
  
 /*
 NAME
@@ -17,6 +13,8 @@ OWNER
 DATE
   09/07/82
 MODIFIED
+    mbastawa   09/16/05  - dbhygiene
+    dmukhin    06/29/05  - ANSI prototypes; miscellaneous cleanup 
     srseshad   03/25/03  - convert oci public api to ansi
     csteinba   11/05/02  - bug 2521931: redefine OTYACL
     aahluwal   06/03/02  - bug 2360115
@@ -81,7 +79,7 @@ MODIFIED
 #define LDACHECK 202                          /* csrdef is a login data area */
 struct csrdef
 {
-   b2      csrrc;                /* return code: v2 codes, v4 codes negative */
+   sb2     csrrc;                /* return code: v2 codes, v4 codes negative */
    ub2     csrft;                                           /* function type */
    ub4     csrrpc;                                   /* rows processed count */
    ub2     csrpeo;                                     /* parse error offset */
@@ -90,9 +88,9 @@ struct csrdef
    ub2     csrarc;                        /* actual untranslated return code */
    ub1     csrwrn;                                          /* warning flags */
    ub1     csrflg;                                           /* error action */
-   word    csrcn;                                           /* cursor number */
+   sword   csrcn;                                           /* cursor number */
    riddef  csrrid;                                        /* rowid structure */
-   word    csrose;                                /* os dependent error code */
+   sword   csrose;                                /* os dependent error code */
    ub1     csrchk;                      /* check byte = CSRCHECK - in cursor */
                                         /* check byte = LDACHECK - in    LDA */
    struct hstdef *csrhst;                              /* pointer to the hst */
@@ -300,12 +298,12 @@ typedef struct csrdef ldadef;                    /* lda is the same as a csr */
 */
 struct  ocitab
 {
-   b2   ocitv3;                                   /* Version 3/4 return code */
-   b2   ocitv2;                          /* Version 2 equivalent return code */
+   sb2  ocitv3;                                   /* Version 3/4 return code */
+   sb2  ocitv2;                          /* Version 2 equivalent return code */
 };
 typedef struct ocitab ocitab;
  
-externref CONST_DATA ocitab ocitbl[];
+externref const ocitab ocitbl[];
  
 /* macros to check cursors and LDA's.  */
 /* macros to set error codes           */
@@ -313,7 +311,7 @@ externref CONST_DATA ocitab ocitbl[];
 # define CRSCHK(c)     if ((c->csrchk != CSRCHECK)\
                             && !bit(c->csrflg, CSRFREFC))\
                           return(ocir32(c, OER(1001)))
-# define ldaerr(l, e)  ( l->csrrc = (b2)(-( l->csrarc = (ub2)(e)) ) )
+# define ldaerr(l, e)  ( l->csrrc = (sb2)(-( l->csrarc = (ub2)(e)) ) )
 # define LDACHK(l)     if (l->csrchk != LDACHECK) \
                           return(ldaerr(l, OER(1001)))
  
@@ -328,14 +326,14 @@ externref CONST_DATA ocitab ocitbl[];
 /*****************************/
 /*  Database logon/logout    */
 /*****************************/
-sword ocilog( /*_ ldadef *lda, struct hstdef *hst, oratext *uid, sword uidl, 
+sword ocilog(  ldadef *lda, struct hstdef *hst, oratext *uid, sword uidl, 
                   oratext *psw, sword pswl, oratext* conn, sword connl,
-                  ub4 mode _*/);
-sword ocilon( /*_ ldadef *lda, oratext *uid, word uidl, oratext *psw, 
-                  word pswl, word audit _*/);
-sword  ocilgi( /*_ ldadef *lda, b2 areacount _*/ );
-sword ocirlo( /*_ ldadef *lda, struct hstdef *hst, oratext *uid, word uidl,
-            oratext *psw, word pswl, word audit _*/ );
+                  ub4 mode );
+sword ocilon(  ldadef *lda, oratext *uid, sword uidl, oratext *psw, 
+                  sword pswl, sword audit );
+sword  ocilgi(  ldadef *lda, sb2 areacount  );
+sword ocirlo(  ldadef *lda, struct hstdef *hst, oratext *uid, sword uidl,
+            oratext *psw, sword pswl, sword audit  );
      /* ocilon - logon to oracle
      ** ocilgi - version 2 compatible ORACLE logon call.
      **          no login to ORACLE is performed: the LDA is initialized
@@ -350,7 +348,7 @@ sword ocirlo( /*_ ldadef *lda, struct hstdef *hst, oratext *uid, word uidl,
      **   areacount - unused
      */
 
-sword ocilof( /*_ ldadef *lda _*/ );
+sword ocilof(  ldadef *lda  );
      /*
      ** ocilof - disconnect from ORACLE
      **   lda     - pointer to ldadef
@@ -360,8 +358,8 @@ sword ocilof( /*_ ldadef *lda _*/ );
 /*********************/
 /*   Error Messages  */
 /*********************/
-sword ocierr( /*_ ldadef *lda, b2 rcode, oratext *buffer, word bufl _*/ );
-sword ocidhe( /*_ b2 rcode, oratext *buffer _*/ );
+sword ocierr(  ldadef *lda, sb2 rcode, oratext *buffer, sword bufl  );
+sword ocidhe(  sb2 rcode, oratext *buffer  );
     /* 
     ** Move the text explanation for an ORACLE error to a user defined buffer
     **  ocierr - will return the message associated with the hstdef stored 
@@ -376,10 +374,10 @@ sword ocidhe( /*_ b2 rcode, oratext *buffer _*/ );
 /***********************/
 /*  Cursor Open/Close  */
 /***********************/
-sword ociope( /*_ struct csrdef *cursor, ldadef *lda, oratext *dbn, word dbnl, 
-                 word areasize, oratext *uid, word uidl _*/ );
+sword ociope(  struct csrdef *cursor, ldadef *lda, oratext *dbn, sword dbnl, 
+                 sword areasize, oratext *uid, sword uidl  );
 
-sword ociclo( /*_ struct csrdef *cursor _*/ );
+sword ociclo(  struct csrdef *cursor  );
    /* 
    ** open or close a cursor.
    **   cursor - pointer to csrdef
@@ -397,7 +395,7 @@ sword ociclo( /*_ struct csrdef *cursor _*/ );
 /***********************************/
 /*      CONTROL AND OPTIONS        */
 /***********************************/
-sword ocibre( /*_ ldadef *lda _*/ );
+sword ocibre(  ldadef *lda  );
    /*
    **  ocibrk - Oracle Call Interface send BReaK Sends a break to
    **  oracle.  If oracle is  active,  the  current  operation  is
@@ -407,7 +405,7 @@ sword ocibre( /*_ ldadef *lda _*/ );
    **    lda  - pointer to a ldadef 
    */
 
-sword ocican( /*_ struct csrdef *cursor _*/ );
+sword ocican(  struct csrdef *cursor  );
    /*
    **  cancel the operation on the cursor, no additional OFETCH calls
    **  will be issued for the existing cursor without an intervening 
@@ -415,7 +413,7 @@ sword ocican( /*_ struct csrdef *cursor _*/ );
    **   cursor  - pointer to csrdef
    */
 
-sword ocisfe( /*_ struct csrdef *cursor, word erropt, word waitopt _*/ );
+sword ocisfe(  struct csrdef *cursor, sword erropt, sword waitopt  );
    /* 
    ** ocisfe - user interface set error options
    ** set the error and cursor options.
@@ -431,15 +429,15 @@ sword ocisfe( /*_ struct csrdef *cursor, word erropt, word waitopt _*/ );
 /***************************************/
 /* COMMIT/ROLLBACK/AUTOCOMMIT          */
 /***************************************/
-sword   ocicom( /*_ ldadef *lda _*/ );
-sword   ocirol( /*_ ldadef *lda _*/ );
+sword   ocicom(  ldadef *lda  );
+sword   ocirol(  ldadef *lda  );
    /*
    ** ocicom - commit the current transaction
    ** ocirol - roll back the current transaction
    */
  
-sword   ocicon( /*_ ldadef *lda _*/ );
-sword   ocicof( /*_ ldadef *lda _*/ );
+sword   ocicon(  ldadef *lda  );
+sword   ocicof(  ldadef *lda  );
    /*
    ** ocicon - auto Commit ON
    ** ocicof - auto Commit OFf
@@ -450,7 +448,7 @@ sword   ocicof( /*_ ldadef *lda _*/ );
 /************************/
 /*     parsing          */
 /************************/
-sword    ocisq3( /*_ struct csrdef *cursor, oratext *sqlstm, word sqllen _*/ );
+sword    ocisq3(struct csrdef *cursor, oratext * /* sqlstm */, sword sqllen);
    /*
    ** ocisq3 - user interface parse sql statement
    **   cursor - pointer to csrdef
@@ -467,27 +465,27 @@ sword    ocisq3( /*_ struct csrdef *cursor, oratext *sqlstm, word sqllen _*/ );
 #define OCI_PCWS 0
 #define OCI_SKIP 1
 
-sword ocibin( /*_ struct csrdef *cursor, oratext *sqlvar, word sqlvl, 
-                  ub1 *progv, word progvl, word ftype, word scale, 
-                  oratext *fmt, word fmtl, word fmtt _*/ );
-sword  ocibrv( /*_ struct csrdef *cursor, oratext *sqlvar, word sqlvl, 
-                   ub1 *progv, word progvl, word ftype, word scale, b2 *indp,
-                   oratext *fmt, word fmtl, word fmtt _*/ );
-sword  ocibra( /*_ struct csrdef *cursor, oratext *sqlvar, word sqlvl, 
-                   ub1 *progv, word progvl, word ftype, word scale, 
-                   b2 *indp, ub2 *aln, ub2 *rcp, ub4 mal, ub4 *cal, 
-                   oratext *fmt, word fmtl, word fmtt _*/ );
-sword  ocibndps( /*_ struct csrdef *cursor, ub1 opcode, oratext *sqlvar, 
-                     sb4 sqlvl, ub1 *progv, sb4 progvl, word ftype, 
-                     word scale, b2 *indp, ub2 *aln, ub2 *rcp, sb4 pv_skip, 
+sword ocibin(  struct csrdef *cursor, oratext *sqlvar, sword sqlvl, 
+                  ub1 *progv, sword progvl, sword ftype, sword scale, 
+                  oratext *fmt, sword fmtl, sword fmtt  );
+sword  ocibrv(  struct csrdef *cursor, oratext *sqlvar, sword sqlvl, 
+                ub1 *progv, sword progvl, sword ftype, sword scale, sb2 *indp,
+                oratext *fmt, sword fmtl, sword fmtt  );
+sword  ocibra(  struct csrdef *cursor, oratext *sqlvar, sword sqlvl, 
+                   ub1 *progv, sword progvl, sword ftype, sword scale, 
+                   sb2 *indp, ub2 *aln, ub2 *rcp, ub4 mal, ub4 *cal, 
+                   oratext *fmt, sword fmtl, sword fmtt  );
+sword  ocibndps(  struct csrdef *cursor, ub1 opcode, oratext *sqlvar, 
+                     sb4 sqlvl, ub1 *progv, sb4 progvl, sword ftype, 
+                     sword scale, sb2 *indp, ub2 *aln, ub2 *rcp, sb4 pv_skip, 
                      sb4 ind_skip, sb4 len_skip, sb4 rc_skip, ub4 mal, 
-                     ub4 *cal, oratext *fmt, sb4 fmtl, word fmtt _*/ );
-sword ocibnn ( /*_ struct csrdef *cursor, ub2 sqlvn, ub1 *progv, word progvl,
-                   word ftype, word scale, oratext *fmt, word fmtl, 
-                   word fmtt _*/ );
-sword  ocibrn( /*_ struct csrdef *cursor, word sqlvn, ub1 *progv, word progvl,
-                  word ftype, word scale, b2 *indp, oratext *fmt, word fmtl, 
-                  word fmtt _*/ );
+                     ub4 *cal, oratext *fmt, sb4 fmtl, sword fmtt  );
+sword ocibnn (  struct csrdef *cursor, ub2 sqlvn, ub1 *progv, sword progvl,
+                   sword ftype, sword scale, oratext *fmt, sword fmtl, 
+                   sword fmtt  );
+sword  ocibrn(  struct csrdef *cursor, sword sqlvn, ub1 *progv, sword progvl,
+                sword ftype, sword scale, sb2 *indp, oratext *fmt, sword fmtl, 
+                sword fmtt  );
     /*
     ** ocibin - bind by value by name
     ** ocibrv - bind by reference by name
@@ -539,12 +537,12 @@ sword  ocibrn( /*_ struct csrdef *cursor, word sqlvn, ub1 *progv, word progvl,
 /***************************/
 /*        DESCRIBING       */
 /***************************/
-sword ocidsc ( /*_ struct csrdef *cursor, word pos, b2 *dbsize, b2 *fsize,
-             b2 *rcode, b2 *dtype, b1 *buf, b2 *bufl, b2 *dsize _*/ );
-sword ocidsr( /*_ struct csrdef *cursor, word pos, b2 *dbsize, b2 *dtype, 
-            b2 *fsize _*/ );
-sword   ocinam( /*_ struct csrdef *cursor, word pos, b1 *tbuf, b2 *tbufl,
-                b1 *buf, b2 *bufl _*/);
+sword ocidsc (  struct csrdef *cursor, sword pos, sb2 *dbsize, sb2 *fsize,
+             sb2 *rcode, sb2 *dtype, sb1 *buf, sb2 *bufl, sb2 *dsize  );
+sword ocidsr(  struct csrdef *cursor, sword pos, sb2 *dbsize, sb2 *dtype, 
+            sb2 *fsize  );
+sword   ocinam(  struct csrdef *cursor, sword pos, sb1 *tbuf, sb2 *tbufl,
+                sb1 *buf, sb2 *bufl );
     /*
     **  ocidsc, ocidsr: Obtain information about a column
     **  ocinam : get the name of a column
@@ -561,17 +559,17 @@ sword   ocinam( /*_ struct csrdef *cursor, word pos, b1 *tbuf, b2 *tbufl,
     **   tbufl   - place to store the table name length
     */
 
-sword ocidsp ( /*_ struct csrdef *cursor, word pos, sb4 *dbsize, sb2 *dbtype,
+sword ocidsp (  struct csrdef *cursor, sword pos, sb4 *dbsize, sb2 *dbtype,
                    sb1 *cbuf, sb4 *cbufl, sb4 *dsize, sb2 *pre, sb2 *scl,
-                   sb2 *nul _*/);
+                   sb2 *nul );
 
-sword ocidpr(/*_ ldadef *lda, oratext *object_name, size_t object_length,
-                ptr_t reserved1, size_t reserved1_length, ptr_t reserved2,
+sword ocidpr( ldadef *lda, oratext *object_name, size_t object_length,
+                void * reserved1, size_t reserved1_length, void * reserved2,
                 size_t reserved2_length, ub2 *overload, ub2 *position,
                 ub2 *level, oratext **argument_name, ub2 *argument_length, 
                 ub2 *datatype, ub1 *default_supplied, ub1 *in_out, 
                 ub4 *length, sb2 *precision, sb2 *scale, ub1 *radix, 
-                ub4 *spare, ub4 *total_elements _*/);
+                ub4 *spare, ub4 *total_elements );
    /*
    ** OCIDPR - User Program Interface: Describe Stored Procedure
    **
@@ -674,17 +672,17 @@ sword ocidpr(/*_ ldadef *lda, oratext *object_name, size_t object_length,
 /*************************************/
 /* DEFINING                          */
 /*************************************/
-sword ocidfi( /*_ struct csrdef *cursor, word pos, ub1 *buf, word bufl,
-                  word ftype, b2 *rc, word scale _*/ );
-sword ocidfn( /*_ struct csrdef *cursor, word pos, ub1 *buf, word bufl,
-                 word ftype, word scale, b2 *indp, oratext *fmt, word fmtl,
-                 word fmtt, ub2 *rl, ub2 *rc _*/ );
-sword ocidfnps( /*_ struct csrdef *cursor, ub1 opcode, word pos, ub1 *buf, 
-                    sb4 bufl, word ftype, word scale,  
-                    b2 *indp, oratext *fmt, sb4 fmtl,
-                    word fmtt, ub2 *rl, ub2 *rc,
+sword ocidfi(  struct csrdef *cursor, sword pos, ub1 *buf, sword bufl,
+                  sword ftype, sb2 *rc, sword scale  );
+sword ocidfn(  struct csrdef *cursor, sword pos, ub1 *buf, sword bufl,
+                 sword ftype, sword scale, sb2 *indp, oratext *fmt, sword fmtl,
+                 sword fmtt, ub2 *rl, ub2 *rc  );
+sword ocidfnps(  struct csrdef *cursor, ub1 opcode, sword pos, ub1 *buf, 
+                    sb4 bufl, sword ftype, sword scale,  
+                    sb2 *indp, oratext *fmt, sb4 fmtl,
+                    sword fmtt, ub2 *rl, ub2 *rc,
                     sb4 pv_skip, sb4 ind_skip, sb4 len_skip, 
-                    sb4 rc_skip _*/ );
+                    sb4 rc_skip  );
 
 
    /*  Define a user data buffer using upidfn
@@ -710,18 +708,18 @@ sword ocidfnps( /*_ struct csrdef *cursor, ub1 opcode, word pos, ub1 *buf,
 /********************************/
 /*    PIECE INFORMATION GET/SET */
 /********************************/
-sword           ocigetpi( /*_ struct csrdef *cursor, ub1 *piecep,
-                              dvoid **ctxpp, ub4 *iterp, ub4 *indexp _*/ );
-sword           ocisetpi( /*_ struct csrdef *cursor, ub1 piece,
-                              dvoid *bufp, ub4 *lenp _*/ );
+sword           ocigetpi(  struct csrdef *cursor, ub1 *piecep,
+                              void  **ctxpp, ub4 *iterp, ub4 *indexp  );
+sword           ocisetpi(  struct csrdef *cursor, ub1 piece,
+                              void  *bufp, ub4 *lenp  );
 
 
 /********************************/
 /*   EXECUTE                    */
 /********************************/
-sword ociexe( /*_ struct csrdef *cursor _*/ );
-sword ociexn( /*_ struct csrdef *cursor, word iters, word roff _*/ );
-sword ociefn( /*_ struct csrdef *cursor, ub4 nrows, word can, word exact _*/);
+sword ociexe(  struct csrdef *cursor  );
+sword ociexn(  struct csrdef *cursor, sword iters, sword roff  );
+sword ociefn(  struct csrdef *cursor, ub4 nrows, sword can, sword exact );
     /* 
     ** ociexe  - execute a cursor
     ** ociexn  - execute a cursosr N times
@@ -735,21 +733,21 @@ sword ociefn( /*_ struct csrdef *cursor, ub4 nrows, word can, word exact _*/);
 /*********************************/
 /*     FETCHING                  */
 /*********************************/
-sword ocifet( /*_ struct csrdef *cursor _*/ );
-sword ocifen( /*_ struct csrdef *cursor, word nrows _*/ );
+sword ocifet(  struct csrdef *cursor  );
+sword ocifen(  struct csrdef *cursor, sword nrows  );
     /* ocifet - fetch the next row
     ** ocifen - fetch n rows 
     ** cursor   - pointer to csrdef
     ** nrows    - number of rows to be fetched
     */
 
-sword ocilng(/*_ struct csrdef *cursor, word posit, ub1 *bfa, sb4 bfl,
-                 word dty, ub4 *rln, sb4 off _*/);
+sword ocilng( struct csrdef *cursor, sword posit, ub1 *bfa, sb4 bfl,
+                 sword dty, ub4 *rln, sb4 off );
 
 /*********************************/
 /*         CONVERSION            */
 /*********************************/
-sword ocic32( /*_ struct csrdef *cursor _*/ );
+sword ocic32(  struct csrdef *cursor  );
     /*
     **   Convert selected version 3 return codes to the equivalent
     **   version 2 code.
@@ -762,7 +760,7 @@ sword ocic32( /*_ struct csrdef *cursor _*/ );
     */
 
 
-sword ocir32( /*_ struct csrdef *cursor, word retcode _*/ );
+sword ocir32(  struct csrdef *cursor, sword retcode  );
    /*   
    ** Convert selected version 3 return codes to the equivalent version 2 
    ** code.
@@ -772,7 +770,7 @@ sword ocir32( /*_ struct csrdef *cursor, word retcode _*/ );
    */
 
 
-VOID ociscn( /*_ word **arglst, char *mask_addr, word **newlst _*/ );
+void ociscn(  sword **arglst, char *mask_addr, sword **newlst  );
    /*
    ** Convert call-by-ref to call-by-value:
    ** takes an arg list and a mask address, determines which args need 
@@ -784,8 +782,8 @@ VOID ociscn( /*_ word **arglst, char *mask_addr, word **newlst _*/ );
    **    newlst    - new list of args
    */
 
-word     ocistf ( /*_ word typ, word bufl, word rdig, oratext *fmt, 
-                      struct csrdef *cursor, sword *err _*/ );
+sword    ocistf (  sword typ, sword bufl, sword rdig, oratext *fmt, 
+                      struct csrdef *cursor, sword *err  );
 /*  Convert a packed  decimal buffer  length  (bytes) and scale to a format
 **  string of the form mm.+/-nn, where  mm is the number of packed 
 **  decimal digits, and nn is the scaling factor.   A positive scale name 
@@ -802,12 +800,12 @@ word     ocistf ( /*_ word typ, word bufl, word rdig, oratext *fmt,
 /******************************************/
 /*         Non-blocking operations        */
 /******************************************/
-sword ocinbs( /*_ ldadef *lda _*/ );  /* set a connection to non-blocking   */
-sword ocinbt( /*_ ldadef *lda _*/ );  /* test if connection is non-blocking */
-sword ocinbc( /*_ ldadef *lda _*/ );  /* clear a connection to blocking     */
-sword ocinlo( /*_ ldadef *lda, struct hstdef *hst, oratext *conn,
+sword ocinbs(  ldadef *lda  );  /* set a connection to non-blocking   */
+sword ocinbt(  ldadef *lda  );  /* test if connection is non-blocking */
+sword ocinbc(  ldadef *lda  );  /* clear a connection to blocking     */
+sword ocinlo(  ldadef *lda, struct hstdef *hst, oratext *conn,
                   sword connl, oratext *uid, sword uidl,
-                  oratext *psw, sword pswl, sword audit _*/ );  
+                  oratext *psw, sword pswl, sword audit  );  
               /* logon in non-blocking fashion */
 /* ocinlo allows an application to logon in non-blocking fashion.
 **   lda     - pointer to ldadef
@@ -832,10 +830,10 @@ sword ocinlo( /*_ ldadef *lda, struct hstdef *hst, oratext *conn,
 /******************************************/
 /*         initialization/logon/logof     */
 /******************************************/
-sword ocipin( /*_ ub4 mode _*/ );
+sword ocipin(  ub4 mode  );
 
-sword ologin( /*_ ldadef *lda, b2 areacount _*/ );
-sword ologon( /*_ ldadef *lda, b2 areacount _*/ );
+sword ologin(  ldadef *lda, sb2 areacount  );
+sword ologon(  ldadef *lda, sb2 areacount  );
 
 /*****************************************/
 /*        Open/Close/Parse Cursor        */
@@ -848,41 +846,41 @@ sword ologon( /*_ ldadef *lda, b2 areacount _*/ );
 **           describe time )
 ** RETURNS: Oracle return code.
 */ 
-sword ocisq7(/*_ struct csrdef *cursor, oratext *sqlstm, sb4 sqllen,
-                 word defflg, ub4 sqlt _*/);
+sword ocisq7( struct csrdef *cursor, oratext * /* sqlstm */, sb4 sqllen,
+                 sword defflg, ub4 sqlt );
 
 /*****************************************/
 /*            Bind                       */
 /*****************************************/
-sword obind( /*_ struct csrdef *cursor, oratext *sqlvar, word sqlvl, 
-                 ub1 *progv, word progvl, word ftype, word scale, 
-                 oratext *fmt, word fmtl, word fmtt _*/ );
-sword obindn( /*_ struct csrdef *cursor, ub2 sqlvn, ub1 *progv, word progvl,
-                  word ftype, word scale, oratext *fmt, word fmtl, 
-                  word fmtt _*/ );
+sword obind(  struct csrdef *cursor, oratext *sqlvar, sword sqlvl, 
+                 ub1 *progv, sword progvl, sword ftype, sword scale, 
+                 oratext *fmt, sword fmtl, sword fmtt  );
+sword obindn(  struct csrdef *cursor, ub2 sqlvn, ub1 *progv, sword progvl,
+                  sword ftype, sword scale, oratext *fmt, sword fmtl, 
+                  sword fmtt  );
 
 /**********************************************/
 /*                 Define                     */
 /**********************************************/
-sword odfinn( /*_ struct csrdef *cursor, word pos, ub1 *buf, word bufl,
-                  word ftype, b2 *rc, word scale _*/ );
+sword odfinn(  struct csrdef *cursor, sword pos, ub1 *buf, sword bufl,
+                  sword ftype, sb2 *rc, sword scale  );
 
 /**********************************************/
 /*                 Describe                   */
 /**********************************************/
-sword odsrbn( /*_ struct csrdef *cursor, word pos, b2 *dbsize, b2 *dtype, 
-            b2 *fsize _*/ );
+sword odsrbn(  struct csrdef *cursor, sword pos, sb2 *dbsize, sb2 *dtype, 
+            sb2 *fsize  );
 
 
 /******************************************/
 /*         Non-blocking operations        */
 /******************************************/
-sword onblon( /*_ ldadef *lda, struct hstdef *hst, oratext *conn,
+sword onblon(  ldadef *lda, struct hstdef *hst, oratext *conn,
                   sword connl, oratext *uid, sword uidl,
-                  oratext *psw, sword pswl, sword audit _*/ );  
+                  oratext *psw, sword pswl, sword audit  );  
               /* logon in non-blocking fashion */
-sword ocignfd( /*_ ldadef *lda, dvoid *nfdp _*/);           /* get native fd */
+sword ocignfd(  ldadef *lda, void  *nfdp );           /* get native fd */
 
-ub2   ocigft_getFcnType( /*_ ub2 oertyp _*/ );      /* get sql function code */
+ub2   ocigft_getFcnType(  ub2 oertyp  );      /* get sql function code */
 
 #endif

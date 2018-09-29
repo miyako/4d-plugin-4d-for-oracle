@@ -1,4 +1,4 @@
-/* Copyright (c) 1993, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1993, 2006, Oracle. All rights reserved.  */
 
 /*
   Author:             Srinath Krishnaswamy
@@ -212,6 +212,8 @@
   QUESTIONS
      
   MODIFIED
+    bkhaladk   08/01/05 - add defn for OCIBinXmlReposCtx 
+    dmukhin    06/29/05 - ANSI prototypes; miscellaneous cleanup 
     srseshad   03/12/03 - convert oci public api to ansi
     rpingte    11/21/02 - Add OCICollGetElemArray and OCINumberToRealArray
     aahluwal   06/03/02 - bug 2360115
@@ -667,8 +669,8 @@ void OCINumberSetPi(    OCIError *err, OCINumber *num    );
 
 /*----------------------------- OCINumberAdd --------------------------------*/
 
-sword OCINumberAdd(    OCIError *err, CONST OCINumber *number1, 
-                       CONST OCINumber *number2, OCINumber *result    );
+sword OCINumberAdd(    OCIError *err, const OCINumber *number1, 
+                       const OCINumber *number2, OCINumber *result    );
 /*
    NAME: OCINumberAdd - OCINumber ADD numbers
    PARAMETERS:
@@ -689,8 +691,8 @@ sword OCINumberAdd(    OCIError *err, CONST OCINumber *number1,
 
 /*----------------------------- OCINumberSub --------------------------------*/
 
-sword OCINumberSub(    OCIError *err, CONST OCINumber *number1, 
-                       CONST OCINumber *number2, OCINumber *result    );
+sword OCINumberSub(    OCIError *err, const OCINumber *number1, 
+                       const OCINumber *number2, OCINumber *result    );
 /*
    NAME: OCINumberSub - OCINumber SUBtract numbers
    PARAMETERS:
@@ -711,8 +713,8 @@ sword OCINumberSub(    OCIError *err, CONST OCINumber *number1,
 
 /*----------------------------- OCINumberMul --------------------------------*/
 
-sword OCINumberMul(    OCIError *err, CONST OCINumber *number1, 
-                       CONST OCINumber *number2, OCINumber *result    );
+sword OCINumberMul(    OCIError *err, const OCINumber *number1, 
+                       const OCINumber *number2, OCINumber *result    );
 /*
    NAME: OCINumberMul - OCINumber MULtiply numbers
    PARAMETERS:
@@ -733,8 +735,8 @@ sword OCINumberMul(    OCIError *err, CONST OCINumber *number1,
 
 /*----------------------------- OCINumberDiv --------------------------------*/
 
-sword OCINumberDiv(    OCIError *err, CONST OCINumber *number1, 
-                       CONST OCINumber *number2, OCINumber *result    );
+sword OCINumberDiv(    OCIError *err, const OCINumber *number1, 
+                       const OCINumber *number2, OCINumber *result    );
 /*
    NAME: OCINumberDiv - OCINumber DIVide numbers
    PARAMETERS:
@@ -759,8 +761,8 @@ sword OCINumberDiv(    OCIError *err, CONST OCINumber *number1,
 
 /*----------------------------- OCINumberMod --------------------------------*/
 
-sword OCINumberMod(    OCIError *err, CONST OCINumber *number1, 
-                       CONST OCINumber *number2, OCINumber *result    );
+sword OCINumberMod(    OCIError *err, const OCINumber *number1, 
+                       const OCINumber *number2, OCINumber *result    );
 /*
    NAME: OCINumberMod - OCINumber MODulous
    PARAMETERS:
@@ -783,8 +785,8 @@ sword OCINumberMod(    OCIError *err, CONST OCINumber *number1,
 
 /*------------------------ OCINumberIntPower --------------------------------*/
 
-sword OCINumberIntPower(    OCIError *err, CONST OCINumber *base,
-                            CONST sword exp, OCINumber *result    );
+sword OCINumberIntPower(    OCIError *err, const OCINumber *base,
+                            const sword exp, OCINumber *result    );
 /*
    NAME: OCINumberIntPower - OCINumber takes an arbitary base to an arbitary
                              integer PoWeR
@@ -807,8 +809,8 @@ sword OCINumberIntPower(    OCIError *err, CONST OCINumber *base,
 
 /*-------------------------- OCINumberShift ---------------------------------*/
 
-sword OCINumberShift(    OCIError *err, CONST OCINumber *number,
-                            CONST sword nDig, OCINumber *result    );
+sword OCINumberShift(    OCIError *err, const OCINumber *number,
+                            const sword nDig, OCINumber *result    );
 /*
    NAME: OCINumberShift - OCINumber multiplies by a power of 10.
 
@@ -831,7 +833,7 @@ sword OCINumberShift(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberNeg --------------------------------*/
 
-sword OCINumberNeg(    OCIError *err, CONST OCINumber *number,
+sword OCINumberNeg(    OCIError *err, const OCINumber *number,
                        OCINumber *result    );
 /*
    NAME: OCINumberNeg - OCINumber NEGate number
@@ -853,9 +855,9 @@ sword OCINumberNeg(    OCIError *err, CONST OCINumber *number,
 
 /*------------------------- OCINumberToText ---------------------------------*/
 
-sword OCINumberToText(    OCIError *err, CONST OCINumber *number, 
-                          CONST oratext *fmt, ub4 fmt_length,
-                          CONST oratext *nls_params, ub4 nls_p_length,
+sword OCINumberToText(    OCIError *err, const OCINumber *number, 
+                          const oratext *fmt, ub4 fmt_length,
+                          const oratext *nls_params, ub4 nls_p_length,
                           ub4 *buf_size, oratext *buf    );
 /*
    NAME: OCINumberToText - OCINumber convert number TO String 
@@ -898,9 +900,9 @@ sword OCINumberToText(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberFromText ------------------------------*/
 
-sword OCINumberFromText(    OCIError *err, CONST oratext *str, 
-                          ub4 str_length, CONST oratext *fmt, ub4 fmt_length, 
-                          CONST oratext *nls_params, ub4 nls_p_length, 
+sword OCINumberFromText(    OCIError *err, const oratext *str, 
+                          ub4 str_length, const oratext *fmt, ub4 fmt_length, 
+                          const oratext *nls_params, ub4 nls_p_length, 
                           OCINumber *number    );
 /*
    NAME: OCINumberFromText - OCINumber convert String TO Number
@@ -939,8 +941,8 @@ sword OCINumberFromText(    OCIError *err, CONST oratext *str,
 #define OCI_NUMBER_UNSIGNED 0                        /* Unsigned type -- ubX */
 #define OCI_NUMBER_SIGNED   2                          /* Signed type -- sbX */
 
-sword OCINumberToInt(    OCIError *err, CONST OCINumber *number,
-                         uword rsl_length, uword rsl_flag, dvoid *rsl    );
+sword OCINumberToInt(    OCIError *err, const OCINumber *number,
+                         uword rsl_length, uword rsl_flag, void  *rsl    );
 /*
    NAME: OCINumberToInt - OCINumber convert number TO Integer
    PARAMETERS:
@@ -968,7 +970,7 @@ sword OCINumberToInt(    OCIError *err, CONST OCINumber *number,
 
 /*--------------------------- OCINumberFromInt ------------------------------*/
 
-sword OCINumberFromInt(    OCIError *err, CONST dvoid *inum, uword inum_length,
+sword OCINumberFromInt(    OCIError *err, const void  *inum, uword inum_length,
                          uword inum_s_flag, OCINumber *number    );
 /*
    NAME: OCINumberFromInt - OCINumber convert Integer TO Number 
@@ -997,8 +999,8 @@ sword OCINumberFromInt(    OCIError *err, CONST dvoid *inum, uword inum_length,
 
 /*------------------------- OCINumberToReal ---------------------------------*/
 
-sword OCINumberToReal(    OCIError *err, CONST OCINumber *number,
-                          uword rsl_length, dvoid *rsl    );
+sword OCINumberToReal(    OCIError *err, const OCINumber *number,
+                          uword rsl_length, void  *rsl    );
 /*
    NAME: OCINumberToReal - OCINumber convert number TO Real
    PARAMETERS:
@@ -1025,8 +1027,8 @@ sword OCINumberToReal(    OCIError *err, CONST OCINumber *number,
 
 /*------------------------- OCINumberToRealArray ----------------------------*/
 
-sword OCINumberToRealArray(  OCIError *err, CONST OCINumber **number,
-                             uword elems, uword rsl_length, dvoid *rsl    );
+sword OCINumberToRealArray(  OCIError *err, const OCINumber **number,
+                             uword elems, uword rsl_length, void  *rsl    );
 /*
    NAME: OCINumberToRealArray - OCINumber convert array of numbers TO Real
    PARAMETERS:
@@ -1054,7 +1056,7 @@ sword OCINumberToRealArray(  OCIError *err, CONST OCINumber **number,
 
 /*-------------------------- OCINumberFromReal ------------------------------*/
 
-sword OCINumberFromReal(    OCIError *err, CONST dvoid *rnum,
+sword OCINumberFromReal(    OCIError *err, const void  *rnum,
                             uword rnum_length, OCINumber *number    );
 /*
    NAME: OCINumberFromReal - OCINumber convert Real TO Number 
@@ -1080,8 +1082,8 @@ sword OCINumberFromReal(    OCIError *err, CONST dvoid *rnum,
 
 /*----------------------------- OCINumberCmp --------------------------------*/
 
-sword OCINumberCmp(    OCIError *err, CONST OCINumber *number1, 
-                       CONST OCINumber *number2, sword *result    );
+sword OCINumberCmp(    OCIError *err, const OCINumber *number1, 
+                       const OCINumber *number2, sword *result    );
 /*
    NAME: OCINumberCmp - OCINumber CoMPare numbers 
    PARAMETERS:
@@ -1103,7 +1105,7 @@ sword OCINumberCmp(    OCIError *err, CONST OCINumber *number1,
 
 /*---------------------------- OCINumberSign --------------------------------*/
 
-sword OCINumberSign(    OCIError *err, CONST OCINumber *number,
+sword OCINumberSign(    OCIError *err, const OCINumber *number,
                         sword *result    );
 /*
    NAME: OCINumberSign - OCINumber obtains SiGN of an Oracle number
@@ -1126,7 +1128,7 @@ sword OCINumberSign(    OCIError *err, CONST OCINumber *number,
 
 /*---------------------------- OCINumberIsZero ------------------------------*/
 
-sword OCINumberIsZero(    OCIError *err, CONST OCINumber *number,
+sword OCINumberIsZero(    OCIError *err, const OCINumber *number,
                           boolean *result    );
 /*
    NAME: OCINumberIsZero - OCINumber comparison with ZERo
@@ -1148,7 +1150,7 @@ sword OCINumberIsZero(    OCIError *err, CONST OCINumber *number,
 
 /*---------------------------- OCINumberIsInt -------------------------------*/
 
-sword OCINumberIsInt(    OCIError *err, CONST OCINumber *number,
+sword OCINumberIsInt(    OCIError *err, const OCINumber *number,
                           boolean *result    );
 /*
    NAME: OCINumberIsInt - OCINumber Is Integer value.
@@ -1170,7 +1172,7 @@ sword OCINumberIsInt(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberAssign --------------------------------*/
  
-sword OCINumberAssign(    OCIError *err, CONST OCINumber *from,
+sword OCINumberAssign(    OCIError *err, const OCINumber *from,
                           OCINumber *to    );
 /*
    NAME: OCINumberAssign - OCINumber ASsiGn number
@@ -1192,7 +1194,7 @@ sword OCINumberAssign(    OCIError *err, CONST OCINumber *from,
 
 /*----------------------------- OCINumberAbs --------------------------------*/
 
-sword OCINumberAbs(    OCIError *err, CONST OCINumber *number,
+sword OCINumberAbs(    OCIError *err, const OCINumber *number,
                        OCINumber *result    );
 /*
    NAME: OCINumberAbs - OCINumber compute ABSolute value
@@ -1215,7 +1217,7 @@ sword OCINumberAbs(    OCIError *err, CONST OCINumber *number,
 
 /*---------------------------- OCINumberCeil --------------------------------*/
 
-sword OCINumberCeil(    OCIError *err, CONST OCINumber *number,
+sword OCINumberCeil(    OCIError *err, const OCINumber *number,
                         OCINumber *result    );
 /*
    NAME: OCINumberCeil - OCINumber compute the CEiL value of an Oracle number
@@ -1238,7 +1240,7 @@ sword OCINumberCeil(    OCIError *err, CONST OCINumber *number,
 
 /*--------------------------- OCINumberFloor --------------------------------*/
 
-sword OCINumberFloor(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberFloor(    OCIError *err, const OCINumber *number, 
                          OCINumber *result    );
 /*
    NAME: OCINumberFloor - OCINumber compute the FLooR value of an Oracle number
@@ -1261,7 +1263,7 @@ sword OCINumberFloor(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberSqrt -------------------------------*/
 
-sword OCINumberSqrt(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberSqrt(    OCIError *err, const OCINumber *number, 
                        OCINumber *result    );
 /*
    NAME: OCINumberSqrt - OCINumber compute the SQuare Root of an Oracle number
@@ -1285,7 +1287,7 @@ sword OCINumberSqrt(    OCIError *err, CONST OCINumber *number,
 
 /*--------------------------- OCINumberTrunc --------------------------------*/
 
-sword OCINumberTrunc(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberTrunc(    OCIError *err, const OCINumber *number, 
                          sword decplace, OCINumber *result    );
 /*
    NAME: OCINumberTrunc - OCINumber TRUncate an Oracle number at a 
@@ -1310,8 +1312,8 @@ sword OCINumberTrunc(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberPower ------------------------------*/
 
-sword OCINumberPower(    OCIError *err, CONST OCINumber *base, 
-                         CONST OCINumber *number, OCINumber *result    );
+sword OCINumberPower(    OCIError *err, const OCINumber *base, 
+                         const OCINumber *number, OCINumber *result    );
 /*
    NAME: OCINumberPower - OCINumber takes an arbitary Base to an 
                           arbitary Power
@@ -1334,7 +1336,7 @@ sword OCINumberPower(    OCIError *err, CONST OCINumber *base,
 
 /*--------------------------- OCINumberRound --------------------------------*/
 
-sword OCINumberRound(    OCIError *err, CONST OCINumber *number,
+sword OCINumberRound(    OCIError *err, const OCINumber *number,
                          sword decplace, OCINumber *result    );
 /*
    NAME: OCINumberRound - OCINumber ROUnds an Oracle number to a specified 
@@ -1359,8 +1361,8 @@ sword OCINumberRound(    OCIError *err, CONST OCINumber *number,
 
 /*--------------------------- OCINumberPrec ---------------------------------*/
 
-sword OCINumberPrec(    OCIError *err, CONST OCINumber *number,
-                         eword nDigs, OCINumber *result    );
+sword OCINumberPrec(    OCIError *err, const OCINumber *number,
+                         sword nDigs, OCINumber *result    );
 /*
    NAME: OCINumberPrec - Rounds an Oracle number to a specified number of
                          decimal digits.
@@ -1384,7 +1386,7 @@ sword OCINumberPrec(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberSin --------------------------------*/
 
-sword OCINumberSin(    OCIError *err, CONST OCINumber *number,
+sword OCINumberSin(    OCIError *err, const OCINumber *number,
                        OCINumber *result    );
 /*
    NAME: OCINumberSin - OCINumber takes the SINe of an Oracle number
@@ -1406,7 +1408,7 @@ sword OCINumberSin(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberArcSin --------------------------------*/
 
-sword OCINumberArcSin(    OCIError *err, CONST OCINumber *number,
+sword OCINumberArcSin(    OCIError *err, const OCINumber *number,
                           OCINumber *result    );
 /*
    NAME: OCINumberArcSin - OCINumber takes the Arc SINe of an Oracle number
@@ -1429,7 +1431,7 @@ sword OCINumberArcSin(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberHypSin --------------------------------*/
 
-sword OCINumberHypSin(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberHypSin(    OCIError *err, const OCINumber *number, 
                           OCINumber *result    );
 /*
    NAME: OCINumberHypSin - OCINumber takes the SiNe Hyperbolic of an 
@@ -1454,7 +1456,7 @@ sword OCINumberHypSin(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberCos --------------------------------*/
 
-sword OCINumberCos(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberCos(    OCIError *err, const OCINumber *number, 
                        OCINumber *result    );
 /*
    NAME: OCINumberCos - OCINumber takes the COSine of an Oracle number
@@ -1476,7 +1478,7 @@ sword OCINumberCos(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberArcCos --------------------------------*/
 
-sword OCINumberArcCos(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberArcCos(    OCIError *err, const OCINumber *number, 
                           OCINumber *result    );
 /*
    NAME: OCINumberArcCos - OCINumber takes the Arc COSine of an Oracle number
@@ -1499,7 +1501,7 @@ sword OCINumberArcCos(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberHypCos --------------------------------*/
 
-sword OCINumberHypCos(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberHypCos(    OCIError *err, const OCINumber *number, 
                           OCINumber *result    );
 /*
    NAME: OCINumberHypCos - OCINumber takes the CoSine Hyperbolic of an 
@@ -1524,7 +1526,7 @@ sword OCINumberHypCos(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberTan --------------------------------*/
 
-sword OCINumberTan(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberTan(    OCIError *err, const OCINumber *number, 
                        OCINumber *result    );
 /*
    NAME: OCINumberTan - OCINumber takes the TANgent of an Oracle number
@@ -1546,7 +1548,7 @@ sword OCINumberTan(    OCIError *err, CONST OCINumber *number,
 
 /*-------------------------- OCINumberArcTan --------------------------------*/
 
-sword OCINumberArcTan(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberArcTan(    OCIError *err, const OCINumber *number, 
                           OCINumber *result    );
 /*
    NAME: OCINumberArcTan - OCINumber takes the Arc TANgent of an Oracle number
@@ -1568,8 +1570,8 @@ sword OCINumberArcTan(    OCIError *err, CONST OCINumber *number,
 
 /*------------------------ OCINumberArcTan2 ---------------------------------*/
 
-sword OCINumberArcTan2(    OCIError *err, CONST OCINumber *number1, 
-                           CONST OCINumber *number2, OCINumber *result    );
+sword OCINumberArcTan2(    OCIError *err, const OCINumber *number1, 
+                           const OCINumber *number2, OCINumber *result    );
 /*
    NAME: OCINumberArcTan2 - OCINumber takes the ATan2 of 2 Oracle numbers
    PARAMETERS:
@@ -1594,7 +1596,7 @@ sword OCINumberArcTan2(    OCIError *err, CONST OCINumber *number1,
 
 /*----------------------------- OCINumberHypTan -----------------------------*/
 
-sword OCINumberHypTan(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberHypTan(    OCIError *err, const OCINumber *number, 
                           OCINumber *result    );
 /*
    NAME: OCINumberHypTan - OCINumber takes the TaNgent Hyperbolic of an Oracle
@@ -1619,7 +1621,7 @@ sword OCINumberHypTan(    OCIError *err, CONST OCINumber *number,
 
 /*--------------------------- OCINumberExp ----------------------------------*/
 
-sword OCINumberExp(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberExp(    OCIError *err, const OCINumber *number, 
                        OCINumber *result    );
 /*
    NAME: OCINumberExp - OCINumber EXPonential
@@ -1641,7 +1643,7 @@ sword OCINumberExp(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberLn ---------------------------------*/
 
-sword OCINumberLn(    OCIError *err, CONST OCINumber *number, 
+sword OCINumberLn(    OCIError *err, const OCINumber *number, 
                       OCINumber *result    );
 /*
    NAME: OCINumberLn - OCINumber Logarithm Natural
@@ -1665,8 +1667,8 @@ sword OCINumberLn(    OCIError *err, CONST OCINumber *number,
 
 /*----------------------------- OCINumberLog --------------------------------*/
 
-sword OCINumberLog(    OCIError *err, CONST OCINumber *base, 
-                       CONST OCINumber *number, OCINumber *result    );
+sword OCINumberLog(    OCIError *err, const OCINumber *base, 
+                       const OCINumber *number, OCINumber *result    );
 /*
    NAME: OCINumberLog - OCINumber LOGarithm any base
    PARAMETERS:
@@ -1780,7 +1782,7 @@ typedef struct OCIDate OCIDate;
  */
 
 /*--------------------------- OCIDateGetTime --------------------------------*/
-/* void OCIDateGetTime(/o_ CONST OCIDate *date, ub1 *hour, ub1 *min, 
+/* void OCIDateGetTime(/o_ const OCIDate *date, ub1 *hour, ub1 *min, 
                            ub1 *sec _o/); */
 #define OCIDateGetTime(date, hour, min, sec) \
   { \
@@ -1803,7 +1805,7 @@ typedef struct OCIDate OCIDate;
  */
 
 /*--------------------------- OCIDateGetDate --------------------------------*/
-/* void OCIDateGetDate(/o_ CONST OCIDate *date, sb2 *year, ub1 *month, 
+/* void OCIDateGetDate(/o_ const OCIDate *date, sb2 *year, ub1 *month, 
                            ub1 *day _o/); */
 #define OCIDateGetDate(date, year, month, day) \
   { \
@@ -1869,7 +1871,7 @@ typedef struct OCIDate OCIDate;
 
 /*--------------------------- OCIDateAssign ---------------------------------*/
 
-sword OCIDateAssign(    OCIError *err, CONST OCIDate *from, 
+sword OCIDateAssign(    OCIError *err, const OCIDate *from, 
                         OCIDate *to    );
 /*
    NAME: OCIDateAssign - OCIDate Assignment
@@ -1888,9 +1890,9 @@ sword OCIDateAssign(    OCIError *err, CONST OCIDate *from,
 
 /*--------------------------- OCIDateToText ---------------------------------*/
 
-sword OCIDateToText(    OCIError *err, CONST OCIDate *date, 
-                        CONST oratext *fmt, ub1 fmt_length, 
-                        CONST oratext *lang_name, ub4 lang_length, 
+sword OCIDateToText(    OCIError *err, const OCIDate *date, 
+                        const oratext *fmt, ub1 fmt_length, 
+                        const oratext *lang_name, ub4 lang_length, 
                         ub4 *buf_size, oratext *buf    );
 /*
    NAME: OCIDateToText - OCIDate convert date TO String 
@@ -1933,9 +1935,9 @@ sword OCIDateToText(    OCIError *err, CONST OCIDate *date,
 
 /*---------------------------- OCIDateFromText ------------------------------*/
 
-sword OCIDateFromText(    OCIError *err, CONST oratext *date_str, 
-                        ub4 d_str_length, CONST oratext *fmt, ub1 fmt_length, 
-                        CONST oratext *lang_name, ub4 lang_length, 
+sword OCIDateFromText(    OCIError *err, const oratext *date_str, 
+                        ub4 d_str_length, const oratext *fmt, ub1 fmt_length, 
+                        const oratext *lang_name, ub4 lang_length, 
                         OCIDate *date    );
 /*
    NAME: OCIDateFromText - OCIDate convert String TO Date
@@ -1972,8 +1974,8 @@ sword OCIDateFromText(    OCIError *err, CONST oratext *date_str,
 
 /*----------------------------- OCIDateCompare ------------------------------*/
 
-sword OCIDateCompare(    OCIError *err, CONST OCIDate *date1, 
-                     CONST OCIDate *date2, sword *result    );
+sword OCIDateCompare(    OCIError *err, const OCIDate *date1, 
+                     const OCIDate *date2, sword *result    );
 /*
    NAME: OCIDateCompare - OCIDate CoMPare dates
    PARAMETERS:
@@ -1998,7 +2000,7 @@ sword OCIDateCompare(    OCIError *err, CONST OCIDate *date1,
 
 /*------------------------- OCIDateAddMonths --------------------------------*/
 
-sword OCIDateAddMonths(    OCIError *err, CONST OCIDate *date, sb4 num_months,
+sword OCIDateAddMonths(    OCIError *err, const OCIDate *date, sb4 num_months,
                            OCIDate *result    );
 /*
    NAME: OCIDateAddMonths - OCIDate ADd or subtract Months
@@ -2029,7 +2031,7 @@ sword OCIDateAddMonths(    OCIError *err, CONST OCIDate *date, sb4 num_months,
 
 /*--------------------------- OCIDateAddDays --------------------------------*/
 
-sword OCIDateAddDays(    OCIError *err, CONST OCIDate *date, sb4 num_days,
+sword OCIDateAddDays(    OCIError *err, const OCIDate *date, sb4 num_days,
                          OCIDate *result    );
 /*
    NAME: OCIDateAddDays - OCIDate ADd or subtract Days
@@ -2055,7 +2057,7 @@ sword OCIDateAddDays(    OCIError *err, CONST OCIDate *date, sb4 num_days,
 
 /*--------------------------- OCIDateLastDay --------------------------------*/
 
-sword OCIDateLastDay(    OCIError *err, CONST OCIDate *date, 
+sword OCIDateLastDay(    OCIError *err, const OCIDate *date, 
                          OCIDate *last_day    );
 /*
    NAME: OCIDateLastDay - OCIDate get date of the LaST day of the month
@@ -2079,8 +2081,8 @@ sword OCIDateLastDay(    OCIError *err, CONST OCIDate *date,
 
 /*----------------------- OCIDateDaysBetween --------------------------------*/
 
-sword OCIDateDaysBetween(    OCIError *err, CONST OCIDate *date1, 
-                             CONST OCIDate *date2, sb4 *num_days    );
+sword OCIDateDaysBetween(    OCIError *err, const OCIDate *date1, 
+                             const OCIDate *date2, sb4 *num_days    );
 /*
    NAME: OCIDateDaysBetween - OCIDate get number of days BeTWeen two dates
    PARAMETERS:
@@ -2103,9 +2105,9 @@ sword OCIDateDaysBetween(    OCIError *err, CONST OCIDate *date1,
 
 /*------------------------ OCIDateZoneToZone --------------------------------*/
 
-sword OCIDateZoneToZone(    OCIError *err, CONST OCIDate *date1,
-                            CONST oratext *zon1,
-                            ub4 zon1_length, CONST oratext *zon2, 
+sword OCIDateZoneToZone(    OCIError *err, const OCIDate *date1,
+                            const oratext *zon1,
+                            ub4 zon1_length, const oratext *zon2, 
                             ub4 zon2_length, OCIDate *date2    );
 /*
    NAME: OCIDateZoneToZone - OCIDate convert date from one Zone TO another Zone
@@ -2135,8 +2137,8 @@ sword OCIDateZoneToZone(    OCIError *err, CONST OCIDate *date1,
 
 /*--------------------------- OCIDateNextDay --------------------------------*/
 
-sword OCIDateNextDay(    OCIError *err, CONST OCIDate *date, 
-                         CONST oratext *day_p, ub4 day_length, 
+sword OCIDateNextDay(    OCIError *err, const OCIDate *date, 
+                         const oratext *day_p, ub4 day_length, 
                          OCIDate *next_day    );
 /*
    NAME: OCIDateNextDay - OCIDate get date of Next DaY
@@ -2183,7 +2185,7 @@ sword OCIDateNextDay(    OCIError *err, CONST OCIDate *date,
 #define OCI_DATE_YEAR_ZERO              0x2000    /* Year may not equal zero */
 #define OCI_DATE_INVALID_FORMAT         0x8000      /* Bad date format input */
 
-sword OCIDateCheck(    OCIError *err, CONST OCIDate *date, uword *valid    );
+sword OCIDateCheck(    OCIError *err, const OCIDate *date, uword *valid    );
 /*
    NAME: OCIDateCheck - OCIDate CHecK if the given date is valid
    PARAMETERS:
@@ -2277,7 +2279,7 @@ typedef struct OCIString OCIString;
 
 /*-------------------------- OCIStringAssign --------------------------------*/
  
-sword OCIStringAssign(    OCIEnv *env, OCIError *err, CONST OCIString *rhs, 
+sword OCIStringAssign(    OCIEnv *env, OCIError *err, const OCIString *rhs, 
                           OCIString **lhs    );
 /*
    NAME: OCIStringAssign - OCIString Assign String to String
@@ -2303,7 +2305,7 @@ sword OCIStringAssign(    OCIEnv *env, OCIError *err, CONST OCIString *rhs,
  
 /*---------------------- OCIStringAssignText --------------------------------*/
  
-sword OCIStringAssignText(    OCIEnv *env, OCIError *err, CONST oratext *rhs, 
+sword OCIStringAssignText(    OCIEnv *env, OCIError *err, const oratext *rhs, 
                               ub4 rhs_len, OCIString **lhs    );
 /*
    NAME: OCIStringAssignText - OCIString Assign Text string to String
@@ -2365,7 +2367,7 @@ sword OCIStringResize(    OCIEnv *env, OCIError *err, ub4 new_size,
 
 /*---------------------------- OCIStringSize --------------------------------*/
 
-ub4 OCIStringSize(    OCIEnv *env, CONST OCIString *vs    );
+ub4 OCIStringSize(    OCIEnv *env, const OCIString *vs    );
 /*
    NAME: OCIStringSize - OCIString Get String siZe
    PARAMETERS:
@@ -2379,7 +2381,7 @@ ub4 OCIStringSize(    OCIEnv *env, CONST OCIString *vs    );
 
 /*----------------------------- OCIStringPtr --------------------------------*/
 
-oratext *OCIStringPtr(    OCIEnv *env, CONST OCIString *vs    );
+oratext *OCIStringPtr(    OCIEnv *env, const OCIString *vs    );
 /*
    NAME: OCIStringPtr - OCIString Get String Pointer
    PARAMETERS:
@@ -2393,7 +2395,7 @@ oratext *OCIStringPtr(    OCIEnv *env, CONST OCIString *vs    );
 
 /*----------------------- OCIStringAllocSize --------------------------------*/
  
-sword OCIStringAllocSize(    OCIEnv *env, OCIError *err, CONST OCIString *vs, 
+sword OCIStringAllocSize(    OCIEnv *env, OCIError *err, const OCIString *vs, 
                              ub4 *allocsize    );
 /*
    NAME: OCIStringAllocSize - OCIString get Allocated SiZe of string memory 
@@ -2437,7 +2439,7 @@ typedef struct OCIRaw OCIRaw;
 
 /*-------------------------- OCIRawAssignRaw --------------------------------*/
  
-sword OCIRawAssignRaw(    OCIEnv *env, OCIError *err, CONST OCIRaw *rhs, 
+sword OCIRawAssignRaw(    OCIEnv *env, OCIError *err, const OCIRaw *rhs, 
                           OCIRaw **lhs    );
 /*
    NAME: OCIRawAssignRaw - OCIRaw Assign Raw (of type OCIRaw*) to
@@ -2462,7 +2464,7 @@ sword OCIRawAssignRaw(    OCIEnv *env, OCIError *err, CONST OCIRaw *rhs,
  
 /*------------------------ OCIRawAssignBytes --------------------------------*/
  
-sword OCIRawAssignBytes(    OCIEnv *env, OCIError *err, CONST ub1 *rhs, 
+sword OCIRawAssignBytes(    OCIEnv *env, OCIError *err, const ub1 *rhs, 
                             ub4 rhs_len, OCIRaw **lhs    );
 /*
    NAME: OCIRawAssignBytes - OCIRaw Assign raw Bytes (of type ub1*) to Raw 
@@ -2521,7 +2523,7 @@ sword OCIRawResize(    OCIEnv *env, OCIError *err, ub4 new_size,
 
 /*------------------------------- OCIRawSize --------------------------------*/
 
-ub4 OCIRawSize(    OCIEnv * env, CONST OCIRaw *raw    );
+ub4 OCIRawSize(    OCIEnv * env, const OCIRaw *raw    );
 /*
    NAME: OCIRawSize - OCIRaw Get Raw siZe
    PARAMETERS:
@@ -2534,7 +2536,7 @@ ub4 OCIRawSize(    OCIEnv * env, CONST OCIRaw *raw    );
  */
 
 /*--------------------------------- OCIRawPtr -------------------------------*/
-ub1 *OCIRawPtr(    OCIEnv * env, CONST OCIRaw *raw    );
+ub1 *OCIRawPtr(    OCIEnv * env, const OCIRaw *raw    );
 /*
    NAME: OCIRawPtr - OCIRaw Get Raw data Pointer
    PARAMETERS:
@@ -2548,7 +2550,7 @@ ub1 *OCIRawPtr(    OCIEnv * env, CONST OCIRaw *raw    );
 
 /*------------------------------ OCIRawAllocSize ----------------------------*/
  
-sword OCIRawAllocSize(    OCIEnv *env, OCIError *err, CONST OCIRaw *raw,
+sword OCIRawAllocSize(    OCIEnv *env, OCIError *err, const OCIRaw *raw,
                           ub4 *allocsize    );
 /*
    NAME: OCIRawAllocSize - OCIRaw get Allocated SiZe of raw memory in bytes
@@ -2604,7 +2606,7 @@ void OCIRefClear(    OCIEnv *env, OCIRef *ref    );
  */
 
 /*--------------------------- OCIRefAssign ----------------------------------*/
-sword OCIRefAssign(    OCIEnv *env, OCIError *err, CONST OCIRef *source, 
+sword OCIRefAssign(    OCIEnv *env, OCIError *err, const OCIRef *source, 
                        OCIRef **target    );
 /*
    NAME: OCIRefAssign - OCIRef CoPY a ref to another
@@ -2629,7 +2631,7 @@ sword OCIRefAssign(    OCIEnv *env, OCIError *err, CONST OCIRef *source,
  */
 
 /*-------------------------- OCIRefIsEqual ----------------------------------*/
-boolean OCIRefIsEqual(    OCIEnv *env, CONST OCIRef *x, CONST OCIRef *y    );
+boolean OCIRefIsEqual(    OCIEnv *env, const OCIRef *x, const OCIRef *y    );
 /*
    NAME: OCIRefIsEqual - OCIRef compare two refs for EQUality
    PARAMETERS:
@@ -2649,7 +2651,7 @@ boolean OCIRefIsEqual(    OCIEnv *env, CONST OCIRef *x, CONST OCIRef *y    );
  */
 
 /*--------------------------- OCIRefIsNull ----------------------------------*/
-boolean OCIRefIsNull(    OCIEnv *env, CONST OCIRef *ref    );
+boolean OCIRefIsNull(    OCIEnv *env, const OCIRef *ref    );
 /*
    NAME: OCIRefIsNull - OCIRef test if a ref is NULl
    PARAMETERS:
@@ -2670,7 +2672,7 @@ boolean OCIRefIsNull(    OCIEnv *env, CONST OCIRef *ref    );
  */
 
 /*-------------------------- OCIRefHexSize ----------------------------------*/
-ub4 OCIRefHexSize(    OCIEnv *env, CONST OCIRef *ref    );
+ub4 OCIRefHexSize(    OCIEnv *env, const OCIRef *ref    );
 /*
    NAME: OCIRefHexSize - OCIRef Hexadecimal buffer SiZe in bytes
    PARAMETERS:
@@ -2686,8 +2688,8 @@ ub4 OCIRefHexSize(    OCIEnv *env, CONST OCIRef *ref    );
  */
 
 /*-------------------------- OCIRefFromHex ---------------------------------*/
-sword OCIRefFromHex(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc, 
-                        CONST oratext *hex, ub4 length, OCIRef **ref    );
+sword OCIRefFromHex(    OCIEnv *env, OCIError *err, const OCISvcCtx *svc, 
+                        const oratext *hex, ub4 length, OCIRef **ref    );
 /*
    NAME:
         OCIRefFromHex - OCIRef convert a Hexadecimal string TO a Ref
@@ -2717,7 +2719,7 @@ sword OCIRefFromHex(    OCIEnv *env, OCIError *err, CONST OCISvcCtx *svc,
  */
 
 /*--------------------------- OCIRefToHex -----------------------------------*/
-sword OCIRefToHex(    OCIEnv *env, OCIError *err, CONST OCIRef *ref, 
+sword OCIRefToHex(    OCIEnv *env, OCIError *err, const OCIRef *ref, 
                       oratext *hex, ub4 *hex_length    );
 /*
    NAME:
@@ -2817,7 +2819,7 @@ typedef struct OCIIter OCIIter;
 
 /*----------------------------- OCICollSize ---------------------------------*/
 
-sword OCICollSize( OCIEnv *env, OCIError *err, CONST OCIColl *coll, 
+sword OCICollSize( OCIEnv *env, OCIError *err, const OCIColl *coll, 
                    sb4 *size );
 /*
    NAME: OCICollSize - OCIColl return current SIZe of the given collection
@@ -2864,7 +2866,7 @@ sword OCICollSize( OCIEnv *env, OCIError *err, CONST OCIColl *coll,
 
 /*------------------------------ OCICollMax ---------------------------------*/
 
-sb4 OCICollMax(    OCIEnv *env, CONST OCIColl *coll    );
+sb4 OCICollMax(    OCIEnv *env, const OCIColl *coll    );
 /*
    NAME: OCICollMax - OCIColl return MAXimum size (upper-bound) of the
                    given collection (in number of elements)
@@ -2883,9 +2885,9 @@ sb4 OCICollMax(    OCIEnv *env, CONST OCIColl *coll    );
 
 /*-------------------------- OCICollGetElem ---------------------------------*/
 
-sword OCICollGetElem(    OCIEnv *env, OCIError *err, CONST OCIColl *coll, 
-                         sb4 index, boolean *exists, dvoid **elem, 
-                         dvoid **elemind    );
+sword OCICollGetElem(    OCIEnv *env, OCIError *err, const OCIColl *coll, 
+                         sb4 index, boolean *exists, void  **elem, 
+                         void  **elemind    );
 /*
    NAME: OCICollGetElem - OCIColl GET pointer to the element at the given index
    PARAMETERS:
@@ -2933,7 +2935,7 @@ sword OCICollGetElem(    OCIEnv *env, OCIError *err, CONST OCIColl *coll,
         element, the user may wish to modify it by assigning a new reference.
         This can be accomplished via the ref assignment function shown below:
  
-        sword OCIRefAssign( OCIEnv *env, OCIError *err, CONST OCIRef *source,
+        sword OCIRefAssign( OCIEnv *env, OCIError *err, const OCIRef *source,
                             OCIRef **target );
  
         Note that the 'target' parameter of OCIRefAssign() is of type
@@ -2950,7 +2952,7 @@ sword OCICollGetElem(    OCIEnv *env, OCIError *err, CONST OCIColl *coll,
         If the collection element is of type Oracle number, OCICollGetElem()
         returns OCINumber*. The prototype of OCINumberAssign() is shown below:
  
-        sword OCINumberAssign(OCIError *err, CONST OCINumber *from,
+        sword OCINumberAssign(OCIError *err, const OCINumber *from,
                               OCINumber *to);
    RETURNS:
         OCI_SUCCESS if the function completes successfully.
@@ -2961,9 +2963,9 @@ sword OCICollGetElem(    OCIEnv *env, OCIError *err, CONST OCIColl *coll,
 
 /*------------------------- OCICollGetElemArray -----------------------------*/
 
-sword OCICollGetElemArray(  OCIEnv *env, OCIError *err, CONST OCIColl *coll, 
-                            sb4 index, boolean *exists, dvoid **elem, 
-                            dvoid **elemind, uword *nelems);
+sword OCICollGetElemArray(  OCIEnv *env, OCIError *err, const OCIColl *coll, 
+                            sb4 index, boolean *exists, void  **elem, 
+                            void  **elemind, uword *nelems);
 /*
    NAME: OCICollGetElemArray - OCIColl GET pointers to elements from given index
    PARAMETERS:
@@ -3012,7 +3014,7 @@ sword OCICollGetElemArray(  OCIEnv *env, OCIError *err, CONST OCIColl *coll,
         element, the user may wish to modify it by assigning a new reference.
         This can be accomplished via the ref assignment function shown below:
  
-        sword OCIRefAssign( OCIEnv *env, OCIError *err, CONST OCIRef *source,
+        sword OCIRefAssign( OCIEnv *env, OCIError *err, const OCIRef *source,
                             OCIRef **target );
  
         Note that the 'target' parameter of OCIRefAssign() is of type
@@ -3029,7 +3031,7 @@ sword OCICollGetElemArray(  OCIEnv *env, OCIError *err, CONST OCIColl *coll,
         If the collection element is of type Oracle number, OCICollGetElem()
         returns OCINumber*. The prototype of OCINumberAssign() is shown below:
  
-        sword OCINumberAssign(OCIError *err, CONST OCINumber *from,
+        sword OCINumberAssign(OCIError *err, const OCINumber *from,
                               OCINumber *to);
    RETURNS:
         OCI_SUCCESS if the function completes successfully.
@@ -3041,8 +3043,8 @@ sword OCICollGetElemArray(  OCIEnv *env, OCIError *err, CONST OCIColl *coll,
 /*----------------------- OCICollAssignElem ---------------------------------*/
 
 sword OCICollAssignElem(    OCIEnv *env, OCIError *err, sb4 index, 
-                            CONST dvoid *elem, 
-                            CONST dvoid *elemind, OCIColl *coll    );
+                            const void  *elem, 
+                            const void  *elemind, OCIColl *coll    );
 /*
    NAME: OCICollAssignElem - OCIColl ASsign Element
    PARAMETERS:
@@ -3078,7 +3080,7 @@ sword OCICollAssignElem(    OCIEnv *env, OCIError *err, sb4 index,
 
 /*--------------------------- OCICollAssign ---------------------------------*/
 
-sword OCICollAssign(    OCIEnv *env, OCIError *err, CONST OCIColl *rhs, 
+sword OCICollAssign(    OCIEnv *env, OCIError *err, const OCIColl *rhs, 
                         OCIColl *lhs    );
 /*
    NAME: OCICollAssign - OCIColl ASsiGn collection
@@ -3114,8 +3116,8 @@ sword OCICollAssign(    OCIEnv *env, OCIError *err, CONST OCIColl *rhs,
 
 /*--------------------------- OCICollAppend ---------------------------------*/
 
-sword OCICollAppend(    OCIEnv *env, OCIError *err, CONST dvoid *elem, 
-                        CONST dvoid *elemind, OCIColl *coll    );
+sword OCICollAppend(    OCIEnv *env, OCIError *err, const void  *elem, 
+                        const void  *elemind, OCIColl *coll    );
 /*
    NAME: OCICollAppend - OCIColl APPend collection
    PARAMETERS:
@@ -3182,7 +3184,7 @@ sword OCICollTrim(    OCIEnv *env, OCIError *err, sb4 trim_num,
 
 /*--------------------------- OCICollIsLocator ------------------------------*/
 
-sword OCICollIsLocator(OCIEnv *env, OCIError *err, CONST OCIColl *coll,
+sword OCICollIsLocator(OCIEnv *env, OCIError *err, const OCIColl *coll,
                        boolean *result );
 /*
 Name: OCICollIsLocator - OCIColl indicates whether a collection is locator
@@ -3206,7 +3208,7 @@ Returns:
 
 /*---------------------------- OCIIterCreate --------------------------------*/
 
-sword OCIIterCreate(    OCIEnv *env, OCIError *err, CONST OCIColl *coll, 
+sword OCIIterCreate(    OCIEnv *env, OCIError *err, const OCIColl *coll, 
                         OCIIter **itr    );
 /*
    NAME: OCIIterCreate - OCIColl Create an ITerator to scan the collection
@@ -3266,7 +3268,7 @@ sword OCIIterDelete(    OCIEnv *env, OCIError *err, OCIIter **itr    );
 
 /*----------------------------- OCIIterInit ---------------------------------*/
 
-sword OCIIterInit(    OCIEnv *env, OCIError *err, CONST OCIColl *coll, 
+sword OCIIterInit(    OCIEnv *env, OCIError *err, const OCIColl *coll, 
                       OCIIter *itr    );
 /*
    NAME: OCIIterInit - OCIColl Initialize ITerator to scan the given 
@@ -3295,8 +3297,8 @@ sword OCIIterInit(    OCIEnv *env, OCIError *err, CONST OCIColl *coll,
 
 /*------------------------ OCIIterGetCurrent --------------------------------*/
 
-sword OCIIterGetCurrent(    OCIEnv *env, OCIError *err, CONST OCIIter *itr, 
-                            dvoid **elem, dvoid **elemind    );
+sword OCIIterGetCurrent(    OCIEnv *env, OCIError *err, const OCIIter *itr, 
+                            void  **elem, void  **elemind    );
 /*
    NAME: OCIIterGetCurrent - OCIColl Iterator based, get CURrent collection
                     element
@@ -3324,7 +3326,7 @@ sword OCIIterGetCurrent(    OCIEnv *env, OCIError *err, CONST OCIIter *itr,
 /*------------------------------ OCIIterNext --------------------------------*/
 
 sword OCIIterNext(    OCIEnv *env, OCIError *err, OCIIter *itr, 
-                      dvoid **elem, dvoid **elemind, boolean *eoc    );
+                      void  **elem, void  **elemind, boolean *eoc    );
 /*
    NAME: OCIIterNext - OCIColl Iterator based, get NeXT collection element
    PARAMETERS:
@@ -3359,7 +3361,7 @@ sword OCIIterNext(    OCIEnv *env, OCIError *err, OCIIter *itr,
 /*------------------------------ OCIIterPrev --------------------------------*/
 
 sword OCIIterPrev(    OCIEnv *env, OCIError *err, OCIIter *itr, 
-                      dvoid **elem, dvoid **elemind, boolean *boc    );
+                      void  **elem, void  **elemind, boolean *boc    );
 /*
    NAME: OCIIterPrev - OCIColl Iterator based, get PReVious collection element
    PARAMETERS:
@@ -3398,7 +3400,7 @@ sword OCIIterPrev(    OCIEnv *env, OCIError *err, OCIIter *itr,
 
 /*---------------------------- OCITableSize ---------------------------------*/
 
-sword OCITableSize( OCIEnv *env, OCIError *err, CONST OCITable *tbl, 
+sword OCITableSize( OCIEnv *env, OCIError *err, const OCITable *tbl, 
                     sb4 *size);
 /*
    NAME: OCITableSize - OCITable return current SIZe of the given 
@@ -3441,7 +3443,7 @@ sword OCITableSize( OCIEnv *env, OCIError *err, CONST OCITable *tbl,
 
 /*---------------------- OCITableExists ---------------------------------*/
 
-sword OCITableExists(    OCIEnv *env, OCIError *err, CONST OCITable *tbl,
+sword OCITableExists(    OCIEnv *env, OCIError *err, const OCITable *tbl,
                              sb4 index, boolean *exists    );
 /*
    NAME: OCITableExists - OCITable test whether element at the given index
@@ -3496,7 +3498,7 @@ sword OCITableDelete(    OCIEnv *env, OCIError *err, sb4 index,
 
 /*--------------------------- OCITableFirst ---------------------------------*/
 
-sword OCITableFirst(    OCIEnv *env, OCIError *err, CONST OCITable *tbl, 
+sword OCITableFirst(    OCIEnv *env, OCIError *err, const OCITable *tbl, 
                         sb4 *index     );
 /*
    NAME: OCITableFirst - OCITable return FirST index of table
@@ -3521,7 +3523,7 @@ sword OCITableFirst(    OCIEnv *env, OCIError *err, CONST OCITable *tbl,
 
 /*---------------------------- OCITableLast ---------------------------------*/
 
-sword OCITableLast(    OCIEnv *env, OCIError *err, CONST OCITable *tbl, 
+sword OCITableLast(    OCIEnv *env, OCIError *err, const OCITable *tbl, 
                        sb4 *index     );
 /*
    NAME: OCITableFirst - OCITable return LaST index of table
@@ -3547,7 +3549,7 @@ sword OCITableLast(    OCIEnv *env, OCIError *err, CONST OCITable *tbl,
 /*---------------------------- OCITableNext ---------------------------------*/
 
 sword OCITableNext(    OCIEnv *env, OCIError *err, sb4 index, 
-                       CONST OCITable *tbl, sb4 *next_index,
+                       const OCITable *tbl, sb4 *next_index,
                        boolean *exists    );
 /*
    NAME: OCITableNext - OCITable return NeXT available index of table
@@ -3576,7 +3578,7 @@ sword OCITableNext(    OCIEnv *env, OCIError *err, sb4 index,
 /*---------------------------- OCITablePrev ---------------------------------*/
 
 sword OCITablePrev(    OCIEnv *env, OCIError *err, sb4 index, 
-                       CONST OCITable *tbl, sb4 *prev_index,
+                       const OCITable *tbl, sb4 *prev_index,
                        boolean *exists    );
 /*
    NAME: OCITablePrev - OCITable return PReVious available index of table
@@ -3624,5 +3626,8 @@ typedef struct OCIXMLType OCIXMLType;
 
 /* OCI representation of OCIDomDocument */
 typedef struct OCIDOMDocument OCIDOMDocument;
+
+/* OCI representation for the Binary XML repository context */
+typedef struct OCIBinXmlReposCtx OCIBinXmlReposCtx;
 
 #endif /* ORL_ORACLE */

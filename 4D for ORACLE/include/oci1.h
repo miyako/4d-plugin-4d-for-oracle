@@ -1,8 +1,5 @@
-/*
- * $Header: oci1.h 02-dec-97.19:29:14 skabraha Exp $
- */
 
-/* Copyright (c) Oracle Corporation 1997, 1998. All Rights Reserved. */ 
+/* Copyright (c) 1997, 2005, Oracle. All rights reserved.  */
  
 /* NOTE:  See 'header_template.doc' in the 'doc' dve under the 'forms' 
       directory for the header file template that includes instructions. 
@@ -40,6 +37,8 @@
      <other useful comments, qualifications, etc.>
 
    MODIFIED   (MM/DD/YY)
+   mbastawa    09/16/05 - dbhygiene
+   dmukhin     06/29/05 - ANSI prototypes; miscellaneous cleanup 
    nramakri    01/16/98 - remove #ifdef NEVER clause
    ewaugh      12/18/97 - Turn type wrappers into functions.
    skabraha    12/02/97 - Adding data structures & constants for OCIFile
@@ -110,8 +109,8 @@
 #define OCI_FILE_SEEK_CURRENT      2  /* seek from the current position */
 #define OCI_FILE_SEEK_END          3  /* seek from the end of the file */
 
-#define OCI_FILE_FORWARD     1     /* seek forward		*/
-#define OCI_FILE_BACKWARD    2     /* seek backward		*/
+#define OCI_FILE_FORWARD     1     /* seek forward              */
+#define OCI_FILE_BACKWARD    2     /* seek backward             */
 
 /* file type */
 #define   OCI_FILE_BIN      0    /* binary file */
@@ -145,7 +144,7 @@ typedef struct OCIThreadHandle  OCIThreadHandle;
 /*-------------------- OCI Thread Callback Function Pointers ----------------*/
 
 /* OCIThread Key Destructor Function Type */
-typedef void (*OCIThreadKeyDestFunc)(/*_ dvoid * _*/);
+typedef void (*OCIThreadKeyDestFunc)( void  * );
 
 
 /* Flags passed into OCIExtractFromXXX routines to direct processing         */

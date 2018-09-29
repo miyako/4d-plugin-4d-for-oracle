@@ -1,8 +1,8 @@
 /*
- * $Header: ociextp.h 12-mar-2003.07:37:18 srseshad Exp $
+ * 
  */
 
-/* Copyright (c) 1996, 2003, Oracle Corporation.  All rights reserved.  */
+/* Copyright (c) 1996, 2005, Oracle. All rights reserved.  */
  
 /* 
    NAME 
@@ -27,6 +27,7 @@
      <other useful comments, qualifications, etc.>
 
    MODIFIED   (MM/DD/YY)
+   dmukhin     06/29/05 - ANSI prototypes; miscellaneous cleanup 
    srseshad    03/12/03 - convert oci public api to ansi
    rdecker     01/10/02 - change 32k to MAX_OEN for error numbers
    sagrawal    07/20/01 - Statement Handle to safe cal outs
@@ -261,7 +262,7 @@ ociepish(wctx, cursor, svch, stmthp, errh)
 
 
 
-dvoid *ociepacm(OCIExtProcContext *with_context, size_t amount);
+void  *ociepacm(OCIExtProcContext *with_context, size_t amount);
 
 
 

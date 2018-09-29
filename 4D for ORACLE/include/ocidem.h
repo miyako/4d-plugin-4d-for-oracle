@@ -1,13 +1,14 @@
 /*
- * $Header: ocidem.h 07-apr-99.17:26:47 whe Exp $ 
+ * 
  */
 
-/* Copyright (c) 1991, 1996, 1997, 1999 by Oracle Corporation */
-/* Copyright (c) 1991, 1997, 1999 by Oracle Corporation */
+/* Copyright (c) 1991, 2005, Oracle. All rights reserved.  */
+/* Copyright (c) 1991, 2005, Oracle. All rights reserved.  */
 /*
    NAME
      ocidem.h - OCI demo header
    MODIFIED   (MM/DD/YY)
+    dmukhin    06/29/05  - ANSI prototypes; miscellaneous cleanup 
     whe        04/07/99 -  bug#810071
     whe        03/19/99 -  lrg 32079 etc.: putting static back for oci_func_tab
     nmacnaug   02/02/99 -  static declarations should not be in header files
@@ -46,7 +47,7 @@
 /*  internal/external datatype codes */
 #define VARCHAR2_TYPE            1
 #define NUMBER_TYPE              2
-#define INT_TYPE		 3
+#define INT_TYPE                 3
 #define FLOAT_TYPE               4
 #define STRING_TYPE              5
 #define ROWID_TYPE              11
@@ -72,7 +73,7 @@
  *  corresponding to the fc numbers
  *  in the cursor data area.
  */
-static CONST text  *oci_func_tab[] =  {(text *) "not used",
+static const text  *oci_func_tab[] =  {(text *) "not used",
 /* 1-2 */       (text *) "not used", (text *) "OSQL",
 /* 3-4 */       (text *) "not used", (text *) "OEXEC, OEXN",
 /* 5-6 */       (text *) "not used", (text *) "OBIND",

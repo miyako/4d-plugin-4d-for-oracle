@@ -22,81 +22,6 @@
    NOTES
      <other useful comments, qualifications, etc.>
 
-   MODIFIED   (MM/DD/YY)
-   shiyer      06/01/07 - Backport shiyer_bug-5956137 from main
-   cparampa    10/28/03 - add PObject::getSQLTypeName
-   shiyer      01/01/03 - add PObject::refresh
-   cparampa    02/19/03 - bug2732941-setFromRef takes schema and typename
-   rvallam     02/12/03 - modify Bfloat/Bdouble interface to use the new
-                          Bfloat/Bdouble type
-   rvallam     11/19/02 - objects support for interval classes
-   cparampa    12/26/02 - Added getType for AnyData,
-                          removed getAs/setFrom methods for Blob/Clob
-   cparampa    10/12/02 - making AnyData a public type
-   rvallam     10/12/02 - added method getCor to get the COR handle and the 
-                          setPinnedObject method - arrayPin 
-   rvallam     10/10/02 - objects performance enhancement - modified
-                          getObject and getVector<T *> to take the
-                          schName and typeName of the object
-   rvallam     10/11/02 - added native float/double API - get(set) methods
-                          for AnyData class
-   shiyer      09/17/02 - Refs performance improvement
-   shiyer      08/14/02 - 10iR1, OCCI Globalization support
-   aahluwal    06/04/02 - bug 2360115
-   vvinay      12/24/01 - declarations for setNull() and isClear() in RefImpl
-   rvallam     11/17/01 - implemented transactional consistency of refs
-   gayyappa    10/01/01 - reserve memory for vectors in set/getVector 
-   rkasamse    07/31/01 - add PObject::new(size_t, void*)
-   gayyappa    07/17/01 - use C style comment in end of #ifdef WIN32COMMON.
-   gayyappa    06/20/01 - fix linux porting bug 1801312.
-   rvallam     06/14/01 - replace call to get(set)VectorOfRefs in 
-                          get(set)Vector for Ref<T> with code in 
-                          get(set)VectorOfRefs
-   rvallam     11/06/01 - renamed internal methods in get/setVector to 
-                          get(set)VectorOfPObjects/get(set)VectorOfOCIRefs
-                          as part of NT porting fix
-                          added destructor to AnyData
-   rratnam     06/07/01 - fixed bug 1816387.
-   rvallam     06/07/01 - fixed bug 1811749 :replaced .data() to .c_str()
-                          for string to char* conversion.
-   rvallam     04/30/01 - modified const methods in Ref (->, *, ptr)
-   rvallam     04/12/01 - passed dummy argument OCCIPOBJECT in getVector
-                          of AnyData for PObject *
-   rvallam     04/09/01 - fixed bug 1721365- call RefAny default constructor
-                          for a NULL Ref in operator RefAny
-   gayyappa    03/29/01 - remove methods for get/set int/float/double/unsigned 
-                          int , wasLastAttrNull, setAttrNull , geSQLTypeName
-                          from AnyData 
-                          as OTT does not use them.
-   gayyappa    03/15/01 - add OCCItype parameter to getVector for OCCIRef.
-   rratnam     03/15/01 - fixed set and getRef / get and setVector for NULL 
-                          Refs, fixed NT compilation errors
-   rratnam     03/13/01 - changed AnyData constructor to take a freeImg flag,
-   rkasamse    03/15/01 - pass OCCI_SQLT_REF to getVector
-   chliang     03/05/01 - disable olint.
-   rvallam     03/01/01 - changed getSessionPtr() to getConnection()
-                          added const methods for dereferencing in Ref
-   gayyappa    02/23/01 - correct template code for setVector
-   gayyappa    12/13/00 - remove allocator from list member for PObject.
-                          bug#1529973
-                          nullify object pointer in clear method of Ref
-   rvallam     11/08/00 - make RefAny constructor public
-   gayyappa    08/21/00 - replace objPtr by objptr.
-                          move templated get/set vector code of anydata 
-                          to header.
-   rkasamse    08/07/00 - make getVector friend of RefAny
-   rkasamse    07/11/00 - take void* instead of AnyDataCtx*
-   rkasamse    07/26/00 - make ResultSetImp friend of RefAny
-   rratnam     06/19/00 - added getConnection in PObject 
-   rvallam     06/13/00 - added Ref<T> and occiRefImpl code
-   rvallam     06/05/00 - to add the Ref<T> code
-   kmohan      06/02/00 -
-   kmohan      05/31/00 - Datamember Connection * changed to ConnectionImpl * 
-                          in class RefAny
-   kmohan      04/11/00 - Ref, RefAny, AnyData class definitions
-                          added
-   rkasamse    04/03/00 - header (interface) files for OCCI Objects clases
-   rkasamse    04/03/00 - Creation
 
 */
 
@@ -114,7 +39,7 @@ namespace occi {
 struct AnyDataCtx {
    ConnectionImpl *occiSession;
    OCIAnyData *anyData;
-   dvoid *objHeader;
+   void *objHeader;
    ub4 errNum;
 };
 typedef struct AnyDataCtx AnyDataCtx;
@@ -174,7 +99,7 @@ class PObject
               void *typeName, unsigned int typLen);
 
         ConnectionImpl  *occiSession_;
-        dvoid *objHeader_;
+        void *objHeader_;
         ub2 customNewed_;
         enum {CUSTOM_NEWED = 0x5cde};
         ub2 flags_;
@@ -321,7 +246,6 @@ class Ref
   bool operator == (const RefAny &refAnyR) const ;
   bool operator != (const RefAny &refAnyR) const ;
   OCIComplexObject *getCor() const;
-  void destroy();
   void setPinnedObject(PObject *objPtr); 
  private:
 
@@ -369,7 +293,6 @@ class RefImpl
   // added following methods
   bool isEqual(PObject *obj);
   void operator = ( const RefImpl &src);
-  void destroy();
   OCIComplexObject *getCor() const;
   void setPinnedObject( PObject *objPtr);
  private:
@@ -380,7 +303,7 @@ class RefImpl
   OCCI_STD_NAMESPACE::list<void *> descriptorList;
   LockOptions lockOption;
   // added data member for object header
-  dvoid *objHeader;
+  void *objHeader;
   //common implementation function for setPrefetch
   void do_setPrefetch(void *schName, unsigned int schNameLen,
                       void *typeName, unsigned int typeNameLen,
@@ -654,12 +577,6 @@ bool Ref<T>::operator != (const RefAny & refAnyR) const
 }
 
 template <class T>
-void Ref<T>::destroy()
-{
-   rimplPtr->destroy();
-}
-
-template <class T>
 OCIComplexObject * Ref<T>::getCor() const
 {
   return (rimplPtr->getCor());
@@ -713,7 +630,7 @@ void Ref<T>::setPinnedObject( PObject *objPtr)
      compatible SQL types : user defined types (SQLT_NTY) etc.
 */
 
-#ifdef WIN32COMMON
+#if defined(WIN32COMMON) || defined(__MVS__)
 // and other platforms that do not support
 // partial function template specialization
  template <class T>
@@ -768,7 +685,7 @@ void Ref<T>::setPinnedObject( PObject *objPtr)
    NOTES
      compatible SQL types : user defined types (SQLT_NTY) etc.
 */
-#ifndef WIN32COMMON
+#if !defined(WIN32COMMON) && !defined(__MVS__)
  template <class T>
  void getVector(const AnyData &any,OCCI_STD_NAMESPACE::vector< Ref<T> > &vect) 
  {
@@ -813,7 +730,7 @@ void Ref<T>::setPinnedObject( PObject *objPtr)
    NOTES
      compatible SQL types : SQLT_NTY  (user defined types).
 */
-#ifdef WIN32COMMON
+#if defined(WIN32COMMON) || defined(__MVS__)
 // and other platforms that do not support
 // partial function template specialization
 
@@ -867,7 +784,7 @@ void Ref<T>::setPinnedObject( PObject *objPtr)
    NOTES
      compatible SQL types : SQLT_NTY  (user defined types).
 */
-#ifndef WIN32COMMON
+#if !defined(WIN32COMMON) && !defined(__MVS__)
  template <class T>
  void setVector(AnyData &any, const OCCI_STD_NAMESPACE::vector< Ref<T> > &vect)
  {

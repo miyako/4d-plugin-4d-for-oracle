@@ -1,4 +1,4 @@
-/* Copyright  Oracle Corporation 2000, 2001. All Rights Reserved. */ 
+/* Copyright  Oracle Corporation 2000, 2006. All Rights Reserved. */ 
  
 /* 
    NAME 
@@ -23,135 +23,6 @@
    NOTES
      <other useful comments, qualifications, etc.>
 
-   MODIFIED   (MM/DD/YY)
-   cparampa    08/10/04 - Add BatchSQLException
-   rvissapr    11/10/04 - Added security attributes for metadata
-   porangas    10/18/04 - 3946819: Correct the definition for THREADED_UNMUTEXED
-   shiyer      09/26/04 - Added setNull 
-   cparampa    08/11/04 - get client/server version methods.
-   shiyer      09/23/03 - Add TAF support 
-   rvadraha    09/30/03 - New Binary/CharacterStreamMode for Statement class
-   rvallam     02/12/03 - modify BFloat/BDouble interface to use the new 
-                          BFloat/BDouble type 
-   shiyer      01/21/03 - add getPoolNameUString to ConnectionPool
-   shiyer      12/19/02 - Add cache sorted flush get/set to Environment
-   shiyer      12/31/02 - added OCI_ATTR_CHAR_SIZE to typeattr attrs
-   shiyer      12/09/02 - ensure new virtual interfaces are in order
-   cparampa    10/12/02 - AQ Additions
-   rvallam     10/12/02 - added  new methods for array pin 
-   shiyer      10/09/02 - Statement caching, Stateless Connection
-                          Pooling - UTF16 support. Added NLS versions
-                          of getErrorMessage in SQLException
-   rvallam     10/11/02 - added native float/double API - get(set) methods
-                          for Statement and ResultSet class
-   cparampa    09/23/02 - added methods for statement caching
-   shiyer      10/01/02 - setVector versions for Windows
-   shiyer      07/31/02 - 10iR1, OCCI Globalization support
-   cparampa    09/23/02 - added methods for statement caching 
-   praghuna    09/23/02 - 2333038:Fwd merge to 10i/MAIN 
-   cparampa    08/26/02 - added class StatelessConnectionPool
-                          added create/terminateStatelessConnnectionPool in Env 
-   vvinay      08/06/02 - XA additions
-   vvinay      06/25/02 - fix #2415021: math moved to occiHeapAlloc.h
-   aahluwal    06/04/02 - bug 2360115
-   vvinay      02/21/02 - operator= added for SQLException
-   gayyappa    12/27/01 - add set/getDatabaseNCharParam 
-   gayyappa    11/22/01 - modify interface to use strings for CharSet
-   gayyappa    10/01/01 - call reserve() on vector in set/getVector 
-   rkasamse    07/30/01 - 
-   rkasamse    07/26/01 - add env handle attrs - cache max/opt size
-   rvallam     07/23/01 - bug 1891228 - added throw() in destructor
-                          of SQLException
-   rvallam     06/14/01 - replace call to get(set)VectorOfRefs in 
-                          get(set)Vector for Ref<T> with code in 
-                          get(set)VectorOfRefs
-   rvallam     11/06/01 - renamed internal methods in get/setVector to
-                          get(set)VectorOfPObjects/get(set)VectorOfOCIRefs
-                          as part of NT porting fix
-                          added destructors to SQLException and MetaData
-   rvallam     05/03/01 - added const to the vector parameter in setVector
-                          of Statement for Ref<T>
-   rratnam     04/10/01 - removed references to wstring
-   kmohan      04/04/01 - include math.h for WIN32COMMON
-   rvallam     04/02/01 - fixed linux porting bug 1654670
-   gayyappa    03/27/01 - add code for templated getVector on stmt for objects.
-   rvallam     03/20/01 - passed dummy parameter for Type in getVector for
-                          void * in statement and ResultSet
-   rratnam     03/15/01 - fixed set and getRef / get and setVector for NULL 
-                          Refs
-   rkasamse    03/19/01 - 1676579: HP compilation errors
-   rratnam     03/07/01 - derived SQLException from exception, added what()
-   chliang     03/05/01 - disable olint
-   rvallam     02/23/01 - made getReadSQL/getWriteSQL methods const
-   rratnam     01/29/01 - add closeStream() to Statement/ResultSet 
-   rvallam     01/30/01 - added private method getListType() to
-                          MetaData
-   rratnam     01/03/01 - removed preTruncationLength() and isTruncated(),
-                          added setBinary/CharacterStreamMode()
-   rratnam     01/03/01 - added new method setErrorOnBusy in ConnectionPool 
-   rratnam     12/29/00 - added a createProxyConnection without roles
-   gayyappa    12/14/00 - add virtual functions getStatement/getConnection
-                          to resultset and statement (fix bug# 1529888)
-   gayyappa    12/13/00 - remove setErrorOnTruncate from Statement/resultset.
-   rvallam     11/30/00 - removed #define NEVER
-   gayyappa    11/17/00 - split get method in Map to getReadSQL
-                          and getWriteSQL    
-   rvallam     10/20/00 - modify cacheflush() to flushCache()
-                          added enums to MetaData
-   rvallam     09/14/00 - uncomment result set getMetaData method
-                          rename it to getColumnListMetaData.
-                          add get/set interval methods to stmt.
-                          add getinterval methods to resultset.
-   gayyappa    08/30/00 - added virtual destructor to occiconnection.
-                          add default values to registerOutParam in
-                          occistatement.
-                          removed get/set vector and anydata in statement.
-                          removed Stream header in ifdef directive.
-   rvallam     08/10/00 - uncomment gets(), update occiConnection, update
-                          Stream
-   slari       08/06/00 - add statement stream methods
-   slari       08/04/00 - add Statement::getXXX methods
-   slari       08/02/00 - add Stream
-   rratnam     08/04/00 - put in connection-cloning, proxy connections
-   rvallam     08/04/00 - changed metadata header - method signatures
-   rkasamse    08/04/00 - add setObject,setRef methods on Statement
-   slari       07/27/00 - add Statement::setNull
-   slari       07/26/00 - disable getBytes
-   slari       07/25/00 - enable getBytes and getRowid
-   rratnam     07/25/00 - Conn Pooling changes - added ConnectionPool,
-                          Connection, removed Session
-                          modified Environment (made getOCIEnvironment(),
-                          getMap() and getMode() const,
-                          added create/terminateConnectionPool(),
-                          added userName and password to createConnection() )
-   rkasamse    07/26/00 - uncomment getObject methods
-   slari       07/10/00 - enable getString
-   slari       07/05/00 - add result set methods
-   rkasamse    07/17/00 - add get function to Map
-   rratnam     06/16/00 - updated Session::getMetaData() to take the
-                          parameter type
-   rvallam     06/13/00 - updated MetaData
-   rratnam     06/13/00 - added getRef() to Statement
-                           and ResultSet,
-                           made getOCIError(), getOCIEnvironment()
-                           and getOCIServiceContext() in
-                           Connection const
-   kmohan      05/31/00 - Datamember Session * changed to 
-                          SessionImpl *
-                          in the class MetaData
-                          change ORASTRINGSTL to ORASTRING
-   slari       05/26/00 - change ORAVECTOR to ORAVECTORSTL
-   slari       05/22/00 - add initial Statement class methods
-   slari       05/10/00 - enable Connection and Session methods
-   slari       04/21/00 - provide trivial implementation for 
-                          ~Connection
-   slari       04/17/00 - make Environment methods abstract
-   slari       04/13/00 - add Environment
-   gayyappa    04/18/00 - changed defn of SQLException
-   kmohan      04/11/00 - added class definitions
-   rkasamse    04/03/00 - header (interface) files for OCCI 
-                          control classes.
-   rkasamse    04/03/00 - Creation
 
 */
 
@@ -505,6 +376,13 @@ class Connection
         FO_ERROR = OCI_FO_ERROR
       };
 
+      enum Purity
+      {
+        DEFAULT = OCI_ATTR_PURITY_DEFAULT,
+        NEW = OCI_ATTR_PURITY_NEW,
+        SELF = OCI_ATTR_PURITY_SELF
+      };
+
       virtual ~Connection() { }
       virtual Statement* createStatement(
         const OCCI_STD_NAMESPACE::string  &sql = "") 
@@ -573,6 +451,7 @@ class Connection
          void *ctx) = 0;
       virtual OCCI_STD_NAMESPACE::string getServerVersion() const =0;
       virtual UString getServerVersionUString() const =0;
+      virtual void cancel() =0;
 };
 
 class StatelessConnectionPool
@@ -582,7 +461,9 @@ class StatelessConnectionPool
     enum PoolType
     {
       HETEROGENEOUS = OCI_DEFAULT,
-      HOMOGENEOUS = OCI_SPC_HOMOGENEOUS
+      HOMOGENEOUS = OCI_SPC_HOMOGENEOUS,
+      NO_RLB = OCI_SPC_NO_RLB,
+      USES_EXT_AUTH = 16
     };
 
     enum BusyOption
@@ -670,6 +551,114 @@ class StatelessConnectionPool
       Connection::ProxyType proxyType = Connection::PROXY_DEFAULT )=0;
     virtual void releaseConnection(Connection *connection,
       const UString  &tag)=0;
+
+
+    virtual Connection* getConnection( 
+     const OCCI_STD_NAMESPACE::string &connectionClass,
+     const Connection::Purity purity,
+     const OCCI_STD_NAMESPACE::string &tag = "") =0;
+
+    virtual Connection* getConnection(
+      const OCCI_STD_NAMESPACE::string &userName,
+      const OCCI_STD_NAMESPACE::string &password,
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity,
+      const OCCI_STD_NAMESPACE::string &tag = "") =0;
+
+    virtual Connection* getAnyTaggedConnection(
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity,
+      const OCCI_STD_NAMESPACE::string &tag = "") =0;
+
+    virtual Connection* getAnyTaggedConnection(
+      const OCCI_STD_NAMESPACE::string &userName,
+      const OCCI_STD_NAMESPACE::string &Password,
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity,
+      const OCCI_STD_NAMESPACE::string &tag = "")= 0;
+
+    virtual Connection* getProxyConnection(
+      const OCCI_STD_NAMESPACE::string &name,
+      OCCI_STD_NAMESPACE::string roles[], unsigned int numRoles,
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity, 
+      const OCCI_STD_NAMESPACE::string &tag = "",
+      Connection::ProxyType proxyType  = Connection::PROXY_DEFAULT) = 0;
+
+    virtual Connection* getProxyConnection(
+      const OCCI_STD_NAMESPACE::string &name,
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity, 
+      const OCCI_STD_NAMESPACE::string &tag = "",
+      Connection::ProxyType proxyType = Connection::PROXY_DEFAULT) = 0;
+
+    virtual Connection* getAnyTaggedProxyConnection(
+      const OCCI_STD_NAMESPACE::string &name,
+      OCCI_STD_NAMESPACE::string roles[], unsigned int numRoles,
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity,
+      const OCCI_STD_NAMESPACE::string &tag = "",
+      Connection::ProxyType proxyType = Connection::PROXY_DEFAULT) = 0;
+
+
+    virtual Connection* getAnyTaggedProxyConnection(
+      const OCCI_STD_NAMESPACE::string &name,
+      const OCCI_STD_NAMESPACE::string &connectionClass,
+      const Connection::Purity purity,
+      const OCCI_STD_NAMESPACE::string &tag = "",
+      Connection::ProxyType proxyType = Connection::PROXY_DEFAULT) = 0;
+
+
+    virtual Connection* getConnection(
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag) = 0;
+
+
+
+    virtual Connection* getConnection(const UString &userName,
+      const UString &password,
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag) = 0;
+
+    virtual Connection* getAnyTaggedConnection(
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag) =0;
+
+
+
+    virtual Connection* getAnyTaggedConnection( const UString &userName,
+      const UString &Password, 
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag) =0;
+
+    virtual Connection* getProxyConnection(const UString &name,
+      OCCI_STD_NAMESPACE::string roles[], unsigned int numRoles,
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag, Connection::ProxyType proxyType) =0;
+
+   virtual Connection* getProxyConnection(const UString &name,
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag, Connection::ProxyType proxyType) = 0;
+
+
+    virtual Connection* getAnyTaggedProxyConnection(const UString &name,
+      OCCI_STD_NAMESPACE::string roles[], unsigned int numRoles,
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag,
+      Connection::ProxyType proxyType) = 0; 
+
+    virtual Connection* getAnyTaggedProxyConnection(const UString &name,
+      const UString &connectionClass,
+      const Connection::Purity purity,
+      const UString &tag,
+      Connection::ProxyType proxyType ) =0;
 
 };
 
@@ -786,8 +775,10 @@ class   Environment
 
   static void releaseXAEnvironment(Environment *env);
   
-  static void getClientVersion( int &majorVersion, int &minorVersion, int &updateNum,
-                                int &patchNum, int &portUpdateNum );
+  static void getClientVersion( int &majorVersion, int &minorVersion, 
+                                int &updateNum, int &patchNum, 
+                                int &portUpdateNum );
+
 
   virtual Connection * createConnection(
     const OCCI_STD_NAMESPACE::string &userName,
@@ -889,6 +880,18 @@ class   Environment
 
   virtual void setCacheSortedFlush(bool flag) = 0;
 
+  virtual Connection * createConnection(
+                   const OCCI_STD_NAMESPACE::string &userName,
+                   const OCCI_STD_NAMESPACE::string &password,
+                   const OCCI_STD_NAMESPACE::string &connectString,
+                   const OCCI_STD_NAMESPACE::string &connectionClass,
+                   const Connection::Purity purity) = 0;
+
+  virtual Connection * createConnection(const UString &userName, 
+                const  UString &password, const UString &connectString,
+                const UString &connectionclass, 
+                const Connection::Purity purity) =0;
+
   private:
 
 };
@@ -952,7 +955,7 @@ class SQLException : public OCCI_STD_NAMESPACE::exception
   SQLException(SQLExceptionImpl *ptr);
 
   friend SQLException SQLExceptionCreate(int errorCode);
-  friend SQLException SQLExceptionCreate(dvoid *handle,
+  friend SQLException SQLExceptionCreate(void *handle,
   int handleType);
   friend class BatchSQLException;
 };
@@ -970,7 +973,7 @@ class BatchSQLException : public SQLException
     BatchSQLException();
 
     BatchSQLException(SQLExceptionImpl *ptr); 
-    friend BatchSQLException BatchSQLExceptionCreate(dvoid *handle); 
+    friend BatchSQLException BatchSQLExceptionCreate(void *handle); 
 };
 
 class Statement 
@@ -1371,6 +1374,9 @@ class ResultSet
   virtual UString getCharSetUString(unsigned int colIndex) 
   const = 0; 
 
+  virtual void setPrefetchRowCount(unsigned int rowCount) = 0; 
+  
+  virtual void setPrefetchMemorySize(unsigned int bytes) = 0;
 };
 
 
@@ -1463,7 +1469,7 @@ position as a vector of objects
 
         will call getVector(..., vector<PObject*>)
 */
-#ifdef WIN32COMMON
+#if defined(WIN32COMMON) || defined(__MVS__)
 // and other platforms that do not support
 // partial function template specialization
 
@@ -1521,7 +1527,7 @@ position as a vector of objects
 
         will call getVector(..., vector<PObject*>)
 */
-#ifdef WIN32COMMON
+#if defined(WIN32COMMON) || defined(__MVS__)
 // and other platforms that do not support
 // partial function template specialization
 
@@ -1574,7 +1580,7 @@ position as a vector of Ref<T>
    NOTES
         compatible SQL types : REF
 */
-#ifndef WIN32COMMON
+#if !defined(WIN32COMMON) && !defined(__MVS__)
 template <class T>
 void getVector( ResultSet *rs, unsigned int index, 
                 OCCI_STD_NAMESPACE::vector<Ref<T> > &vect) 
@@ -1622,7 +1628,7 @@ void getVector( ResultSet *rs, unsigned int index,
      This will be calling setVector(..., vector<PObject*>,..)
 
 */
-#ifdef WIN32COMMON
+#if defined(WIN32COMMON) || defined(__MVS__)
 // and other platforms that do not support
 // partial function template specialization
 
@@ -1742,7 +1748,7 @@ const UString &typeName)
 
 
 */
-#ifndef WIN32COMMON
+#if !defined(WIN32COMMON) && !defined(__MVS__)
 template <class T>
 void setVector( Statement *stmt, unsigned int index, 
                 const OCCI_STD_NAMESPACE::vector<Ref<T> > &vect, 
@@ -1828,7 +1834,7 @@ position as a vector of Ref<T>
    NOTES
         compatible SQL types : REF
 */
-#ifndef WIN32COMMON
+#if !defined(WIN32COMMON) && !defined(__MVS__)
 template <class T>
 void getVector( Statement *stmt, unsigned int index, 
                 OCCI_STD_NAMESPACE::vector<Ref<T> > &vect) 
